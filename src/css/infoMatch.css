@@ -18,19 +18,87 @@
 
 .match {
     display: flex;
-    padding-top: 17px;
+    padding: 17px 0;
 }
 .match .team {
+    position: relative;
     width: 40%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 .match .team img {width: 70px; height: 70px;}
-.match .team span {width: 100%; text-align: center; margin-top: 10px;}
+.match .team .team-name {width: 100%; text-align: center; margin-top: 10px;}
 
 .match .info {
     width: 30%;
 }
 .match .info span {display: block; text-align: center;}
 .hour-match {font-weight: bold;}
+.date-match {color: rgb(105, 105, 105);}
+
+.team .score {
+    position: absolute;
+    top: 25%;
+    font-size: 30px;
+    font-weight: bold;
+}
+.team.home .score {right: 0;}
+.team.away .score {left: 0;}
+.match-container.live .score {
+    color: rgb(39, 170, 39);
+    transition: all 1s ease;
+    animation: score-live 1s infinite alternate;
+}
+.match-container.finished .score {color: rgb(89, 143, 223);}
+
+.nav-match {
+    display: flex;
+    margin-top: 25px;
+    background-color: aliceblue;
+    border: 1px solid rgb(230, 230, 230);
+    color: rgb(94, 94, 94);
+}
+.nav-match li {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+.nav-match li:hover {
+    background-color: rgb(223, 239, 252); 
+    border-left: 1px solid aliceblue;
+    border-right: 1px solid aliceblue
+}
+.nav-match .active {
+    background-color: rgb(223, 239, 252);
+    color: black;
+}
+
+/* animation */
+@keyframes score-live {
+    0% { opacity: 1; }
+    100% { opacity: 0.6;}
+}
+/* end animation */
+
+@media screen and (max-width : 992px) {
+    .match-container {width: 100%;}
+}
+
+@media screen and (max-width : 768px) {
+    .match .team img {width: 55px; height: 55px;}
+    .team .score {top: 20%;}
+}
+
+@media screen and (max-width : 576px) {
+    .match-container h3 img {width: 25px; height: 20px;}
+    .match-container h3 .country {font-size: 16px;}
+    .match-container h3 .league {font-size: 14px;}
+
+    .match .team img {width: 40px; height: 40px;}
+    .match .team .team-name, .match .info {font-size: 12px;}
+    .team .score {font-size: 20px; top: 14%;}
+
+    .nav-match {margin-top: 10px; font-size: 12px;}
+}
