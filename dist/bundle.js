@@ -33,6 +33,22 @@ module.exports = ___EXPOSE_LOADER_IMPORT___;
 
 /***/ }),
 
+/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getMatchLeague-exposed.js":
+/*!********************************************************************************************************************************************************!*\
+  !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getMatchLeague-exposed.js ***!
+  \********************************************************************************************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var ___EXPOSE_LOADER_IMPORT___ = __webpack_require__(/*! -!./getMatchLeague.js */ "./src/js/getMatchLeague.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = __webpack_require__(/*! ../../node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/runtime/getGlobalThis.js */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/runtime/getGlobalThis.js");
+var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["league"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["league"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "league" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+
+
+/***/ }),
+
 /***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/runtime/getGlobalThis.js":
 /*!************************************************************************************************************************!*\
   !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/runtime/getGlobalThis.js ***!
@@ -290,9 +306,10 @@ function getCurrentDate() {
     }
 }
 
-function setDate(item,m, d) {
-    // raha sendra amle date efa affiché no click-eny
-    if(d === currentDate) return
+let currentIdLeague = undefined; // tazomina le idLeague jerena raha misy
+function setDate(item, m, d, idLeague, toDisplay) {
+    // raha sendra amle date efa affiché no click-eny ary tsy miova ny idLeague
+    if((d === currentDate) && (m === month) && (currentIdLeague == idLeague)) return
     // hideCalendar
     let actualContainer = document.querySelector('.actual')
     actualContainer.style.top = '-100%'
@@ -302,6 +319,10 @@ function setDate(item,m, d) {
     if(currentDateHTML) // raha misy, (tsy misy mantsy ito rehefa miova mois)
         currentDateHTML.classList.remove('currentDate')
     item.classList.add('currentDate')
+
+    if(idLeague) currentIdLeague = idLeague // raha misy valeur vao ovaina
+    console.log('currentIdLeague');
+    console.log(currentIdLeague);
     month = m;
     currentDate = d
     if(m > 12) {
@@ -311,7 +332,7 @@ function setDate(item,m, d) {
         month = 12
         year--
     }
-    (0,_listMatch__WEBPACK_IMPORTED_MODULE_0__.listMatch)((`${year}-${month}-${currentDate}`))
+    (0,_listMatch__WEBPACK_IMPORTED_MODULE_0__.listMatch)((`${year}-${month}-${currentDate}`), currentIdLeague, toDisplay)
 }
 /* end calendar */
 
@@ -404,6 +425,41 @@ function displayListMatch(list) {
         }
         matchContainer.insertAdjacentHTML('beforeend', countryGameHTML)
     }
+}
+
+/***/ }),
+
+/***/ "./src/js/getMatchLeague.js":
+/*!**********************************!*\
+  !*** ./src/js/getMatchLeague.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getMatchLeague": () => (/* binding */ getMatchLeague)
+/* harmony export */ });
+/* harmony import */ var _calendar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calendar */ "./src/js/calendar.js");
+/* harmony import */ var _listMatch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./listMatch */ "./src/js/listMatch.js");
+
+
+
+let currentLeagueHTML = undefined;
+function getMatchLeague (idLeague, item) {
+    let d = new Date(),
+        year = d.getFullYear(),
+        month = d.getMonth()+1,
+        dateToday = d.getDate();
+    (0,_calendar__WEBPACK_IMPORTED_MODULE_0__.deleteCurrentMonth)()
+    ;(0,_calendar__WEBPACK_IMPORTED_MODULE_0__.createCalendar)(month, year, dateToday)
+    let dateTodayHTML = document.querySelector('.currentDate');
+    (0,_calendar__WEBPACK_IMPORTED_MODULE_0__.setDate)(dateTodayHTML, month, dateToday, idLeague, _listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchToday)
+    // to active
+    if(currentLeagueHTML) currentLeagueHTML.classList.add('active')
+    item.classList.add('active')
+    currentLeagueHTML = item
+    window.scroll(0,0)
 }
 
 /***/ }),
@@ -524,10 +580,10 @@ listLeague = listLeague.split(',')
             for(let element of exceptionLeague) {
                 list[element.index].league_logo = element.photo
             }
-            // display list league
+            // display list league `<li class="list-item" onclick="getMatchLeague(${e.league_id})">
             for(let e of list) {
                 let listItem = 
-                `<li class="list-item">
+                `<li class="list-item" onclick="league.getMatchLeague(${e.league_id})">
                     <img src="${e.league_logo}" alt="icon-country">
                     <span>${e.league_name}
                         <span class="line-list"></span>
@@ -573,7 +629,7 @@ let listLeague = (0,_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListLeague)
     activeInNavBar = document.querySelector('.navbar-match .nav-list li.active'),
     currentItem = listMatchToday; // ilaina amle update-na score
 
-async function listMatch(date, idLeague) {
+async function listMatch(date, idLeague, toDisplay) {
     gamePerLeague = [];
     let d = new Date(date),
         currentYear = d.getFullYear(),
@@ -582,16 +638,20 @@ async function listMatch(date, idLeague) {
         currentDate = currentYear + '-' + currentMonth + '-' + currentDay;
     console.log(currentDate);
     let url = `https://apiv3.apifootball.com/?action=get_events&from=${currentDate}&to=${currentDate}&APIkey=${APIkey}&timezone=Africa/Nairobi`;
+    console.log(url);
     fetch(url, {method : 'get'})
         .then(response => response.json())
         .then((value) => {
-            // console.log(value);
             // ireo anaty liste iany no alaina
             let list = value.filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name)),
                 leagueId = [],
                 countryId = [];
-            console.log('list match');
-            console.log(list);
+            // au cas ou idLeague est donne
+            if(idLeague) {
+                list = list.filter(e => e.league_id == idLeague)
+            }
+                console.log('list match');
+                console.log(list);
             // filter by country and league
             // alaina ny liste ana leagueId (tsy azo asiana miverina) ary tonga dia alaina ny match 
             for(let e of list) {
@@ -638,8 +698,12 @@ async function listMatch(date, idLeague) {
             console.log('gamePerLeague');
             console.log(gamePerLeague);
             // affiche-na ny match androany na ireo live na vide fotsiny (dans le cas des match deja fini)
+            if(toDisplay) { // raha misy no specifie-na
+                activeInNavBar = document.querySelector('.currentDate');
+                currentItem = toDisplay
+            } 
             currentItem(activeInNavBar)
-            ;(0,_displayListMatch__WEBPACK_IMPORTED_MODULE_3__["default"])(gamePerLeague)
+            // displayListMatch(gamePerLeague)
             ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
         })
 }
@@ -679,7 +743,7 @@ async function listMatchLive(item) {
 }
 
 async function listMatchFinished(item) {
-    currentItem = () => {};
+    currentItem = listMatchFinished;
     activeInNavBar.classList.remove('active')
     item.classList.add('active')
     activeInNavBar = item;
@@ -805,6 +869,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! expose-loader?exposes=calendar!./calendar */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar.js");
 /* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var expose_loader_exposes_league_getMatchLeague__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! expose-loader?exposes=league!./getMatchLeague */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getMatchLeague-exposed.js");
+/* harmony import */ var expose_loader_exposes_league_getMatchLeague__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_league_getMatchLeague__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -813,12 +880,12 @@ __webpack_require__.r(__webpack_exports__);
 
 let {year,month,currentDate} = (0,expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__.getCurrentDate)()
 
-;(0,expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__.listMatch)(new Date())
-;(0,_listLeague__WEBPACK_IMPORTED_MODULE_0__["default"])()
+// loading()
+// listMatch(new Date())
+// listLeague()
 ;(0,expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__.createCalendar)(month,year,currentDate)
-;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.loading)()
-let a =0; 
-// stopLoading()
+ 
+;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.stopLoading)()
 // let intervalListMatch = setInterval(() => {
 //     listMatch(new Date())
 // }, 10000)

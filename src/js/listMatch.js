@@ -10,7 +10,7 @@ let listLeague = getListLeague(),
     activeInNavBar = document.querySelector('.navbar-match .nav-list li.active'),
     currentItem = listMatchToday; // ilaina amle update-na score
 
-export async function listMatch(date, idLeague) {
+export async function listMatch(date, idLeague, toDisplay) {
     gamePerLeague = [];
     let d = new Date(date),
         currentYear = d.getFullYear(),
@@ -19,16 +19,20 @@ export async function listMatch(date, idLeague) {
         currentDate = currentYear + '-' + currentMonth + '-' + currentDay;
     console.log(currentDate);
     let url = `https://apiv3.apifootball.com/?action=get_events&from=${currentDate}&to=${currentDate}&APIkey=${APIkey}&timezone=Africa/Nairobi`;
+    console.log(url);
     fetch(url, {method : 'get'})
         .then(response => response.json())
         .then((value) => {
-            // console.log(value);
             // ireo anaty liste iany no alaina
             let list = value.filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name)),
                 leagueId = [],
                 countryId = [];
-            console.log('list match');
-            console.log(list);
+            // au cas ou idLeague est donne
+            if(idLeague) {
+                list = list.filter(e => e.league_id == idLeague)
+            }
+                console.log('list match');
+                console.log(list);
             // filter by country and league
             // alaina ny liste ana leagueId (tsy azo asiana miverina) ary tonga dia alaina ny match 
             for(let e of list) {
@@ -75,8 +79,12 @@ export async function listMatch(date, idLeague) {
             console.log('gamePerLeague');
             console.log(gamePerLeague);
             // affiche-na ny match androany na ireo live na vide fotsiny (dans le cas des match deja fini)
+            if(toDisplay) { // raha misy no specifie-na
+                activeInNavBar = document.querySelector('.currentDate');
+                currentItem = toDisplay
+            } 
             currentItem(activeInNavBar)
-            displayListMatch(gamePerLeague)
+            // displayListMatch(gamePerLeague)
             stopLoading()
         })
 }
@@ -116,7 +124,7 @@ export async function listMatchLive(item) {
 }
 
 export async function listMatchFinished(item) {
-    currentItem = () => {};
+    currentItem = listMatchFinished;
     activeInNavBar.classList.remove('active')
     item.classList.add('active')
     activeInNavBar = item;

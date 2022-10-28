@@ -169,9 +169,10 @@ export function getCurrentDate() {
     }
 }
 
-export function setDate(item,m, d) {
-    // raha sendra amle date efa affiché no click-eny
-    if(d === currentDate) return
+let currentIdLeague = undefined; // tazomina le idLeague jerena raha misy
+export function setDate(item, m, d, idLeague, toDisplay) {
+    // raha sendra amle date efa affiché no click-eny ary tsy miova ny idLeague
+    if((d === currentDate) && (m === month) && (currentIdLeague == idLeague)) return
     // hideCalendar
     let actualContainer = document.querySelector('.actual')
     actualContainer.style.top = '-100%'
@@ -181,6 +182,10 @@ export function setDate(item,m, d) {
     if(currentDateHTML) // raha misy, (tsy misy mantsy ito rehefa miova mois)
         currentDateHTML.classList.remove('currentDate')
     item.classList.add('currentDate')
+
+    if(idLeague) currentIdLeague = idLeague // raha misy valeur vao ovaina
+    console.log('currentIdLeague');
+    console.log(currentIdLeague);
     month = m;
     currentDate = d
     if(m > 12) {
@@ -190,6 +195,6 @@ export function setDate(item,m, d) {
         month = 12
         year--
     }
-    listMatch((`${year}-${month}-${currentDate}`))
+    listMatch((`${year}-${month}-${currentDate}`), currentIdLeague, toDisplay)
 }
 /* end calendar */
