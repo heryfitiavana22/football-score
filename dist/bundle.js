@@ -584,7 +584,7 @@ listLeague = listLeague.split(',')
             for(let e of list) {
                 let listItem = 
                 `<li class="list-item" onclick="league.getMatchLeague(${e.league_id})">
-                    <img src="${e.league_logo}" alt="icon-country">
+                    <img src="${e.league_logo}" alt="icon-league">
                     <span>${e.league_name}
                         <span class="line-list"></span>
                     </span>
@@ -883,7 +883,7 @@ let {year,month,currentDate} = (0,expose_loader_exposes_calendar_calendar__WEBPA
 // loading()
 // listMatch(new Date())
 // listLeague()
-;(0,expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__.createCalendar)(month,year,currentDate)
+// createCalendar(month,year,currentDate)
  
 ;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.stopLoading)()
 // let intervalListMatch = setInterval(() => {

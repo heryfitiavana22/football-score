@@ -1,0 +1,36 @@
+.match-container {
+    width: 74%;
+    background-color: white;
+    border-radius: 6px;
+}
+
+.match-container h3 {
+    padding: 10px 0 10px 0;
+    border-bottom: 1px solid rgb(222, 222, 222); 
+}
+.match-container h3 img {width: 30px; height: 25px; margin-left: 10px;}
+.match-container h3 .country {font-size: 18px; color: rgb(78, 78, 78);}
+.match-container h3 .league {
+    font-size: 16px; 
+    font-weight: bold;
+    color: var(--blue1);
+}
+
+.match {
+    display: flex;
+    padding-top: 17px;
+}
+.match .team {
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.match .team img {width: 70px; height: 70px;}
+.match .team span {width: 100%; text-align: center; margin-top: 10px;}
+
+.match .info {
+    width: 30%;
+}
+.match .info span {display: block; text-align: center;}
+.hour-match {font-weight: bold;}

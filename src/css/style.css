@@ -72,6 +72,54 @@ h1 span {
 }
 .close:hover {color: rgb(178, 178, 178);}
 
+/* container */
+.container-element {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-top: 80px;
+}
+.content {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+/* list league */
+.league-container {
+    width: 25%;
+}
+.league-container h2 {
+    font-size: 18px;
+    font-weight: bold;
+}
+.list-league {
+    display: flex;
+    flex-direction: column;
+}
+.list-league .list-item {
+    display: flex;
+    height: 34px;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 4px;
+}
+.list-league .active {background-color: #e1e9f0;}
+.list-league .list-item img {width: 25px; height: 100%; margin-right: 7px;}
+.list-league .list-item > span {position: relative;}
+.line-list {
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: #f3a656;
+    transition: all 0.3s ease;
+}
+.list-league .list-item:hover {padding-left: 12px;}
+.list-league .list-item:hover .line-list {width: 100%;}
+/* end list league */
+
 @media screen and (max-width : 992px) {
     .nav-content, .container-element > .content {width: 98%;}
     .nav-option {margin-right: 10px;}
