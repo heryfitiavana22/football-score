@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar-exposed.js":
+/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar.js":
 /*!****************************************************************************************************************************************************!*\
   !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar-exposed.js ***!
   \****************************************************************************************************************************************************/
@@ -17,7 +17,7 @@ module.exports = ___EXPOSE_LOADER_IMPORT___;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=game!./src/js/listMatch-exposed.js":
+/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=game!./src/js/listMatch.js":
 /*!*************************************************************************************************************************************************!*\
   !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=game!./src/js/listMatch-exposed.js ***!
   \*************************************************************************************************************************************************/
@@ -117,8 +117,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setDate": () => (/* binding */ setDate),
 /* harmony export */   "upMonth": () => (/* binding */ upMonth)
 /* harmony export */ });
-/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
-/* harmony import */ var _listMatch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./listMatch */ "./src/js/listMatch.js");
+/* harmony import */ var _listMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./listMatch */ "./src/js/listMatch.js");
+/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
 
 
 /* calendar */
@@ -292,9 +292,12 @@ function getCurrentDate() {
 
 function setDate(item,m, d) {
     // raha sendra amle date efa affiché no click-eny
-    if(d === currentDate)
-        return
-    ;(0,_animation__WEBPACK_IMPORTED_MODULE_0__.loading)()
+    if(d === currentDate) return
+    // hideCalendar
+    let actualContainer = document.querySelector('.actual')
+    actualContainer.style.top = '-100%'
+    
+    ;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.loading)()
     let currentDateHTML = document.querySelector('.currentDate');
     if(currentDateHTML) // raha misy, (tsy misy mantsy ito rehefa miova mois)
         currentDateHTML.classList.remove('currentDate')
@@ -308,7 +311,7 @@ function setDate(item,m, d) {
         month = 12
         year--
     }
-    (0,_listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatch)((`${year}-${month}-${currentDate}`))
+    (0,_listMatch__WEBPACK_IMPORTED_MODULE_0__.listMatch)((`${year}-${month}-${currentDate}`))
 }
 /* end calendar */
 
@@ -368,7 +371,7 @@ function displayListMatch(list) {
             if(game.match_live === '1') 
                 countryGameHTML += 
                     `<li class="live">
-                        <span class="hour-match">${game.match_status} min</span>`;
+                        <span class="hour-match">${isNaN(game.match_status) ? game.match_status : ((game.match_status + ' min'))}</span>`;
             // finished game
             else if((game.match_status === 'Finished') || (game.match_status === 'After ET') || (game.match_status === 'After Pen.'))
                 countryGameHTML += 
@@ -388,13 +391,13 @@ function displayListMatch(list) {
                     <div class="home">
                         <img src="${game.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team">
                         <span>${game.match_hometeam_name}</span>
-                        <span class="score-home score">${game.match_hometeam_score}</span> 
+                        <span class="score-home score">${(game.match_hometeam_score.length > 0) ? game.match_hometeam_score : '  '}</span> 
                     </div>
                     <span class="vs">vs</span>
                     <div class="away">
+                        <span class="away-home score">${(game.match_awayteam_score.length > 0) ? game.match_awayteam_score : '  '}</span>
                         <img src="${game.team_away_badge || 'assets/img/logo2.png'}" alt="icon-team">
                         <span>${game.match_awayteam_name}</span>
-                        <span class="away-home score">${game.match_awayteam_score}</span>
                     </div>
                 </div>
             </li>`;
@@ -585,7 +588,6 @@ async function listMatch(date, idLeague) {
             // console.log(value);
             // ireo anaty liste iany no alaina
             let list = value.filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name)),
-                gamePerLeague = [],
                 leagueId = [],
                 countryId = [];
             console.log('list match');
@@ -659,10 +661,8 @@ async function listMatchLive(item) {
     activeInNavBar = item;
     (0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
     // recuperena ireo match en live
-    let initialGame = gamePerLeague,
-        gameLive = [];
-    for(let e of initialGame) {
-        // e.game = e.game.filter(i => i.match_live === "1");
+    let gameLive = [];
+    for(let e of gamePerLeague) {
         gameLive.push({
             countryName : e.countryName,
             leagueName : e.leagueName,
@@ -801,9 +801,9 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _listLeague__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./listLeague */ "./src/js/listLeague.js");
 /* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
-/* harmony import */ var expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! expose-loader?exposes=game!./listMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=game!./src/js/listMatch-exposed.js");
+/* harmony import */ var expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! expose-loader?exposes=game!./listMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=game!./src/js/listMatch.js");
 /* harmony import */ var expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! expose-loader?exposes=calendar!./calendar */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar-exposed.js");
+/* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! expose-loader?exposes=calendar!./calendar */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar.js");
 /* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__);
 
 
@@ -813,19 +813,15 @@ __webpack_require__.r(__webpack_exports__);
 
 let {year,month,currentDate} = (0,expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__.getCurrentDate)()
 
-// listMatch(new Date())
+;(0,expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__.listMatch)(new Date())
+;(0,_listLeague__WEBPACK_IMPORTED_MODULE_0__["default"])()
 ;(0,expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__.createCalendar)(month,year,currentDate)
-let count = 1;
+;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.loading)()
+let a =0; 
+// stopLoading()
 // let intervalListMatch = setInterval(() => {
-//     if(count > 3) {
-//         clearInterval(intervalListMatch)
-//     }
 //     listMatch(new Date())
-//     count ++
 // }, 10000)
-// loading()
-(0,_animation__WEBPACK_IMPORTED_MODULE_1__.stopLoading)()
-// listLeague()
 })();
 
 /******/ })()

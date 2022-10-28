@@ -19,7 +19,7 @@ export default function displayListMatch(list) {
             if(game.match_live === '1') 
                 countryGameHTML += 
                     `<li class="live">
-                        <span class="hour-match">${game.match_status} min</span>`;
+                        <span class="hour-match">${isNaN(game.match_status) ? game.match_status : ((game.match_status + ' min'))}</span>`;
             // finished game
             else if((game.match_status === 'Finished') || (game.match_status === 'After ET') || (game.match_status === 'After Pen.'))
                 countryGameHTML += 
@@ -39,13 +39,13 @@ export default function displayListMatch(list) {
                     <div class="home">
                         <img src="${game.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team">
                         <span>${game.match_hometeam_name}</span>
-                        <span class="score-home score">${game.match_hometeam_score}</span> 
+                        <span class="score-home score">${(game.match_hometeam_score.length > 0) ? game.match_hometeam_score : '  '}</span> 
                     </div>
                     <span class="vs">vs</span>
                     <div class="away">
+                        <span class="away-home score">${(game.match_awayteam_score.length > 0) ? game.match_awayteam_score : '  '}</span>
                         <img src="${game.team_away_badge || 'assets/img/logo2.png'}" alt="icon-team">
                         <span>${game.match_awayteam_name}</span>
-                        <span class="away-home score">${game.match_awayteam_score}</span>
                     </div>
                 </div>
             </li>`;

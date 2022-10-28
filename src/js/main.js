@@ -6,16 +6,12 @@ import {createCalendar, getCurrentDate} from 'expose-loader?exposes=calendar!./c
 
 let {year,month,currentDate} = getCurrentDate()
 
-// listMatch(new Date())
+listMatch(new Date())
+listLeague()
 createCalendar(month,year,currentDate)
-let count = 1;
+loading()
+let a =0; 
+// stopLoading()
 // let intervalListMatch = setInterval(() => {
-//     if(count > 3) {
-//         clearInterval(intervalListMatch)
-//     }
 //     listMatch(new Date())
-//     count ++
 // }, 10000)
-// loading()
-stopLoading()
-// listLeague()

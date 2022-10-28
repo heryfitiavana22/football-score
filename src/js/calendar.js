@@ -1,4 +1,5 @@
 import {listMatch} from './listMatch'
+import {loading} from './animation'
 /* calendar */
 let date =  new Date(),
     currentDate = date.getDate(),
@@ -170,8 +171,11 @@ export function getCurrentDate() {
 
 export function setDate(item,m, d) {
     // raha sendra amle date efa affiché no click-eny
-    if(d === currentDate)
-        return
+    if(d === currentDate) return
+    // hideCalendar
+    let actualContainer = document.querySelector('.actual')
+    actualContainer.style.top = '-100%'
+    
     loading()
     let currentDateHTML = document.querySelector('.currentDate');
     if(currentDateHTML) // raha misy, (tsy misy mantsy ito rehefa miova mois)

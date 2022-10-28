@@ -25,7 +25,6 @@ export async function listMatch(date, idLeague) {
             // console.log(value);
             // ireo anaty liste iany no alaina
             let list = value.filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name)),
-                gamePerLeague = [],
                 leagueId = [],
                 countryId = [];
             console.log('list match');
@@ -99,10 +98,8 @@ export async function listMatchLive(item) {
     activeInNavBar = item;
     loading()
     // recuperena ireo match en live
-    let initialGame = gamePerLeague,
-        gameLive = [];
-    for(let e of initialGame) {
-        // e.game = e.game.filter(i => i.match_live === "1");
+    let gameLive = [];
+    for(let e of gamePerLeague) {
         gameLive.push({
             countryName : e.countryName,
             leagueName : e.leagueName,
