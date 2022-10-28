@@ -33,6 +33,22 @@ module.exports = ___EXPOSE_LOADER_IMPORT___;
 
 /***/ }),
 
+/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=info!./src/js/getInfoMatch.js":
+/*!****************************************************************************************************************************************************!*\
+  !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=info!./src/js/getInfoMatch-exposed.js ***!
+  \****************************************************************************************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var ___EXPOSE_LOADER_IMPORT___ = __webpack_require__(/*! -!./getInfoMatch.js */ "./src/js/getInfoMatch.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = __webpack_require__(/*! ../../node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/runtime/getGlobalThis.js */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/runtime/getGlobalThis.js");
+var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["info"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["info"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "info" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+
+
+/***/ }),
+
 /***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getMatchLeague.js":
 /*!********************************************************************************************************************************************************!*\
   !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getMatchLeague-exposed.js ***!
@@ -89,6 +105,24 @@ module.exports = function () {
 
   return g;
 }();
+
+/***/ }),
+
+/***/ "./src/js/addHistory.js":
+/*!******************************!*\
+  !*** ./src/js/addHistory.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((hash) => {
+    let url = location.protocol + '//' + location.host + '#' + hash
+    window.history.pushState(null,'', url)
+});
 
 /***/ }),
 
@@ -425,6 +459,71 @@ function displayListMatch(list) {
         }
         matchContainer.insertAdjacentHTML('beforeend', countryGameHTML)
     }
+}
+
+/***/ }),
+
+/***/ "./src/js/getInfoMatch.js":
+/*!********************************!*\
+  !*** ./src/js/getInfoMatch.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _addHistory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addHistory */ "./src/js/addHistory.js");
+/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((idMatch) => {
+    (0,_animation__WEBPACK_IMPORTED_MODULE_1__.loading)()
+    ;(0,_addHistory__WEBPACK_IMPORTED_MODULE_0__["default"])(`game/${idMatch}`);
+    let matchContainer = document.querySelector('.match-container'),
+        actual = document.querySelector('.actual');
+    matchContainer.remove();
+    actual.remove()
+    displayGame()
+    ;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.stopLoading)()
+});
+
+function displayGame(info) {
+    let gameHTML =
+    `<div class="match-container finished">
+        <h3 class="country-league">
+            <img src="assets/img/logo2.png" alt="icon-country">
+            <span class="country">Espagne : </span>
+            <span class="league">La liga</span>
+        </h3>
+        <div class="match">
+            <div class="home team">
+                <img src="assets/img/logo2.png" alt="icon-team">
+                <span class="team-name">Manchester city u19 </span>
+                <span class="score">1</span>
+            </div>
+            <div class="info">
+                <span class="hour-match">22:00</span>
+                <span class="date-match">28-10-2022</span>
+                <!-- <span class="vs">vs</span> -->
+            </div>
+            <div class="away team">
+                <span class="score">1</span>
+                <img src="assets/img/logo2.png" alt="icon-team">
+                <span class="team-name">Home</span>
+            </div>
+        </div>
+        <ul class="nav-match">
+            <li class="active">Avant-match</li>
+            <li>Standing</li>
+        </ul>
+        <div style="padding: 10px;">
+        </div>
+    </div>`
+
+    document.querySelector('.content').insertAdjacentHTML('beforeend', gameHTML)
 }
 
 /***/ }),
@@ -871,6 +970,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var expose_loader_exposes_league_getMatchLeague__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! expose-loader?exposes=league!./getMatchLeague */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getMatchLeague.js");
 /* harmony import */ var expose_loader_exposes_league_getMatchLeague__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_league_getMatchLeague__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var expose_loader_exposes_info_getInfoMatch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! expose-loader?exposes=info!./getInfoMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=info!./src/js/getInfoMatch.js");
+/* harmony import */ var expose_loader_exposes_info_getInfoMatch__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_info_getInfoMatch__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -880,12 +982,12 @@ __webpack_require__.r(__webpack_exports__);
 
 let {year,month,currentDate} = (0,expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__.getCurrentDate)()
 
-// loading()
-// listMatch(new Date())
-// listLeague()
-// createCalendar(month,year,currentDate)
+;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.loading)()
+;(0,expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__.listMatch)(new Date())
+;(0,_listLeague__WEBPACK_IMPORTED_MODULE_0__["default"])()
+;(0,expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__.createCalendar)(month,year,currentDate)
  
-;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.stopLoading)()
+// stopLoading()
 // let intervalListMatch = setInterval(() => {
 //     listMatch(new Date())
 // }, 10000)
