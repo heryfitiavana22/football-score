@@ -37,14 +37,14 @@
 .hour-match {font-weight: bold;}
 .date-match {color: rgb(105, 105, 105);}
 
-.team .score {
+.match .team .score {
     position: absolute;
     top: 25%;
     font-size: 30px;
     font-weight: bold;
 }
-.team.home .score {right: 0;}
-.team.away .score {left: 0;}
+.match .team.home .score {right: 0;}
+.match .team.away .score {left: 0;}
 .match-container.live .score {
     color: rgb(39, 170, 39);
     transition: all 1s ease;
@@ -78,6 +78,7 @@
 .lineup {
     position: relative;
     height: 450px;
+    background-size: cover;
 }
 .lineup > img {
     position: absolute;
@@ -107,9 +108,32 @@
     display: block;
     position: absolute;
     height: 27px;
-    max-width: 104px;
+    max-width: 70px;
     color: aliceblue;
     overflow: hidden;
+}
+.lineup .system {
+    position: absolute;
+    color: aliceblue;
+    
+    font-size: 20px;
+    font-weight: bold;
+}
+.lineup .home .system {top: 0px; left: 24px;}
+.lineup .away .system {top: 0px; right: 24px;}
+
+.coach-missing {margin: 10px 0;}
+.coach > div {display: flex}
+.coach > div > div {
+    width: 50%;
+    padding: 20px 5px 5px 25px;
+}
+.coach .away {border-left: 1px solid rgb(231, 231, 231);}
+.coach .team {font-size: 22px; font-weight: bold;}
+.coach .team img {width: 50px; height: 50px;}
+.coach .caption {
+    font-size: 14px;
+    color: rgb(130, 130, 130)
 }
 
 /* animation */
@@ -125,7 +149,33 @@
 
 @media screen and (max-width : 768px) {
     .match .team img {width: 55px; height: 55px;}
-    .team .score {top: 20%;}
+    .match .team .score {top: 20%;}
+
+    .lineup {height: 730px;}
+    .lineup > img {
+        content: url(../../assets/img/terrain2.jpg) !important;
+    }
+    .players-container {flex-direction: column;}
+    .players-container > div {
+        width: 100%;
+        height: 50%;
+        flex-direction: column;
+    }
+    .lineup .home {padding-bottom: 15px;}
+    .lineup .away {padding-top: 15px;}
+    .players-container .row-item {flex-direction: row;}
+    .player {font-size: 14px;}
+    .players-container .row-item img {
+        width: 40px;
+        height: 40px;
+    }
+    .player-name {height: 25px;}
+    .lineup .home .system {left: 34px;}
+    .lineup .away .system {
+        bottom: 0px;
+        right: 34px;
+        top: unset;
+    }
 }
 
 @media screen and (max-width : 576px) {
@@ -135,7 +185,25 @@
 
     .match .team img {width: 40px; height: 40px;}
     .match .team .team-name, .match .info {font-size: 12px;}
-    .team .score {font-size: 20px; top: 14%;}
+    .match .team .score {font-size: 20px; top: 14%;}
 
     .nav-match {margin-top: 10px; font-size: 12px;}
+    .match-container > div {padding: 5px !important;}
+    .lineup {height: 550px;}
+    .players-container .row-item img {
+        width: 30px;
+        height: 30px;
+    }
+    .player-name {
+        height: 21px;
+        max-width: 50px;
+        font-size: 12px;
+    }
+    .lineup .system {font-size: 18px; }
+    .lineup .home .system {left: 24px;}
+    .lineup .away .system {right: 24px;}
+
+    .coach > div > div {padding: 10px 5px 5px 10px;}
+    .coach .team img {width: 30px; height: 30px;}
+    .coach .team {font-size: 16px;}
 }
