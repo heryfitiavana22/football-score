@@ -8,12 +8,12 @@ import getInfoMatch from 'expose-loader?exposes=info!./getInfoMatch'
 
 let {year,month,currentDate} = getCurrentDate()
 
-loading()
-listMatch(new Date())
-listLeague()
-createCalendar(month,year,currentDate)
+// loading()
+// listMatch(new Date())
+// listLeague()
+// createCalendar(month,year,currentDate)
  
-// stopLoading()
+stopLoading()
 // let intervalListMatch = setInterval(() => {
 //     listMatch(new Date())
 // }, 10000)

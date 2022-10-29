@@ -38,7 +38,7 @@ export default async () => {
             // display list league `<li class="list-item" onclick="getMatchLeague(${e.league_id})">
             for(let e of list) {
                 let listItem = 
-                `<li class="list-item" onclick="league.getMatchLeague(${e.league_id})">
+                `<li class="list-item" onclick="league.getMatchLeague(${e.league_id}, this)">
                     <img src="${e.league_logo}" alt="icon-league">
                     <span>${e.league_name}
                         <span class="line-list"></span>

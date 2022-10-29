@@ -21,15 +21,16 @@
 .nav-list li:hover {background-color: aliceblue;}
 .nav-list li.active {border-bottom: 2px solid rgb(215, 215, 215) !important;}
 .matchs {
-    border-bottom: 1px solid rgb(222, 222, 222); 
+    /* border-bottom: 1px solid rgb(222, 222, 222);  */
     margin-bottom: 15px; 
     border-radius: 4px; 
-    padding: 0 10px;
 }
 .matchs h3 {
     display: flex;
+    justify-content: center;
     align-items: center;
-    border-radius: 4px;
+    padding: 10px 0;
+    background-color: rgb(223, 239, 251);
 }
 .matchs h3 img {width: 30px; height: 25px; margin-right: 5px;}
 h3 .country {
@@ -44,13 +45,15 @@ h3 .league {
     font-size: 16px;
     top: -4px;
 }
+.list-match {padding: 0 10px;}
 .list-match li {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     margin-bottom: 15px;
-    height: 45px;
+    height: 50px;
     padding-left: 10px;
+    padding-bottom: 8px;
     transition: all 0.5s ease;
     border-radius: 4px;
     cursor: pointer;
