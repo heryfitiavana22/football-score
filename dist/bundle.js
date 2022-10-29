@@ -982,12 +982,12 @@ __webpack_require__.r(__webpack_exports__);
 
 let {year,month,currentDate} = (0,expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__.getCurrentDate)()
 
-// loading()
-// listMatch(new Date())
-// listLeague()
-// createCalendar(month,year,currentDate)
+;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.loading)()
+;(0,expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__.listMatch)(new Date())
+;(0,_listLeague__WEBPACK_IMPORTED_MODULE_0__["default"])()
+;(0,expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__.createCalendar)(month,year,currentDate)
  
-;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.stopLoading)()
+// stopLoading()
 // let intervalListMatch = setInterval(() => {
 //     listMatch(new Date())
 // }, 10000)
