@@ -55,18 +55,20 @@
 .moment-container {
     position: relative;
     margin: 10px 0;
+    height: 75px;
+    overflow: hidden;
 }
 .moment {
     position: relative;
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 .moment .bar {
     position: absolute;
     top: 40px;
     width: 1px;
-    height: 20px;
+    height: 25px;
     background-color: rgb(222, 222, 222);
 }
 .moment .time {
@@ -79,7 +81,23 @@
     border: 1px solid rgb(222, 222, 222);
     border-radius: 50%;
 }
-.moment .item {    
+.moment .time.score {
+    border: 1px solid rgb(28, 173, 45);
+    background-color: rgb(28, 173, 45);
+    color: white;
+}
+.moment .yellow-card {
+    border: 1px solid #e4dd13;
+    background-color: #e4dd13;
+    color: rgb(120, 120, 120);
+}
+.moment .red-card {
+    border: 1px solid #e32d18;
+    background-color: #e32d18;
+    color: white
+}
+.moment .item {  
+    position: absolute;  
     top: 8px;
     display: flex;
     width: 45%;
@@ -96,12 +114,26 @@
     justify-content: start;
     padding-right: 10px;
 }
-.substitution {position: absolute;}
-.substitution .in, .substitution .on {max-width: 47%;}
-.substitution .out {
-    color: rgb(122, 122, 122)
-}
+.item.substitution .in, .item.substitution .on {max-width: 47%;}
+.item.substitution .out {color: rgb(122, 122, 122)}
 #icon-substitute {margin: 5px 10px;}
+.item img {width: 25px; height: 25px;}
+.moment.home .item img {margin-left: 5px;}
+.moment.away .item img {margin-right: 5px;}
+.show-more {
+    position: absolute;
+    bottom: -2px;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+.show-more span {
+    background-color: var(--blue2);
+    color: aliceblue;
+    padding: 0 4px;
+    border-radius: 4px;
+}
 
 .nav-match {
     display: flex;
