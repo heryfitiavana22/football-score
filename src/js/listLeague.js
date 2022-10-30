@@ -35,10 +35,10 @@ export default async () => {
             for(let element of exceptionLeague) {
                 list[element.index].league_logo = element.photo
             }
-            // display list league `<li class="list-item" onclick="getMatchLeague(${e.league_id})">
+            // display list league `<li class="list-item" onclick="getLeagueMatch(${e.league_id})">
             for(let e of list) {
                 let listItem = 
-                `<li class="list-item" onclick="league.getMatchLeague(${e.league_id}, this)">
+                `<li class="list-item" onclick="league.getLeagueMatch(${e.league_id}, this)">
                     <img src="${e.league_logo}" alt="icon-league">
                     <span>${e.league_name}
                         <span class="line-list"></span>

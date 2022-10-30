@@ -37,20 +37,103 @@
 .hour-match {font-weight: bold;}
 .date-match {color: rgb(105, 105, 105);}
 
-.team .score {
+.match .team .score {
     position: absolute;
     top: 25%;
     font-size: 30px;
     font-weight: bold;
 }
-.team.home .score {right: 0;}
-.team.away .score {left: 0;}
+.match .team.home .score {right: 0;}
+.match .team.away .score {left: 0;}
 .match-container.live .score {
     color: rgb(39, 170, 39);
     transition: all 1s ease;
     animation: score-live 1s infinite alternate;
 }
 .match-container.finished .score {color: rgb(89, 143, 223);}
+
+.moment-container {
+    position: relative;
+    margin: 10px 0;
+    height: 75px;
+    overflow: hidden;
+}
+.moment {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+.moment .bar {
+    position: absolute;
+    top: 40px;
+    width: 1px;
+    height: 25px;
+    background-color: rgb(222, 222, 222);
+}
+.moment .time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid rgb(222, 222, 222);
+    border-radius: 50%;
+}
+.moment .time.score {
+    border: 1px solid rgb(28, 173, 45);
+    background-color: rgb(28, 173, 45);
+    color: white;
+}
+.moment .yellow-card {
+    border: 1px solid #e4dd13;
+    background-color: #e4dd13;
+    color: rgb(120, 120, 120);
+}
+.moment .red-card {
+    border: 1px solid #e32d18;
+    background-color: #e32d18;
+    color: white
+}
+.moment .item {  
+    position: absolute;  
+    top: 8px;
+    display: flex;
+    width: 45%;
+    height: 24px;
+    overflow: hidden;
+}
+.moment.home .item {
+    right: 55%; 
+    justify-content: end;
+    padding-left: 10px;
+}
+.moment.away .item {
+    left: 55%; 
+    justify-content: start;
+    padding-right: 10px;
+}
+.item.substitution .in, .item.substitution .on {max-width: 47%;}
+.item.substitution .out {color: rgb(122, 122, 122)}
+#icon-substitute {margin: 5px 10px;}
+.item img {width: 25px; height: 25px;}
+.moment.home .item img {margin-left: 5px;}
+.moment.away .item img {margin-right: 5px;}
+.show-more {
+    position: absolute;
+    bottom: -2px;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+.show-more span {
+    background-color: var(--blue2);
+    color: aliceblue;
+    padding: 0 4px;
+    border-radius: 4px;
+}
 
 .nav-match {
     display: flex;
@@ -75,9 +158,11 @@
     color: black;
 }
 
+/* pre-game */
 .lineup {
     position: relative;
     height: 450px;
+    background-size: cover;
 }
 .lineup > img {
     position: absolute;
@@ -107,10 +192,86 @@
     display: block;
     position: absolute;
     height: 27px;
-    max-width: 105px;
+    max-width: 70px;
     color: aliceblue;
     overflow: hidden;
 }
+.lineup .system {
+    position: absolute;
+    color: aliceblue;
+    
+    font-size: 20px;
+    font-weight: bold;
+}
+.lineup .home .system {top: 0px; left: 24px;}
+.lineup .away .system {top: 0px; right: 24px;}
+
+.coach-missing {margin: 10px 0;}
+.coach > div {display: flex}
+.coach > div > div {
+    width: 50%;
+    padding: 20px 5px 5px 25px;
+}
+.coach .away {border-left: 1px solid rgb(231, 231, 231);}
+.coach .team {font-size: 22px; font-weight: bold;}
+.coach .team img {width: 50px; height: 50px;}
+.coach .caption {
+    font-size: 14px;
+    color: rgb(130, 130, 130)
+}
+/* end pre-game */
+
+/* standing */
+table {width: 100%;}
+.head-table {
+    background-color: var(--blue2);
+    color: white;
+    border-bottom: none;
+    height: 38px;
+}
+table tr {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    padding: 6px 0 6px 10px;
+    /* border-bottom: 1px solid rgb(224, 224, 224); */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+table tr td.team {
+    display: block; 
+    width: 75%;
+    text-align: start;
+    overflow: hidden;
+}
+table tr td {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8%;
+}
+table .team-container:hover {background-color: aliceblue;}
+table img {width: 35px; height: 35px;}
+table .number {
+    margin: 0 5px; 
+    font-size: 18px; 
+}
+/* end standing */
+
+/* statistics */
+.statistics {
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 10px rgb(173, 173, 173);
+}
+.statistics h4 {text-align: center; margin-bottom: 20px;}
+.row-item {
+    display: flex;
+    justify-content: space-around;
+    height: 40px;
+    color: rgb(62, 62, 62);
+}
+/* end statistics */
 
 /* animation */
 @keyframes score-live {
@@ -125,7 +286,33 @@
 
 @media screen and (max-width : 768px) {
     .match .team img {width: 55px; height: 55px;}
-    .team .score {top: 20%;}
+    .match .team .score {top: 20%;}
+
+    .lineup {height: 730px;}
+    .lineup > img {
+        content: url(../../assets/img/terrain2.jpg) !important;
+    }
+    .players-container {flex-direction: column;}
+    .players-container > div {
+        width: 100%;
+        height: 50%;
+        flex-direction: column;
+    }
+    .lineup .home {padding-bottom: 15px;}
+    .lineup .away {padding-top: 15px;}
+    .players-container .row-item {flex-direction: row;}
+    .player {font-size: 14px;}
+    .players-container .row-item img {
+        width: 40px;
+        height: 40px;
+    }
+    .player-name {height: 25px;}
+    .lineup .home .system {left: 34px;}
+    .lineup .away .system {
+        bottom: 0px;
+        right: 34px;
+        top: unset;
+    }
 }
 
 @media screen and (max-width : 576px) {
@@ -135,7 +322,40 @@
 
     .match .team img {width: 40px; height: 40px;}
     .match .team .team-name, .match .info {font-size: 12px;}
-    .team .score {font-size: 20px; top: 14%;}
+    .match .team .score {font-size: 20px; top: 14%;}
 
     .nav-match {margin-top: 10px; font-size: 12px;}
+    .match-container > div {padding: 5px !important;}
+    .lineup {height: 550px;}
+    .players-container .row-item img {
+        width: 30px;
+        height: 30px;
+    }
+    .player-name {
+        height: 21px;
+        max-width: 50px;
+        font-size: 12px;
+    }
+    .lineup .system {font-size: 18px; }
+    .lineup .home .system {left: 24px;}
+    .lineup .away .system {right: 24px;}
+
+    .coach > div > div {padding: 10px 5px 5px 10px;}
+    .coach .team img {width: 30px; height: 30px;}
+    .coach .team {font-size: 16px;}
+
+    table {font-size: 12px;}
+    .head-table {height: 30px;}
+    table tr {padding: 4px 0 4px 3px; height: 38px;}
+    table .number {
+        margin: 0 2px;
+        font-size: 16px;
+    }
+    table img {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .statistics h4 {font-size: 16px;}
+    .row-item {font-size: 12px; height: 35px;}
 }

@@ -2,6 +2,7 @@ import {getListCountry, getListLeague} from './contryAndLeague'
 import {getPopularLeague} from './league'
 import {loading, stopLoading} from './animation'
 import displayListMatch from './displayListMatch'
+import infoMatch from './infoMatch'
 
 let APIkey = "5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda"
 let listLeague = getListLeague(),
@@ -19,7 +20,6 @@ export async function listMatch(date, idLeague, toDisplay) {
         currentDate = currentYear + '-' + currentMonth + '-' + currentDay;
     console.log(currentDate);
     let url = `https://apiv3.apifootball.com/?action=get_events&from=${currentDate}&to=${currentDate}&APIkey=${APIkey}&timezone=Africa/Nairobi`;
-    console.log(url);
     fetch(url, {method : 'get'})
         .then(response => response.json())
         .then((value) => {
@@ -78,18 +78,23 @@ export async function listMatch(date, idLeague, toDisplay) {
             }
             console.log('gamePerLeague');
             console.log(gamePerLeague);
-            // affiche-na ny match androany na ireo live na vide fotsiny (dans le cas des match deja fini)
+            // affiche-na ny match androany na ireo live na ireo match vita
             if(toDisplay) { // raha misy no specifie-na
                 activeInNavBar = document.querySelector('.currentDate');
                 currentItem = toDisplay
             } 
             currentItem(activeInNavBar)
-            // displayListMatch(gamePerLeague)
+            // event onclick 
+            let listMatchHTML = document.querySelector('.list-match')
+            listMatchHTML.addEventListener('click', (e) => {
+                console.log(e.target);
+                infoMatch(e.target.id)
+            })
             stopLoading()
         })
 }
 
-export async function listMatchToday(item) {
+export function listMatchToday(item) {
     currentItem = listMatchToday;
     activeInNavBar.classList.remove('active')
     item.classList.add('active')
@@ -123,7 +128,7 @@ export async function listMatchLive(item) {
     stopLoading()
 }
 
-export async function listMatchFinished(item) {
+export function listMatchFinished(item) {
     currentItem = listMatchFinished;
     activeInNavBar.classList.remove('active')
     item.classList.add('active')

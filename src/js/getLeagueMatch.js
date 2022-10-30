@@ -2,7 +2,7 @@ import {createCalendar, deleteCurrentMonth, setDate} from './calendar'
 import {listMatchToday} from './listMatch'
 
 let currentLeagueHTML = undefined;
-export function getMatchLeague (idLeague, item) {
+export function getLeagueMatch (idLeague, item) {
     let d = new Date(),
         year = d.getFullYear(),
         month = d.getMonth()+1,
