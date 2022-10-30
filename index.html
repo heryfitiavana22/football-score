@@ -53,8 +53,16 @@
                 <span id="close-league" class="ti ti-close close" onclick="hideListLeague()"></span>
             </div>
             <!-- match-container  -->
-            <div class="match-container finished">
-                
+            <div class="match-container">
+                <nav class="navbar-match">
+                    <ul class="nav-list">
+                        <li class="active col-4" onclick="game.listMatchToday(this)">
+                            Today
+                        </li>
+                        <li class="col-4" onclick="game.listMatchLive(this)">Live</li>
+                        <li class="col-4" onclick="game.listMatchFinished(this)">Finished</li>
+                    </ul>
+                </nav>
             </div>
             <!-- actual  -->
             <div class="actual">
