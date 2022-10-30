@@ -1,9 +1,9 @@
-export default function displayListMatch(list) {
+export default function (listGame) {
     let matchContainer = document.querySelector('.match-container'),
         matchToRemoved = document.querySelectorAll('.matchs');
     // fafana le match misy eo
     matchToRemoved.forEach(e => e.remove())
-    for(let country of list) {
+    for(let country of listGame) {
         let countryGameHTML = 
         `<div class="matchs">
             <h3>
@@ -18,17 +18,17 @@ export default function displayListMatch(list) {
             // live match
             if(game.match_live === '1') 
                 countryGameHTML += 
-                    `<li class="live">
+                    `<li class="live" id="${game.match_id}">
                         <span class="hour-match">${isNaN(game.match_status) ? game.match_status : ((game.match_status + ' min'))}</span>`;
             // finished game
             else if((game.match_status === 'Finished') || (game.match_status === 'After ET') || (game.match_status === 'After Pen.'))
                 countryGameHTML += 
-                    `<li class="finished">
+                    `<li class="finished" id="${game.match_id}">
                         <span class="hour-match">${game.match_time}</span>`
             // reporte
             else if(game.match_status === 'Postponed')
             countryGameHTML += 
-                `<li>
+                `<li id="${game.match_id}">
                     <span class="hour-match">postponed</span>`
             else 
                 countryGameHTML += 
