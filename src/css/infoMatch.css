@@ -75,6 +75,7 @@
     color: black;
 }
 
+/* pre-game */
 .lineup {
     position: relative;
     height: 450px;
@@ -135,6 +136,44 @@
     font-size: 14px;
     color: rgb(130, 130, 130)
 }
+/* end pre-game */
+
+/* standing */
+table {width: 100%;}
+.head-table {
+    background-color: var(--blue2);
+    color: white;
+    border-bottom: none;
+    height: 38px;
+}
+table tr {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    padding: 6px 0 6px 10px;
+    /* border-bottom: 1px solid rgb(224, 224, 224); */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+table tr td.team {
+    display: block; 
+    width: 75%;
+    text-align: start;
+    overflow: hidden;
+}
+table tr td {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8%;
+}
+table .team-container:hover {background-color: aliceblue;}
+table img {width: 35px; height: 35px;}
+table .number {
+    margin: 0 5px; 
+    font-size: 18px; 
+}
+/* end standing */
 
 /* animation */
 @keyframes score-live {
@@ -206,4 +245,16 @@
     .coach > div > div {padding: 10px 5px 5px 10px;}
     .coach .team img {width: 30px; height: 30px;}
     .coach .team {font-size: 16px;}
+
+    table {font-size: 12px;}
+    .head-table {height: 30px;}
+    table tr {padding: 4px 0 4px 3px; height: 38px;}
+    table .number {
+        margin: 0 2px;
+        font-size: 16px;
+    }
+    table img {
+        width: 25px;
+        height: 25px;
+    }
 }
