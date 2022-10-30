@@ -52,6 +52,57 @@
 }
 .match-container.finished .score {color: rgb(89, 143, 223);}
 
+.moment-container {
+    position: relative;
+    margin: 10px 0;
+}
+.moment {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.moment .bar {
+    position: absolute;
+    top: 40px;
+    width: 1px;
+    height: 20px;
+    background-color: rgb(222, 222, 222);
+}
+.moment .time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid rgb(222, 222, 222);
+    border-radius: 50%;
+}
+.moment .item {    
+    top: 8px;
+    display: flex;
+    width: 45%;
+    height: 24px;
+    overflow: hidden;
+}
+.moment.home .item {
+    right: 55%; 
+    justify-content: end;
+    padding-left: 10px;
+}
+.moment.away .item {
+    left: 55%; 
+    justify-content: start;
+    padding-right: 10px;
+}
+.substitution {position: absolute;}
+.substitution .in, .substitution .on {max-width: 47%;}
+.substitution .out {
+    color: rgb(122, 122, 122)
+}
+#icon-substitute {margin: 5px 10px;}
+
 .nav-match {
     display: flex;
     margin-top: 25px;
