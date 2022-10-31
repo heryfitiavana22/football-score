@@ -7,20 +7,16 @@ let navMatch = undefined,
 export default async (idMatch) => {
     loading()
     let game = [];
-        
     // addHistory(`game/${idMatch}`);
-    // effacer le contenu courant
-    let matchContainer = document.querySelector('.match-container'),
-        actual = document.querySelector('.actual');
-    matchContainer.remove();
-    actual.remove()
-    
     game = await getInfoMatch(idMatch)
-    displayGame()
+    console.log('game');
+    console.log(game);
+    displayGame(game)
     navMatch = document.querySelector('.nav-match');
     container = navMatch.nextElementSibling;
-    displayMoment()
+    displayMoment(game)
     displayPreGame()
+    stopLoading()
 
     navMatch.addEventListener('click', (e) => {
         loading()
@@ -43,28 +39,30 @@ export default async (idMatch) => {
 
 
 function displayGame(game) {
+    let infoMatchHTML = document.querySelector('.info-match');
+    if(infoMatchHTML) return // au cas ou efa misy, ohatra oe voatsindry indroa
     let gameHTML =
-    `<div class="match-container finished">
+    `<div class="info-match finished">
         <h3 class="country-league">
-            <img src="assets/img/logo2.png" alt="icon-country">
-            <span class="country">Espagne : </span>
-            <span class="league">La liga</span>
+            <img src="${game.country_logo || "assets/img/logo2.png"}" alt="icon-country">
+            <span class="country">${game.country_name} : </span>
+            <span class="league">${game.league_name}</span>
         </h3>
         <div class="match">
             <div class="home team">
-                <img src="assets/img/logo2.png" alt="icon-team">
-                <span class="team-name">Manchester city u19 </span>
-                <span class="score">1</span>
+                <img src="${game.team_home_badge || "assets/img/logo2.png"}" alt="icon-team">
+                <span class="team-name">${game.match_hometeam_name}</span>
+                <span class="score">${game.match_hometeam_score}</span>
             </div>
             <div class="info">
-                <span class="hour-match">22:00</span>
-                <span class="date-match">28-10-2022</span>
+                <span class="hour-match">${game.match_time}</span>
+                <span class="date-match">${game.match_date}</span>
                 <!-- <span class="vs">vs</span> -->
             </div>
             <div class="away team">
-                <span class="score">1</span>
-                <img src="assets/img/logo2.png" alt="icon-team">
-                <span class="team-name">Home</span>
+                <span class="score">${game.match_awayteam_score}</span>
+                <img src="${game.team_away_badge || "assets/img/logo2.png"}" alt="icon-team">
+                <span class="team-name">${game.match_awayteam_name}</span>
             </div>
         </div>
         <!-- moment fort  -->
@@ -81,43 +79,85 @@ function displayGame(game) {
     document.querySelector('.content').insertAdjacentHTML('beforeend', gameHTML)
 }
 
-function displayMoment(moment) {
+function displayMoment(game) {
+    let moment = [],
+        goal = game.goalscorer,
+        card = game.cards,
+        substitutions = game.substitutions;
+    // goal
+    for(let element of goal) {
+        moment.push({
+            time : element.time,
+            team : element.home_scorer ? 'home' : 'away',
+            type : "goal",
+            player : element.home_scorer || element.away_scorer,
+            icon : 'assets/img/goal.png'
+        })
+    }
+    // card
+    for(let element of card) {
+        moment.push({
+            time : element.time,
+            team : element.home_fault ? 'home' : 'away',
+            type : (element.card === 'yellow card') ? "yellow-card" : "red-card",
+            player : element.home_fault || element.away_fault,
+            icon : (element.card === 'yellow card') ? 'assets/img/yellow-card.png' : 'assets/img/red-card.png'
+        })
+    }
+    // substitution home
+    for(let element of substitutions.home) {
+        moment.push({
+            time : element.time,
+            team : 'home',
+            type : "substitution",
+            player : element.substitution.split(' | ')
+        })
+    }
+    // substitution away
+    for(let element of substitutions.away) {
+        moment.push({
+            time : element.time,
+            team : 'away',
+            type : "substitution",
+            player : element.substitution.split(' | ')
+        })
+    }
+    // sort by time
+    moment.sort((a,b) => a.time - b.time)
+    console.log('moment');
+    console.log(moment);
+
     let momentContainer = document.querySelector('.moment-container');
-    let momentHTML = 
-    `<!-- substitution -->
-    <div class="moment home">
-        <span class="time">10
-        </span>
-        <div class="item substitution">
-            <span class="in">in: Hery</span>
-            <span class="ti ti-reload" id="icon-substitute"></span>
-            <span class="out">out: Dj</span>
-        </div>
-        <div class="bar"></div>
-    </div>
-    <!-- goal -->
-    <div class="moment away">
-        <span class="time score">10+1
-        </span>
-        <div class="item goal">
-            <img src="assets/img/goal.png" alt="goal">
-            <span class="scorer"> Dj</span>
-        </div>
-        <div class="bar"></div>
-    </div>
-    <!-- card  -->
-    <div class="moment away">
-        <span class="time red-card">10+1
-        </span>
-        <div class="item goal">
-            <img src="assets/img/red-card.png" alt="goal">
-            <span class="scorer"> Dj</span>
-        </div>
-        <div class="bar"></div>
-    </div>
-    <!-- voir plus  -->
-    <div class="show-more"><span>show more</span></div>`
-    momentContainer.insertAdjacentElement = momentHTML;
+    let momentHTML = '';
+    for(let element of moment) {
+        momentHTML += 
+        `<div class="moment ${element.team}">
+            <span class="time ${element.type}">${element.time}</span>`;
+        if(element.type === 'substitution') {
+            momentHTML += 
+            `<div class="item substitution">
+                <span class="in">in: ${element.player[1]}</span>
+                <span class="ti ti-reload" id="icon-substitute"></span>
+                <span class="out">out: ${element.player[0]}</span>
+            </div>`
+        } else {
+            momentHTML += 
+            `<div class="item">
+                <img src="${element.icon}" alt="${element.type}">
+                <span class="scorer">${element.player}</span>
+            </div>`
+        }
+        momentHTML += 
+            `<div class="bar"></div>
+        </div>`
+    }
+    momentHTML += 
+        `<!-- voir plus  -->
+        <div class="show-more"><span>show more</span></div>`;
+    momentContainer.innerHTML = momentHTML;
+    document.querySelector('.show-more').addEventListener('click', () => {
+        momentContainer.style.height = "auto"
+    })
 }
 
 function displayPreGame(preGame) {
@@ -172,7 +212,7 @@ function displayPreGame(preGame) {
 
 function displayStanding(standing) {
     let standingHTML =
-    `<table>
+    `<table class="standing-container">
         <tr class="head-table">
             <td class="team">Team</td>
             <td>P</td>

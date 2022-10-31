@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar-exposed.js":
+/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar.js":
 /*!****************************************************************************************************************************************************!*\
   !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar-exposed.js ***!
   \****************************************************************************************************************************************************/
@@ -33,7 +33,7 @@ module.exports = ___EXPOSE_LOADER_IMPORT___;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getLeagueMatch-exposed.js":
+/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getLeagueMatch.js":
 /*!********************************************************************************************************************************************************!*\
   !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getLeagueMatch-exposed.js ***!
   \********************************************************************************************************************************************************/
@@ -331,6 +331,9 @@ function setDate(item, m, d, idLeague, toDisplay) {
     // hideCalendar
     let actualContainer = document.querySelector('.actual')
     actualContainer.style.top = '-100%'
+    if(window.innerWidth <= 768)
+        actualContainer.style.display = 'flex'
+    else actualContainer.style.display = 'block'
     
     ;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.loading)()
     let currentDateHTML = document.querySelector('.currentDate');
@@ -391,7 +394,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(listGame) {
     let matchContainer = document.querySelector('.match-container'),
-        matchToRemoved = document.querySelectorAll('.matchs');
+        matchToRemoved = document.querySelectorAll('.matchs'),
+        leagueContainer = document.querySelector('.league-container');
     // fafana le match misy eo
     matchToRemoved.forEach(e => e.remove())
     for(let country of listGame) {
@@ -410,33 +414,33 @@ __webpack_require__.r(__webpack_exports__);
             if(game.match_live === '1') 
                 countryGameHTML += 
                     `<li class="live" id="${game.match_id}">
-                        <span class="hour-match">${isNaN(game.match_status) ? game.match_status : ((game.match_status + ' min'))}</span>`;
+                        <span class="hour-match" id="${game.match_id}">${isNaN(game.match_status) ? game.match_status : ((game.match_status + ' min'))}</span>`;
             // finished game
             else if((game.match_status === 'Finished') || (game.match_status === 'After ET') || (game.match_status === 'After Pen.'))
                 countryGameHTML += 
                     `<li class="finished" id="${game.match_id}">
-                        <span class="hour-match">${game.match_time}</span>`
+                        <span class="hour-match" id="${game.match_id}">${game.match_time}</span>`
             // reporte
             else if(game.match_status === 'Postponed')
             countryGameHTML += 
                 `<li id="${game.match_id}">
-                    <span class="hour-match">postponed</span>`
+                    <span class="hour-match" id="${game.match_id}">postponed</span>`
             else 
                 countryGameHTML += 
-                    `<li>
-                        <span class="hour-match">${game.match_time}</span>`
+                    `<li id="${game.match_id}">
+                        <span class="hour-match"  id="${game.match_id}">${game.match_time}</span>`
             countryGameHTML += 
-                `<div class="match-item">
-                    <div class="home">
-                        <img src="${game.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team">
-                        <span>${game.match_hometeam_name}</span>
-                        <span class="score-home score">${(game.match_hometeam_score.length > 0) ? game.match_hometeam_score : '  '}</span> 
+                `<div class="match-item" id="${game.match_id}">
+                    <div class="home" id="${game.match_id}">
+                        <img src="${game.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}">
+                        <span id="${game.match_id}">${game.match_hometeam_name}</span>
+                        <span class="score-home score" id="${game.match_id}">${(game.match_hometeam_score.length > 0) ? game.match_hometeam_score : '  '}</span> 
                     </div>
-                    <span class="vs">vs</span>
-                    <div class="away">
-                        <span class="away-home score">${(game.match_awayteam_score.length > 0) ? game.match_awayteam_score : '  '}</span>
-                        <img src="${game.team_away_badge || 'assets/img/logo2.png'}" alt="icon-team">
-                        <span>${game.match_awayteam_name}</span>
+                    <span class="vs" id="${game.match_id}">vs</span>
+                    <div class="away" id="${game.match_id}">
+                        <span class="away-home score" id="${game.match_id}">${(game.match_awayteam_score.length > 0) ? game.match_awayteam_score : '  '}</span>
+                        <img src="${game.team_away_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}">
+                        <span id="${game.match_id}">${game.match_awayteam_name}</span>
                     </div>
                 </div>
             </li>`;
@@ -460,14 +464,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 let apiKey = "5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (idMatch) => {
+    console.log('idMatch');
+    console.log(idMatch);
     return await new Promise((reslove, reject) => {
-        let url = `https://apiv3.apifootball.com/?action=get_events&APIkey=${apiKey}&match_id=${idMatch}`
+        let url = `https://apiv3.apifootball.com/?action=get_events&APIkey=${apiKey}&match_id=${idMatch}`;
+        console.log(url);
         fetch(url, {method : 'get'})
         .then(response => response.json())
         .then((value) => {
             console.log('getInfoMatch');
             console.log(value);
-            reslove(value)
+            reslove(value[0])
         })
     })
 });
@@ -533,20 +540,16 @@ let navMatch = undefined,
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (idMatch) => {
     (0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
     let game = [];
-        
     // addHistory(`game/${idMatch}`);
-    // effacer le contenu courant
-    let matchContainer = document.querySelector('.match-container'),
-        actual = document.querySelector('.actual');
-    matchContainer.remove();
-    actual.remove()
-    
     game = await (0,_getInfoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(idMatch)
-    displayGame()
+    console.log('game');
+    console.log(game);
+    displayGame(game)
     navMatch = document.querySelector('.nav-match');
     container = navMatch.nextElementSibling;
-    displayMoment()
+    displayMoment(game)
     displayPreGame()
+    ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
 
     navMatch.addEventListener('click', (e) => {
         ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
@@ -569,28 +572,30 @@ let navMatch = undefined,
 
 
 function displayGame(game) {
+    let infoMatchHTML = document.querySelector('.info-match');
+    if(infoMatchHTML) return // au cas ou efa misy, ohatra oe voatsindry indroa
     let gameHTML =
-    `<div class="match-container finished">
+    `<div class="info-match finished">
         <h3 class="country-league">
-            <img src="assets/img/logo2.png" alt="icon-country">
-            <span class="country">Espagne : </span>
-            <span class="league">La liga</span>
+            <img src="${game.country_logo || "assets/img/logo2.png"}" alt="icon-country">
+            <span class="country">${game.country_name} : </span>
+            <span class="league">${game.league_name}</span>
         </h3>
         <div class="match">
             <div class="home team">
-                <img src="assets/img/logo2.png" alt="icon-team">
-                <span class="team-name">Manchester city u19 </span>
-                <span class="score">1</span>
+                <img src="${game.team_home_badge || "assets/img/logo2.png"}" alt="icon-team">
+                <span class="team-name">${game.match_hometeam_name}</span>
+                <span class="score">${game.match_hometeam_score}</span>
             </div>
             <div class="info">
-                <span class="hour-match">22:00</span>
-                <span class="date-match">28-10-2022</span>
+                <span class="hour-match">${game.match_time}</span>
+                <span class="date-match">${game.match_date}</span>
                 <!-- <span class="vs">vs</span> -->
             </div>
             <div class="away team">
-                <span class="score">1</span>
-                <img src="assets/img/logo2.png" alt="icon-team">
-                <span class="team-name">Home</span>
+                <span class="score">${game.match_awayteam_score}</span>
+                <img src="${game.team_away_badge || "assets/img/logo2.png"}" alt="icon-team">
+                <span class="team-name">${game.match_awayteam_name}</span>
             </div>
         </div>
         <!-- moment fort  -->
@@ -607,43 +612,85 @@ function displayGame(game) {
     document.querySelector('.content').insertAdjacentHTML('beforeend', gameHTML)
 }
 
-function displayMoment(moment) {
+function displayMoment(game) {
+    let moment = [],
+        goal = game.goalscorer,
+        card = game.cards,
+        substitutions = game.substitutions;
+    // goal
+    for(let element of goal) {
+        moment.push({
+            time : element.time,
+            team : element.home_scorer ? 'home' : 'away',
+            type : "goal",
+            player : element.home_scorer || element.away_scorer,
+            icon : 'assets/img/goal.png'
+        })
+    }
+    // card
+    for(let element of card) {
+        moment.push({
+            time : element.time,
+            team : element.home_fault ? 'home' : 'away',
+            type : (element.card === 'yellow card') ? "yellow-card" : "red-card",
+            player : element.home_fault || element.away_fault,
+            icon : (element.card === 'yellow card') ? 'assets/img/yellow-card.png' : 'assets/img/red-card.png'
+        })
+    }
+    // substitution home
+    for(let element of substitutions.home) {
+        moment.push({
+            time : element.time,
+            team : 'home',
+            type : "substitution",
+            player : element.substitution.split(' | ')
+        })
+    }
+    // substitution away
+    for(let element of substitutions.away) {
+        moment.push({
+            time : element.time,
+            team : 'away',
+            type : "substitution",
+            player : element.substitution.split(' | ')
+        })
+    }
+    // sort by time
+    moment.sort((a,b) => a.time - b.time)
+    console.log('moment');
+    console.log(moment);
+
     let momentContainer = document.querySelector('.moment-container');
-    let momentHTML = 
-    `<!-- substitution -->
-    <div class="moment home">
-        <span class="time">10
-        </span>
-        <div class="item substitution">
-            <span class="in">in: Hery</span>
-            <span class="ti ti-reload" id="icon-substitute"></span>
-            <span class="out">out: Dj</span>
-        </div>
-        <div class="bar"></div>
-    </div>
-    <!-- goal -->
-    <div class="moment away">
-        <span class="time score">10+1
-        </span>
-        <div class="item goal">
-            <img src="assets/img/goal.png" alt="goal">
-            <span class="scorer"> Dj</span>
-        </div>
-        <div class="bar"></div>
-    </div>
-    <!-- card  -->
-    <div class="moment away">
-        <span class="time red-card">10+1
-        </span>
-        <div class="item goal">
-            <img src="assets/img/red-card.png" alt="goal">
-            <span class="scorer"> Dj</span>
-        </div>
-        <div class="bar"></div>
-    </div>
-    <!-- voir plus  -->
-    <div class="show-more"><span>show more</span></div>`
-    momentContainer.insertAdjacentElement = momentHTML;
+    let momentHTML = '';
+    for(let element of moment) {
+        momentHTML += 
+        `<div class="moment ${element.team}">
+            <span class="time ${element.type}">${element.time}</span>`;
+        if(element.type === 'substitution') {
+            momentHTML += 
+            `<div class="item substitution">
+                <span class="in">in: ${element.player[1]}</span>
+                <span class="ti ti-reload" id="icon-substitute"></span>
+                <span class="out">out: ${element.player[0]}</span>
+            </div>`
+        } else {
+            momentHTML += 
+            `<div class="item">
+                <img src="${element.icon}" alt="${element.type}">
+                <span class="scorer">${element.player}</span>
+            </div>`
+        }
+        momentHTML += 
+            `<div class="bar"></div>
+        </div>`
+    }
+    momentHTML += 
+        `<!-- voir plus  -->
+        <div class="show-more"><span>show more</span></div>`;
+    momentContainer.innerHTML = momentHTML;
+    document.querySelector('.show-more').addEventListener('click', () => {
+        momentContainer.style.height = "auto"
+    })
 }
 
 function displayPreGame(preGame) {
@@ -698,7 +745,7 @@ function displayPreGame(preGame) {
 
 function displayStanding(standing) {
     let standingHTML =
-    `<table>
+    `<table class="standing-container">
         <tr class="head-table">
             <td class="team">Team</td>
             <td>P</td>
@@ -994,15 +1041,29 @@ async function listMatch(date, idLeague, toDisplay) {
                 activeInNavBar = document.querySelector('.currentDate');
                 currentItem = toDisplay
             } 
+            // effacer le contenu courant
+            let infoMatchHTML = document.querySelector('.info-match');
+            if(infoMatchHTML) infoMatchHTML.remove()
+            // raha mbola tsy misy le navbar
             currentItem(activeInNavBar)
             // event onclick 
-            let listMatchHTML = document.querySelector('.list-match')
+            let listMatchHTML = document.querySelector('.match-container')
             listMatchHTML.addEventListener('click', (e) => {
-                console.log(e.target);
+                console.log(e.target.id);
+                    // effacer le contenu courant
+                let actual = document.querySelector('.actual');
+                actual.style.display = 'none'
+                listMatchHTML.remove();
                 (0,_infoMatch__WEBPACK_IMPORTED_MODULE_4__["default"])(e.target.id)
             })
             ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
         })
+}
+
+function init() {
+    let matchContainerHTML = document.createElement('div');
+    matchContainerHTML.classList.add('match-container');
+
 }
 
 function listMatchToday(item) {
@@ -1164,9 +1225,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
 /* harmony import */ var expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! expose-loader?exposes=game!./listMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=game!./src/js/listMatch-exposed.js");
 /* harmony import */ var expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! expose-loader?exposes=calendar!./calendar */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar-exposed.js");
+/* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! expose-loader?exposes=calendar!./calendar */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar.js");
 /* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! expose-loader?exposes=league!./getLeagueMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getLeagueMatch-exposed.js");
+/* harmony import */ var expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! expose-loader?exposes=league!./getLeagueMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getLeagueMatch.js");
 /* harmony import */ var expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_4__);
 
 
@@ -1181,13 +1242,8 @@ let {year,month,currentDate} = (0,expose_loader_exposes_calendar_calendar__WEBPA
 ;(0,expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__.listMatch)(new Date())
 ;(0,_listLeague__WEBPACK_IMPORTED_MODULE_0__["default"])()
 ;(0,expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__.createCalendar)(month,year,currentDate)
- 
+
 // stopLoading()
-// loading()
-// listMatch(new Date())
-// listLeague()
-// createCalendar(month,year,currentDate)
-;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.stopLoading)()
 // let intervalListMatch = setInterval(() => {
 //     listMatch(new Date())
 // }, 10000)

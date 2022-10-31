@@ -11,13 +11,8 @@ loading()
 listMatch(new Date())
 listLeague()
 createCalendar(month,year,currentDate)
- 
+
 // stopLoading()
-// loading()
-// listMatch(new Date())
-// listLeague()
-// createCalendar(month,year,currentDate)
-stopLoading()
 // let intervalListMatch = setInterval(() => {
 //     listMatch(new Date())
 // }, 10000)

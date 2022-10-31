@@ -83,15 +83,29 @@ export async function listMatch(date, idLeague, toDisplay) {
                 activeInNavBar = document.querySelector('.currentDate');
                 currentItem = toDisplay
             } 
+            // effacer le contenu courant
+            let infoMatchHTML = document.querySelector('.info-match');
+            if(infoMatchHTML) infoMatchHTML.remove()
+            // raha mbola tsy misy le navbar
             currentItem(activeInNavBar)
             // event onclick 
-            let listMatchHTML = document.querySelector('.list-match')
+            let listMatchHTML = document.querySelector('.match-container')
             listMatchHTML.addEventListener('click', (e) => {
-                console.log(e.target);
+                console.log(e.target.id);
+                    // effacer le contenu courant
+                let actual = document.querySelector('.actual');
+                actual.style.display = 'none'
+                listMatchHTML.remove();
                 infoMatch(e.target.id)
             })
             stopLoading()
         })
+}
+
+function init() {
+    let matchContainerHTML = document.createElement('div');
+    matchContainerHTML.classList.add('match-container');
+
 }
 
 export function listMatchToday(item) {

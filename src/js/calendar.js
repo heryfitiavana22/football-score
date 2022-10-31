@@ -176,6 +176,9 @@ export function setDate(item, m, d, idLeague, toDisplay) {
     // hideCalendar
     let actualContainer = document.querySelector('.actual')
     actualContainer.style.top = '-100%'
+    if(window.innerWidth <= 768)
+        actualContainer.style.display = 'flex'
+    else actualContainer.style.display = 'block'
     
     loading()
     let currentDateHTML = document.querySelector('.currentDate');

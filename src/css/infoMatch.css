@@ -1,16 +1,16 @@
-.match-container {
+.info-match {
     width: 74%;
     background-color: white;
     border-radius: 6px;
 }
 
-.match-container h3 {
+.info-match h3 {
     padding: 10px 0 10px 0;
     border-bottom: 1px solid rgb(222, 222, 222); 
 }
-.match-container h3 img {width: 30px; height: 25px; margin-left: 10px;}
-.match-container h3 .country {font-size: 18px; color: rgb(78, 78, 78);}
-.match-container h3 .league {
+.info-match h3 img {width: 30px; height: 25px; margin-left: 10px;}
+.info-match h3 .country {font-size: 18px; color: rgb(78, 78, 78);}
+.info-match h3 .league {
     font-size: 16px; 
     font-weight: bold;
     color: var(--blue1);
@@ -34,7 +34,7 @@
     width: 30%;
 }
 .match .info span {display: block; text-align: center;}
-.hour-match {font-weight: bold;}
+.match .hour-match {font-weight: bold;}
 .date-match {color: rgb(105, 105, 105);}
 
 .match .team .score {
@@ -45,18 +45,19 @@
 }
 .match .team.home .score {right: 0;}
 .match .team.away .score {left: 0;}
-.match-container.live .score {
+.info-match.live .score {
     color: rgb(39, 170, 39);
     transition: all 1s ease;
     animation: score-live 1s infinite alternate;
 }
-.match-container.finished .score {color: rgb(89, 143, 223);}
+.info-match.finished .score {color: rgb(89, 143, 223);}
 
 .moment-container {
     position: relative;
     margin: 10px 0;
     height: 75px;
     overflow: hidden;
+    transition: all 0.3s ease;
 }
 .moment {
     position: relative;
@@ -81,7 +82,7 @@
     border: 1px solid rgb(222, 222, 222);
     border-radius: 50%;
 }
-.moment .time.score {
+.moment .time.goal {
     border: 1px solid rgb(28, 173, 45);
     background-color: rgb(28, 173, 45);
     color: white;
@@ -222,14 +223,14 @@
 /* end pre-game */
 
 /* standing */
-table {width: 100%;}
+.standing-container {width: 100%;}
 .head-table {
     background-color: var(--blue2);
     color: white;
     border-bottom: none;
     height: 38px;
 }
-table tr {
+.standing-container tr {
     display: flex;
     width: 100%;
     height: 50px;
@@ -238,21 +239,21 @@ table tr {
     transition: all 0.3s ease;
     cursor: pointer;
 }
-table tr td.team {
+.standing-container tr td.team {
     display: block; 
     width: 75%;
     text-align: start;
     overflow: hidden;
 }
-table tr td {
+.standing-container tr td {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 8%;
 }
-table .team-container:hover {background-color: aliceblue;}
-table img {width: 35px; height: 35px;}
-table .number {
+.standing-container .team-container:hover {background-color: aliceblue;}
+.standing-container img {width: 35px; height: 35px;}
+.standing-container .number {
     margin: 0 5px; 
     font-size: 18px; 
 }
@@ -281,7 +282,7 @@ table .number {
 /* end animation */
 
 @media screen and (max-width : 992px) {
-    .match-container {width: 100%;}
+    .info-match {width: 100%;}
 }
 
 @media screen and (max-width : 768px) {
@@ -316,16 +317,16 @@ table .number {
 }
 
 @media screen and (max-width : 576px) {
-    .match-container h3 img {width: 25px; height: 20px;}
-    .match-container h3 .country {font-size: 16px;}
-    .match-container h3 .league {font-size: 14px;}
+    .info-match h3 img {width: 25px; height: 20px;}
+    .info-match h3 .country {font-size: 16px;}
+    .info-match h3 .league {font-size: 14px;}
 
     .match .team img {width: 40px; height: 40px;}
     .match .team .team-name, .match .info {font-size: 12px;}
     .match .team .score {font-size: 20px; top: 14%;}
 
     .nav-match {margin-top: 10px; font-size: 12px;}
-    .match-container > div {padding: 5px !important;}
+    .info-match > div {padding: 5px !important;}
     .lineup {height: 550px;}
     .players-container .row-item img {
         width: 30px;
@@ -344,14 +345,14 @@ table .number {
     .coach .team img {width: 30px; height: 30px;}
     .coach .team {font-size: 16px;}
 
-    table {font-size: 12px;}
+    .standing-container {font-size: 12px;}
     .head-table {height: 30px;}
-    table tr {padding: 4px 0 4px 3px; height: 38px;}
-    table .number {
+    .standing-container tr {padding: 4px 0 4px 3px; height: 38px;}
+    .standing-container .number {
         margin: 0 2px;
         font-size: 16px;
     }
-    table img {
+    .standing-container img {
         width: 25px;
         height: 25px;
     }
