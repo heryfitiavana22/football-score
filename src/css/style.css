@@ -120,6 +120,12 @@ h1 span {
 .list-league .list-item:hover .line-list {width: 100%;}
 /* end list league */
 
+.current-element {
+    display: flex;
+    justify-content: space-between;
+    width: 73%;
+}
+
 @media screen and (max-width : 992px) {
     .nav-content, .container-element > .content {width: 98%;}
     .nav-option {margin-right: 10px;}

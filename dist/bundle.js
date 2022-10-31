@@ -17,7 +17,7 @@ module.exports = ___EXPOSE_LOADER_IMPORT___;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=game!./src/js/listMatch-exposed.js":
+/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=game!./src/js/listMatch.js":
 /*!*************************************************************************************************************************************************!*\
   !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=game!./src/js/listMatch-exposed.js ***!
   \*************************************************************************************************************************************************/
@@ -191,14 +191,14 @@ function createCalendar(month,year,date) {
         // verifier quelle est le jour du premier mois
         if(dayFirstMonth > i) {
             // jour pas dans le mois
-            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(this,${month-1},${endMonthBefore})">${endMonthBefore}</span></td>`;
+            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(${month-1},${endMonthBefore})">${endMonthBefore}</span></td>`;
             endMonthBefore++;
         } else {
             // premiere jour du mois
             if(countDay === date) {
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(this,${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
             } else {
-                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(this,${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
             }
             countDay++;
         }
@@ -209,9 +209,9 @@ function createCalendar(month,year,date) {
     dayContainer += '<tr class="day" >';
     for(let i=1; i<=7; i++) {
         if(countDay === date) {
-            dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(this,${month},${countDay})">${countDay}</span></td>`;
+            dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
         } else {
-            dayContainer += `<td><span class="day-item" onclick="calendar.setDate(this,${month},${countDay})">${countDay}</span></td>`;
+            dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
         }
         countDay++;
     }
@@ -221,9 +221,9 @@ function createCalendar(month,year,date) {
     dayContainer += '<tr class="day" >';
     for(let i=1; i<=7; i++) {
         if(countDay === date) {
-            dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(this,${month},${countDay})">${countDay}</span></td>`;
+            dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
         } else {
-            dayContainer += `<td><span class="day-item" onclick="calendar.setDate(this,${month},${countDay})">${countDay}</span></td>`;
+            dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
         }
         countDay++;
     }
@@ -235,14 +235,14 @@ function createCalendar(month,year,date) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
             if(countDay === date) {
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(this,${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
             } else {
-                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(this,${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
             }
             countDay++;
         } else {
             // si c'est apres la fin du mois
-            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(this,${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
+            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
             dayAfterMonth++;
         }
     }
@@ -254,14 +254,14 @@ function createCalendar(month,year,date) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
             if(countDay === date) {
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(this,${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
             } else {
-                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(this,${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
             }
             countDay++;
         } else {
             // si c'est apres la fin du mois
-            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(this,${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
+            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
             dayAfterMonth++;
         }
     }
@@ -273,14 +273,14 @@ function createCalendar(month,year,date) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
             if(countDay === date) {
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(this,${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
             } else {
-                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(this,${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
             }
             countDay++;
         } else {
             // si c'est apres la fin du mois
-            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(this,${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
+            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
             dayAfterMonth++;
         }
     }
@@ -298,7 +298,7 @@ function downMonth() {
         month = 12;
     }
     deleteCurrentMonth();
-    createCalendar(month,year);
+    createCalendar(month,year, currentDate);
 }
 
 function upMonth() {
@@ -309,13 +309,11 @@ function upMonth() {
         month = 1;
     }
     deleteCurrentMonth();
-    createCalendar(month,year);
+    createCalendar(month,year, currentDate);
 }
 function deleteCurrentMonth() {
     let dayContainer = document.querySelectorAll('.day');
-    for(let i=0; i<dayContainer.length; i++) {
-        dayContainer[i].remove();
-    }
+    dayContainer.forEach(e => e.remove())
 }
 
 function getCurrentDate() {
@@ -325,21 +323,14 @@ function getCurrentDate() {
 }
 
 let currentIdLeague = undefined; // tazomina le idLeague jerena raha misy
-function setDate(item, m, d, idLeague, toDisplay) {
+function setDate(m, d, idLeague, toDisplay) {
     // raha sendra amle date efa affiché no click-eny ary tsy miova ny idLeague
-    if((d === currentDate) && (m === month) && (currentIdLeague == idLeague)) return
-    // hideCalendar
+    // if((d === currentDate) && (m === month)) return
+    // hideCalendar (valable ito rehefa le ecran <= 768)
     let actualContainer = document.querySelector('.actual')
-    actualContainer.style.top = '-100%'
-    if(window.innerWidth <= 768)
-        actualContainer.style.display = 'flex'
-    else actualContainer.style.display = 'block'
+    if(actualContainer) actualContainer.style.top = '-100%' // raha misy
     
     ;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.loading)()
-    let currentDateHTML = document.querySelector('.currentDate');
-    if(currentDateHTML) // raha misy, (tsy misy mantsy ito rehefa miova mois)
-        currentDateHTML.classList.remove('currentDate')
-    item.classList.add('currentDate')
 
     if(idLeague) currentIdLeague = idLeague // raha misy valeur vao ovaina
     console.log('currentIdLeague');
@@ -392,14 +383,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _infoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./infoMatch */ "./src/js/infoMatch.js");
+
+
 /* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(listGame) {
-    let matchContainer = document.querySelector('.match-container'),
-        matchToRemoved = document.querySelectorAll('.matchs'),
-        leagueContainer = document.querySelector('.league-container');
-    // fafana le match misy eo
-    matchToRemoved.forEach(e => e.remove())
+    let currentElement = document.querySelector('.current-element');
+    
+    let countryGameHTML = ``;
     for(let country of listGame) {
-        let countryGameHTML = 
+        countryGameHTML += 
         `<div class="matchs">
             <h3>
                 <img src="${country.logoCountry}" alt="icon-country">
@@ -445,8 +437,71 @@ __webpack_require__.r(__webpack_exports__);
                 </div>
             </li>`;
         }
-        matchContainer.insertAdjacentHTML('beforeend', countryGameHTML)
+        countryGameHTML += 
+        `   </ul>
+        </div>`
     }
+
+    let listMatchHTML =
+    `<div class="match-container">
+        <nav class="navbar-match">
+            <ul class="nav-list">
+                <li class="active col-4 match-today" onclick="game.listMatchToday(this)">Today</li>
+                <li class="col-4 match-live" onclick="game.listMatchLive(this)">Live</li>
+                <li class="col-4 match-finished" onclick="game.listMatchFinished(this)">Finished</li>
+            </ul>
+        </nav>
+        ${countryGameHTML}
+    </div>
+    <!-- actual  -->
+    <div class="actual">
+        <!-- calendar  -->
+        <div class="calendar-month">
+            <div class="current-month">
+                <div class="jump-month left">
+                    <div class="jump" onclick="calendar.downMonth();">
+                        <span class="ti ti-angle-left"></span>
+                    </div>
+    
+                </div>
+                <div class="current-date">
+                    date du jour
+                </div>
+                <div class="jump-month right">
+                    <div class="jump" onclick="calendar.upMonth()">
+                        <span class="ti ti-angle-right"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="day-container">
+                <table style="border-collapse: collapse; display: flex;">
+                    <tbody style="width: 100%;" class="addDayMonth">
+                        <tr class="week">
+                            <td>Lun</td>
+                            <td>Mar</td>
+                            <td>Mer</td>
+                            <td>Jeu</td>
+                            <td>Ven</td>
+                            <td>Sam</td>
+                            <td>Dim</td>
+                        </tr>
+                        <!-- day month here -->
+                    </tbody>
+                
+                </table>
+            </div>
+        </div>
+        <span id="close-calendar" class="ti ti-close close" onclick="hideCalendar()"></span>
+    </div>`;
+    currentElement.innerHTML = listMatchHTML;
+    // event onclick 
+    listMatchHTML = document.querySelector('.match-container')
+    listMatchHTML.addEventListener('click', (e) => {
+        console.log(e.target.id);
+        let idMatch = e.target.id
+        if(isNaN(idMatch) || idMatch === '') return; // au cas ou tsy nombre
+        (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(idMatch)
+    })
 }
 
 /***/ }),
@@ -504,10 +559,7 @@ function getLeagueMatch (idLeague, item) {
         year = d.getFullYear(),
         month = d.getMonth()+1,
         dateToday = d.getDate();
-    (0,_calendar__WEBPACK_IMPORTED_MODULE_0__.deleteCurrentMonth)()
-    ;(0,_calendar__WEBPACK_IMPORTED_MODULE_0__.createCalendar)(month, year, dateToday)
-    let dateTodayHTML = document.querySelector('.currentDate');
-    (0,_calendar__WEBPACK_IMPORTED_MODULE_0__.setDate)(dateTodayHTML, month, dateToday, idLeague, _listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchToday)
+    (0,_calendar__WEBPACK_IMPORTED_MODULE_0__.setDate)(month, dateToday, idLeague, _listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchToday)
     // to active
     if(currentLeagueHTML) currentLeagueHTML.classList.add('active')
     item.classList.add('active')
@@ -548,34 +600,39 @@ let navMatch = undefined,
     navMatch = document.querySelector('.nav-match');
     container = navMatch.nextElementSibling;
     displayMoment(game)
-    displayPreGame()
+    displayPreGame(game)
     ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
 
     navMatch.addEventListener('click', (e) => {
         ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
-        // console.log(e.target.id);
+        console.log(e.target.attributes);
         if(e.target.id === 'standing') {
             (0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
             displayStanding()
+            document.querySelector('.info-match .nav-match li.active').classList.remove('active');
+            e.target.attributes.class.nodeValue = 'active'
             ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
         }else if(e.target.id === 'stats') {
             (0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
-            displayStats()
+            displayStats(game)
+            document.querySelector('.info-match .nav-match li.active').classList.remove('active');
+            e.target.attributes.class.nodeValue = 'active'
             ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
         } else {
             (0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
-            displayPreGame()
-            ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
+            displayPreGame(game)
+            document.querySelector('.info-match .nav-match li.active').classList.remove('active');
+            e.target.attributes.class.nodeValue = 'active'
+            ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)(game)
         }
     })
 });
 
 
 function displayGame(game) {
-    let infoMatchHTML = document.querySelector('.info-match');
-    if(infoMatchHTML) return // au cas ou efa misy, ohatra oe voatsindry indroa
+    let currentElement = document.querySelector('.current-element');
     let gameHTML =
-    `<div class="info-match finished">
+    `<div class="info-match">
         <h3 class="country-league">
             <img src="${game.country_logo || "assets/img/logo2.png"}" alt="icon-country">
             <span class="country">${game.country_name} : </span>
@@ -602,14 +659,14 @@ function displayGame(game) {
         <div class="moment-container"></div>
         <ul class="nav-match">
             <li class="active" id="pregame">Pre-game</li>
-            <li id="standing">Standing</li>
-            <li id="stats">Stats</li> 
+            <li id="standing" class="">Standing</li>
+            <li id="stats" class="">Stats</li> 
         </ul>
         <div style="padding: 10px;">
             
         </div>
     </div>`
-    document.querySelector('.content').insertAdjacentHTML('beforeend', gameHTML)
+    currentElement.innerHTML = gameHTML
 }
 
 function displayMoment(game) {
@@ -656,7 +713,7 @@ function displayMoment(game) {
         })
     }
     // sort by time
-    moment.sort((a,b) => a.time - b.time)
+    moment.sort((a,b) => eval(a.time) - eval(b.time)) // i-eviter-na 45+1, 90+4 reny amle temps additionnel
     console.log('moment');
     console.log(moment);
 
@@ -684,63 +741,125 @@ function displayMoment(game) {
             `<div class="bar"></div>
         </div>`
     }
-    momentHTML += 
+    if(moment.length > 0)
+        momentHTML += 
         `<!-- voir plus  -->
         <div class="show-more"><span>show more</span></div>`;
     momentContainer.innerHTML = momentHTML;
-    document.querySelector('.show-more').addEventListener('click', () => {
-        momentContainer.style.height = "auto"
-    })
+    let showMore = document.querySelector('.show-more')
+    if(showMore) // raha misy
+        showMore.addEventListener('click', () => {
+            momentContainer.style.height = "auto"
+        })
 }
 
-function displayPreGame(preGame) {
-    let prgeGameHTML = 
-    `<div class="lineup">
-        <img src="assets/img/terrain.png" alt="terrain">
-        <div class="players-container">
-            <div class="home">
-                <!-- system  -->
-                <span class="system">4-1-4-1</span>
-                <div class="row-item">
-                    <div class="player">
-                        <img src="assets/img/p1.png" alt="icon-player">
-                        <span class="player-name">Fitiavana Fitiavana Fitiavana</span>
-                    </div>
-                </div>
+function displayPreGame(game) {
+    let home = {
+        system : game.match_hometeam_system || "4-3-3",
+        lineup : game.lineup.home.starting_lineups,
+        coach : game.lineup.home.coach[0]
+    },
+        away = {
+            system : game.match_awayteam_system || "4-3-3",
+            lineup : game.lineup.away.starting_lineups,
+            coach : game.lineup.away.coach[0],
+    };
+    // trier selon le position du joueur
+    home.lineup.sort((a,b) => a.lineup_position - b.lineup_position);
+    away.lineup.sort((a,b) => a.lineup_position - b.lineup_position);
+    let preGameHTML = ``;
+    // raha efa misy formation
+    if(home.lineup.length > 0) {
+        preGameHTML += 
+        `<div class="lineup">
+            <img src="assets/img/terrain.png" alt="terrain">
+            <div class="players-container">
+                <div class="home">
+                    <!-- system  -->
+                    <span class="system">${home.system}</span>
+                    <div class="row-item">
+                        <div class="player">
+                            <img src="assets/img/p1.png" alt="icon-player">
+                            <span class="player-name">${home.lineup[0].lineup_player}</span>
+                        </div>
+                    </div>`;
+                    home.system = home.system.split('-')
+                    let currentPosition = 1; // tsy raisina intsony ny gardien
+                    // generer la formation
+                    for(let row of home.system) {
+                        preGameHTML += 
+                        `<div class="row-item">`;
+                        for(let i=1; i<=row; i++) {
+                
+                            preGameHTML += 
+                            `<div class="player">
+                                <img src="assets/img/p1.png" alt="icon-player">
+                                <span class="player-name">${home.lineup[currentPosition].lineup_player}</span>
+                            </div>`;
+                            currentPosition++;
+                        }
+                        preGameHTML += `</div>`
+                    }
+                preGameHTML +=
+                `</div>
+                <div class="away">
+                    <!-- system  -->
+                    <span class="system">${away.system}</span>
+                    <div class="row-item">
+                        <div class="player">
+                            <img src="assets/img/p1.png" alt="icon-player">
+                            <span class="player-name">${away.lineup[0].lineup_player}</span>
+                        </div>
+                    </div>`;
+                    away.system = away.system.split('-')
+                    currentPosition = 1; // tsy raisina intsony ny gardien
+                    // generer la formation
+                    for(let row of away.system) {
+                        preGameHTML += 
+                        `<div class="row-item">`;
+                        for(let i=1; i<=row; i++) {
+                            preGameHTML += 
+                            `<div class="player">
+                                <img src="assets/img/p1.png" alt="icon-player">
+                                <span class="player-name">${away.lineup[currentPosition].lineup_player}</span>
+                            </div>`;
+                            currentPosition++;
+                        }
+                        preGameHTML += `</div>`
+                    }
+                preGameHTML +=
+                `</div>
             </div>
-            <div class="away">
-                <!-- system  -->
-                <span class="system">4-3-3-3</span>
-            </div>
-            </div>
-    </div>
-    <div class="coach-missing">
+        </div>`
+    }
+    preGameHTML +=
+    `<div class="coach-missing">
         <!-- coach  -->
         <div class="coach">
             <div class="team">
                 <div class="home">
-                    <img src="assets/img/logo2.png" alt="icon-team">
-                    <span class="team-name">Home home</span>
+                    <img src="${game.team_home_badge || "assets/img/logo2.png"}" alt="icon-team">
+                    <span class="team-name">${game.match_hometeam_name}</span>
                 </div>
                 <div class="away">
-                    <img src="assets/img/logo2.png" alt="icon-team">
-                    <span class="team-name">Home</span>
+                    <img src="${game.team_away_badge || "assets/img/logo2.png"}" alt="icon-team">
+                    <span class="team-name">${game.match_awayteam_name}</span>
                 </div>
             </div>
             <div class="manager">
                 <div class="home">
                     <span class="caption">Manager : </span>
-                    <span class="manager">Hery dj</span>
+                    <span class="manager">${home.coach.lineup_player}</span>
                 </div>
                 <div class="away">
                     <span class="caption">Manager : </span>
-                    <span class="manager">Hery dj</span>
+                    <span class="manager">${away.coach.lineup_player}</span>
                 </div>
             </div>
         </div>
     </div>
     <!-- end pre-game  -->`
-    container.innerHTML = prgeGameHTML
+    container.innerHTML = preGameHTML
 }
 
 function displayStanding(standing) {
@@ -782,21 +901,22 @@ function displayStanding(standing) {
     container.innerHTML = standingHTML
 }
 
-function displayStats(stats) {
+function displayStats(game) {
+    let statistics = game.statistics.reverse();
     let statsHTML = 
     `<div class="statistics">
-        <h4>Statistics</h4>
-        <div class="row-item">
-            <span class="home">50%</span>
-            <span class="item">ball possession</span>
-            <span class="away">50%</span>
-        </div>
-        <div class="row-item">
-            <span class="home">1</span>
-            <span class="item">shots</span>
-            <span class="away">5</span>
-        </div>
-    </div>`
+        <h4>Statistics</h4>`;
+        for(let element of statistics) {
+            statsHTML += 
+            `<div class="row-item">
+                <span class="home">${element.home}</span>
+                <span class="item">${element.type}</span>
+                <span class="away">${element.away}</span>
+            </div>`
+        }
+    statsHTML += 
+    `</div>`
+        
     container.innerHTML = statsHTML
 }
 
@@ -955,7 +1075,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _league__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./league */ "./src/js/league.js");
 /* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
 /* harmony import */ var _displayListMatch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./displayListMatch */ "./src/js/displayListMatch.js");
-/* harmony import */ var _infoMatch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./infoMatch */ "./src/js/infoMatch.js");
+/* harmony import */ var _calendar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./calendar */ "./src/js/calendar.js");
 
 
 
@@ -976,7 +1096,8 @@ async function listMatch(date, idLeague, toDisplay) {
         currentMonth = d.getMonth()+1,
         currentDay = d.getDate(),
         currentDate = currentYear + '-' + currentMonth + '-' + currentDay;
-    console.log(currentDate);
+    console.log('date');
+    console.log(date);
     let url = `https://apiv3.apifootball.com/?action=get_events&from=${currentDate}&to=${currentDate}&APIkey=${APIkey}&timezone=Africa/Nairobi`;
     fetch(url, {method : 'get'})
         .then(response => response.json())
@@ -1038,49 +1159,30 @@ async function listMatch(date, idLeague, toDisplay) {
             console.log(gamePerLeague);
             // affiche-na ny match androany na ireo live na ireo match vita
             if(toDisplay) { // raha misy no specifie-na
-                activeInNavBar = document.querySelector('.currentDate');
                 currentItem = toDisplay
             } 
-            // effacer le contenu courant
-            let infoMatchHTML = document.querySelector('.info-match');
-            if(infoMatchHTML) infoMatchHTML.remove()
-            // raha mbola tsy misy le navbar
-            currentItem(activeInNavBar)
-            // event onclick 
-            let listMatchHTML = document.querySelector('.match-container')
-            listMatchHTML.addEventListener('click', (e) => {
-                console.log(e.target.id);
-                    // effacer le contenu courant
-                let actual = document.querySelector('.actual');
-                actual.style.display = 'none'
-                listMatchHTML.remove();
-                (0,_infoMatch__WEBPACK_IMPORTED_MODULE_4__["default"])(e.target.id)
-            })
+            currentItem()
             ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
         })
 }
 
-function init() {
-    let matchContainerHTML = document.createElement('div');
-    matchContainerHTML.classList.add('match-container');
-
-}
-
-function listMatchToday(item) {
+function listMatchToday() {
     currentItem = listMatchToday;
-    activeInNavBar.classList.remove('active')
-    item.classList.add('active')
-    activeInNavBar = item;
     (0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
     ;(0,_displayListMatch__WEBPACK_IMPORTED_MODULE_3__["default"])(gamePerLeague)
+    activeInNavBar = document.querySelector('.match-container .nav-list li.active')
+    activeInNavBar.classList.remove('active')
+    activeInNavBar = document.querySelector('.match-today');
+    activeInNavBar.classList.add('active')
+    // re-creer le calendrier (eviter queqlue erreur)
+    let {year, month, currentDate} = (0,_calendar__WEBPACK_IMPORTED_MODULE_4__.getCurrentDate)()
+    ;(0,_calendar__WEBPACK_IMPORTED_MODULE_4__.deleteCurrentMonth)()
+    ;(0,_calendar__WEBPACK_IMPORTED_MODULE_4__.createCalendar)(month, year, currentDate)
     ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
 }
 
-async function listMatchLive(item) {
+async function listMatchLive() {
     currentItem = listMatchLive;
-    activeInNavBar.classList.remove('active')
-    item.classList.add('active')
-    activeInNavBar = item;
     (0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
     // recuperena ireo match en live
     let gameLive = [];
@@ -1097,15 +1199,19 @@ async function listMatchLive(item) {
     console.log('game live');
     console.log(gameLive);
     (0,_displayListMatch__WEBPACK_IMPORTED_MODULE_3__["default"])(gameLive)
+    activeInNavBar = document.querySelector('.match-container .nav-list li.active')
+    activeInNavBar.classList.remove('active')
+    activeInNavBar = document.querySelector('.match-live');
+    activeInNavBar.classList.add('active')
+    // re-creer le calendrier (eviter queqlue erreur)
+    let {year, month, currentDate} = (0,_calendar__WEBPACK_IMPORTED_MODULE_4__.getCurrentDate)()
+    ;(0,_calendar__WEBPACK_IMPORTED_MODULE_4__.deleteCurrentMonth)()
+    ;(0,_calendar__WEBPACK_IMPORTED_MODULE_4__.createCalendar)(month, year, currentDate)
     ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
 }
 
-function listMatchFinished(item) {
+function listMatchFinished() {
     currentItem = listMatchFinished;
-    activeInNavBar.classList.remove('active')
-    item.classList.add('active')
-    activeInNavBar = item;
-    (0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
     // recuperena ireo match efa tapitra
     let initialGame = gamePerLeague,
         gameFinished = [];
@@ -1124,6 +1230,14 @@ function listMatchFinished(item) {
     console.log('gameFinished');
     console.log(gameFinished);
     (0,_displayListMatch__WEBPACK_IMPORTED_MODULE_3__["default"])(gameFinished)
+    activeInNavBar = document.querySelector('.match-container .nav-list li.active')
+    activeInNavBar.classList.remove('active')
+    activeInNavBar = document.querySelector('.match-finished');
+    activeInNavBar.classList.add('active')
+    // re-creer le calendrier (eviter queqlue erreur)
+    let {year, month, currentDate} = (0,_calendar__WEBPACK_IMPORTED_MODULE_4__.getCurrentDate)()
+    ;(0,_calendar__WEBPACK_IMPORTED_MODULE_4__.deleteCurrentMonth)()
+    ;(0,_calendar__WEBPACK_IMPORTED_MODULE_4__.createCalendar)(month, year, currentDate)
     ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
 }
 
@@ -1223,7 +1337,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _listLeague__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./listLeague */ "./src/js/listLeague.js");
 /* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
-/* harmony import */ var expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! expose-loader?exposes=game!./listMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=game!./src/js/listMatch-exposed.js");
+/* harmony import */ var expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! expose-loader?exposes=game!./listMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=game!./src/js/listMatch.js");
 /* harmony import */ var expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! expose-loader?exposes=calendar!./calendar */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar.js");
 /* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__);
@@ -1236,12 +1350,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let {year,month,currentDate} = (0,expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__.getCurrentDate)()
-
-;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.loading)()
+(0,_animation__WEBPACK_IMPORTED_MODULE_1__.loading)()
 ;(0,expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__.listMatch)(new Date())
 ;(0,_listLeague__WEBPACK_IMPORTED_MODULE_0__["default"])()
-;(0,expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__.createCalendar)(month,year,currentDate)
 
 // stopLoading()
 // let intervalListMatch = setInterval(() => {

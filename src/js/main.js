@@ -5,12 +5,9 @@ import {listMatch} from 'expose-loader?exposes=game!./listMatch'
 import {createCalendar, getCurrentDate} from 'expose-loader?exposes=calendar!./calendar'
 import {getLeagueMatch} from 'expose-loader?exposes=league!./getLeagueMatch'
 
-let {year,month,currentDate} = getCurrentDate()
-
 loading()
 listMatch(new Date())
 listLeague()
-createCalendar(month,year,currentDate)
 
 // stopLoading()
 // let intervalListMatch = setInterval(() => {

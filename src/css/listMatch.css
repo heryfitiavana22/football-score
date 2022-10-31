@@ -1,6 +1,6 @@
 .match-container {
     background-color: white;
-    width: 46%;
+    width: 64%;
     border-radius: 6px;
     padding: 10px 0;
     font-size: 14px;
@@ -93,7 +93,7 @@ ul li .hour-match {color: rgb(126, 126, 126); width: 100%; text-align: center; f
 .finished .match-item .score {color: rgb(44 127 217); }
 
 .actual {
-    width: 25%;
+    width: 34%;
 }
 
 /* calendar  */
@@ -207,6 +207,7 @@ td .day-item {
 /* end animation */
 
 @media screen and (max-width : 992px) {
+    .current-element {width: 100%;}
     .match-container {width: 66%;}
     .actual {width: 33%;}
 }
@@ -245,9 +246,9 @@ td .day-item {
     ul li .hour-match {width: 100%;}
     .matchs h3 {font-size: 12px;}
     .matchs h3 img {width: 25px; height: 20px}
-    h3 .league, h3 .country {top: 3px;}
-    h3 .league {font-size: 14px;}
-    h3 .country {font-size: 12px;}
+    .matchs h3 .country, .matchs h3 .league {top: 0;}
+    .matchs h3 .league {font-size: 14px;}
+    .matchs h3 .country {font-size: 12px;}
     .match-item {margin-bottom: 2px;}
     /* .match-item > div {width: 47%;} */
     .match-item .score {

@@ -2,7 +2,7 @@ import {getListCountry, getListLeague} from './contryAndLeague'
 import {getPopularLeague} from './league'
 import {loading, stopLoading} from './animation'
 import displayListMatch from './displayListMatch'
-import infoMatch from './infoMatch'
+import {deleteCurrentMonth, createCalendar,getCurrentDate} from './calendar'
 
 let APIkey = "5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda"
 let listLeague = getListLeague(),
@@ -18,7 +18,8 @@ export async function listMatch(date, idLeague, toDisplay) {
         currentMonth = d.getMonth()+1,
         currentDay = d.getDate(),
         currentDate = currentYear + '-' + currentMonth + '-' + currentDay;
-    console.log(currentDate);
+    console.log('date');
+    console.log(date);
     let url = `https://apiv3.apifootball.com/?action=get_events&from=${currentDate}&to=${currentDate}&APIkey=${APIkey}&timezone=Africa/Nairobi`;
     fetch(url, {method : 'get'})
         .then(response => response.json())
@@ -80,49 +81,30 @@ export async function listMatch(date, idLeague, toDisplay) {
             console.log(gamePerLeague);
             // affiche-na ny match androany na ireo live na ireo match vita
             if(toDisplay) { // raha misy no specifie-na
-                activeInNavBar = document.querySelector('.currentDate');
                 currentItem = toDisplay
             } 
-            // effacer le contenu courant
-            let infoMatchHTML = document.querySelector('.info-match');
-            if(infoMatchHTML) infoMatchHTML.remove()
-            // raha mbola tsy misy le navbar
-            currentItem(activeInNavBar)
-            // event onclick 
-            let listMatchHTML = document.querySelector('.match-container')
-            listMatchHTML.addEventListener('click', (e) => {
-                console.log(e.target.id);
-                    // effacer le contenu courant
-                let actual = document.querySelector('.actual');
-                actual.style.display = 'none'
-                listMatchHTML.remove();
-                infoMatch(e.target.id)
-            })
+            currentItem()
             stopLoading()
         })
 }
 
-function init() {
-    let matchContainerHTML = document.createElement('div');
-    matchContainerHTML.classList.add('match-container');
-
-}
-
-export function listMatchToday(item) {
+export function listMatchToday() {
     currentItem = listMatchToday;
-    activeInNavBar.classList.remove('active')
-    item.classList.add('active')
-    activeInNavBar = item;
     loading()
     displayListMatch(gamePerLeague)
+    activeInNavBar = document.querySelector('.match-container .nav-list li.active')
+    activeInNavBar.classList.remove('active')
+    activeInNavBar = document.querySelector('.match-today');
+    activeInNavBar.classList.add('active')
+    // re-creer le calendrier (eviter queqlue erreur)
+    let {year, month, currentDate} = getCurrentDate()
+    deleteCurrentMonth()
+    createCalendar(month, year, currentDate)
     stopLoading()
 }
 
-export async function listMatchLive(item) {
+export async function listMatchLive() {
     currentItem = listMatchLive;
-    activeInNavBar.classList.remove('active')
-    item.classList.add('active')
-    activeInNavBar = item;
     loading()
     // recuperena ireo match en live
     let gameLive = [];
@@ -139,15 +121,19 @@ export async function listMatchLive(item) {
     console.log('game live');
     console.log(gameLive);
     displayListMatch(gameLive)
+    activeInNavBar = document.querySelector('.match-container .nav-list li.active')
+    activeInNavBar.classList.remove('active')
+    activeInNavBar = document.querySelector('.match-live');
+    activeInNavBar.classList.add('active')
+    // re-creer le calendrier (eviter queqlue erreur)
+    let {year, month, currentDate} = getCurrentDate()
+    deleteCurrentMonth()
+    createCalendar(month, year, currentDate)
     stopLoading()
 }
 
-export function listMatchFinished(item) {
+export function listMatchFinished() {
     currentItem = listMatchFinished;
-    activeInNavBar.classList.remove('active')
-    item.classList.add('active')
-    activeInNavBar = item;
-    loading()
     // recuperena ireo match efa tapitra
     let initialGame = gamePerLeague,
         gameFinished = [];
@@ -166,6 +152,14 @@ export function listMatchFinished(item) {
     console.log('gameFinished');
     console.log(gameFinished);
     displayListMatch(gameFinished)
+    activeInNavBar = document.querySelector('.match-container .nav-list li.active')
+    activeInNavBar.classList.remove('active')
+    activeInNavBar = document.querySelector('.match-finished');
+    activeInNavBar.classList.add('active')
+    // re-creer le calendrier (eviter queqlue erreur)
+    let {year, month, currentDate} = getCurrentDate()
+    deleteCurrentMonth()
+    createCalendar(month, year, currentDate)
     stopLoading()
 }
 

@@ -15,34 +15,39 @@ export default async (idMatch) => {
     navMatch = document.querySelector('.nav-match');
     container = navMatch.nextElementSibling;
     displayMoment(game)
-    displayPreGame()
+    displayPreGame(game)
     stopLoading()
 
     navMatch.addEventListener('click', (e) => {
         loading()
-        // console.log(e.target.id);
+        console.log(e.target.attributes);
         if(e.target.id === 'standing') {
             loading()
             displayStanding()
+            document.querySelector('.info-match .nav-match li.active').classList.remove('active');
+            e.target.attributes.class.nodeValue = 'active'
             stopLoading()
         }else if(e.target.id === 'stats') {
             loading()
-            displayStats()
+            displayStats(game)
+            document.querySelector('.info-match .nav-match li.active').classList.remove('active');
+            e.target.attributes.class.nodeValue = 'active'
             stopLoading()
         } else {
             loading()
-            displayPreGame()
-            stopLoading()
+            displayPreGame(game)
+            document.querySelector('.info-match .nav-match li.active').classList.remove('active');
+            e.target.attributes.class.nodeValue = 'active'
+            stopLoading(game)
         }
     })
 }
 
 
 function displayGame(game) {
-    let infoMatchHTML = document.querySelector('.info-match');
-    if(infoMatchHTML) return // au cas ou efa misy, ohatra oe voatsindry indroa
+    let currentElement = document.querySelector('.current-element');
     let gameHTML =
-    `<div class="info-match finished">
+    `<div class="info-match">
         <h3 class="country-league">
             <img src="${game.country_logo || "assets/img/logo2.png"}" alt="icon-country">
             <span class="country">${game.country_name} : </span>
@@ -69,14 +74,14 @@ function displayGame(game) {
         <div class="moment-container"></div>
         <ul class="nav-match">
             <li class="active" id="pregame">Pre-game</li>
-            <li id="standing">Standing</li>
-            <li id="stats">Stats</li> 
+            <li id="standing" class="">Standing</li>
+            <li id="stats" class="">Stats</li> 
         </ul>
         <div style="padding: 10px;">
             
         </div>
     </div>`
-    document.querySelector('.content').insertAdjacentHTML('beforeend', gameHTML)
+    currentElement.innerHTML = gameHTML
 }
 
 function displayMoment(game) {
@@ -123,7 +128,7 @@ function displayMoment(game) {
         })
     }
     // sort by time
-    moment.sort((a,b) => a.time - b.time)
+    moment.sort((a,b) => eval(a.time) - eval(b.time)) // i-eviter-na 45+1, 90+4 reny amle temps additionnel
     console.log('moment');
     console.log(moment);
 
@@ -151,63 +156,125 @@ function displayMoment(game) {
             `<div class="bar"></div>
         </div>`
     }
-    momentHTML += 
+    if(moment.length > 0)
+        momentHTML += 
         `<!-- voir plus  -->
         <div class="show-more"><span>show more</span></div>`;
     momentContainer.innerHTML = momentHTML;
-    document.querySelector('.show-more').addEventListener('click', () => {
-        momentContainer.style.height = "auto"
-    })
+    let showMore = document.querySelector('.show-more')
+    if(showMore) // raha misy
+        showMore.addEventListener('click', () => {
+            momentContainer.style.height = "auto"
+        })
 }
 
-function displayPreGame(preGame) {
-    let prgeGameHTML = 
-    `<div class="lineup">
-        <img src="assets/img/terrain.png" alt="terrain">
-        <div class="players-container">
-            <div class="home">
-                <!-- system  -->
-                <span class="system">4-1-4-1</span>
-                <div class="row-item">
-                    <div class="player">
-                        <img src="assets/img/p1.png" alt="icon-player">
-                        <span class="player-name">Fitiavana Fitiavana Fitiavana</span>
-                    </div>
-                </div>
+function displayPreGame(game) {
+    let home = {
+        system : game.match_hometeam_system || "4-3-3",
+        lineup : game.lineup.home.starting_lineups,
+        coach : game.lineup.home.coach[0]
+    },
+        away = {
+            system : game.match_awayteam_system || "4-3-3",
+            lineup : game.lineup.away.starting_lineups,
+            coach : game.lineup.away.coach[0],
+    };
+    // trier selon le position du joueur
+    home.lineup.sort((a,b) => a.lineup_position - b.lineup_position);
+    away.lineup.sort((a,b) => a.lineup_position - b.lineup_position);
+    let preGameHTML = ``;
+    // raha efa misy formation
+    if(home.lineup.length > 0) {
+        preGameHTML += 
+        `<div class="lineup">
+            <img src="assets/img/terrain.png" alt="terrain">
+            <div class="players-container">
+                <div class="home">
+                    <!-- system  -->
+                    <span class="system">${home.system}</span>
+                    <div class="row-item">
+                        <div class="player">
+                            <img src="assets/img/p1.png" alt="icon-player">
+                            <span class="player-name">${home.lineup[0].lineup_player}</span>
+                        </div>
+                    </div>`;
+                    home.system = home.system.split('-')
+                    let currentPosition = 1; // tsy raisina intsony ny gardien
+                    // generer la formation
+                    for(let row of home.system) {
+                        preGameHTML += 
+                        `<div class="row-item">`;
+                        for(let i=1; i<=row; i++) {
+                
+                            preGameHTML += 
+                            `<div class="player">
+                                <img src="assets/img/p1.png" alt="icon-player">
+                                <span class="player-name">${home.lineup[currentPosition].lineup_player}</span>
+                            </div>`;
+                            currentPosition++;
+                        }
+                        preGameHTML += `</div>`
+                    }
+                preGameHTML +=
+                `</div>
+                <div class="away">
+                    <!-- system  -->
+                    <span class="system">${away.system}</span>
+                    <div class="row-item">
+                        <div class="player">
+                            <img src="assets/img/p1.png" alt="icon-player">
+                            <span class="player-name">${away.lineup[0].lineup_player}</span>
+                        </div>
+                    </div>`;
+                    away.system = away.system.split('-')
+                    currentPosition = 1; // tsy raisina intsony ny gardien
+                    // generer la formation
+                    for(let row of away.system) {
+                        preGameHTML += 
+                        `<div class="row-item">`;
+                        for(let i=1; i<=row; i++) {
+                            preGameHTML += 
+                            `<div class="player">
+                                <img src="assets/img/p1.png" alt="icon-player">
+                                <span class="player-name">${away.lineup[currentPosition].lineup_player}</span>
+                            </div>`;
+                            currentPosition++;
+                        }
+                        preGameHTML += `</div>`
+                    }
+                preGameHTML +=
+                `</div>
             </div>
-            <div class="away">
-                <!-- system  -->
-                <span class="system">4-3-3-3</span>
-            </div>
-            </div>
-    </div>
-    <div class="coach-missing">
+        </div>`
+    }
+    preGameHTML +=
+    `<div class="coach-missing">
         <!-- coach  -->
         <div class="coach">
             <div class="team">
                 <div class="home">
-                    <img src="assets/img/logo2.png" alt="icon-team">
-                    <span class="team-name">Home home</span>
+                    <img src="${game.team_home_badge || "assets/img/logo2.png"}" alt="icon-team">
+                    <span class="team-name">${game.match_hometeam_name}</span>
                 </div>
                 <div class="away">
-                    <img src="assets/img/logo2.png" alt="icon-team">
-                    <span class="team-name">Home</span>
+                    <img src="${game.team_away_badge || "assets/img/logo2.png"}" alt="icon-team">
+                    <span class="team-name">${game.match_awayteam_name}</span>
                 </div>
             </div>
             <div class="manager">
                 <div class="home">
                     <span class="caption">Manager : </span>
-                    <span class="manager">Hery dj</span>
+                    <span class="manager">${home.coach.lineup_player}</span>
                 </div>
                 <div class="away">
                     <span class="caption">Manager : </span>
-                    <span class="manager">Hery dj</span>
+                    <span class="manager">${away.coach.lineup_player}</span>
                 </div>
             </div>
         </div>
     </div>
     <!-- end pre-game  -->`
-    container.innerHTML = prgeGameHTML
+    container.innerHTML = preGameHTML
 }
 
 function displayStanding(standing) {
@@ -249,20 +316,21 @@ function displayStanding(standing) {
     container.innerHTML = standingHTML
 }
 
-function displayStats(stats) {
+function displayStats(game) {
+    let statistics = game.statistics.reverse();
     let statsHTML = 
     `<div class="statistics">
-        <h4>Statistics</h4>
-        <div class="row-item">
-            <span class="home">50%</span>
-            <span class="item">ball possession</span>
-            <span class="away">50%</span>
-        </div>
-        <div class="row-item">
-            <span class="home">1</span>
-            <span class="item">shots</span>
-            <span class="away">5</span>
-        </div>
-    </div>`
+        <h4>Statistics</h4>`;
+        for(let element of statistics) {
+            statsHTML += 
+            `<div class="row-item">
+                <span class="home">${element.home}</span>
+                <span class="item">${element.type}</span>
+                <span class="away">${element.away}</span>
+            </div>`
+        }
+    statsHTML += 
+    `</div>`
+        
     container.innerHTML = statsHTML
 }

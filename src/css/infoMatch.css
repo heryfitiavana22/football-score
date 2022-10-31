@@ -1,5 +1,5 @@
 .info-match {
-    width: 74%;
+    width: 100%;
     background-color: white;
     border-radius: 6px;
 }
@@ -182,20 +182,27 @@
     justify-content: space-around;
     width: 50%;
 }
+.players-container .away {flex-direction: row-reverse;}
 .players-container .row-item {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
 }
 .players-container .row-item img {width: 50px; height: 50px;}
-.players-container .player {position: relative;}
+.players-container .player {position: relative; cursor: pointer;}
 .player-name {
     display: block;
     position: absolute;
     height: 27px;
     max-width: 70px;
+    text-align: center;
     color: aliceblue;
     overflow: hidden;
+    transition: all 0.2s ease;
+}
+.player:hover .player-name {
+    font-size: 12px;
+    overflow: visible;
 }
 .lineup .system {
     position: absolute;
@@ -266,12 +273,17 @@
     box-shadow: 1px 1px 10px rgb(173, 173, 173);
 }
 .statistics h4 {text-align: center; margin-bottom: 20px;}
-.row-item {
+.statistics .row-item {
     display: flex;
     justify-content: space-around;
     height: 40px;
     color: rgb(62, 62, 62);
 }
+.statistics .home, .statistics .away {
+    width: 40px;
+    text-align: center;
+}
+.statistics .item {width: 145px; text-align: center;}
 /* end statistics */
 
 /* animation */
@@ -299,8 +311,9 @@
         height: 50%;
         flex-direction: column;
     }
+    .players-container .away {flex-direction: column-reverse;}
     .lineup .home {padding-bottom: 15px;}
-    .lineup .away {padding-top: 15px;}
+    .lineup .away {padding: 15px 0;}
     .players-container .row-item {flex-direction: row;}
     .player {font-size: 14px;}
     .players-container .row-item img {
@@ -308,6 +321,7 @@
         height: 40px;
     }
     .player-name {height: 25px;}
+    .player:hover .player-name {font-size: 10px;}
     .lineup .home .system {left: 34px;}
     .lineup .away .system {
         bottom: 0px;
@@ -324,6 +338,19 @@
     .match .team img {width: 40px; height: 40px;}
     .match .team .team-name, .match .info {font-size: 12px;}
     .match .team .score {font-size: 20px; top: 14%;}
+    
+    .moment-container {font-size: 12px; height: 55px;}
+    .moment {margin-bottom: 15px;}
+    .moment .time {width: 28px; height: 28px;}
+    .moment .bar {top: 28px; height: 15px;}
+    .moment .item {
+        top: 4px;
+        height: 20px;
+    }
+    .moment .item img {width: 20px; height: 20px;}
+    .moment.home .item {padding-left: 0;}
+    .moment.away .item {padding-right: 0;}
+    #icon-substitute {margin: 5px;}
 
     .nav-match {margin-top: 10px; font-size: 12px;}
     .info-match > div {padding: 5px !important;}
@@ -358,5 +385,5 @@
     }
     
     .statistics h4 {font-size: 16px;}
-    .row-item {font-size: 12px; height: 35px;}
+    .statistics .row-item {font-size: 12px; height: 35px;}
 }
