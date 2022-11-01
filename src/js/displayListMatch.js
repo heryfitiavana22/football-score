@@ -105,7 +105,7 @@ export default function (listGame) {
                 </table>
             </div>
         </div>
-        <span id="close-calendar" class="ti ti-close close" onclick="hideCalendar()"></span>
+        <span id="close-calendar" class="ti ti-close close""></span>
     </div>`;
     currentElement.innerHTML = listMatchHTML;
     // event onclick 

@@ -491,7 +491,7 @@ __webpack_require__.r(__webpack_exports__);
                 </table>
             </div>
         </div>
-        <span id="close-calendar" class="ti ti-close close" onclick="hideCalendar()"></span>
+        <span id="close-calendar" class="ti ti-close close""></span>
     </div>`;
     currentElement.innerHTML = listMatchHTML;
     // event onclick 
@@ -523,7 +523,6 @@ let apiKey = "5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda";
     console.log(idMatch);
     return await new Promise((reslove, reject) => {
         let url = `https://apiv3.apifootball.com/?action=get_events&APIkey=${apiKey}&match_id=${idMatch}`;
-        console.log(url);
         fetch(url, {method : 'get'})
         .then(response => response.json())
         .then((value) => {
@@ -569,6 +568,33 @@ function getLeagueMatch (idLeague, item) {
 
 /***/ }),
 
+/***/ "./src/js/getStanding.js":
+/*!*******************************!*\
+  !*** ./src/js/getStanding.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+let apiKey = "5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda";
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (idLeague) => {
+    return await new Promise((resolve, reject) => {
+        let url = `https://apiv3.apifootball.com/?action=get_standings&league_id=${idLeague}&APIkey=${apiKey}`;
+        fetch(url, {method : 'get'})
+        .then(response => response.json())
+        .then((value) => {
+            console.log('getStanding');
+            console.log(value);
+            resolve(value)
+        })
+    })
+}); 
+
+/***/ }),
+
 /***/ "./src/js/infoMatch.js":
 /*!*****************************!*\
   !*** ./src/js/infoMatch.js ***!
@@ -581,19 +607,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _getInfoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getInfoMatch */ "./src/js/getInfoMatch.js");
-/* harmony import */ var _addHistory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./addHistory */ "./src/js/addHistory.js");
-/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
+/* harmony import */ var _getStanding__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getStanding */ "./src/js/getStanding.js");
+/* harmony import */ var _addHistory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./addHistory */ "./src/js/addHistory.js");
+/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
  
+
 
 
 
 let navMatch = undefined,
     container = undefined;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (idMatch) => {
-    (0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
-    let game = [];
+    (0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
+    let game = [],
+        standing = [];
     // addHistory(`game/${idMatch}`);
     game = await (0,_getInfoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(idMatch)
+    // classement
+    ;(0,_getStanding__WEBPACK_IMPORTED_MODULE_1__["default"])(game.league_id).then((value) => standing = value)
     console.log('game');
     console.log(game);
     displayGame(game)
@@ -601,29 +632,29 @@ let navMatch = undefined,
     container = navMatch.nextElementSibling;
     displayMoment(game)
     displayPreGame(game)
-    ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
+    ;(0,_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
 
     navMatch.addEventListener('click', (e) => {
-        ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
+        ;(0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
         console.log(e.target.attributes);
         if(e.target.id === 'standing') {
-            (0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
-            displayStanding()
+            (0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
+            displayStanding(standing)
             document.querySelector('.info-match .nav-match li.active').classList.remove('active');
             e.target.attributes.class.nodeValue = 'active'
-            ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
+            ;(0,_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
         }else if(e.target.id === 'stats') {
-            (0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
+            (0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
             displayStats(game)
             document.querySelector('.info-match .nav-match li.active').classList.remove('active');
             e.target.attributes.class.nodeValue = 'active'
-            ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
+            ;(0,_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
         } else {
-            (0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
+            (0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
             displayPreGame(game)
             document.querySelector('.info-match .nav-match li.active').classList.remove('active');
             e.target.attributes.class.nodeValue = 'active'
-            ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)(game)
+            ;(0,_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)(game)
         }
     })
 });
@@ -670,6 +701,7 @@ function displayGame(game) {
 }
 
 function displayMoment(game) {
+    window.scroll(0,0)
     let moment = [],
         goal = game.goalscorer,
         card = game.cards,
@@ -757,12 +789,12 @@ function displayPreGame(game) {
     let home = {
         system : game.match_hometeam_system || "4-3-3",
         lineup : game.lineup.home.starting_lineups,
-        coach : game.lineup.home.coach[0]
+        coach : (game.lineup.home.coach.length > 0) ? game.lineup.home.coach[0].lineup_player : 'à attendre' 
     },
         away = {
             system : game.match_awayteam_system || "4-3-3",
             lineup : game.lineup.away.starting_lineups,
-            coach : game.lineup.away.coach[0],
+            coach : (game.lineup.away.coach.length > 0) ? game.lineup.away.coach[0].lineup_player : 'à attendre' 
     };
     // trier selon le position du joueur
     home.lineup.sort((a,b) => a.lineup_position - b.lineup_position);
@@ -779,7 +811,7 @@ function displayPreGame(game) {
                     <span class="system">${home.system}</span>
                     <div class="row-item">
                         <div class="player">
-                            <img src="assets/img/p1.png" alt="icon-player">
+                            <div class ="icon-player">${home.lineup[1].lineup_number}</div>
                             <span class="player-name">${home.lineup[0].lineup_player}</span>
                         </div>
                     </div>`;
@@ -793,7 +825,7 @@ function displayPreGame(game) {
                 
                             preGameHTML += 
                             `<div class="player">
-                                <img src="assets/img/p1.png" alt="icon-player">
+                                <div class ="icon-player">${home.lineup[currentPosition].lineup_number}</div>
                                 <span class="player-name">${home.lineup[currentPosition].lineup_player}</span>
                             </div>`;
                             currentPosition++;
@@ -807,7 +839,7 @@ function displayPreGame(game) {
                     <span class="system">${away.system}</span>
                     <div class="row-item">
                         <div class="player">
-                            <img src="assets/img/p1.png" alt="icon-player">
+                            <div class ="icon-player">${away.lineup[0].lineup_number}</div>
                             <span class="player-name">${away.lineup[0].lineup_player}</span>
                         </div>
                     </div>`;
@@ -820,7 +852,7 @@ function displayPreGame(game) {
                         for(let i=1; i<=row; i++) {
                             preGameHTML += 
                             `<div class="player">
-                                <img src="assets/img/p1.png" alt="icon-player">
+                                <div class ="icon-player">${away.lineup[currentPosition].lineup_number}</div>
                                 <span class="player-name">${away.lineup[currentPosition].lineup_player}</span>
                             </div>`;
                             currentPosition++;
@@ -849,11 +881,11 @@ function displayPreGame(game) {
             <div class="manager">
                 <div class="home">
                     <span class="caption">Manager : </span>
-                    <span class="manager">${home.coach.lineup_player}</span>
+                    <span class="manager">${home.coach}</span>
                 </div>
                 <div class="away">
                     <span class="caption">Manager : </span>
-                    <span class="manager">${away.coach.lineup_player}</span>
+                    <span class="manager">${away.coach}</span>
                 </div>
             </div>
         </div>
@@ -872,32 +904,23 @@ function displayStanding(standing) {
             <td>GA</td>
             <td>GD</td>
             <td>Pts</td>
-        </tr>
-        <tr class="team-container">
-            <td class="team">
-                <span class="number">1</span> 
-                <img src="assets/img/logo2.png" alt="icon-team">
-                <span class="name">Real Madrid</span>
-            </td>
-            <td>0</td>
-            <td>100</td>
-            <td>0</td>
-            <td>0</td>
-            <td>100</td>
-        </tr>
-        <tr class="team-container">
-            <td class="team">
-                <span class="number">1</span> 
-                <img src="assets/img/logo2.png" alt="icon-team">
-                <span class="name">Real Madrid</span>
-            </td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-        </tr>
-    </table>`
+        </tr>`;
+        for(let element of standing) {
+            standingHTML += 
+            `<tr class="team-container">
+                <td class="team">
+                    <span class="number">${element.overall_league_position}</span> 
+                    <img src="${element.team_badge || 'assets/img/logo2.png'}" alt="icon-team">
+                    <span class="name">${element.team_name}</span>
+                </td>
+                <td>${element.overall_league_payed}</td>
+                <td>${element.overall_league_GF}</td>
+                <td>${element.overall_league_GA}</td>
+                <td>${element.overall_league_GF - element.overall_league_GA}</td>
+                <td>${element.overall_league_PTS}</td>
+            </tr>`
+        }
+    standingHTML += `</table>`
     container.innerHTML = standingHTML
 }
 
@@ -1358,6 +1381,34 @@ __webpack_require__.r(__webpack_exports__);
 // let intervalListMatch = setInterval(() => {
 //     listMatch(new Date())
 // }, 10000)
+
+let iconCalendar = document.querySelector('#icon-toggle-calendar'),
+    iconListLeague = document.querySelector('#icon-toggle-league'),
+    closeCalendar = document.querySelector('#close-calendar'),
+    closeListLeague = document.querySelector('#close-league');
+
+let leagueContainer = document.querySelector('.league-container'),
+    matchContainer = document.querySelector('.match-container');
+
+/* calendar */
+iconCalendar.addEventListener('click', () => {
+    document.querySelector('.actual').style.top = '0'
+})
+
+closeCalendar.addEventListener('click', () => {
+    document.querySelector('.actual').style.top = '-100%'
+})
+
+/* listLeague */
+iconListLeague.addEventListener('click', () => {
+    leagueContainer.style.left = '0'
+    matchContainer.style.display = 'none' // eviter queqlue bug
+})
+
+closeListLeague.addEventListener('click', () => {
+    leagueContainer.style.left = '-100%'
+    matchContainer.style.display = 'block'
+})
 })();
 
 /******/ })()

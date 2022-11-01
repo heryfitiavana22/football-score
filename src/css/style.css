@@ -106,7 +106,7 @@ h1 span {
     overflow: hidden;
     border-radius: 4px;
 }
-.list-league .active {background-color: #e1e9f0;}
+.list-league .active {background-color: #dadada; color: rgb(63, 63, 63);}
 .list-league .list-item img {width: 25px; height: 100%; margin-right: 7px;}
 .list-league .list-item > span {position: relative;}
 .line-list {

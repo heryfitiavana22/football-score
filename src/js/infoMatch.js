@@ -1,4 +1,5 @@
 import getInfoMatch from './getInfoMatch' 
+import getStanding from './getStanding'
 import addHistory from "./addHistory"
 import {loading, stopLoading} from './animation'
 
@@ -6,9 +7,12 @@ let navMatch = undefined,
     container = undefined;
 export default async (idMatch) => {
     loading()
-    let game = [];
+    let game = [],
+        standing = [];
     // addHistory(`game/${idMatch}`);
     game = await getInfoMatch(idMatch)
+    // classement
+    getStanding(game.league_id).then((value) => standing = value)
     console.log('game');
     console.log(game);
     displayGame(game)
@@ -23,7 +27,7 @@ export default async (idMatch) => {
         console.log(e.target.attributes);
         if(e.target.id === 'standing') {
             loading()
-            displayStanding()
+            displayStanding(standing)
             document.querySelector('.info-match .nav-match li.active').classList.remove('active');
             e.target.attributes.class.nodeValue = 'active'
             stopLoading()
@@ -85,6 +89,7 @@ function displayGame(game) {
 }
 
 function displayMoment(game) {
+    window.scroll(0,0)
     let moment = [],
         goal = game.goalscorer,
         card = game.cards,
@@ -172,12 +177,12 @@ function displayPreGame(game) {
     let home = {
         system : game.match_hometeam_system || "4-3-3",
         lineup : game.lineup.home.starting_lineups,
-        coach : game.lineup.home.coach[0]
+        coach : (game.lineup.home.coach.length > 0) ? game.lineup.home.coach[0].lineup_player : 'à attendre' 
     },
         away = {
             system : game.match_awayteam_system || "4-3-3",
             lineup : game.lineup.away.starting_lineups,
-            coach : game.lineup.away.coach[0],
+            coach : (game.lineup.away.coach.length > 0) ? game.lineup.away.coach[0].lineup_player : 'à attendre' 
     };
     // trier selon le position du joueur
     home.lineup.sort((a,b) => a.lineup_position - b.lineup_position);
@@ -194,7 +199,7 @@ function displayPreGame(game) {
                     <span class="system">${home.system}</span>
                     <div class="row-item">
                         <div class="player">
-                            <img src="assets/img/p1.png" alt="icon-player">
+                            <div class ="icon-player">${home.lineup[1].lineup_number}</div>
                             <span class="player-name">${home.lineup[0].lineup_player}</span>
                         </div>
                     </div>`;
@@ -208,7 +213,7 @@ function displayPreGame(game) {
                 
                             preGameHTML += 
                             `<div class="player">
-                                <img src="assets/img/p1.png" alt="icon-player">
+                                <div class ="icon-player">${home.lineup[currentPosition].lineup_number}</div>
                                 <span class="player-name">${home.lineup[currentPosition].lineup_player}</span>
                             </div>`;
                             currentPosition++;
@@ -222,7 +227,7 @@ function displayPreGame(game) {
                     <span class="system">${away.system}</span>
                     <div class="row-item">
                         <div class="player">
-                            <img src="assets/img/p1.png" alt="icon-player">
+                            <div class ="icon-player">${away.lineup[0].lineup_number}</div>
                             <span class="player-name">${away.lineup[0].lineup_player}</span>
                         </div>
                     </div>`;
@@ -235,7 +240,7 @@ function displayPreGame(game) {
                         for(let i=1; i<=row; i++) {
                             preGameHTML += 
                             `<div class="player">
-                                <img src="assets/img/p1.png" alt="icon-player">
+                                <div class ="icon-player">${away.lineup[currentPosition].lineup_number}</div>
                                 <span class="player-name">${away.lineup[currentPosition].lineup_player}</span>
                             </div>`;
                             currentPosition++;
@@ -264,11 +269,11 @@ function displayPreGame(game) {
             <div class="manager">
                 <div class="home">
                     <span class="caption">Manager : </span>
-                    <span class="manager">${home.coach.lineup_player}</span>
+                    <span class="manager">${home.coach}</span>
                 </div>
                 <div class="away">
                     <span class="caption">Manager : </span>
-                    <span class="manager">${away.coach.lineup_player}</span>
+                    <span class="manager">${away.coach}</span>
                 </div>
             </div>
         </div>
@@ -287,32 +292,23 @@ function displayStanding(standing) {
             <td>GA</td>
             <td>GD</td>
             <td>Pts</td>
-        </tr>
-        <tr class="team-container">
-            <td class="team">
-                <span class="number">1</span> 
-                <img src="assets/img/logo2.png" alt="icon-team">
-                <span class="name">Real Madrid</span>
-            </td>
-            <td>0</td>
-            <td>100</td>
-            <td>0</td>
-            <td>0</td>
-            <td>100</td>
-        </tr>
-        <tr class="team-container">
-            <td class="team">
-                <span class="number">1</span> 
-                <img src="assets/img/logo2.png" alt="icon-team">
-                <span class="name">Real Madrid</span>
-            </td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-        </tr>
-    </table>`
+        </tr>`;
+        for(let element of standing) {
+            standingHTML += 
+            `<tr class="team-container">
+                <td class="team">
+                    <span class="number">${element.overall_league_position}</span> 
+                    <img src="${element.team_badge || 'assets/img/logo2.png'}" alt="icon-team">
+                    <span class="name">${element.team_name}</span>
+                </td>
+                <td>${element.overall_league_payed}</td>
+                <td>${element.overall_league_GF}</td>
+                <td>${element.overall_league_GA}</td>
+                <td>${element.overall_league_GF - element.overall_league_GA}</td>
+                <td>${element.overall_league_PTS}</td>
+            </tr>`
+        }
+    standingHTML += `</table>`
     container.innerHTML = standingHTML
 }
 

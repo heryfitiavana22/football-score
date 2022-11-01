@@ -4,7 +4,6 @@ export default async (idMatch) => {
     console.log(idMatch);
     return await new Promise((reslove, reject) => {
         let url = `https://apiv3.apifootball.com/?action=get_events&APIkey=${apiKey}&match_id=${idMatch}`;
-        console.log(url);
         fetch(url, {method : 'get'})
         .then(response => response.json())
         .then((value) => {

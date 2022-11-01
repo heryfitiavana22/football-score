@@ -26,8 +26,8 @@
                     <input type="text" name="search" id="search" placeholder="Search ...">
                     <span class="ti ti-search icon-nav" id="icon-search"></span>
                 </div>
-                <span class="ti ti-more-alt icon-nav icon-toggle" id="icon-toggle-league" onclick="showListLeague()"></span>
-                <span class="ti ti-calendar icon-nav icon-toggle" id="icon-toggle-calendar" onclick="showCalendar()"></span>
+                <span class="ti ti-more-alt icon-nav icon-toggle" id="icon-toggle-league"></span>
+                <span class="ti ti-calendar icon-nav icon-toggle" id="icon-toggle-calendar"></span>
             </div>
         </div>
     </nav>
@@ -50,7 +50,7 @@
                         </span>
                     </li>
                 </ul>
-                <span id="close-league" class="ti ti-close close" onclick="hideListLeague()"></span>
+                <span id="close-league" class="ti ti-close close"></span>
             </div>
             <!-- current-element  -->
             <div class="current-element">
@@ -102,7 +102,7 @@
                             </table>
                         </div>
                     </div>
-                    <span id="close-calendar" class="ti ti-close close" onclick="hideCalendar()"></span>
+                    <span id="close-calendar" class="ti ti-close close"></span>
                 </div>
             </div>
         </div>
@@ -156,28 +156,7 @@
         function hideInputSearch() {
             inputSearch.style.top = '-29px'
             setTimeout(() => {searchContainer.style.overflow = 'hidden'},200)
-        }
-
-        let leagueContainer = document.querySelector('.league-container'),
-            matchContainer = document.querySelector('.match-container');
-        function showListLeague() {
-            leagueContainer.style.left = '0'
-            matchContainer.style.display = 'none' // eviter queqlue bug
-        }   
-        
-        function hideListLeague() {
-            leagueContainer.style.left = '-100%'
-            matchContainer.style.display = 'block'
-        }
-
-        let actualContainer = document.querySelector('.actual')
-        function showCalendar() {
-            actualContainer.style.top = '0'
-        }   
-        
-        function hideCalendar() {
-            actualContainer.style.top = '-100%'
-        }
+        }      
 
         window.onclick = (e) => {
             if(!e.target.matches('#icon-search') && !e.target.matches('#search') && !e.target.matches('.search-container')) {
