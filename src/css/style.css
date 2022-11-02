@@ -21,6 +21,7 @@ ul {padding: 0 !important; list-style-type: none;}
 .nav-bar .logo {
     display: flex;
     height: 50px;
+    cursor: pointer;
 }
 .nav-bar .logo img {width: 50px;}
 .nav-bar .logo h1 {

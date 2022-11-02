@@ -1,4 +1,5 @@
 import infoMatch from './infoMatch'
+import {listMatchToday, listMatchLive, listMatchFinished} from './listMatch'
 
 export default function (listGame) {
     let currentElement = document.querySelector('.current-element');
@@ -60,9 +61,9 @@ export default function (listGame) {
     `<div class="match-container">
         <nav class="navbar-match">
             <ul class="nav-list">
-                <li class="active col-4 match-today" onclick="game.listMatchToday(this)">Today</li>
-                <li class="col-4 match-live" onclick="game.listMatchLive(this)">Live</li>
-                <li class="col-4 match-finished" onclick="game.listMatchFinished(this)">Finished</li>
+                <li class="active col-4 match-today">Today</li>
+                <li class="col-4 match-live">Live</li>
+                <li class="col-4 match-finished">Finished</li>
             </ul>
         </nav>
         ${countryGameHTML}
@@ -115,5 +116,19 @@ export default function (listGame) {
         let idMatch = e.target.id
         if(isNaN(idMatch) || idMatch === '') return; // au cas ou tsy nombre
         infoMatch(false, idMatch)
+    })
+
+        /* onclick match today, live, finished */
+    document.querySelector('.match-today').addEventListener('click', () => {
+        console.log('ati');
+        listMatchToday()
+    })
+
+    document.querySelector('.match-live').addEventListener('click', () => {
+        listMatchLive()
+    })
+
+    document.querySelector('.match-finished').addEventListener('click', () => {
+        listMatchFinished()
     })
 }

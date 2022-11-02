@@ -1,1 +1,3 @@
-// document.querySelector('.container-element').innerHTML = 'page not found'
+export default () => {
+    document.querySelector('.current-element').innerHTML = 'page not found'
+}

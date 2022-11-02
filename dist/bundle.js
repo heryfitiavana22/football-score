@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar-exposed.js":
+/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar.js":
 /*!****************************************************************************************************************************************************!*\
   !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar-exposed.js ***!
   \****************************************************************************************************************************************************/
@@ -12,22 +12,6 @@ var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = __webpack_require__(/*! ../../node_mod
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
 if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["calendar"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["calendar"] = ___EXPOSE_LOADER_IMPORT___;
 else throw new Error('[exposes-loader] The "calendar" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
-module.exports = ___EXPOSE_LOADER_IMPORT___;
-
-
-/***/ }),
-
-/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=game!./src/js/listMatch.js":
-/*!*************************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=game!./src/js/listMatch-exposed.js ***!
-  \*************************************************************************************************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var ___EXPOSE_LOADER_IMPORT___ = __webpack_require__(/*! -!./listMatch.js */ "./src/js/listMatch.js");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = __webpack_require__(/*! ../../node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/runtime/getGlobalThis.js */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/runtime/getGlobalThis.js");
-var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["game"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["game"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The "game" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 
 
@@ -89,6 +73,23 @@ module.exports = function () {
 
   return g;
 }();
+
+/***/ }),
+
+/***/ "./src/js/404.js":
+/*!***********************!*\
+  !*** ./src/js/404.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (() => {
+    document.querySelector('.current-element').innerHTML = 'page not found'
+});
 
 /***/ }),
 
@@ -164,7 +165,7 @@ let date =  new Date(),
 
 function createCalendar(month,year,date) {
     let currentMonthHTML = document.querySelector('.current-date'),
-        monthContainerHtml = document.querySelector('.addDayMonth');
+        tbody = document.querySelector('.day-container tbody');
 
     // recuperer la date du jour
     let monthFrench = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
@@ -192,14 +193,14 @@ function createCalendar(month,year,date) {
         // verifier quelle est le jour du premier mois
         if(dayFirstMonth > i) {
             // jour pas dans le mois
-            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(${month-1},${endMonthBefore})">${endMonthBefore}</span></td>`;
+            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(false, ${month-1},${endMonthBefore})">${endMonthBefore}</span></td>`;
             endMonthBefore++;
         } else {
             // premiere jour du mois
             if(countDay === date) {
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             } else {
-                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             }
             countDay++;
         }
@@ -210,9 +211,9 @@ function createCalendar(month,year,date) {
     dayContainer += '<tr class="day" >';
     for(let i=1; i<=7; i++) {
         if(countDay === date) {
-            dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+            dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
         } else {
-            dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+            dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
         }
         countDay++;
     }
@@ -222,9 +223,9 @@ function createCalendar(month,year,date) {
     dayContainer += '<tr class="day" >';
     for(let i=1; i<=7; i++) {
         if(countDay === date) {
-            dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+            dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
         } else {
-            dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+            dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
         }
         countDay++;
     }
@@ -236,14 +237,14 @@ function createCalendar(month,year,date) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
             if(countDay === date) {
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             } else {
-                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             }
             countDay++;
         } else {
             // si c'est apres la fin du mois
-            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
+            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(false, ${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
             dayAfterMonth++;
         }
     }
@@ -255,14 +256,14 @@ function createCalendar(month,year,date) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
             if(countDay === date) {
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             } else {
-                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             }
             countDay++;
         } else {
             // si c'est apres la fin du mois
-            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
+            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(false, ${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
             dayAfterMonth++;
         }
     }
@@ -274,22 +275,23 @@ function createCalendar(month,year,date) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
             if(countDay === date) {
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             } else {
-                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             }
             countDay++;
         } else {
             // si c'est apres la fin du mois
-            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
+            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(false, ${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
             dayAfterMonth++;
         }
     }
     dayContainer += '</tr>';
 
     currentMonthHTML.innerHTML = monthFrench[month-1] + ' ' + year;
-    document.querySelector('#icon-toggle-calendar').style.display = 'block'
-    monthContainerHtml.insertAdjacentHTML('beforeend', dayContainer)
+    if(window.innerWidth <= 768) 
+        document.querySelector('#icon-toggle-calendar').style.display = 'block'
+    tbody.insertAdjacentHTML('beforeend', dayContainer)
 }
 
 function downMonth() {
@@ -325,7 +327,7 @@ function getCurrentDate() {
 }
 
 let currentIdLeague = undefined; // tazomina le idLeague jerena raha misy
-function setDate(m, d, idLeague, toDisplay) {
+function setDate(isPopState=false, m, d, idLeague, toDisplay) {
     // raha sendra amle date efa affiché no click-eny ary tsy miova ny idLeague
     // if((d === currentDate) && (m === month)) return
     // hideCalendar (valable ito rehefa le ecran <= 768)
@@ -334,7 +336,7 @@ function setDate(m, d, idLeague, toDisplay) {
     
     ;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.loading)()
 
-    if(idLeague) currentIdLeague = idLeague // raha misy valeur vao ovaina
+    if(idLeague !== undefined) currentIdLeague = idLeague // raha misy valeur vao ovaina
     console.log('currentIdLeague');
     console.log(currentIdLeague);
     month = m;
@@ -346,7 +348,7 @@ function setDate(m, d, idLeague, toDisplay) {
         month = 12
         year--
     }
-    (0,_listMatch__WEBPACK_IMPORTED_MODULE_0__.listMatch)(false, (`${year}-${month}-${currentDate}`), currentIdLeague, toDisplay)
+    (0,_listMatch__WEBPACK_IMPORTED_MODULE_0__.listMatch)(isPopState, (`${year}-${month}-${currentDate}`), currentIdLeague, toDisplay)
 }
 /* end calendar */
 
@@ -364,9 +366,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _infoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./infoMatch */ "./src/js/infoMatch.js");
-/* harmony import */ var _listLeague__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./listLeague */ "./src/js/listLeague.js");
-/* harmony import */ var _listMatch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./listMatch */ "./src/js/listMatch.js");
-/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
+/* harmony import */ var _calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calendar */ "./src/js/calendar.js");
+/* harmony import */ var _listLeague__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./listLeague */ "./src/js/listLeague.js");
+/* harmony import */ var _listMatch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./listMatch */ "./src/js/listMatch.js");
+/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
+/* harmony import */ var _404__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./404 */ "./src/js/404.js");
+
+
 
 
 
@@ -375,10 +381,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((isPopState) => {
     let hash = window.location.hash;
     console.log(hash);
-    (0,_listLeague__WEBPACK_IMPORTED_MODULE_1__["default"])()
-    if(hash.length === 0) {
-        (0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
-        ;(0,_listMatch__WEBPACK_IMPORTED_MODULE_2__.listMatch)(isPopState, new Date())
+    (0,_listLeague__WEBPACK_IMPORTED_MODULE_2__["default"])()
+    if((hash.length === 0) || (hash === "#")) {
+        (0,_animation__WEBPACK_IMPORTED_MODULE_4__.loading)()
+        let d = new Date();
+        // ovaina aloha ny date de ao vao maka ny listMatch
+        (0,_calendar__WEBPACK_IMPORTED_MODULE_1__.setDate)(isPopState, (d.getMonth()+1), d.getDate(), 0) 
         // let intervalListMatch = setInterval(() => {
         //     listMatch(new Date())
         // }, 10000)
@@ -386,8 +394,6 @@ __webpack_require__.r(__webpack_exports__);
     }
     // verifier si listgame ou game (asorina le #)
     let item = hash.slice(1, hash.indexOf('/'));
-    console.log('item');
-    console.log(item);
     // asorina ilay efa azo
     hash = hash.slice(hash.indexOf('/')+1)
     if(item === "listgame") {
@@ -395,19 +401,18 @@ __webpack_require__.r(__webpack_exports__);
         if(index > 0) {
             let date = hash.slice(0,index),
                 idLeague = hash.slice(index+1)
-            console.log('oe');
-            console.log(date);
-            console.log(idLeague);
-            // si date valide et l'id est un nombre
-            if((new Date(date) instanceof Date) && !isNaN(idLeague))
-                (0,_listMatch__WEBPACK_IMPORTED_MODULE_2__.listMatch)(isPopState, date, idLeague)
-            else return // 404
+            date = new Date(date);
+            // si date n'est pas valide et l'id n'est pas un nombre
+            if((date.toString() === "Invalid Date") && isNaN(idLeague))
+                return (0,_404__WEBPACK_IMPORTED_MODULE_5__["default"])() // 404
+            // ovaina aloha ny date de ao vao maka ny listMatch
+            ;(0,_calendar__WEBPACK_IMPORTED_MODULE_1__.setDate)(isPopState, (date.getMonth()+1), date.getDate(), idLeague) 
         } else {
-            console.log('date fts');
             // hash correspond au date, le izy notapahana mantsy
-            if(new Date(hash) instanceof Date)
-                (0,_listMatch__WEBPACK_IMPORTED_MODULE_2__.listMatch)(isPopState, hash)
-            else return // 404
+            hash = new Date(hash)
+            if(hash.toString() === "Invalid Date")
+                return (0,_404__WEBPACK_IMPORTED_MODULE_5__["default"])() // 404
+            ;(0,_calendar__WEBPACK_IMPORTED_MODULE_1__.setDate)(isPopState, (hash.getMonth()+1), hash.getDate()) 
         }
     } else if(item === "game") {
         let indexSlash = hash.indexOf('/'),
@@ -416,16 +421,16 @@ __webpack_require__.r(__webpack_exports__);
         indexSlash = hash.indexOf('/'); // slash manaraka
         let id = hash.slice(0) // idMatch
         // raha tsy nombre le id
-        if(isNaN(id)) return // 404
+        if(isNaN(id)) return (0,_404__WEBPACK_IMPORTED_MODULE_5__["default"])() // 404
         if(type === "pregame") 
             (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(isPopState, id)
         else if(type === "standing") 
             (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(isPopState, id, "standing")
         else if(type === "stats")
             (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(isPopState, id, "stats")
-        else return // 404
+        else return (0,_404__WEBPACK_IMPORTED_MODULE_5__["default"])() // 404
     } else 
-        return // 404
+        return (0,_404__WEBPACK_IMPORTED_MODULE_5__["default"])() // 404
 });
 
 
@@ -465,6 +470,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _infoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./infoMatch */ "./src/js/infoMatch.js");
+/* harmony import */ var _listMatch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./listMatch */ "./src/js/listMatch.js");
+
 
 
 /* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(listGame) {
@@ -527,9 +534,9 @@ __webpack_require__.r(__webpack_exports__);
     `<div class="match-container">
         <nav class="navbar-match">
             <ul class="nav-list">
-                <li class="active col-4 match-today" onclick="game.listMatchToday(this)">Today</li>
-                <li class="col-4 match-live" onclick="game.listMatchLive(this)">Live</li>
-                <li class="col-4 match-finished" onclick="game.listMatchFinished(this)">Finished</li>
+                <li class="active col-4 match-today">Today</li>
+                <li class="col-4 match-live">Live</li>
+                <li class="col-4 match-finished">Finished</li>
             </ul>
         </nav>
         ${countryGameHTML}
@@ -583,6 +590,20 @@ __webpack_require__.r(__webpack_exports__);
         if(isNaN(idMatch) || idMatch === '') return; // au cas ou tsy nombre
         (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(false, idMatch)
     })
+
+        /* onclick match today, live, finished */
+    document.querySelector('.match-today').addEventListener('click', () => {
+        console.log('ati');
+        (0,_listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchToday)()
+    })
+
+    document.querySelector('.match-live').addEventListener('click', () => {
+        ;(0,_listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchLive)()
+    })
+
+    document.querySelector('.match-finished').addEventListener('click', () => {
+        ;(0,_listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchFinished)()
+    })
 }
 
 /***/ }),
@@ -630,8 +651,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _calendar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calendar */ "./src/js/calendar.js");
 /* harmony import */ var _listMatch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./listMatch */ "./src/js/listMatch.js");
-/* harmony import */ var _addHistory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./addHistory */ "./src/js/addHistory.js");
-
 
 
 
@@ -640,9 +659,9 @@ function getLeagueMatch (idLeague, item) {
     let d = new Date(),
         month = d.getMonth()+1,
         dateToday = d.getDate();
-    (0,_calendar__WEBPACK_IMPORTED_MODULE_0__.setDate)(month, dateToday, idLeague, _listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchToday)
+    (0,_calendar__WEBPACK_IMPORTED_MODULE_0__.setDate)(false, month, dateToday, idLeague, _listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchToday)
     // to active
-    if(currentLeagueHTML) currentLeagueHTML.classList.add('active')
+    if(currentLeagueHTML) currentLeagueHTML.classList.remove('active')
     item.classList.add('active')
     currentLeagueHTML = item
     window.scroll(0,0)
@@ -1169,17 +1188,18 @@ listLeague = listLeague.split(',')
                 list[element.index].league_logo = element.photo
             }
             // display list league `<li class="list-item" onclick="getLeagueMatch(${e.league_id})">
+            let listItem = ``;
             for(let e of list) {
-                let listItem = 
-                `<li class="list-item" onclick="league.getLeagueMatch(${e.league_id}, this)">
-                    <img src="${e.league_logo}" alt="icon-league">
-                    <span>${e.league_name}
-                        <span class="line-list"></span>
+                listItem += 
+                `<li class="list-item" id="${e.league_id}" onclick="league.getLeagueMatch(${e.league_id}, this)">
+                    <img src="${e.league_logo}" alt="icon-league" id="${e.league_id}">
+                    <span id="${e.league_id}">${e.league_name}
+                        <span class="line-list" id="${e.league_id}"></span>
                     </span>
                 </li>`;
-                listContainer.insertAdjacentHTML('beforeend', listItem)
             }
-            (0,_animation__WEBPACK_IMPORTED_MODULE_0__.stopLoading)()
+            listContainer.innerHTML = listItem
+            ;(0,_animation__WEBPACK_IMPORTED_MODULE_0__.stopLoading)()
         })
         .catch(err => console.log(err))
 });
@@ -1221,7 +1241,7 @@ let listLeague = (0,_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListLeague)
     activeInNavBar = document.querySelector('.navbar-match .nav-list li.active'),
     currentItem = listMatchToday; // ilaina amle update-na score
 
-async function listMatch(isPopState=false,date, idLeague, toDisplay) {
+async function listMatch(isPopState=false, date, idLeague, toDisplay) {
     gamePerLeague = [];
     let d = new Date(date),
         currentYear = d.getFullYear(),
@@ -1242,7 +1262,7 @@ async function listMatch(isPopState=false,date, idLeague, toDisplay) {
                 leagueId = [],
                 countryId = [];
             // au cas ou idLeague est donne
-            if(idLeague) {
+            if(idLeague > 0) {
                 list = list.filter(e => e.league_id == idLeague)
             }
                 console.log('list match');
@@ -1380,6 +1400,58 @@ async function updateScore() {
     currentItem()
 }
 
+/***/ }),
+
+/***/ "./src/js/someEventlistener.js":
+/*!*************************************!*\
+  !*** ./src/js/someEventlistener.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _getLeagueMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getLeagueMatch */ "./src/js/getLeagueMatch.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (() => {
+    let iconCalendar = document.querySelector('#icon-toggle-calendar'),
+        iconListLeague = document.querySelector('#icon-toggle-league'),
+        closeCalendar = document.querySelector('#close-calendar'),
+        closeListLeague = document.querySelector('#close-league');
+
+    let leagueContainer = document.querySelector('.league-container'),
+        matchContainer = document.querySelector('.match-container');
+
+    /* icon calendar */
+    iconCalendar.addEventListener('click', () => {
+        document.querySelector('.actual').style.top = '0'
+    })
+
+    closeCalendar.addEventListener('click', () => {
+        document.querySelector('.actual').style.top = '-100%'
+    })
+
+    /* icon listLeague */
+    iconListLeague.addEventListener('click', () => {
+        leagueContainer.style.left = '0'
+        matchContainer.style.display = 'none' // eviter queqlue bug
+    })
+
+    closeListLeague.addEventListener('click', () => {
+        leagueContainer.style.left = '-100%'
+        matchContainer.style.display = 'block'
+    })
+
+    /* getLeagueMatch */
+    document.querySelector('.list-league').addEventListener('click', (e) => {
+        // getLeagueMatch(e.target.id)
+        console.log(e.target);
+        // e.target
+    })
+});
+
 /***/ })
 
 /******/ 	});
@@ -1470,15 +1542,14 @@ var __webpack_exports__ = {};
   !*** ./src/js/main.js ***!
   \************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _listLeague__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./listLeague */ "./src/js/listLeague.js");
-/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
-/* harmony import */ var expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! expose-loader?exposes=game!./listMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=game!./src/js/listMatch.js");
-/* harmony import */ var expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_game_listMatch__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! expose-loader?exposes=calendar!./calendar */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar-exposed.js");
-/* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! expose-loader?exposes=league!./getLeagueMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getLeagueMatch.js");
-/* harmony import */ var expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _checkHistory__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./checkHistory */ "./src/js/checkHistory.js");
+/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
+/* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! expose-loader?exposes=calendar!./calendar */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar.js");
+/* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! expose-loader?exposes=league!./getLeagueMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getLeagueMatch.js");
+/* harmony import */ var expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _checkHistory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./checkHistory */ "./src/js/checkHistory.js");
+/* harmony import */ var _addHistory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./addHistory */ "./src/js/addHistory.js");
+/* harmony import */ var _someEventlistener__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./someEventlistener */ "./src/js/someEventlistener.js");
 
 
 
@@ -1486,44 +1557,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-(0,_checkHistory__WEBPACK_IMPORTED_MODULE_5__["default"])(false) // false satria pushstate 
+(0,_animation__WEBPACK_IMPORTED_MODULE_0__.loading)()
+;(0,_someEventlistener__WEBPACK_IMPORTED_MODULE_5__["default"])() // onclick sy ny namany
+;(0,_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(false) // false satria pushstate 
 
 window.onpopstate = (e) => {
     console.log('onpopstate');
     console.log(e);
-    (0,_checkHistory__WEBPACK_IMPORTED_MODULE_5__["default"])(true)
+    (0,_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(true)
 }
 
+/* logo onclick */
+document.querySelector('.nav-bar .logo').addEventListener('click', () => {
+    ;(0,_addHistory__WEBPACK_IMPORTED_MODULE_4__["default"])('')
+    ;(0,_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(false)
+})
+
 // stopLoading()
-
-let iconCalendar = document.querySelector('#icon-toggle-calendar'),
-    iconListLeague = document.querySelector('#icon-toggle-league'),
-    closeCalendar = document.querySelector('#close-calendar'),
-    closeListLeague = document.querySelector('#close-league');
-
-let leagueContainer = document.querySelector('.league-container'),
-    matchContainer = document.querySelector('.match-container');
-
-/* calendar */
-iconCalendar.addEventListener('click', () => {
-    document.querySelector('.actual').style.top = '0'
-})
-
-closeCalendar.addEventListener('click', () => {
-    document.querySelector('.actual').style.top = '-100%'
-})
-
-/* listLeague */
-iconListLeague.addEventListener('click', () => {
-    leagueContainer.style.left = '0'
-    matchContainer.style.display = 'none' // eviter queqlue bug
-})
-
-closeListLeague.addEventListener('click', () => {
-    leagueContainer.style.left = '-100%'
-    matchContainer.style.display = 'block'
-})
 })();
 
 /******/ })()

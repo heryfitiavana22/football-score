@@ -12,7 +12,7 @@ let listLeague = getListLeague(),
     activeInNavBar = document.querySelector('.navbar-match .nav-list li.active'),
     currentItem = listMatchToday; // ilaina amle update-na score
 
-export async function listMatch(isPopState=false,date, idLeague, toDisplay) {
+export async function listMatch(isPopState=false, date, idLeague, toDisplay) {
     gamePerLeague = [];
     let d = new Date(date),
         currentYear = d.getFullYear(),
@@ -33,7 +33,7 @@ export async function listMatch(isPopState=false,date, idLeague, toDisplay) {
                 leagueId = [],
                 countryId = [];
             // au cas ou idLeague est donne
-            if(idLeague) {
+            if(idLeague > 0) {
                 list = list.filter(e => e.league_id == idLeague)
             }
                 console.log('list match');

@@ -9,7 +9,7 @@ let date =  new Date(),
 
 export function createCalendar(month,year,date) {
     let currentMonthHTML = document.querySelector('.current-date'),
-        monthContainerHtml = document.querySelector('.addDayMonth');
+        tbody = document.querySelector('.day-container tbody');
 
     // recuperer la date du jour
     let monthFrench = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
@@ -37,14 +37,14 @@ export function createCalendar(month,year,date) {
         // verifier quelle est le jour du premier mois
         if(dayFirstMonth > i) {
             // jour pas dans le mois
-            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(${month-1},${endMonthBefore})">${endMonthBefore}</span></td>`;
+            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(false, ${month-1},${endMonthBefore})">${endMonthBefore}</span></td>`;
             endMonthBefore++;
         } else {
             // premiere jour du mois
             if(countDay === date) {
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             } else {
-                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             }
             countDay++;
         }
@@ -55,9 +55,9 @@ export function createCalendar(month,year,date) {
     dayContainer += '<tr class="day" >';
     for(let i=1; i<=7; i++) {
         if(countDay === date) {
-            dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+            dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
         } else {
-            dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+            dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
         }
         countDay++;
     }
@@ -67,9 +67,9 @@ export function createCalendar(month,year,date) {
     dayContainer += '<tr class="day" >';
     for(let i=1; i<=7; i++) {
         if(countDay === date) {
-            dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+            dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
         } else {
-            dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+            dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
         }
         countDay++;
     }
@@ -81,14 +81,14 @@ export function createCalendar(month,year,date) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
             if(countDay === date) {
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             } else {
-                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             }
             countDay++;
         } else {
             // si c'est apres la fin du mois
-            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
+            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(false, ${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
             dayAfterMonth++;
         }
     }
@@ -100,14 +100,14 @@ export function createCalendar(month,year,date) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
             if(countDay === date) {
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             } else {
-                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             }
             countDay++;
         } else {
             // si c'est apres la fin du mois
-            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
+            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(false, ${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
             dayAfterMonth++;
         }
     }
@@ -119,22 +119,23 @@ export function createCalendar(month,year,date) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
             if(countDay === date) {
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             } else {
-                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             }
             countDay++;
         } else {
             // si c'est apres la fin du mois
-            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
+            dayContainer += `<td><span class="day-item day-out" onclick="calendar.setDate(false, ${month+1},${dayAfterMonth})">${dayAfterMonth}</span></td>`;
             dayAfterMonth++;
         }
     }
     dayContainer += '</tr>';
 
     currentMonthHTML.innerHTML = monthFrench[month-1] + ' ' + year;
-    document.querySelector('#icon-toggle-calendar').style.display = 'block'
-    monthContainerHtml.insertAdjacentHTML('beforeend', dayContainer)
+    if(window.innerWidth <= 768) 
+        document.querySelector('#icon-toggle-calendar').style.display = 'block'
+    tbody.insertAdjacentHTML('beforeend', dayContainer)
 }
 
 export function downMonth() {
@@ -170,7 +171,7 @@ export function getCurrentDate() {
 }
 
 let currentIdLeague = undefined; // tazomina le idLeague jerena raha misy
-export function setDate(m, d, idLeague, toDisplay) {
+export function setDate(isPopState=false, m, d, idLeague, toDisplay) {
     // raha sendra amle date efa affiché no click-eny ary tsy miova ny idLeague
     // if((d === currentDate) && (m === month)) return
     // hideCalendar (valable ito rehefa le ecran <= 768)
@@ -179,7 +180,7 @@ export function setDate(m, d, idLeague, toDisplay) {
     
     loading()
 
-    if(idLeague) currentIdLeague = idLeague // raha misy valeur vao ovaina
+    if(idLeague !== undefined) currentIdLeague = idLeague // raha misy valeur vao ovaina
     console.log('currentIdLeague');
     console.log(currentIdLeague);
     month = m;
@@ -191,6 +192,6 @@ export function setDate(m, d, idLeague, toDisplay) {
         month = 12
         year--
     }
-    listMatch(false, (`${year}-${month}-${currentDate}`), currentIdLeague, toDisplay)
+    listMatch(isPopState, (`${year}-${month}-${currentDate}`), currentIdLeague, toDisplay)
 }
 /* end calendar */

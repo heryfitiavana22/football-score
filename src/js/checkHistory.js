@@ -1,15 +1,19 @@
 import infoMatch from "./infoMatch";
+import {setDate} from './calendar'
 import listLeague from "./listLeague";
 import { listMatch } from "./listMatch";
 import {loading, stopLoading} from './animation'
+import pageNotFound from './404'
 
 export default (isPopState) => {
     let hash = window.location.hash;
     console.log(hash);
     listLeague()
-    if(hash.length === 0) {
+    if((hash.length === 0) || (hash === "#")) {
         loading()
-        listMatch(isPopState, new Date())
+        let d = new Date();
+        // ovaina aloha ny date de ao vao maka ny listMatch
+        setDate(isPopState, (d.getMonth()+1), d.getDate(), 0) 
         // let intervalListMatch = setInterval(() => {
         //     listMatch(new Date())
         // }, 10000)
@@ -17,8 +21,6 @@ export default (isPopState) => {
     }
     // verifier si listgame ou game (asorina le #)
     let item = hash.slice(1, hash.indexOf('/'));
-    console.log('item');
-    console.log(item);
     // asorina ilay efa azo
     hash = hash.slice(hash.indexOf('/')+1)
     if(item === "listgame") {
@@ -26,19 +28,18 @@ export default (isPopState) => {
         if(index > 0) {
             let date = hash.slice(0,index),
                 idLeague = hash.slice(index+1)
-            console.log('oe');
-            console.log(date);
-            console.log(idLeague);
-            // si date valide et l'id est un nombre
-            if((new Date(date) instanceof Date) && !isNaN(idLeague))
-                listMatch(isPopState, date, idLeague)
-            else return // 404
+            date = new Date(date);
+            // si date n'est pas valide et l'id n'est pas un nombre
+            if((date.toString() === "Invalid Date") && isNaN(idLeague))
+                return pageNotFound() // 404
+            // ovaina aloha ny date de ao vao maka ny listMatch
+            setDate(isPopState, (date.getMonth()+1), date.getDate(), idLeague) 
         } else {
-            console.log('date fts');
             // hash correspond au date, le izy notapahana mantsy
-            if(new Date(hash) instanceof Date)
-                listMatch(isPopState, hash)
-            else return // 404
+            hash = new Date(hash)
+            if(hash.toString() === "Invalid Date")
+                return pageNotFound() // 404
+            setDate(isPopState, (hash.getMonth()+1), hash.getDate()) 
         }
     } else if(item === "game") {
         let indexSlash = hash.indexOf('/'),
@@ -47,14 +48,14 @@ export default (isPopState) => {
         indexSlash = hash.indexOf('/'); // slash manaraka
         let id = hash.slice(0) // idMatch
         // raha tsy nombre le id
-        if(isNaN(id)) return // 404
+        if(isNaN(id)) return pageNotFound() // 404
         if(type === "pregame") 
             infoMatch(isPopState, id)
         else if(type === "standing") 
             infoMatch(isPopState, id, "standing")
         else if(type === "stats")
             infoMatch(isPopState, id, "stats")
-        else return // 404
+        else return pageNotFound() // 404
     } else 
-        return // 404
+        return pageNotFound() // 404
 }
