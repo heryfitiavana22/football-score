@@ -4,15 +4,17 @@ import {loading, stopLoading} from './animation'
 import {listMatch} from 'expose-loader?exposes=game!./listMatch'
 import {createCalendar, getCurrentDate} from 'expose-loader?exposes=calendar!./calendar'
 import {getLeagueMatch} from 'expose-loader?exposes=league!./getLeagueMatch'
+import checkHistory from './checkHistory'
 
-loading()
-listMatch(new Date())
-listLeague()
+checkHistory(false) // false satria pushstate 
+
+window.onpopstate = (e) => {
+    console.log('onpopstate');
+    console.log(e);
+    checkHistory(true)
+}
 
 // stopLoading()
-// let intervalListMatch = setInterval(() => {
-//     listMatch(new Date())
-// }, 10000)
 
 let iconCalendar = document.querySelector('#icon-toggle-calendar'),
     iconListLeague = document.querySelector('#icon-toggle-league'),

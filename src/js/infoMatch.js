@@ -5,44 +5,51 @@ import {loading, stopLoading} from './animation'
 
 let navMatch = undefined,
     container = undefined;
-export default async (idMatch) => {
+export default async (isPopState=false, idMatch, toDisplay) => {
     loading()
     let game = [],
         standing = [];
-    // addHistory(`game/${idMatch}`);
+    
     game = await getInfoMatch(idMatch)
     // classement
-    getStanding(game.league_id).then((value) => standing = value)
     console.log('game');
     console.log(game);
+    // display game (home vs away)
     displayGame(game)
     navMatch = document.querySelector('.nav-match');
     container = navMatch.nextElementSibling;
+    // display moment fort
     displayMoment(game)
-    displayPreGame(game)
+    if(toDisplay === "standing") { // raha tiana specifie-na ho classement
+        standing = await getStanding(game.league_id)
+        displayStanding(isPopState, standing, game.match_id)
+    } else if(toDisplay === "stats") {
+        getStanding(game.league_id).then((value) => standing = value)
+        displayStats(isPopState, game)
+    } else {
+        getStanding(game.league_id).then((value) => standing = value)
+        displayPreGame(isPopState, game)
+    }
     stopLoading()
 
     navMatch.addEventListener('click', (e) => {
         loading()
-        console.log(e.target.attributes);
+        console.log(e.target);
         if(e.target.id === 'standing') {
             loading()
-            displayStanding(standing)
-            document.querySelector('.info-match .nav-match li.active').classList.remove('active');
-            e.target.attributes.class.nodeValue = 'active'
+            // display
+            displayStanding(isPopState, standing, game.match_id)
             stopLoading()
         }else if(e.target.id === 'stats') {
             loading()
-            displayStats(game)
-            document.querySelector('.info-match .nav-match li.active').classList.remove('active');
-            e.target.attributes.class.nodeValue = 'active'
+            // display
+            displayStats(isPopState, game)
             stopLoading()
         } else {
             loading()
-            displayPreGame(game)
-            document.querySelector('.info-match .nav-match li.active').classList.remove('active');
-            e.target.attributes.class.nodeValue = 'active'
-            stopLoading(game)
+            // display
+            displayPreGame(isPopState, game)
+            stopLoading()
         }
     })
 }
@@ -86,6 +93,7 @@ function displayGame(game) {
         </div>
     </div>`
     currentElement.innerHTML = gameHTML
+    document.querySelector('#icon-toggle-calendar').style.display = 'none'
 }
 
 function displayMoment(game) {
@@ -173,7 +181,10 @@ function displayMoment(game) {
         })
 }
 
-function displayPreGame(game) {
+function displayPreGame(isPopState=false,game) {
+    // add history
+    if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
+        addHistory(`game/pregame/${game.match_id}`);
     let home = {
         system : game.match_hometeam_system || "4-3-3",
         lineup : game.lineup.home.starting_lineups,
@@ -199,7 +210,7 @@ function displayPreGame(game) {
                     <span class="system">${home.system}</span>
                     <div class="row-item">
                         <div class="player">
-                            <div class ="icon-player">${home.lineup[1].lineup_number}</div>
+                            <div class ="icon-player">${home.lineup[0].lineup_number}</div>
                             <span class="player-name">${home.lineup[0].lineup_player}</span>
                         </div>
                     </div>`;
@@ -280,9 +291,15 @@ function displayPreGame(game) {
     </div>
     <!-- end pre-game  -->`
     container.innerHTML = preGameHTML
+    // active
+    document.querySelector('.info-match .nav-match li.active').classList.remove('active');
+    document.querySelectorAll('.info-match .nav-match li')[0].classList.add('active');
 }
 
-function displayStanding(standing) {
+function displayStanding(isPopState=false ,standing, idMatch) {
+    // add history
+    if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
+        addHistory(`game/standing/${idMatch}`);
     let standingHTML =
     `<table class="standing-container">
         <tr class="head-table">
@@ -310,9 +327,15 @@ function displayStanding(standing) {
         }
     standingHTML += `</table>`
     container.innerHTML = standingHTML
+    // active
+    document.querySelector('.info-match .nav-match li.active').classList.remove('active');
+    document.querySelectorAll('.info-match .nav-match li')[1].classList.add('active');
 }
 
-function displayStats(game) {
+function displayStats(isPopState=false, game) {
+    // add history
+    if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
+        addHistory(`game/stats/${game.match_id}`);
     let statistics = game.statistics.reverse();
     let statsHTML = 
     `<div class="statistics">
@@ -327,6 +350,8 @@ function displayStats(game) {
         }
     statsHTML += 
     `</div>`
-        
     container.innerHTML = statsHTML
+    // active
+    document.querySelector('.info-match .nav-match li.active').classList.remove('active');
+    document.querySelectorAll('.info-match .nav-match li')[2].classList.add('active');
 }

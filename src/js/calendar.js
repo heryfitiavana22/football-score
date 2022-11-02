@@ -1,5 +1,6 @@
 import {listMatch} from './listMatch'
 import {loading} from './animation'
+
 /* calendar */
 let date =  new Date(),
     currentDate = date.getDate(),
@@ -132,6 +133,7 @@ export function createCalendar(month,year,date) {
     dayContainer += '</tr>';
 
     currentMonthHTML.innerHTML = monthFrench[month-1] + ' ' + year;
+    document.querySelector('#icon-toggle-calendar').style.display = 'block'
     monthContainerHtml.insertAdjacentHTML('beforeend', dayContainer)
 }
 
@@ -189,6 +191,6 @@ export function setDate(m, d, idLeague, toDisplay) {
         month = 12
         year--
     }
-    listMatch((`${year}-${month}-${currentDate}`), currentIdLeague, toDisplay)
+    listMatch(false, (`${year}-${month}-${currentDate}`), currentIdLeague, toDisplay)
 }
 /* end calendar */

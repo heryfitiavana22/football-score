@@ -157,8 +157,9 @@
             inputSearch.style.top = '-29px'
             setTimeout(() => {searchContainer.style.overflow = 'hidden'},200)
         }      
-
+        
         window.onclick = (e) => {
+            // console.log(e);
             if(!e.target.matches('#icon-search') && !e.target.matches('#search') && !e.target.matches('.search-container')) {
                 hideInputSearch()
             }

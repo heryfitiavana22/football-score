@@ -114,6 +114,6 @@ export default function (listGame) {
         console.log(e.target.id);
         let idMatch = e.target.id
         if(isNaN(idMatch) || idMatch === '') return; // au cas ou tsy nombre
-        infoMatch(idMatch)
+        infoMatch(false, idMatch)
     })
 }

@@ -1,10 +1,10 @@
 import {setDate} from './calendar'
 import {listMatchToday} from './listMatch'
+import addHistory from './addHistory'
 
 let currentLeagueHTML = undefined;
 export function getLeagueMatch (idLeague, item) {
     let d = new Date(),
-        year = d.getFullYear(),
         month = d.getMonth()+1,
         dateToday = d.getDate();
     setDate(month, dateToday, idLeague, listMatchToday)

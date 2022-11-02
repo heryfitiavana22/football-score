@@ -7,7 +7,7 @@ export default async (idLeague) => {
         .then((value) => {
             console.log('getStanding');
             console.log(value);
-            resolve(value)
+            resolve(value.error ? [] : value)
         })
     })
 } 

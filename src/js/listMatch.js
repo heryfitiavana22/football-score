@@ -3,6 +3,7 @@ import {getPopularLeague} from './league'
 import {loading, stopLoading} from './animation'
 import displayListMatch from './displayListMatch'
 import {deleteCurrentMonth, createCalendar,getCurrentDate} from './calendar'
+import addHistory from './addHistory'
 
 let APIkey = "5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda"
 let listLeague = getListLeague(),
@@ -11,7 +12,7 @@ let listLeague = getListLeague(),
     activeInNavBar = document.querySelector('.navbar-match .nav-list li.active'),
     currentItem = listMatchToday; // ilaina amle update-na score
 
-export async function listMatch(date, idLeague, toDisplay) {
+export async function listMatch(isPopState=false,date, idLeague, toDisplay) {
     gamePerLeague = [];
     let d = new Date(date),
         currentYear = d.getFullYear(),
@@ -20,6 +21,9 @@ export async function listMatch(date, idLeague, toDisplay) {
         currentDate = currentYear + '-' + currentMonth + '-' + currentDay;
     console.log('date');
     console.log(date);
+    // add history (rehefa popstate de tsy mila mi-ajouter)
+    if(!isPopState)
+        addHistory(`listgame/${currentDate}${idLeague ? ('&'+idLeague) : ''}`)
     let url = `https://apiv3.apifootball.com/?action=get_events&from=${currentDate}&to=${currentDate}&APIkey=${APIkey}&timezone=Africa/Nairobi`;
     fetch(url, {method : 'get'})
         .then(response => response.json())
