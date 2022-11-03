@@ -1,12 +1,15 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
+let mode = process.env.NODE_ENV;
 
-module.exports = {
+let config = {
     entry : './src/js/main.js',
     output : {
         path : path.resolve(__dirname, 'dist'),
         filename : 'bundle.js'
     },
-    watch : true,
+    watch : mode === "development",
     devtool : "source-map",
     module : {
         rules : [{
@@ -26,5 +29,17 @@ module.exports = {
             use : ['style-loader' ,'css-loader']
         }]
     },
-    mode : 'development'
+    plugins : [],
+    optimization : {},
+    mode : mode
 }
+
+if(mode === "production") {
+  console.log('prod');
+  config.optimization = {
+    minimize: true,
+    minimizer: [new TerserPlugin()]
+  }
+}
+
+module.exports = config
