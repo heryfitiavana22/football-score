@@ -262,7 +262,8 @@
     background-color: rgb(244, 244, 244);
 }
 .standing-container tr td.team {
-    display: block; 
+    display: flex;
+    justify-content: start; 
     width: 75%;
     text-align: start;
     overflow: hidden;
@@ -274,9 +275,9 @@
     width: 8%;
 }
 .standing-container .team-container:hover {background-color: aliceblue;}
-.standing-container img {width: 32px; height: 32px;}
+.standing-container img {width: 32px; height: 32px; margin-right: 10px;}
 .standing-container .number {
-    margin: 0 5px; 
+    margin: 0 7px; 
     font-size: 18px; 
     display: inline-block;
     width: 21px !important;
@@ -389,7 +390,7 @@
     .standing-container tr {padding: 4px 0 4px 3px; height: 38px;}
     .standing-container .number {
         margin: 0 2px;
-        font-size: 16px;
+        font-size: 13px;
     }
     .standing-container img {
         width: 20px;
