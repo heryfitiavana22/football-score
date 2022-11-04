@@ -101,6 +101,7 @@ h1 span {
 
 /* list league */
 .league-container {
+    position: relative;
     width: 25%;
 }
 .league-container h2 {
