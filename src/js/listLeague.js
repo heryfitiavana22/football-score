@@ -24,7 +24,9 @@ export default async () => {
             // popular league and exception league
             let popularLeague = getPopularLeague(leagueId),
                 exceptionLeague = getExceptionLeague(leagueId),
-                currentNumber = 0;
+                currentNumber = 1;
+            console.log('popularLeague listleague');
+            console.log(popularLeague);
             // correct league logo
             for(let element of exceptionLeague) {
                 list[element.index].league_logo = element.photo
@@ -33,6 +35,7 @@ export default async () => {
             // omena numero voalohany ireo league popular
             for(let element of popularLeague) {
                 list[element.index].number =  currentNumber
+                list[element.index].league_logo = element.photo
                 currentNumber++
             }
             // omena numero ireo league mbola tsy nahazo
@@ -43,7 +46,7 @@ export default async () => {
                 }
             }
             // trier-na selon ny nom ana league aloha
-            list.sort((a,b) => a.country_name - b.country_name)
+            list.sort((a,b) => a.league_name - b.league_name)
             // trier-na selon ny numero anle league
             list.sort((a,b) => a.number - b.number)
 
@@ -59,7 +62,6 @@ export default async () => {
                 </li>`;
             }
             listContainer.innerHTML = listItem
-            stopLoading()
         })
         .catch(err => console.log(err))
 }

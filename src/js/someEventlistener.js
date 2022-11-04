@@ -1,4 +1,3 @@
-import getLeagueMatch from './getLeagueMatch'
 export default () => {
     let iconCalendar = document.querySelector('#icon-toggle-calendar'),
         iconListLeague = document.querySelector('#icon-toggle-league'),
@@ -9,11 +8,13 @@ export default () => {
         matchContainer = document.querySelector('.match-container');
 
     /* icon calendar */
+    console.log(closeCalendar);
     iconCalendar.addEventListener('click', () => {
         document.querySelector('.actual').style.top = '0'
     })
 
     closeCalendar.addEventListener('click', () => {
+        console.log('closec');
         document.querySelector('.actual').style.top = '-100%'
     })
 
@@ -26,12 +27,5 @@ export default () => {
     closeListLeague.addEventListener('click', () => {
         leagueContainer.style.left = '-100%'
         matchContainer.style.display = 'block'
-    })
-
-    /* getLeagueMatch */
-    document.querySelector('.list-league').addEventListener('click', (e) => {
-        // getLeagueMatch(e.target.id)
-        console.log(e.target);
-        // e.target
     })
 }

@@ -59,7 +59,7 @@ export async function listMatch(isPopState=false, date, idLeague, toDisplay) {
             }
             
             let popularLeague = getPopularLeague(leagueId);
-            let currentNumber = 0;
+            let currentNumber = 1;
             // asorina izay tsy hita ao anaty tableau ny indice-ny, zany oe tsy misy match
             // omena numero voalohany ireo popular league mba anamorana ny ampisehoana azy voalohany
             popularLeague = popularLeague.filter(e => e.index >= 0)

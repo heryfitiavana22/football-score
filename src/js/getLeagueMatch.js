@@ -10,6 +10,7 @@ export function getLeagueMatch (idLeague, item) {
     // to active
     if(currentLeagueHTML) currentLeagueHTML.classList.remove('active')
     item.classList.add('active')
+    document.querySelector('.league-container').style.left = '-100%' // rehefa le responsive
     currentLeagueHTML = item
     window.scroll(0,0)
 }

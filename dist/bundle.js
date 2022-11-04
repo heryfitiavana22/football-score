@@ -433,10 +433,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _infoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./infoMatch */ "./src/js/infoMatch.js");
 /* harmony import */ var _calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calendar */ "./src/js/calendar.js");
 /* harmony import */ var _listLeague__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./listLeague */ "./src/js/listLeague.js");
-/* harmony import */ var _listMatch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./listMatch */ "./src/js/listMatch.js");
-/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
-/* harmony import */ var _404__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./404 */ "./src/js/404.js");
-
+/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
+/* harmony import */ var _404__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./404 */ "./src/js/404.js");
 
 
 
@@ -448,7 +446,7 @@ __webpack_require__.r(__webpack_exports__);
     console.log(hash);
     (0,_listLeague__WEBPACK_IMPORTED_MODULE_2__["default"])()
     if((hash.length === 0) || (hash === "#")) {
-        (0,_animation__WEBPACK_IMPORTED_MODULE_4__.loading)()
+        (0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
         let d = new Date();
         // ovaina aloha ny date de ao vao maka ny listMatch
         (0,_calendar__WEBPACK_IMPORTED_MODULE_1__.setDate)(isPopState, (d.getMonth()+1), d.getDate(), 0) 
@@ -469,14 +467,14 @@ __webpack_require__.r(__webpack_exports__);
             date = new Date(date);
             // si date n'est pas valide et l'id n'est pas un nombre
             if((date.toString() === "Invalid Date") && isNaN(idLeague))
-                return (0,_404__WEBPACK_IMPORTED_MODULE_5__["default"])() // 404
+                return (0,_404__WEBPACK_IMPORTED_MODULE_4__["default"])() // 404
             // ovaina aloha ny date de ao vao maka ny listMatch
             ;(0,_calendar__WEBPACK_IMPORTED_MODULE_1__.setDate)(isPopState, (date.getMonth()+1), date.getDate(), idLeague) 
         } else {
             // hash correspond au date, le izy notapahana mantsy
             hash = new Date(hash)
             if(hash.toString() === "Invalid Date")
-                return (0,_404__WEBPACK_IMPORTED_MODULE_5__["default"])() // 404
+                return (0,_404__WEBPACK_IMPORTED_MODULE_4__["default"])() // 404
             ;(0,_calendar__WEBPACK_IMPORTED_MODULE_1__.setDate)(isPopState, (hash.getMonth()+1), hash.getDate()) 
         }
     } else if(item === "game") {
@@ -486,16 +484,16 @@ __webpack_require__.r(__webpack_exports__);
         indexSlash = hash.indexOf('/'); // slash manaraka
         let id = hash.slice(0) // idMatch
         // raha tsy nombre le id
-        if(isNaN(id)) return (0,_404__WEBPACK_IMPORTED_MODULE_5__["default"])() // 404
+        if(isNaN(id)) return (0,_404__WEBPACK_IMPORTED_MODULE_4__["default"])() // 404
         if(type === "pregame") 
             (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(isPopState, id)
         else if(type === "standing") 
             (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(isPopState, id, "standing")
         else if(type === "stats")
             (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(isPopState, id, "stats")
-        else return (0,_404__WEBPACK_IMPORTED_MODULE_5__["default"])() // 404
+        else return (0,_404__WEBPACK_IMPORTED_MODULE_4__["default"])() // 404
     } else 
-        return (0,_404__WEBPACK_IMPORTED_MODULE_5__["default"])() // 404
+        return (0,_404__WEBPACK_IMPORTED_MODULE_4__["default"])() // 404
 });
 
 
@@ -558,22 +556,13 @@ __webpack_require__.r(__webpack_exports__);
             // live match
             if(game.match_live === '1') 
                 countryGameHTML += 
-                    `<li class="live" id="${game.match_id}">
-                        <span class="hour-match" id="${game.match_id}">${isNaN(game.match_status) ? game.match_status : ((game.match_status + ' min'))}</span>`;
-            // finished game
-            else if((game.match_status === 'Finished') || (game.match_status === 'After ET') || (game.match_status === 'After Pen.'))
-                countryGameHTML += 
-                    `<li class="finished" id="${game.match_id}">
-                        <span class="hour-match" id="${game.match_id}">${game.match_time}</span>`
-            // reporte
-            else if(game.match_status === 'Postponed')
+                `<li class="live" id="${game.match_id}">
+                    <span class="hour-match" id="${game.match_id}">${isNaN(game.match_status) ? game.match_status : ((game.match_status + ' min'))}</span>`;
+            // match mbola tsy nandeha; finished game and postponed
+            else 
             countryGameHTML += 
                 `<li id="${game.match_id}">
-                    <span class="hour-match" id="${game.match_id}">postponed</span>`
-            else 
-                countryGameHTML += 
-                    `<li id="${game.match_id}">
-                        <span class="hour-match"  id="${game.match_id}">${game.match_time}</span>`
+                    <span class="hour-match" id="${game.match_id}">${(game.match_status === 'Postponed') ? 'postponed' : game.match_time}</span>`
             countryGameHTML += 
                 `<div class="match-item" id="${game.match_id}">
                     <div class="home" id="${game.match_id}">
@@ -656,7 +645,7 @@ __webpack_require__.r(__webpack_exports__);
         (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(false, idMatch)
     })
 
-        /* onclick match today, live, finished */
+    /* onclick match today, live, finished */
     document.querySelector('.match-today').addEventListener('click', () => {
         console.log('ati');
         (0,_listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchToday)()
@@ -668,6 +657,12 @@ __webpack_require__.r(__webpack_exports__);
 
     document.querySelector('.match-finished').addEventListener('click', () => {
         ;(0,_listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchFinished)()
+    })
+
+    /* onclick close calendar */
+    document.querySelector('#close-calendar').addEventListener('click', () => {
+        console.log('closec');
+        document.querySelector('.actual').style.top = '-100%'
     })
 }
 
@@ -728,6 +723,7 @@ function getLeagueMatch (idLeague, item) {
     // to active
     if(currentLeagueHTML) currentLeagueHTML.classList.remove('active')
     item.classList.add('active')
+    document.querySelector('.league-container').style.left = '-100%' // rehefa le responsive
     currentLeagueHTML = item
     window.scroll(0,0)
 }
@@ -834,7 +830,12 @@ let navMatch = undefined,
 
 
 function displayGame(game) {
-    let currentElement = document.querySelector('.current-element');
+    let currentElement = document.querySelector('.current-element'),
+        hour = '';
+    if(game.match_live === '1') 
+        hour = isNaN(game.match_status) ? game.match_status : (game.match_status + ' min')
+    else
+        hour = (game.match_status === 'Postponed') ? 'postponed' : game.match_time
     let gameHTML =
     `<div class="info-match">
         <h3 class="country-league">
@@ -842,16 +843,15 @@ function displayGame(game) {
             <span class="country">${game.country_name} : </span>
             <span class="league">${game.league_name}</span>
         </h3>
-        <div class="match">
+        <div class="match ${(game.match_live == "1") ? 'live' : ''}">
             <div class="home team">
                 <img src="${game.team_home_badge || "assets/img/logo2.png"}" alt="icon-team">
                 <span class="team-name">${game.match_hometeam_name}</span>
                 <span class="score">${game.match_hometeam_score}</span>
             </div>
             <div class="info">
-                <span class="hour-match">${game.match_time}</span>
+                <span class="hour-match">${hour}</span>
                 <span class="date-match">${game.match_date}</span>
-                <!-- <span class="vs">vs</span> -->
             </div>
             <div class="away team">
                 <span class="score">${game.match_awayteam_score}</span>
@@ -956,6 +956,7 @@ function displayMoment(game) {
     if(showMore) // raha misy
         showMore.addEventListener('click', () => {
             momentContainer.style.height = "auto"
+            showMore.style.display = 'none'
         })
 }
 
@@ -1241,7 +1242,9 @@ listLeague = listLeague.split(',')
             // popular league and exception league
             let popularLeague = (0,_league__WEBPACK_IMPORTED_MODULE_2__.getPopularLeague)(leagueId),
                 exceptionLeague = (0,_league__WEBPACK_IMPORTED_MODULE_2__.getExceptionLeague)(leagueId),
-                currentNumber = 0;
+                currentNumber = 1;
+            console.log('popularLeague listleague');
+            console.log(popularLeague);
             // correct league logo
             for(let element of exceptionLeague) {
                 list[element.index].league_logo = element.photo
@@ -1250,6 +1253,7 @@ listLeague = listLeague.split(',')
             // omena numero voalohany ireo league popular
             for(let element of popularLeague) {
                 list[element.index].number =  currentNumber
+                list[element.index].league_logo = element.photo
                 currentNumber++
             }
             // omena numero ireo league mbola tsy nahazo
@@ -1260,7 +1264,7 @@ listLeague = listLeague.split(',')
                 }
             }
             // trier-na selon ny nom ana league aloha
-            list.sort((a,b) => a.country_name - b.country_name)
+            list.sort((a,b) => a.league_name - b.league_name)
             // trier-na selon ny numero anle league
             list.sort((a,b) => a.number - b.number)
 
@@ -1276,7 +1280,6 @@ listLeague = listLeague.split(',')
                 </li>`;
             }
             listContainer.innerHTML = listItem
-            ;(0,_animation__WEBPACK_IMPORTED_MODULE_0__.stopLoading)()
         })
         .catch(err => console.log(err))
 });
@@ -1365,7 +1368,7 @@ async function listMatch(isPopState=false, date, idLeague, toDisplay) {
             }
             
             let popularLeague = (0,_league__WEBPACK_IMPORTED_MODULE_1__.getPopularLeague)(leagueId);
-            let currentNumber = 0;
+            let currentNumber = 1;
             // asorina izay tsy hita ao anaty tableau ny indice-ny, zany oe tsy misy match
             // omena numero voalohany ireo popular league mba anamorana ny ampisehoana azy voalohany
             popularLeague = popularLeague.filter(e => e.index >= 0)
@@ -1494,8 +1497,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _getLeagueMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getLeagueMatch */ "./src/js/getLeagueMatch.js");
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (() => {
     let iconCalendar = document.querySelector('#icon-toggle-calendar'),
         iconListLeague = document.querySelector('#icon-toggle-league'),
@@ -1506,11 +1507,13 @@ __webpack_require__.r(__webpack_exports__);
         matchContainer = document.querySelector('.match-container');
 
     /* icon calendar */
+    console.log(closeCalendar);
     iconCalendar.addEventListener('click', () => {
         document.querySelector('.actual').style.top = '0'
     })
 
     closeCalendar.addEventListener('click', () => {
+        console.log('closec');
         document.querySelector('.actual').style.top = '-100%'
     })
 
@@ -1523,13 +1526,6 @@ __webpack_require__.r(__webpack_exports__);
     closeListLeague.addEventListener('click', () => {
         leagueContainer.style.left = '-100%'
         matchContainer.style.display = 'block'
-    })
-
-    /* getLeagueMatch */
-    document.querySelector('.list-league').addEventListener('click', (e) => {
-        // getLeagueMatch(e.target.id)
-        console.log(e.target);
-        // e.target
     })
 });
 

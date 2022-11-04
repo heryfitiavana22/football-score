@@ -1,7 +1,6 @@
 import infoMatch from "./infoMatch";
 import {setDate} from './calendar'
 import listLeague from "./listLeague";
-import { listMatch } from "./listMatch";
 import {loading, stopLoading} from './animation'
 import pageNotFound from './404'
 

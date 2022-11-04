@@ -75,7 +75,7 @@ ul li .hour-match {color: rgb(126, 126, 126); width: 100%; text-align: center; f
 .match-item > .home {justify-content: end;}
 .match-item img {width: 20px; height: 20px;}
 .away img {margin-left: 5px;}
-.match-item > div span {margin: 0 5px;}
+.match-item > div span {margin: 0 6px;}
 .match-item .vs {
     margin: 0 15px 0 15px;
     font-weight: bold;
@@ -84,13 +84,13 @@ ul li .hour-match {color: rgb(126, 126, 126); width: 100%; text-align: center; f
     color: transparent;
     font-size: 17px;
     font-weight: bold;
+    color: rgb(44 127 217);
 }
 .live .match-item .score {
     color: rgb(28, 160, 61); 
     transition: all 0.5s ease;
     animation: score-live 1s infinite alternate;
 }
-.finished .match-item .score {color: rgb(44 127 217); }
 
 .actual {
     width: 34%;
@@ -257,7 +257,7 @@ td .day-item {
         top: -1px;
     }
     .match-item .vs {margin: 0 10px;}
-    .match-item > div span {margin: 0 2px;}
+    .match-item > div span {margin: 0 4px;}
     .match-item img {
         width: 16px;
         height: 16px;
