@@ -76,6 +76,71 @@ module.exports = function () {
 
 /***/ }),
 
+/***/ "./src/css/animation.css":
+/*!*******************************!*\
+  !*** ./src/css/animation.css ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/css/color.css":
+/*!***************************!*\
+  !*** ./src/css/color.css ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/css/infoMatch.css":
+/*!*******************************!*\
+  !*** ./src/css/infoMatch.css ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/css/listMatch.css":
+/*!*******************************!*\
+  !*** ./src/css/listMatch.css ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/css/style.css":
+/*!***************************!*\
+  !*** ./src/css/style.css ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./src/js/404.js":
 /*!***********************!*\
   !*** ./src/js/404.js ***!
@@ -1550,6 +1615,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _checkHistory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./checkHistory */ "./src/js/checkHistory.js");
 /* harmony import */ var _addHistory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./addHistory */ "./src/js/addHistory.js");
 /* harmony import */ var _someEventlistener__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./someEventlistener */ "./src/js/someEventlistener.js");
+/* harmony import */ var _css_color_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../css/color.css */ "./src/css/color.css");
+/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../css/style.css */ "./src/css/style.css");
+/* harmony import */ var _css_listMatch_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../css/listMatch.css */ "./src/css/listMatch.css");
+/* harmony import */ var _css_infoMatch_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../css/infoMatch.css */ "./src/css/infoMatch.css");
+/* harmony import */ var _css_animation_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../css/animation.css */ "./src/css/animation.css");
+
+
+
+
+
 
 
 

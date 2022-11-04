@@ -1,13 +1,17 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 let mode = process.env.NODE_ENV;
 
 let config = {
+    mode : mode,
     entry : './src/js/main.js',
     output : {
         path : path.resolve(__dirname, 'dist'),
-        filename : 'bundle.js'
+        filename : (mode === "development") ? 'bundle.js' : 'bundle.[contenthash:8].js',
+        clean : (mode === "production"),
     },
     watch : mode === "development",
     devtool : "source-map",
@@ -26,19 +30,29 @@ let config = {
         }],
         rules : [{
             test : /\.css$/,
-            use : ['style-loader' ,'css-loader']
+            use : [MiniCssExtractPlugin.loader, 'css-loader']
         }]
     },
-    plugins : [],
-    optimization : {},
-    mode : mode
+    plugins : [
+      new HtmlWebpackPlugin({
+        template : 'src/template/index.html',
+        filename : '../index.html',
+        publicPath : 'dist/',
+        inject : 'body'
+      }),
+      new MiniCssExtractPlugin({filename : 'app.css'})
+    ],
+    optimization : {}
 }
 
 if(mode === "production") {
   console.log('prod');
   config.optimization = {
     minimize: true,
-    minimizer: [new TerserPlugin()]
+    minimizer: [
+      new TerserPlugin(), 
+      new CssMinimizerPlugin({parallel: true})
+    ]
   }
 }
 
