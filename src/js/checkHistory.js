@@ -1,4 +1,5 @@
 import infoMatch from "./infoMatch";
+import {clearIntervalUpdate} from './infoMatch'
 import {setDate} from './calendar'
 import listLeague from "./listLeague";
 import {loading, stopLoading} from './animation'
@@ -9,6 +10,7 @@ export default (isPopState) => {
     console.log(hash);
     listLeague()
     if((hash.length === 0) || (hash === "#")) {
+        clearIntervalUpdate() // ilay interval any amin' infoMatch
         loading()
         let d = new Date();
         // ovaina aloha ny date de ao vao maka ny listMatch
@@ -23,6 +25,7 @@ export default (isPopState) => {
     // asorina ilay efa azo
     hash = hash.slice(hash.indexOf('/')+1)
     if(item === "listgame") {
+        clearIntervalUpdate() // ilay interval any amin' infoMatch
         let index = hash.indexOf('&');
         if(index > 0) {
             let date = hash.slice(0,index),

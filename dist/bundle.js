@@ -402,8 +402,8 @@ function setDate(isPopState=false, m, d, idLeague, toDisplay) {
     ;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.loading)()
 
     if(idLeague !== undefined) currentIdLeague = idLeague // raha misy valeur vao ovaina
-    console.log('currentIdLeague');
-    console.log(currentIdLeague);
+    // console.log('currentIdLeague');
+    // console.log(currentIdLeague);
     month = m;
     currentDate = d
     if(m > 12) {
@@ -441,12 +441,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((isPopState) => {
     let hash = window.location.hash;
     console.log(hash);
     (0,_listLeague__WEBPACK_IMPORTED_MODULE_2__["default"])()
     if((hash.length === 0) || (hash === "#")) {
-        (0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
+        (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__.clearIntervalUpdate)() // ilay interval any amin' infoMatch
+        ;(0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
         let d = new Date();
         // ovaina aloha ny date de ao vao maka ny listMatch
         (0,_calendar__WEBPACK_IMPORTED_MODULE_1__.setDate)(isPopState, (d.getMonth()+1), d.getDate(), 0) 
@@ -460,6 +462,7 @@ __webpack_require__.r(__webpack_exports__);
     // asorina ilay efa azo
     hash = hash.slice(hash.indexOf('/')+1)
     if(item === "listgame") {
+        (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__.clearIntervalUpdate)() // ilay interval any amin' infoMatch
         let index = hash.indexOf('&');
         if(index > 0) {
             let date = hash.slice(0,index),
@@ -541,11 +544,14 @@ __webpack_require__.r(__webpack_exports__);
     let currentElement = document.querySelector('.current-element');
     
     let countryGameHTML = ``;
+    if(listGame.length === 0) {
+        countryGameHTML = `<p style="padding-left:15px">No match</p>`
+    }
     for(let country of listGame) {
         countryGameHTML += 
         `<div class="matchs">
             <h3>
-                <img src="${country.logoCountry}" alt="icon-country" onerror="this.src = '../../assets/img/logo2.png'">
+                <img src="${country.logoCountry}" alt="icon-country" onerror="this.src = 'assets/img/logo2.png'">
                 <div class="d-inline">
                     <span class="country">${country.countryName}</span>
                     <span class="league">${country.leagueName}</span>
@@ -566,14 +572,14 @@ __webpack_require__.r(__webpack_exports__);
             countryGameHTML += 
                 `<div class="match-item" id="${game.match_id}">
                     <div class="home" id="${game.match_id}">
-                        <img src="${game.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}" onerror="this.src = '../../assets/img/logo2.png'">
+                        <img src="${game.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}" onerror="this.src = 'assets/img/logo2.png'">
                         <span id="${game.match_id}">${game.match_hometeam_name}</span>
                         <span class="score-home score" id="${game.match_id}">${(game.match_hometeam_score.length > 0) ? game.match_hometeam_score : '  '}</span> 
                     </div>
                     <span class="vs" id="${game.match_id}">vs</span>
                     <div class="away" id="${game.match_id}">
                         <span class="away-home score" id="${game.match_id}">${(game.match_awayteam_score.length > 0) ? game.match_awayteam_score : '  '}</span>
-                        <img src="${game.team_away_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}" onerror="this.src = '../../assets/img/logo2.png'">
+                        <img src="${game.team_away_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}" onerror="this.src = 'assets/img/logo2.png'">
                         <span id="${game.match_id}">${game.match_awayteam_name}</span>
                     </div>
                 </div>
@@ -639,7 +645,7 @@ __webpack_require__.r(__webpack_exports__);
     // event onclick 
     listMatchHTML = document.querySelector('.match-container')
     listMatchHTML.addEventListener('click', (e) => {
-        console.log(e.target.id);
+        // console.log(e.target.id);
         let idMatch = e.target.id
         if(isNaN(idMatch) || idMatch === '') return; // au cas ou tsy nombre
         (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(false, idMatch)
@@ -681,15 +687,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 let apiKey = "5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (idMatch) => {
-    console.log('idMatch');
-    console.log(idMatch);
+    // console.log('idMatch');
+    // console.log(idMatch);
     return await new Promise((reslove, reject) => {
         let url = `https://apiv3.apifootball.com/?action=get_events&APIkey=${apiKey}&match_id=${idMatch}&timezone=Africa/Nairobi`;
         fetch(url, {method : 'get'})
         .then(response => response.json())
         .then((value) => {
-            console.log('getInfoMatch');
-            console.log(value);
+            // console.log('getInfoMatch');
+            // console.log(value);
             reslove(value[0])
         })
     })
@@ -748,8 +754,8 @@ let apiKey = "5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda";
         fetch(url, {method : 'get'})
         .then(response => response.json())
         .then((value) => {
-            console.log('getStanding');
-            console.log(value);
+            // console.log('getStanding');
+            // console.log(value);
             resolve(value.error ? [] : value)
         })
     })
@@ -766,6 +772,7 @@ let apiKey = "5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda";
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "clearIntervalUpdate": () => (/* binding */ clearIntervalUpdate),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _getInfoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getInfoMatch */ "./src/js/getInfoMatch.js");
@@ -778,16 +785,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let navMatch = undefined,
-    container = undefined;
+    container = undefined,
+    interval = undefined,
+    currentDisplay = undefined;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (isPopState=false, idMatch, toDisplay) => {
     (0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
     let game = [],
         standing = [];
     
     game = await (0,_getInfoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(idMatch)
-    // classement
-    console.log('game');
-    console.log(game);
+    // console.log('game');
+    // console.log(game);
     // display game (home vs away)
     displayGame(game)
     navMatch = document.querySelector('.nav-match');
@@ -808,7 +816,7 @@ let navMatch = undefined,
 
     navMatch.addEventListener('click', (e) => {
         ;(0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
-        console.log(e.target);
+        // console.log(e.target);
         if(e.target.id === 'standing') {
             (0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
             // display
@@ -826,8 +834,23 @@ let navMatch = undefined,
             ;(0,_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
         }
     })
+    // mettre a jour le resultat chaque 60 seconde 
+    // interval = setInterval(async () => {
+    //     // console.log('maj info');
+    //     game = await getInfoMatch(idMatch)
+    //     // true : tsy mila enregistre-na anaty historique
+    //     if(currentDisplay === "standing") 
+    //         displayStanding(true, standing, game.match_id)
+    //     else if(toDisplay === "stats")
+    //         displayStats(true, game)
+    //     else 
+    //         displayPreGame(true, game)
+    // },60000)
 });
 
+function clearIntervalUpdate() {
+    clearInterval(interval)
+}
 
 function displayGame(game) {
     let currentElement = document.querySelector('.current-element'),
@@ -839,13 +862,13 @@ function displayGame(game) {
     let gameHTML =
     `<div class="info-match">
         <h3 class="country-league">
-            <img src="${game.country_logo || "assets/img/logo2.png"}" alt="icon-country">
+            <img src="${game.country_logo || "assets/img/logo2.png"}" alt="icon-country" onerror="this.src = 'assets/img/logo2.png'">
             <span class="country">${game.country_name} : </span>
             <span class="league">${game.league_name}</span>
         </h3>
         <div class="match ${(game.match_live == "1") ? 'live' : ''}">
             <div class="home team">
-                <img src="${game.team_home_badge || "assets/img/logo2.png"}" alt="icon-team">
+                <img src="${game.team_home_badge || "assets/img/logo2.png"}" alt="icon-team" onerror="this.src = 'assets/img/logo2.png'">
                 <span class="team-name">${game.match_hometeam_name}</span>
                 <span class="score">${game.match_hometeam_score}</span>
             </div>
@@ -855,7 +878,7 @@ function displayGame(game) {
             </div>
             <div class="away team">
                 <span class="score">${game.match_awayteam_score}</span>
-                <img src="${game.team_away_badge || "assets/img/logo2.png"}" alt="icon-team">
+                <img src="${game.team_away_badge || "assets/img/logo2.png"}" alt="icon-team" onerror="this.src = 'assets/img/logo2.png'">
                 <span class="team-name">${game.match_awayteam_name}</span>
             </div>
         </div>
@@ -920,8 +943,8 @@ function displayMoment(game) {
     }
     // sort by time
     moment.sort((a,b) => eval(a.time) - eval(b.time)) // i-eviter-na 45+1, 90+4 reny amle temps additionnel
-    console.log('moment');
-    console.log(moment);
+    // console.log('moment');
+    // console.log(moment);
 
     let momentContainer = document.querySelector('.moment-container');
     let momentHTML = '';
@@ -961,6 +984,7 @@ function displayMoment(game) {
 }
 
 function displayPreGame(isPopState=false,game) {
+    currentDisplay = "pregame"
     // add history
     if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
         (0,_addHistory__WEBPACK_IMPORTED_MODULE_2__["default"])(`game/pregame/${game.match_id}`);
@@ -982,7 +1006,7 @@ function displayPreGame(isPopState=false,game) {
     if(home.lineup.length > 0) {
         preGameHTML += 
         `<div class="lineup">
-            <img src="assets/img/terrain.png" alt="terrain">
+            <img src="assets/img/terrain.png" alt="terrain" onerror="this.src = '../../assets/img/terrain.png'">
             <div class="players-container">
                 <div class="home">
                     <!-- system  -->
@@ -1080,6 +1104,7 @@ function displayPreGame(isPopState=false,game) {
 }
 
 function displayStanding(isPopState=false ,standing, idMatch) {
+    currentDisplay = "standing"
     // add history
     if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
         (0,_addHistory__WEBPACK_IMPORTED_MODULE_2__["default"])(`game/standing/${idMatch}`);
@@ -1087,11 +1112,11 @@ function displayStanding(isPopState=false ,standing, idMatch) {
     `<table class="standing-container">
         <tr class="head-table">
             <td class="team">Team</td>
-            <td>P</td>
-            <td>GF</td>
-            <td>GA</td>
-            <td>GD</td>
-            <td>Pts</td>
+            <td>P <span>played<span></td>
+            <td>GF <span>goal for<span></td>
+            <td>GA <span>goal against<span></td>
+            <td>GD <span>goal difference<span></td>
+            <td>Pts <span>points<span></td>
         </tr>`;
         for(let element of standing) {
             standingHTML += 
@@ -1116,6 +1141,7 @@ function displayStanding(isPopState=false ,standing, idMatch) {
 }
 
 function displayStats(isPopState=false, game) {
+    currentDisplay = "stat"
     // add history
     if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
         (0,_addHistory__WEBPACK_IMPORTED_MODULE_2__["default"])(`game/stats/${game.match_id}`);
@@ -1241,14 +1267,14 @@ listLeague = listLeague.split(',')
             let list = value
                     .filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name)),
                 leagueId = list.map(e => e.league_id)
-            console.log('listleague');
-            console.log(list);
+            // console.log('listleague');
+            // console.log(list);
             // popular league and exception league
             let popularLeague = (0,_league__WEBPACK_IMPORTED_MODULE_2__.getPopularLeague)(leagueId),
                 exceptionLeague = (0,_league__WEBPACK_IMPORTED_MODULE_2__.getExceptionLeague)(leagueId),
                 currentNumber = 1;
-            console.log('popularLeague listleague');
-            console.log(popularLeague);
+            // console.log('popularLeague listleague');
+            // console.log(popularLeague);
             // correct league logo
             for(let element of exceptionLeague) {
                 list[element.index].league_logo = element.photo
@@ -1277,7 +1303,7 @@ listLeague = listLeague.split(',')
             for(let e of list) {
                 listItem += 
                 `<li class="list-item" id="${e.league_id}" onclick="league.getLeagueMatch(${e.league_id}, this)">
-                    <img src="${e.league_logo}" alt="icon-league" id="${e.league_id}" onerror="this.src = '../../assets/img/logo2.png'">
+                    <img src="${e.league_logo}" alt="icon-league" id="${e.league_id}" onerror="this.src = 'assets/img/logo2.png'">
                     <span id="${e.league_id}">${e.league_name}
                         <span class="line-list" id="${e.league_id}"></span>
                     </span>
@@ -1351,8 +1377,8 @@ async function listMatch(isPopState=false, date, idLeague, toDisplay) {
             }
             // trier selon l'heure du match
             list.sort((a,b) => new Date(`${a.match_date} ${a.match_time}`) - new Date(`${b.match_date} ${b.match_time}`))
-            console.log('list match');
-            console.log(list);
+            // console.log('list match');
+            // console.log(list);
             // filter by country and league
             // sady alaina ny liste ana leagueId (tsy azo asiana miverina) ary tonga dia alaina ny match 
             for(let e of list) {
@@ -1398,8 +1424,8 @@ async function listMatch(isPopState=false, date, idLeague, toDisplay) {
     
             // trier-na selon an'ny numero any
             gamePerLeague.sort((a,b) => a.number - b.number)
-            console.log('gamePerLeague');
-            console.log(gamePerLeague);
+            // console.log('gamePerLeague');
+            // console.log(gamePerLeague);
             // affiche-na ny match androany na ireo live na ireo match vita
             if(toDisplay) { // raha misy no specifie-na
                 currentItem = toDisplay
@@ -1514,13 +1540,11 @@ __webpack_require__.r(__webpack_exports__);
         inputSearch = document.querySelector('#search');
 
     /* icon calendar */
-    console.log(closeCalendar);
     iconCalendar.addEventListener('click', () => {
         document.querySelector('.actual').style.top = '0'
     })
 
     closeCalendar.addEventListener('click', () => {
-        console.log('closec');
         document.querySelector('.actual').style.top = '-100%'
     })
 

@@ -181,8 +181,8 @@ export function setDate(isPopState=false, m, d, idLeague, toDisplay) {
     loading()
 
     if(idLeague !== undefined) currentIdLeague = idLeague // raha misy valeur vao ovaina
-    console.log('currentIdLeague');
-    console.log(currentIdLeague);
+    // console.log('currentIdLeague');
+    // console.log(currentIdLeague);
     month = m;
     currentDate = d
     if(m > 12) {

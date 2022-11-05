@@ -5,11 +5,14 @@ export default function (listGame) {
     let currentElement = document.querySelector('.current-element');
     
     let countryGameHTML = ``;
+    if(listGame.length === 0) {
+        countryGameHTML = `<p style="padding-left:15px">No match</p>`
+    }
     for(let country of listGame) {
         countryGameHTML += 
         `<div class="matchs">
             <h3>
-                <img src="${country.logoCountry}" alt="icon-country" onerror="this.src = '../../assets/img/logo2.png'">
+                <img src="${country.logoCountry}" alt="icon-country" onerror="this.src = 'assets/img/logo2.png'">
                 <div class="d-inline">
                     <span class="country">${country.countryName}</span>
                     <span class="league">${country.leagueName}</span>
@@ -30,14 +33,14 @@ export default function (listGame) {
             countryGameHTML += 
                 `<div class="match-item" id="${game.match_id}">
                     <div class="home" id="${game.match_id}">
-                        <img src="${game.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}" onerror="this.src = '../../assets/img/logo2.png'">
+                        <img src="${game.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}" onerror="this.src = 'assets/img/logo2.png'">
                         <span id="${game.match_id}">${game.match_hometeam_name}</span>
                         <span class="score-home score" id="${game.match_id}">${(game.match_hometeam_score.length > 0) ? game.match_hometeam_score : '  '}</span> 
                     </div>
                     <span class="vs" id="${game.match_id}">vs</span>
                     <div class="away" id="${game.match_id}">
                         <span class="away-home score" id="${game.match_id}">${(game.match_awayteam_score.length > 0) ? game.match_awayteam_score : '  '}</span>
-                        <img src="${game.team_away_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}" onerror="this.src = '../../assets/img/logo2.png'">
+                        <img src="${game.team_away_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}" onerror="this.src = 'assets/img/logo2.png'">
                         <span id="${game.match_id}">${game.match_awayteam_name}</span>
                     </div>
                 </div>
@@ -103,7 +106,7 @@ export default function (listGame) {
     // event onclick 
     listMatchHTML = document.querySelector('.match-container')
     listMatchHTML.addEventListener('click', (e) => {
-        console.log(e.target.id);
+        // console.log(e.target.id);
         let idMatch = e.target.id
         if(isNaN(idMatch) || idMatch === '') return; // au cas ou tsy nombre
         infoMatch(false, idMatch)
