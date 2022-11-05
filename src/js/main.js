@@ -4,6 +4,11 @@ import getLeagueMatch from 'expose-loader?exposes=league!./getLeagueMatch'
 import checkHistory from './checkHistory'
 import addHistory from './addHistory'
 import eventListener from './someEventlistener'
+import '../css/color.css'
+import '../css/style.css'
+import '../css/listMatch.css'
+import '../css/infoMatch.css'
+import '../css/animation.css'
 
 loading()
 eventListener() // onclick sy ny namany

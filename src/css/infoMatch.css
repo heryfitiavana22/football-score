@@ -42,6 +42,7 @@
     top: 25%;
     font-size: 30px;
     font-weight: bold;
+    color: rgb(89, 143, 223);
 }
 .match .team.home .score {right: 0;}
 .match .team.away .score {left: 0;}
@@ -50,12 +51,11 @@
     transition: all 1s ease;
     animation: score-live 1s infinite alternate;
 }
-.info-match.finished .score {color: rgb(89, 143, 223);}
 
 .moment-container {
     position: relative;
     margin: 10px 0;
-    height: 75px;
+    height: 73px;
     overflow: hidden;
     transition: all 0.3s ease;
 }

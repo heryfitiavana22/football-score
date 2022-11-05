@@ -36,13 +36,16 @@ export async function listMatch(isPopState=false, date, idLeague, toDisplay) {
             if(idLeague > 0) {
                 list = list.filter(e => e.league_id == idLeague)
             }
-                console.log('list match');
-                console.log(list);
+            // trier selon l'heure du match
+            list.sort((a,b) => new Date(`${a.match_date} ${a.match_time}`) - new Date(`${b.match_date} ${b.match_time}`))
+            console.log('list match');
+            console.log(list);
             // filter by country and league
-            // alaina ny liste ana leagueId (tsy azo asiana miverina) ary tonga dia alaina ny match 
+            // sady alaina ny liste ana leagueId (tsy azo asiana miverina) ary tonga dia alaina ny match 
             for(let e of list) {
                 if(!leagueId.includes(e.league_id)) {  // raha mbola tsy ao
                     gamePerLeague.push({
+                        number : undefined,
                         id : e.league_id,
                         countryName : e.country_name,
                         leagueName : e.league_name,
@@ -54,13 +57,21 @@ export async function listMatch(isPopState=false, date, idLeague, toDisplay) {
                 }
                     
             }
+            
             let popularLeague = getPopularLeague(leagueId);
-            let indexFree = [],
-                idPopularLeague = popularLeague.map(e => e.id);
-            // jerena oe aiza ny place malalaka, izay isanle popular league
-            for(let i=0; i<popularLeague.length; i++) {
-                if(!idPopularLeague.includes(gamePerLeague[i] ? Number(gamePerLeague[i].id) : '')) {
-                    indexFree.push(i)
+            let currentNumber = 1;
+            // asorina izay tsy hita ao anaty tableau ny indice-ny, zany oe tsy misy match
+            // omena numero voalohany ireo popular league mba anamorana ny ampisehoana azy voalohany
+            popularLeague = popularLeague.filter(e => e.index >= 0)
+            for(let element of popularLeague) {
+                gamePerLeague[element.index].number = currentNumber;
+                currentNumber++;
+            }
+            // omena numero ireo mbola tsy nahazo
+            for(let element of gamePerLeague) {
+                if(element.number === undefined){
+                    element.number = currentNumber;
+                    currentNumber++
                 }
             }
             // correct logo country
@@ -71,16 +82,9 @@ export async function listMatch(isPopState=false, date, idLeague, toDisplay) {
                 gamePerLeague[leagueId.indexOf('4')].logoCountry = 'assets/img/uel.png'
             if(leagueId.includes('3'))
                 gamePerLeague[leagueId.indexOf('3')].logoCountry = 'assets/img/ldc.png'
-            // asorina izay tsy hita ao anaty tableau ny indice-ny, zany oe tsy misy match
-            // izay any ambonin' popularLeague.length iany no akisaka
-            popularLeague = popularLeague.filter(e => (e.index >= 0 && e.index > popularLeague.length))
-            // atao any amin farany ambony ireo league populaire
-            for(let i=0; i<popularLeague.length; i++) {
-                // apetraka any amle index malalaka
-                let tmp = gamePerLeague[indexFree[i]];
-                gamePerLeague[indexFree[i]] = gamePerLeague[popularLeague[i].index]
-                gamePerLeague[popularLeague[i].index] = tmp
-            }
+    
+            // trier-na selon an'ny numero any
+            gamePerLeague.sort((a,b) => a.number - b.number)
             console.log('gamePerLeague');
             console.log(gamePerLeague);
             // affiche-na ny match androany na ireo live na ireo match vita

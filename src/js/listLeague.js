@@ -23,18 +23,33 @@ export default async () => {
             console.log(list);
             // popular league and exception league
             let popularLeague = getPopularLeague(leagueId),
-                exceptionLeague = getExceptionLeague(leagueId);
-            // atao any amin farany ambony ireo ligue populaire
-            for(let i=0; i<popularLeague.length; i++) {
-                let tmp = list[i];
-                list[i] = list[popularLeague[i].index]
-                list[popularLeague[i].index] = tmp
-                list[i].league_logo = popularLeague[i].photo
-            }
+                exceptionLeague = getExceptionLeague(leagueId),
+                currentNumber = 1;
+            console.log('popularLeague listleague');
+            console.log(popularLeague);
             // correct league logo
             for(let element of exceptionLeague) {
                 list[element.index].league_logo = element.photo
             }
+            // atao any amin farany ambony ireo ligue populaire
+            // omena numero voalohany ireo league popular
+            for(let element of popularLeague) {
+                list[element.index].number =  currentNumber
+                list[element.index].league_logo = element.photo
+                currentNumber++
+            }
+            // omena numero ireo league mbola tsy nahazo
+            for(let element of list) {
+                if(!element.number) {
+                    element.number =  currentNumber
+                    currentNumber++
+                }
+            }
+            // trier-na selon ny nom ana league aloha
+            list.sort((a,b) => a.league_name - b.league_name)
+            // trier-na selon ny numero anle league
+            list.sort((a,b) => a.number - b.number)
+
             // display list league `<li class="list-item" onclick="getLeagueMatch(${e.league_id})">
             let listItem = ``;
             for(let e of list) {
@@ -47,7 +62,6 @@ export default async () => {
                 </li>`;
             }
             listContainer.innerHTML = listItem
-            stopLoading()
         })
         .catch(err => console.log(err))
 }

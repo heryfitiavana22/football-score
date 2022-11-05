@@ -20,22 +20,13 @@ export default function (listGame) {
             // live match
             if(game.match_live === '1') 
                 countryGameHTML += 
-                    `<li class="live" id="${game.match_id}">
-                        <span class="hour-match" id="${game.match_id}">${isNaN(game.match_status) ? game.match_status : ((game.match_status + ' min'))}</span>`;
-            // finished game
-            else if((game.match_status === 'Finished') || (game.match_status === 'After ET') || (game.match_status === 'After Pen.'))
-                countryGameHTML += 
-                    `<li class="finished" id="${game.match_id}">
-                        <span class="hour-match" id="${game.match_id}">${game.match_time}</span>`
-            // reporte
-            else if(game.match_status === 'Postponed')
+                `<li class="live" id="${game.match_id}">
+                    <span class="hour-match" id="${game.match_id}">${isNaN(game.match_status) ? game.match_status : ((game.match_status + ' min'))}</span>`;
+            // match mbola tsy nandeha; finished game and postponed
+            else 
             countryGameHTML += 
                 `<li id="${game.match_id}">
-                    <span class="hour-match" id="${game.match_id}">postponed</span>`
-            else 
-                countryGameHTML += 
-                    `<li id="${game.match_id}">
-                        <span class="hour-match"  id="${game.match_id}">${game.match_time}</span>`
+                    <span class="hour-match" id="${game.match_id}">${(game.match_status === 'Postponed') ? 'postponed' : game.match_time}</span>`
             countryGameHTML += 
                 `<div class="match-item" id="${game.match_id}">
                     <div class="home" id="${game.match_id}">
@@ -118,7 +109,7 @@ export default function (listGame) {
         infoMatch(false, idMatch)
     })
 
-        /* onclick match today, live, finished */
+    /* onclick match today, live, finished */
     document.querySelector('.match-today').addEventListener('click', () => {
         console.log('ati');
         listMatchToday()
@@ -130,5 +121,11 @@ export default function (listGame) {
 
     document.querySelector('.match-finished').addEventListener('click', () => {
         listMatchFinished()
+    })
+
+    /* onclick close calendar */
+    document.querySelector('#close-calendar').addEventListener('click', () => {
+        console.log('closec');
+        document.querySelector('.actual').style.top = '-100%'
     })
 }

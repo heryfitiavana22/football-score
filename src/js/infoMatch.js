@@ -56,7 +56,12 @@ export default async (isPopState=false, idMatch, toDisplay) => {
 
 
 function displayGame(game) {
-    let currentElement = document.querySelector('.current-element');
+    let currentElement = document.querySelector('.current-element'),
+        hour = '';
+    if(game.match_live === '1') 
+        hour = isNaN(game.match_status) ? game.match_status : (game.match_status + ' min')
+    else
+        hour = (game.match_status === 'Postponed') ? 'postponed' : game.match_time
     let gameHTML =
     `<div class="info-match">
         <h3 class="country-league">
@@ -64,16 +69,15 @@ function displayGame(game) {
             <span class="country">${game.country_name} : </span>
             <span class="league">${game.league_name}</span>
         </h3>
-        <div class="match">
+        <div class="match ${(game.match_live == "1") ? 'live' : ''}">
             <div class="home team">
                 <img src="${game.team_home_badge || "assets/img/logo2.png"}" alt="icon-team">
                 <span class="team-name">${game.match_hometeam_name}</span>
                 <span class="score">${game.match_hometeam_score}</span>
             </div>
             <div class="info">
-                <span class="hour-match">${game.match_time}</span>
+                <span class="hour-match">${hour}</span>
                 <span class="date-match">${game.match_date}</span>
-                <!-- <span class="vs">vs</span> -->
             </div>
             <div class="away team">
                 <span class="score">${game.match_awayteam_score}</span>
@@ -178,6 +182,7 @@ function displayMoment(game) {
     if(showMore) // raha misy
         showMore.addEventListener('click', () => {
             momentContainer.style.height = "auto"
+            showMore.style.display = 'none'
         })
 }
 
