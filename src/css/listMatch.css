@@ -74,6 +74,7 @@ ul li .hour-match {color: rgb(126, 126, 126); width: 100%; text-align: center; f
 }
 .match-item > .home {justify-content: end;}
 .match-item img {width: 20px; height: 20px;}
+/* .match-item  */
 .away img {margin-left: 5px;}
 .match-item > div span {margin: 0 6px;}
 .match-item .vs {

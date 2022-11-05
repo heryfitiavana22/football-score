@@ -7,12 +7,13 @@ import pageNotFound from './404'
 export default (isPopState) => {
     let hash = window.location.hash;
     console.log(hash);
-    listLeague()
+    // listLeague()
     if((hash.length === 0) || (hash === "#")) {
         loading()
+        stopLoading()
         let d = new Date();
         // ovaina aloha ny date de ao vao maka ny listMatch
-        setDate(isPopState, (d.getMonth()+1), d.getDate(), 0) 
+        // setDate(isPopState, (d.getMonth()+1), d.getDate(), 0) 
         // let intervalListMatch = setInterval(() => {
         //     listMatch(new Date())
         // }, 10000)

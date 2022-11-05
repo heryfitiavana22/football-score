@@ -55,7 +55,7 @@ export default async () => {
             for(let e of list) {
                 listItem += 
                 `<li class="list-item" id="${e.league_id}" onclick="league.getLeagueMatch(${e.league_id}, this)">
-                    <img src="${e.league_logo}" alt="icon-league" id="${e.league_id}">
+                    <img src="${e.league_logo}" alt="icon-league" id="${e.league_id}" onerror="this.src = '../../assets/img/logo2.png'">
                     <span id="${e.league_id}">${e.league_name}
                         <span class="line-list" id="${e.league_id}"></span>
                     </span>

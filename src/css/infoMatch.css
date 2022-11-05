@@ -162,13 +162,14 @@
 /* pre-game */
 .lineup {
     position: relative;
-    height: 450px;
+    height: 550px;
     background-size: cover;
 }
 .lineup > img {
     position: absolute;
     height: 100%;
     width: 100%;
+    /* aspect-ratio: 109/62; */
 }
 .players-container {
     display: flex;
@@ -322,6 +323,7 @@
     .lineup {height: 730px;}
     .lineup > img {
         content: url(../../assets/img/terrain2.jpg) !important;
+        /* aspect-ratio: 62/110; */
     }
     .players-container {flex-direction: column;}
     .players-container > div {

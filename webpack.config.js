@@ -40,7 +40,7 @@ let config = {
         publicPath : 'dist/',
         inject : 'body'
       }),
-      new MiniCssExtractPlugin({filename : 'app.css'})
+      new MiniCssExtractPlugin({filename : (mode === "development") ? 'app.css' : 'app.[contenthash:8].css'})
     ],
     optimization : {}
 }

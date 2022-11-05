@@ -1,0 +1,946 @@
+/*!************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/css-loader@6.7.1_webpack@5.74.0/node_modules/css-loader/dist/cjs.js!./src/css/color.css ***!
+  \************************************************************************************************************************/
+:root {
+    --darkblue : #1d3b6b;
+    --darkblue1 : rgba(29, 59, 107,0.7);
+    --blue1 : #6297d6;
+    --blue2 : #5fa0ff;
+    --background : rgb(227, 227, 227);
+}
+/*!************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/css-loader@6.7.1_webpack@5.74.0/node_modules/css-loader/dist/cjs.js!./src/css/style.css ***!
+  \************************************************************************************************************************/
+body {background-color: var(--background) !important; overflow-x: hidden;}
+input:focus-visible {outline: none;}
+ul {padding: 0 !important; list-style-type: none;}
+
+.nav-bar {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 0;
+    background-color: var(--darkblue);
+    color: rgb(241, 241, 241);
+    z-index: 10;
+}
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+.nav-bar .logo {
+    display: flex;
+    height: 50px;
+    cursor: pointer;
+}
+.nav-bar .logo img {width: 50px;}
+.nav-bar .logo h1 {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 !important;
+}
+h1 span {
+    color: var(--blue1);
+    margin-left: 7px;
+}
+.search-container {
+    position: relative;
+    display: flex;
+    width: 30px;
+    height: 35px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+.search-container input {
+    position: absolute;
+    top: -29px;
+    left: -216px;
+    padding-left: 5px;
+    border-radius: 4px;
+    border: none;
+    transition: all 0.3s ease;
+}
+.icon-nav {
+    position: absolute;
+    right: 5px;
+    top: 9px;
+    color: var(--blue2);
+    font-weight: bold !important;
+    transition: all 0.3s ease;
+}
+.icon-nav:hover {color: rgb(178, 178, 178);}
+.icon-toggle, .close {display: none;}
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: var(--blue2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.close:hover {color: rgb(178, 178, 178);}
+
+/* container */
+.container-element {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-top: 80px;
+}
+.content {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+/* list league */
+.league-container {
+    width: 25%;
+}
+.league-container h2 {
+    font-size: 18px;
+    font-weight: bold;
+}
+.list-league {
+    display: flex;
+    flex-direction: column;
+}
+.list-league .list-item {
+    display: flex;
+    height: 34px;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 4px;
+}
+.list-league .active {background-color: #dadada; color: rgb(63, 63, 63);}
+.list-league .list-item img {width: 25px; height: 100%; margin-right: 7px;}
+.list-league .list-item > span {position: relative;}
+.line-list {
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: #f3a656;
+    transition: all 0.3s ease;
+}
+.list-league .list-item:hover {padding-left: 12px;}
+.list-league .list-item:hover .line-list {width: 100%;}
+/* end list league */
+
+.current-element {
+    display: flex;
+    justify-content: space-between;
+    width: 73%;
+}
+
+@media screen and (max-width : 992px) {
+    .nav-content, .container-element > .content {width: 98%;}
+    .nav-option {margin-right: 10px;}
+    #icon-toggle-league {
+        display: block;
+        position: relative;
+        right: -3px;
+        cursor: pointer;
+    }
+    .league-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        min-height: 100%;
+        background-color: var(--darkblue);
+        color: rgb(241, 241, 241);
+        z-index: 99999999;
+        transition: all 0.3s ease;
+    }
+    .league-container h2 {
+        position: absolute;
+        left: 6px;
+        top: 3px;
+    }
+    .list-league {margin-top: 40px}
+    .list-league .active {background-color: var(--blue1);}
+    #close-league {display: block;}
+}
+
+@media screen and (max-width : 576px) {
+    .nav-bar .logo {height: 36px;}
+    .container-element {padding-top: 66px;}
+    .nav-bar .logo h1 {font-size: 16px;}
+    .nav-bar .logo img {width: 39px;}
+    .search-container input {left: -171px; width: 200px;}
+}
+/*!****************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/css-loader@6.7.1_webpack@5.74.0/node_modules/css-loader/dist/cjs.js!./src/css/listMatch.css ***!
+  \****************************************************************************************************************************/
+.match-container {
+    background-color: white;
+    width: 64%;
+    border-radius: 6px;
+    padding: 0 0 10px 0;
+    font-size: 14px;
+}
+.nav-list {
+    display: flex;
+    color: rgb(93, 93, 93);
+    cursor: pointer;
+}
+.nav-list li {
+    padding: 12px 5px;
+    text-align: center;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.nav-list li:hover {background-color: aliceblue;}
+.nav-list li.active {border-bottom: 2px solid rgb(215, 215, 215) !important;}
+.matchs {
+    /* border-bottom: 1px solid rgb(222, 222, 222);  */
+    margin-bottom: 15px; 
+    border-radius: 4px; 
+}
+.matchs h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    background-color: rgb(236, 236, 236)
+}
+.matchs h3 img {width: 30px; height: 25px; margin-right: 5px;}
+.matchs h3 .country {
+    position: relative;
+    top: 6px;
+    display: block;
+    font-size: 14px;
+    color: rgb(104, 104, 104);
+}
+.matchs h3 .league {
+    position: relative;
+    font-size: 16px;
+    top: -4px;
+}
+.list-match {padding: 0 10px;}
+.list-match li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 15px;
+    height: 50px;
+    padding-left: 10px;
+    padding-bottom: 8px;
+    transition: all 0.5s ease;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.list-match li:hover {background-color: aliceblue;}
+ul li .hour-match {color: rgb(126, 126, 126); width: 100%; text-align: center; font-size: 12px; margin-left: 18px;}
+.match-item {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-left: 17px;
+}
+.match-item > div {
+    display: flex;
+    width: 47%;
+    height: 20px;
+    overflow: hidden;
+}
+.match-item > .home {justify-content: end;}
+.match-item img {width: 20px; height: 20px;}
+/* .match-item  */
+.away img {margin-left: 5px;}
+.match-item > div span {margin: 0 6px;}
+.match-item .vs {
+    margin: 0 15px 0 15px;
+    font-weight: bold;
+}
+.match-item .score {
+    color: transparent;
+    font-size: 17px;
+    font-weight: bold;
+    color: rgb(44 127 217);
+}
+.live .match-item .score {
+    color: rgb(28, 160, 61); 
+    transition: all 0.5s ease;
+    animation: score-live 1s infinite alternate;
+}
+
+.actual {
+    width: 34%;
+}
+.show.actual {top: 0;}
+
+/* calendar  */
+.calendar-month {
+    display: block;
+    background-color: white;
+    border-radius: 6px;
+    height: 252px;
+}
+
+.current-month {
+    display: flex;
+    padding: 0 5px;
+    height: 35px;
+    box-shadow: 0px 2px 3px -2px rgb(133 133 133);
+}
+
+.current-date {
+    width: 60%;
+    padding-top: 4px;
+    text-align: center;
+    font-size: 14px;
+    color: rgb(85, 85, 85);
+}
+
+.jump-month {
+    display: flex;
+    align-items: center;
+    width: 20%;
+    text-align: center;
+    font-size: 15px;
+}
+.jump {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(226, 226, 226);
+    background: rgb(226, 226, 226);
+    box-shadow: 0px 0px 1px rgb(226, 226, 226);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.jump:hover {
+    color: #fff;
+    background: var(--blue2);
+    border: 1px solid var(--blue2);
+}
+.left {justify-content: start !important;}
+.right {justify-content: end !important;}
+.jump > span {
+    font-size: 12px;
+}
+
+.week, .day {
+    display: flex;
+    width: 100%;
+    padding: 0;
+}
+.week td {
+    width: 14.5%;
+    padding: 5px 0;
+    background: rgb(241, 244, 251);
+    border-right: 1px solid rgb(230, 230, 227);
+    border-bottom: 1px solid rgb(230, 230, 227);
+    color: rgb(68, 68, 68);
+    font-size: 12px;
+    text-align: center;
+}
+
+.day td {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 14.5%;
+    height: 31px;
+    padding-right: 2px;
+    font-size: 12px;
+    color: rgb(105, 105, 105);
+    background-color: white;
+}
+.day-item {text-align: center; cursor: pointer;}
+.day-out {color: rgb(194, 194, 194);}
+td .day-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    transition: all 0.3s ease;
+}
+.day-item:hover {
+    color: rgb(105, 105, 105);
+    background-color: aliceblue; 
+    border-radius: 50%;
+}
+.day-item.currentDate {
+    color: white;
+    background-color: var(--blue2); 
+    border-radius: 50%;
+}
+/* end calendar */
+
+/* animation */
+@keyframes score-live {
+    0% { opacity: 1; }
+    100% { opacity: 0.6;}
+}
+/* end animation */
+
+@media screen and (max-width : 992px) {
+    .current-element {width: 100%;}
+    .match-container {width: 66%;}
+    .actual {width: 33%;}
+}
+
+@media screen and (max-width : 768px) {
+    #icon-toggle-calendar {
+        margin-left: 10px;
+        display: block;
+        position: relative;
+        right: -3px;
+        cursor: pointer;
+    }
+    .match-container {width: 100%;}
+    .actual {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--darkblue1);
+        backdrop-filter: blur(4px);
+        z-index: 99999999;
+        transition: all 0.3s ease;
+    }
+    #close-calendar {display: block;}
+    .calendar-month {width: 80%;}
+}
+
+@media screen and (max-width : 576px) {
+    .match-container {font-size: 12px; overflow: hidden;}
+    .list-match li {flex-wrap: wrap; margin-bottom: 8px;}
+    ul li .hour-match {width: 100%;}
+    .matchs h3 {font-size: 12px;}
+    .matchs h3 img {width: 25px; height: 20px}
+    .matchs h3 .country, .matchs h3 .league {top: 0;}
+    .matchs h3 .league {font-size: 14px;}
+    .matchs h3 .country {font-size: 12px;}
+    .match-item {margin-bottom: 2px;}
+    /* .match-item > div {width: 47%;} */
+    .match-item .score {
+        font-size: 14px;
+        top: -1px;
+    }
+    .match-item .vs {margin: 0 10px;}
+    .match-item > div span {margin: 0 4px;}
+    .match-item img {
+        width: 16px;
+        height: 16px;
+    }
+}
+/*!****************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/css-loader@6.7.1_webpack@5.74.0/node_modules/css-loader/dist/cjs.js!./src/css/infoMatch.css ***!
+  \****************************************************************************************************************************/
+.info-match {
+    width: 100%;
+    background-color: white;
+    border-radius: 6px;
+}
+
+.info-match h3 {
+    padding: 10px 0 10px 0;
+    border-bottom: 1px solid rgb(222, 222, 222); 
+}
+.info-match h3 img {width: 30px; height: 25px; margin-left: 10px;}
+.info-match h3 .country {font-size: 18px; color: rgb(78, 78, 78);}
+.info-match h3 .league {
+    font-size: 16px; 
+    font-weight: bold;
+    color: var(--blue1);
+}
+
+.match {
+    display: flex;
+    padding: 17px 0;
+}
+.match .team {
+    position: relative;
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.match .team img {width: 70px; height: 70px;}
+.match .team .team-name {width: 100%; text-align: center; margin-top: 10px;}
+
+.match .info {
+    width: 30%;
+}
+.match .info span {display: block; text-align: center;}
+.match .hour-match {font-weight: bold;}
+.date-match {color: rgb(105, 105, 105);}
+
+.match .team .score {
+    position: absolute;
+    top: 25%;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(89, 143, 223);
+}
+.match .team.home .score {right: 0;}
+.match .team.away .score {left: 0;}
+.info-match.live .score {
+    color: rgb(39, 170, 39);
+    transition: all 1s ease;
+    animation: score-live 1s infinite alternate;
+}
+
+.moment-container {
+    position: relative;
+    margin: 10px 0;
+    height: 73px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.moment {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+.moment .bar {
+    position: absolute;
+    top: 40px;
+    width: 1px;
+    height: 25px;
+    background-color: rgb(222, 222, 222);
+}
+.moment .time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid rgb(222, 222, 222);
+    border-radius: 50%;
+}
+.moment .time.goal {
+    border: 1px solid rgb(28, 173, 45);
+    background-color: rgb(28, 173, 45);
+    color: white;
+}
+.moment .yellow-card {
+    border: 1px solid #e4dd13;
+    background-color: #e4dd13;
+    color: rgb(120, 120, 120);
+}
+.moment .red-card {
+    border: 1px solid #e32d18;
+    background-color: #e32d18;
+    color: white
+}
+.moment .item {  
+    position: absolute;  
+    top: 8px;
+    display: flex;
+    width: 45%;
+    height: 24px;
+    overflow: hidden;
+}
+.moment.home .item {
+    right: 55%; 
+    justify-content: end;
+    padding-left: 10px;
+}
+.moment.away .item {
+    left: 55%; 
+    justify-content: start;
+    padding-right: 10px;
+}
+.item.substitution .in, .item.substitution .on {max-width: 47%;}
+.item.substitution .out {color: rgb(122, 122, 122)}
+#icon-substitute {margin: 5px 10px;}
+.item img {width: 25px; height: 25px;}
+.moment.home .item img {margin-left: 5px;}
+.moment.away .item img {margin-right: 5px;}
+.show-more {
+    position: absolute;
+    bottom: -2px;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+.show-more span {
+    background-color: var(--blue2);
+    color: aliceblue;
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+.nav-match {
+    display: flex;
+    margin-top: 25px;
+    background-color: aliceblue;
+    border: 1px solid rgb(230, 230, 230);
+    color: rgb(94, 94, 94);
+}
+.nav-match li {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+.nav-match li:hover {
+    background-color: rgb(223, 239, 252); 
+    border-left: 1px solid aliceblue;
+    border-right: 1px solid aliceblue
+}
+.nav-match .active {
+    background-color: rgb(223, 239, 252);
+    color: black;
+}
+
+/* pre-game */
+.lineup {
+    position: relative;
+    height: 550px;
+    background-size: cover;
+}
+.lineup > img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    /* aspect-ratio: 109/62; */
+}
+.players-container {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.players-container > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50%;
+}
+.players-container .away {flex-direction: row-reverse;}
+.players-container .row-item {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+.players-container .home .row-item {flex-direction: column-reverse;}
+.players-container .icon-player {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 37px;
+    height: 37px;
+    color: white;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+.players-container .home .icon-player {background-color: var(--blue1);}
+.players-container .away .icon-player {background-color: #b74437;}
+.players-container .player {position: relative; cursor: pointer;}
+.player-name {
+    display: block;
+    position: absolute;
+    height: 25px;
+    max-width: 70px;
+    text-align: center;
+    color: aliceblue;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+.player:hover .player-name {
+    font-size: 12px;
+    overflow: visible;
+}
+.lineup .system {
+    position: absolute;
+    color: aliceblue;
+    
+    font-size: 20px;
+    font-weight: bold;
+}
+.lineup .home .system {top: 0px; left: 24px;}
+.lineup .away .system {top: 0px; right: 24px;}
+
+.coach-missing {margin: 10px 0;}
+.coach > div {display: flex}
+.coach > div > div {
+    width: 50%;
+    padding: 20px 5px 5px 25px;
+}
+.coach .away {border-left: 1px solid rgb(231, 231, 231);}
+.coach .team {font-size: 22px; font-weight: bold;}
+.coach .team img {width: 50px; height: 50px;}
+.coach .caption {
+    font-size: 14px;
+    color: rgb(130, 130, 130)
+}
+/* end pre-game */
+
+/* standing */
+.standing-container {width: 100%;}
+.head-table {
+    background-color: var(--blue2) !important;
+    color: white;
+    border-bottom: none;
+    height: 38px;
+}
+.standing-container tr {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    padding: 6px 0 6px 10px;
+    /* border-bottom: 1px solid rgb(224, 224, 224); */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.standing-container tr:nth-child(odd) {
+    background-color: rgb(244, 244, 244);
+}
+.standing-container tr td.team {
+    display: flex;
+    justify-content: start; 
+    width: 75%;
+    text-align: start;
+    overflow: hidden;
+}
+.standing-container tr td {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8%;
+}
+.standing-container .team-container:hover {background-color: aliceblue;}
+.standing-container img {width: 32px; height: 32px; margin-right: 10px;}
+.standing-container .number {
+    margin: 0 7px; 
+    font-size: 18px; 
+    display: inline-block;
+    width: 21px !important;
+}
+/* end standing */
+
+/* statistics */
+.statistics {
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 10px rgb(173, 173, 173);
+}
+.statistics h4 {text-align: center; margin-bottom: 20px;}
+.statistics .row-item {
+    display: flex;
+    justify-content: space-around;
+    height: 40px;
+    color: rgb(62, 62, 62);
+}
+.statistics .home, .statistics .away {
+    width: 40px;
+    text-align: center;
+}
+.statistics .item {width: 145px; text-align: center;}
+/* end statistics */
+
+/* animation */
+@keyframes score-live {
+    0% { opacity: 1; }
+    100% { opacity: 0.6;}
+}
+/* end animation */
+
+@media screen and (max-width : 992px) {
+    .info-match {width: 100%;}
+}
+
+@media screen and (max-width : 768px) {
+    .match .team img {width: 55px; height: 55px;}
+    .match .team .score {top: 20%;}
+
+    .lineup {height: 730px;}
+    .lineup > img {
+        content: url(d0d947c682dc8e9fb74a.jpg) !important;
+        /* aspect-ratio: 62/110; */
+    }
+    .players-container {flex-direction: column;}
+    .players-container > div {
+        width: 100%;
+        height: 50%;
+        flex-direction: column;
+    }
+    .players-container .away {flex-direction: column-reverse;}
+    .players-container .row-item {flex-direction: row !important;}
+    .players-container .away .row-item {flex-direction: row-reverse !important;}
+    .lineup .home {padding-bottom: 15px;}
+    .lineup .away {padding: 15px 0;}
+    .player {font-size: 14px;}
+    .players-container .icon-player {width: 30px; height: 30px;}
+    .player-name {height: 22px;}
+    .player:hover .player-name {font-size: 10px;}
+    .lineup .home .system {left: 34px;}
+    .lineup .away .system {
+        bottom: 0px;
+        right: 34px;
+        top: unset;
+    }
+}
+
+@media screen and (max-width : 576px) {
+    .info-match h3 img {width: 25px; height: 20px;}
+    .info-match h3 .country {font-size: 16px;}
+    .info-match h3 .league {font-size: 14px;}
+
+    .match .team img {width: 40px; height: 40px;}
+    .match .team .team-name, .match .info {font-size: 12px;}
+    .match .team .score {font-size: 20px; top: 14%;}
+    
+    .moment-container {font-size: 12px; height: 55px;}
+    .moment {margin-bottom: 15px;}
+    .moment .time {width: 28px; height: 28px;}
+    .moment .bar {top: 28px; height: 15px;}
+    .moment .item {
+        top: 4px;
+        height: 20px;
+    }
+    .moment .item img {width: 20px; height: 20px;}
+    .moment.home .item {padding-left: 0;}
+    .moment.away .item {padding-right: 0;}
+    #icon-substitute {margin: 5px;}
+
+    .nav-match {margin-top: 10px; font-size: 12px;}
+    .info-match > div {padding: 5px !important;}
+    .lineup {height: 550px;}
+    .players-container .icon-player {width: 26px; height: 26px;}
+    .player-name {
+        height: 19px;
+        max-width: 50px;
+        font-size: 12px;
+    }
+    .lineup .system {font-size: 18px; }
+    .lineup .home .system {left: 24px;}
+    .lineup .away .system {right: 24px;}
+
+    .coach > div > div {padding: 10px 5px 5px 10px;}
+    .coach .team img {width: 30px; height: 30px;}
+    .coach .team {font-size: 16px;}
+
+    .standing-container {font-size: 12px;}
+    .head-table {height: 30px;}
+    .standing-container tr {padding: 4px 0 4px 3px; height: 38px;}
+    .standing-container .number {
+        margin: 0 2px;
+        font-size: 13px;
+    }
+    .standing-container img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .statistics h4 {font-size: 16px;}
+    .statistics .row-item {font-size: 12px; height: 35px;}
+}
+/*!****************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/css-loader@6.7.1_webpack@5.74.0/node_modules/css-loader/dist/cjs.js!./src/css/animation.css ***!
+  \****************************************************************************************************************************/
+.animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: var(--darkblue1);
+    backdrop-filter: blur(4px);
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    z-index: 5555;
+}
+
+.logo-animate {
+    display: flex;
+    justify-content: center;
+}
+.logo-animate img {
+    position: relative;
+    transition: all 0.5s ease;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.logo-animate .shoe {
+    width: 100px;
+    height: 100px;
+    animation-duration: 0.79s;
+    left: 18px;
+    transform: rotate(-25deg);
+}
+.logo-animate .ball {
+    top: -27px;
+    left: -14px;
+    width: 80px;
+    height: 80px;
+}
+.loading .logo-animate .ball {animation-name: ball-animation;}
+.loading .logo-animate .shoe {animation-name: shoe-animation;}
+.loading .name-animate span {animation-name: name-animation;}
+.name-animate span {
+    transition: all 0.5s ease;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    /* animation-direction: alternate; */
+}
+.name-animate .n1 {animation-delay: -0.2s;}
+.name-animate .n2 {animation-delay: -0.1s;}
+.name-animate .n3 {animation-delay: 0s;}
+.name-animate .n4 {animation-delay: 0.1s;}
+.name-animate .n5 {animation-delay: 0.2s;}
+.name-animate .n6 {animation-delay: 0.3s;}
+.name-animate .n7 {animation-delay: 0.4s;}
+.name-animate .n8 {animation-delay: 0.5s;}
+.name-animate .n9 {animation-delay: 0.6s;}
+.name-animate .n10 {animation-delay: 0.7s;}
+.name-animate .n11 {animation-delay: 0.8s;}
+.name-animate .n12 {animation-delay: 0.9s;}
+.name-animate .n13 {animation-delay: 1s;}
+.name-animate .n14 {animation-delay: 1.1s;}
+.name-animate .stat {
+    /* color: rgb(207, 31, 28); */
+    color: var(--blue1);
+}
+
+@keyframes ball-animation {
+    0% {top: -27px;}
+    100% {top: -50px;}
+}
+
+@keyframes shoe-animation {
+    0% {transform: rotate(-25deg);}
+    100% {transform: rotate(-35deg);}
+}
+
+@keyframes name-animation {
+    0% {opacity: 0.35;}
+    100% {opacity: 1;}
+}
+
+/*# sourceMappingURL=app.css.map*/
