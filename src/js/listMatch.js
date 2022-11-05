@@ -5,7 +5,7 @@ import displayListMatch from './displayListMatch'
 import {deleteCurrentMonth, createCalendar,getCurrentDate} from './calendar'
 import addHistory from './addHistory'
 
-let APIkey = "5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda"
+let APIkey = process.env.API_KEY;
 let listLeague = getListLeague(),
     listCountry = getListCountry(),
     gamePerLeague = [],

@@ -193,12 +193,12 @@ function displayPreGame(isPopState=false,game) {
     let home = {
         system : game.match_hometeam_system || "4-3-3",
         lineup : game.lineup.home.starting_lineups,
-        coach : (game.lineup.home.coach.length > 0) ? game.lineup.home.coach[0].lineup_player : 'à attendre' 
+        coach : (game.lineup.home.coach.length > 0) ? game.lineup.home.coach[0].lineup_player : 'to wait' 
     },
         away = {
             system : game.match_awayteam_system || "4-3-3",
             lineup : game.lineup.away.starting_lineups,
-            coach : (game.lineup.away.coach.length > 0) ? game.lineup.away.coach[0].lineup_player : 'à attendre' 
+            coach : (game.lineup.away.coach.length > 0) ? game.lineup.away.coach[0].lineup_player : 'to wait' 
     };
     // trier selon le position du joueur
     home.lineup.sort((a,b) => a.lineup_position - b.lineup_position);
@@ -217,6 +217,7 @@ function displayPreGame(isPopState=false,game) {
                         <div class="player">
                             <div class ="icon-player">${home.lineup[0].lineup_number}</div>
                             <span class="player-name">${home.lineup[0].lineup_player}</span>
+                            <span class="player-name-resp">${home.lineup[0].lineup_player}</span>
                         </div>
                     </div>`;
                     home.system = home.system.split('-')
@@ -231,6 +232,7 @@ function displayPreGame(isPopState=false,game) {
                             `<div class="player">
                                 <div class ="icon-player">${home.lineup[currentPosition].lineup_number}</div>
                                 <span class="player-name">${home.lineup[currentPosition].lineup_player}</span>
+                                <span class="player-name-resp">${home.lineup[currentPosition].lineup_player}</span>
                             </div>`;
                             currentPosition++;
                         }
@@ -245,6 +247,7 @@ function displayPreGame(isPopState=false,game) {
                         <div class="player">
                             <div class ="icon-player">${away.lineup[0].lineup_number}</div>
                             <span class="player-name">${away.lineup[0].lineup_player}</span>
+                            <span class="player-name-resp">${away.lineup[0].lineup_player}</span>
                         </div>
                     </div>`;
                     away.system = away.system.split('-')
@@ -258,6 +261,7 @@ function displayPreGame(isPopState=false,game) {
                             `<div class="player">
                                 <div class ="icon-player">${away.lineup[currentPosition].lineup_number}</div>
                                 <span class="player-name">${away.lineup[currentPosition].lineup_player}</span>
+                                <span class="player-name-resp">${away.lineup[currentPosition].lineup_player}</span>
                             </div>`;
                             currentPosition++;
                         }
@@ -320,7 +324,7 @@ function displayStanding(isPopState=false ,standing, idMatch) {
             `<tr class="team-container">
                 <td class="team">
                     <span class="number">${element.overall_league_position}</span> 
-                    <img src="${element.team_badge || 'assets/img/logo2.png'}" alt="icon-team">
+                    <img src="${element.team_badge || 'assets/img/logo2.png'}" alt="icon-team" onerror="this.src = '../../assets/img/logo2.png'">
                     <span class="name">${element.team_name}</span>
                 </td>
                 <td>${element.overall_league_payed}</td>

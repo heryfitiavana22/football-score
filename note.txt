@@ -1,6 +1,3 @@
-api key :
-    5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda
-
 list league :
     Championship,Community Shield,FA Cup,League Cup,League One,Premier League,EFL Trophy,National League,Women's Championship,
     Copa del Rey,La Liga,Segunda División,Super Cup,Primera División Femenina,Primera División RFEF,

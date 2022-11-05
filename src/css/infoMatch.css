@@ -46,7 +46,7 @@
 }
 .match .team.home .score {right: 0;}
 .match .team.away .score {left: 0;}
-.info-match.live .score {
+.info-match .live .score {
     color: rgb(39, 170, 39);
     transition: all 1s ease;
     animation: score-live 1s infinite alternate;
@@ -213,10 +213,23 @@
     overflow: hidden;
     transition: all 0.2s ease;
 }
-.player:hover .player-name {
-    font-size: 12px;
-    overflow: visible;
+.player-name-resp {
+    display: none;
+    position: absolute;
+    padding: 2px 6px;
+    width: max-content;
+    max-width: none;
+    height: unset;
+    top: 40px;
+    left: -5px;
+    font-size: 14px;
+    background: black;
+    color: aliceblue;
+    border-radius: 9px;
+    z-index: 1;
+    transition: all 0.2s ease;
 }
+.player:hover .player-name-resp {display: block;}
 .lineup .system {
     position: absolute;
     color: aliceblue;
@@ -339,7 +352,11 @@
     .player {font-size: 14px;}
     .players-container .icon-player {width: 30px; height: 30px;}
     .player-name {height: 22px;}
-    .player:hover .player-name {font-size: 10px;}
+    .player-name-resp {
+        top: 32px;
+        left: -32px;
+        font-size: 12px;
+    }
     .lineup .home .system {left: 34px;}
     .lineup .away .system {
         bottom: 0px;
@@ -378,6 +395,11 @@
         height: 19px;
         max-width: 50px;
         font-size: 12px;
+    }
+    .player-name-resp {
+        top: 28px;
+        left: -32px;
+        font-size: 10px;
     }
     .lineup .system {font-size: 18px; }
     .lineup .home .system {left: 24px;}

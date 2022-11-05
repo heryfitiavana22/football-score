@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const Dotenv = require('dotenv-webpack');
+
 let mode = process.env.NODE_ENV;
 
 let config = {
@@ -40,7 +42,11 @@ let config = {
         publicPath : 'dist/',
         inject : 'body'
       }),
-      new MiniCssExtractPlugin({filename : (mode === "development") ? 'app.css' : 'app.[contenthash:8].css'})
+      new MiniCssExtractPlugin({filename : (mode === "development") ? 'app.css' : 'app.[contenthash:8].css'}),
+      new Dotenv({
+        path: './.env',
+        safe: true
+      })
     ],
     optimization : {}
 }
