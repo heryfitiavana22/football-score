@@ -1,9 +1,9 @@
-import {getListCountry, getListLeague} from './contryAndLeague'
-import {getPopularLeague} from './league'
-import {loading, stopLoading} from './animation'
+import {getListCountry, getListLeague} from '../others/contryAndLeague'
+import {getPopularLeague} from '../others/popularAndException'
+import {loading, stopLoading} from '../others/animation'
 import displayListMatch from './displayListMatch'
-import {deleteCurrentMonth, createCalendar, getCurrentDate} from './calendar'
-import addHistory from './addHistory'
+import {deleteCurrentMonth, createCalendar, getCurrentDate} from '../calendar/calendar'
+import addHistory from '../history/addHistory'
 
 let APIkey = process.env.API_KEY;
 let listLeague = getListLeague(),

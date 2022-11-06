@@ -1,6 +1,5 @@
-import {loading, stopLoading} from './animation'
-import {getListCountry, getListLeague} from './contryAndLeague'
-import {getExceptionLeague, getPopularLeague} from './league'
+import {getListCountry, getListLeague} from '../others/contryAndLeague'
+import {getExceptionLeague, getPopularLeague} from '../others/popularAndException'
 
 let listContainer = document.querySelector('.list-league'),
     url = "https://apiv3.apifootball.com/?action=get_leagues&APIkey=5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda",

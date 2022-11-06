@@ -1,4 +1,4 @@
-import infoMatch from './infoMatch'
+import infoMatch from '../infoMatch/infoMatch'
 import {listMatchToday, listMatchLive, listMatchFinished} from './listMatch'
 
 export default function (listGame) {

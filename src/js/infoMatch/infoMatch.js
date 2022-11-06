@@ -1,7 +1,7 @@
 import getInfoMatch from './getInfoMatch' 
-import getStanding from './getStanding'
-import addHistory from "./addHistory"
-import {loading, stopLoading} from './animation'
+import getStanding from '../func/getStanding'
+import addHistory from "../history/addHistory"
+import {loading, stopLoading} from '../others/animation'
 
 let navMatch = undefined,
     container = undefined,
@@ -33,6 +33,7 @@ export default async (isPopState=false, idMatch, toDisplay) => {
     }
     stopLoading()
 
+    /* nav match (standing, pregame, stats) */
     navMatch.addEventListener('click', (e) => {
         loading()
         // console.log(e.target);

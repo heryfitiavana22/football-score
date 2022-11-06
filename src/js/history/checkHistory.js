@@ -1,9 +1,9 @@
-import infoMatch from "./infoMatch";
-import {clearIntervalUpdate} from './infoMatch'
-import {setDate} from './calendar'
-import listLeague from "./listLeague";
-import {loading, stopLoading} from './animation'
-import pageNotFound from './404'
+import infoMatch from "../infoMatch/infoMatch";
+import {clearIntervalUpdate} from '../infoMatch/infoMatch'
+import {setDate} from '../calendar/calendar'
+import listLeague from "../league/listLeague";
+import {loading, stopLoading} from '../others/animation'
+import pageNotFound from '../404'
 
 export default (isPopState) => {
     let hash = window.location.hash;

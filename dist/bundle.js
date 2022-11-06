@@ -1,14 +1,14 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar.js":
-/*!****************************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar-exposed.js ***!
-  \****************************************************************************************************************************************************/
+/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar/calendar.js":
+/*!*************************************************************************************************************************************************************!*\
+  !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar/calendar-exposed.js ***!
+  \*************************************************************************************************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-var ___EXPOSE_LOADER_IMPORT___ = __webpack_require__(/*! -!./calendar.js */ "./src/js/calendar.js");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = __webpack_require__(/*! ../../node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/runtime/getGlobalThis.js */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/runtime/getGlobalThis.js");
+var ___EXPOSE_LOADER_IMPORT___ = __webpack_require__(/*! -!./calendar.js */ "./src/js/calendar/calendar.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = __webpack_require__(/*! ../../../node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/runtime/getGlobalThis.js */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
 if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["calendar"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["calendar"] = ___EXPOSE_LOADER_IMPORT___;
 else throw new Error('[exposes-loader] The "calendar" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
@@ -17,14 +17,14 @@ module.exports = ___EXPOSE_LOADER_IMPORT___;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getLeagueMatch.js":
-/*!********************************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getLeagueMatch-exposed.js ***!
-  \********************************************************************************************************************************************************/
+/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/league/getLeagueMatch.js":
+/*!***************************************************************************************************************************************************************!*\
+  !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/league/getLeagueMatch-exposed.js ***!
+  \***************************************************************************************************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-var ___EXPOSE_LOADER_IMPORT___ = __webpack_require__(/*! -!./getLeagueMatch.js */ "./src/js/getLeagueMatch.js");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = __webpack_require__(/*! ../../node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/runtime/getGlobalThis.js */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/runtime/getGlobalThis.js");
+var ___EXPOSE_LOADER_IMPORT___ = __webpack_require__(/*! -!./getLeagueMatch.js */ "./src/js/league/getLeagueMatch.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = __webpack_require__(/*! ../../../node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/runtime/getGlobalThis.js */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
 if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["league"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["league"] = ___EXPOSE_LOADER_IMPORT___;
 else throw new Error('[exposes-loader] The "league" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
@@ -158,53 +158,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/js/addHistory.js":
-/*!******************************!*\
-  !*** ./src/js/addHistory.js ***!
-  \******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((hash) => {
-    let url = location.protocol + '//' + location.host + '#' + hash
-    window.history.pushState(null,'', url)
-});
-
-/***/ }),
-
-/***/ "./src/js/animation.js":
-/*!*****************************!*\
-  !*** ./src/js/animation.js ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "loading": () => (/* binding */ loading),
-/* harmony export */   "stopLoading": () => (/* binding */ stopLoading)
-/* harmony export */ });
-let animation = document.querySelector('.animation');
-function loading() {
-    animation.style.display = 'flex'
-    animation.classList.add('loading')
-}
-
-function stopLoading() {
-    animation.style.display = 'none'
-    animation.classList.remove('loading')
-}
-
-/***/ }),
-
-/***/ "./src/js/calendar.js":
-/*!****************************!*\
-  !*** ./src/js/calendar.js ***!
-  \****************************/
+/***/ "./src/js/calendar/calendar.js":
+/*!*************************************!*\
+  !*** ./src/js/calendar/calendar.js ***!
+  \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -217,8 +174,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setDate": () => (/* binding */ setDate),
 /* harmony export */   "upMonth": () => (/* binding */ upMonth)
 /* harmony export */ });
-/* harmony import */ var _listMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./listMatch */ "./src/js/listMatch.js");
-/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
+/* harmony import */ var _listMatch_listMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../listMatch/listMatch */ "./src/js/listMatch/listMatch.js");
+/* harmony import */ var _others_animation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../others/animation */ "./src/js/others/animation.js");
 
 
 
@@ -408,7 +365,7 @@ function setDate(isPopState=false, m, d, idLeague, toDisplay) {
     // if((currentDate === d) && (m === monthSelected) && (idLeague === currentIdLeague)) 
     //     return
     
-    ;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.loading)()
+    ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_1__.loading)()
 
     if(idLeague !== undefined) currentIdLeague = idLeague // raha misy valeur vao ovaina
     // console.log('currentIdLeague');
@@ -424,16 +381,16 @@ function setDate(isPopState=false, m, d, idLeague, toDisplay) {
     }
     monthSelected = currentMonth;
     yearSelected = currentYear;
-    (0,_listMatch__WEBPACK_IMPORTED_MODULE_0__.listMatch)(isPopState, (`${currentYear}-${currentMonth}-${currentDate}`), currentIdLeague, toDisplay)
+    (0,_listMatch_listMatch__WEBPACK_IMPORTED_MODULE_0__.listMatch)(isPopState, (`${currentYear}-${currentMonth}-${currentDate}`), currentIdLeague, toDisplay)
 }
 /* end calendar */
 
 /***/ }),
 
-/***/ "./src/js/checkHistory.js":
-/*!********************************!*\
-  !*** ./src/js/checkHistory.js ***!
-  \********************************/
+/***/ "./src/js/func/getStanding.js":
+/*!************************************!*\
+  !*** ./src/js/func/getStanding.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -441,11 +398,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _infoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./infoMatch */ "./src/js/infoMatch.js");
-/* harmony import */ var _calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calendar */ "./src/js/calendar.js");
-/* harmony import */ var _listLeague__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./listLeague */ "./src/js/listLeague.js");
-/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
-/* harmony import */ var _404__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./404 */ "./src/js/404.js");
+let apiKey = "5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda";
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (idLeague) => {
+    return await new Promise((resolve, reject) => {
+        let url = `https://apiv3.apifootball.com/?action=get_standings&league_id=${idLeague}&APIkey=${apiKey}`;
+        fetch(url, {method : 'get'})
+        .then(response => response.json())
+        .then((value) => {
+            // console.log('getStanding');
+            // console.log(value);
+            resolve(value.error ? [] : value)
+        })
+    })
+}); 
+
+/***/ }),
+
+/***/ "./src/js/history/addHistory.js":
+/*!**************************************!*\
+  !*** ./src/js/history/addHistory.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((hash) => {
+    let url = location.protocol + '//' + location.host + '#' + hash
+    window.history.pushState(null,'', url)
+});
+
+/***/ }),
+
+/***/ "./src/js/history/checkHistory.js":
+/*!****************************************!*\
+  !*** ./src/js/history/checkHistory.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js");
+/* harmony import */ var _calendar_calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../calendar/calendar */ "./src/js/calendar/calendar.js");
+/* harmony import */ var _league_listLeague__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../league/listLeague */ "./src/js/league/listLeague.js");
+/* harmony import */ var _others_animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../others/animation */ "./src/js/others/animation.js");
+/* harmony import */ var _404__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../404 */ "./src/js/404.js");
 
 
 
@@ -456,13 +458,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((isPopState) => {
     let hash = window.location.hash;
     console.log(hash);
-    (0,_listLeague__WEBPACK_IMPORTED_MODULE_2__["default"])()
+    (0,_league_listLeague__WEBPACK_IMPORTED_MODULE_2__["default"])()
     if((hash.length === 0) || (hash === "#")) {
-        (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__.clearIntervalUpdate)() // ilay interval any amin' infoMatch
-        ;(0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
+        (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__.clearIntervalUpdate)() // ilay interval any amin' infoMatch
+        ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
         let d = new Date();
         // ovaina aloha ny date de ao vao maka ny listMatch
-        (0,_calendar__WEBPACK_IMPORTED_MODULE_1__.setDate)(isPopState, (d.getMonth()+1), d.getDate(), 0) 
+        (0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__.setDate)(isPopState, (d.getMonth()+1), d.getDate(), 0) 
         // let intervalListMatch = setInterval(() => {
         //     listMatch(new Date())
         // }, 10000)
@@ -473,7 +475,7 @@ __webpack_require__.r(__webpack_exports__);
     // asorina ilay efa azo
     hash = hash.slice(hash.indexOf('/')+1)
     if(item === "listgame") {
-        (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__.clearIntervalUpdate)() // ilay interval any amin' infoMatch
+        (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__.clearIntervalUpdate)() // ilay interval any amin' infoMatch
         let index = hash.indexOf('&');
         if(index > 0) {
             let date = hash.slice(0,index),
@@ -483,13 +485,13 @@ __webpack_require__.r(__webpack_exports__);
             if((date.toString() === "Invalid Date") && isNaN(idLeague))
                 return (0,_404__WEBPACK_IMPORTED_MODULE_4__["default"])() // 404
             // ovaina aloha ny date de ao vao maka ny listMatch
-            ;(0,_calendar__WEBPACK_IMPORTED_MODULE_1__.setDate)(isPopState, (date.getMonth()+1), date.getDate(), idLeague) 
+            ;(0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__.setDate)(isPopState, (date.getMonth()+1), date.getDate(), idLeague) 
         } else {
             // hash correspond au date, le izy notapahana mantsy
             hash = new Date(hash)
             if(hash.toString() === "Invalid Date")
                 return (0,_404__WEBPACK_IMPORTED_MODULE_4__["default"])() // 404
-            ;(0,_calendar__WEBPACK_IMPORTED_MODULE_1__.setDate)(isPopState, (hash.getMonth()+1), hash.getDate()) 
+            ;(0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__.setDate)(isPopState, (hash.getMonth()+1), hash.getDate()) 
         }
     } else if(item === "game") {
         let indexSlash = hash.indexOf('/'),
@@ -500,11 +502,11 @@ __webpack_require__.r(__webpack_exports__);
         // raha tsy nombre le id
         if(isNaN(id)) return (0,_404__WEBPACK_IMPORTED_MODULE_4__["default"])() // 404
         if(type === "pregame") 
-            (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(isPopState, id)
+            (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(isPopState, id)
         else if(type === "standing") 
-            (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(isPopState, id, "standing")
+            (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(isPopState, id, "standing")
         else if(type === "stats")
-            (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(isPopState, id, "stats")
+            (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(isPopState, id, "stats")
         else return (0,_404__WEBPACK_IMPORTED_MODULE_4__["default"])() // 404
     } else 
         return (0,_404__WEBPACK_IMPORTED_MODULE_4__["default"])() // 404
@@ -513,181 +515,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/js/contryAndLeague.js":
-/*!***********************************!*\
-  !*** ./src/js/contryAndLeague.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getListCountry": () => (/* binding */ getListCountry),
-/* harmony export */   "getListLeague": () => (/* binding */ getListLeague)
-/* harmony export */ });
-function getListCountry() {
-    return "England,Belgium,Germany,Croatia,Spain,Czech Republic,France,Romania,Bulgaria,Italy,intl,eurocups,South Africa,Qatar,Worldcup,USA,Denmark,Norway,Sweden,Korea Republic,Netherlands,Mexico,Argentina,Portugal,Russia,Brazil,Switzerland,Brazil,Morocco"
-};
-
-function getListLeague() {
-    return "Championship,Community Shield,FA Cup,League Cup,League One,Premier League,EFL Trophy,National League,Women's Championship,Copa del Rey,La Liga,Segunda División,Super Cup,Primera División Femenina,Primera División RFEF,DFB Pokal,Regionalliga,Super Cup,2. Bundesliga,Bundesliga,Ligue 1,Ligue 2,Coupe de la Ligue,Feminine Division 1,National 1,Trophée des Champions,Coupe de France,Serie A,Serie B,Super Cup,Coppa Italia,First Division A,Challenger Pro League,First NL,Czech Liga,Liga I,First League,CAF Super Cup,Club Friendlies,COSAFA Cup,Friendlies,UEFA U21 Championship,Africa Cup of Nations,CAF Champions League,CAF Confederation Cup,UEFA Champions League,UEFA Champions League - Group Stage,UEFA Europa League,UEFA Europa League - Group Stage,UEFA Youth League,UEFA Youth League - Group Stage,PSL,QSL Cup,World Cup,MLS,Superliga,1. Division,Damallsvenskan,K League 1,Eredivisie,Eerste Divisie,Liga MX,Liga Profesional Argentina,Primeira Liga,Premier League,Serie A,Super League,Botola Pro,Premier League";
-}
-
-/***/ }),
-
-/***/ "./src/js/displayListMatch.js":
-/*!************************************!*\
-  !*** ./src/js/displayListMatch.js ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _infoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./infoMatch */ "./src/js/infoMatch.js");
-/* harmony import */ var _listMatch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./listMatch */ "./src/js/listMatch.js");
-
-
-
-/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(listGame) {
-    let currentElement = document.querySelector('.current-element');
-    
-    let countryGameHTML = ``;
-    if(listGame.length === 0) {
-        countryGameHTML = `<p style="padding-left:15px">No match</p>`
-    }
-    for(let country of listGame) {
-        countryGameHTML += 
-        `<div class="matchs">
-            <h3>
-                <img src="${country.logoCountry}" alt="icon-country" onerror="this.src = 'assets/img/logo2.png'">
-                <div class="d-inline">
-                    <span class="country">${country.countryName}</span>
-                    <span class="league">${country.leagueName}</span>
-                </div>
-            </h3>
-            <ul class="list-match">`;
-        for(let game of country.game) {
-            // live match
-            if(game.match_live === '1') 
-                countryGameHTML += 
-                `<li class="live" id="${game.match_id}">
-                    <span class="hour-match" id="${game.match_id}">${isNaN(game.match_status) ? game.match_status : ((game.match_status + ' min'))}</span>`;
-            // match mbola tsy nandeha; finished game and postponed
-            else 
-            countryGameHTML += 
-                `<li id="${game.match_id}">
-                    <span class="hour-match" id="${game.match_id}">${(game.match_status === 'Postponed') ? 'postponed' : game.match_time}</span>`
-            countryGameHTML += 
-                `<div class="match-item" id="${game.match_id}">
-                    <div class="home" id="${game.match_id}">
-                        <img src="${game.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}" onerror="this.src = 'assets/img/logo2.png'">
-                        <span id="${game.match_id}">${game.match_hometeam_name}</span>
-                        <span class="score-home score" id="${game.match_id}">${(game.match_hometeam_score.length > 0) ? game.match_hometeam_score : '  '}</span> 
-                    </div>
-                    <span class="vs" id="${game.match_id}">vs</span>
-                    <div class="away" id="${game.match_id}">
-                        <span class="away-home score" id="${game.match_id}">${(game.match_awayteam_score.length > 0) ? game.match_awayteam_score : '  '}</span>
-                        <img src="${game.team_away_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}" onerror="this.src = 'assets/img/logo2.png'">
-                        <span id="${game.match_id}">${game.match_awayteam_name}</span>
-                    </div>
-                </div>
-            </li>`;
-        }
-        countryGameHTML += 
-        `   </ul>
-        </div>`
-    }
-
-    let listMatchHTML =
-    `<div class="match-container">
-        <nav class="navbar-match">
-            <ul class="nav-list">
-                <li class="active col-4 match-today">Today</li>
-                <li class="col-4 match-live">Live</li>
-                <li class="col-4 match-finished">Finished</li>
-            </ul>
-        </nav>
-        ${countryGameHTML}
-    </div>
-    <!-- actual  -->
-    <div class="actual">
-        <!-- calendar  -->
-        <div class="calendar-month">
-            <div class="current-month">
-                <div class="jump-month left">
-                    <div class="jump" onclick="calendar.downMonth();">
-                        <span class="ti ti-angle-left"></span>
-                    </div>
-    
-                </div>
-                <div class="current-date">
-                    date du jour
-                </div>
-                <div class="jump-month right">
-                    <div class="jump" onclick="calendar.upMonth()">
-                        <span class="ti ti-angle-right"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="day-container">
-                <table style="border-collapse: collapse; display: flex;">
-                    <tbody style="width: 100%;" class="addDayMonth">
-                        <tr class="week">
-                            <td>Lun</td>
-                            <td>Mar</td>
-                            <td>Mer</td>
-                            <td>Jeu</td>
-                            <td>Ven</td>
-                            <td>Sam</td>
-                            <td>Dim</td>
-                        </tr>
-                        <!-- day month here -->
-                    </tbody>
-                
-                </table>
-            </div>
-        </div>
-        <span id="close-calendar" class="ti ti-close close""></span>
-    </div>`;
-    currentElement.innerHTML = listMatchHTML;
-    // event onclick 
-    listMatchHTML = document.querySelector('.match-container')
-    listMatchHTML.addEventListener('click', (e) => {
-        // console.log(e.target.id);
-        let idMatch = e.target.id
-        if(isNaN(idMatch) || idMatch === '') return; // au cas ou tsy nombre
-        (0,_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(false, idMatch)
-    })
-
-    /* onclick match today, live, finished */
-    document.querySelector('.match-today').addEventListener('click', () => {
-        ;(0,_listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchToday)()
-    })
-
-    document.querySelector('.match-live').addEventListener('click', () => {
-        ;(0,_listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchLive)()
-    })
-
-    document.querySelector('.match-finished').addEventListener('click', () => {
-        ;(0,_listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchFinished)()
-    })
-
-    /* onclick close calendar */
-    document.querySelector('#close-calendar').addEventListener('click', () => {
-        console.log('closec');
-        document.querySelector('.actual').style.top = '-100%'
-    })
-}
-
-/***/ }),
-
-/***/ "./src/js/getInfoMatch.js":
-/*!********************************!*\
-  !*** ./src/js/getInfoMatch.js ***!
-  \********************************/
+/***/ "./src/js/infoMatch/getInfoMatch.js":
+/*!******************************************!*\
+  !*** ./src/js/infoMatch/getInfoMatch.js ***!
+  \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -714,69 +545,10 @@ let apiKey = "5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda";
 
 /***/ }),
 
-/***/ "./src/js/getLeagueMatch.js":
-/*!**********************************!*\
-  !*** ./src/js/getLeagueMatch.js ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getLeagueMatch": () => (/* binding */ getLeagueMatch)
-/* harmony export */ });
-/* harmony import */ var _calendar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calendar */ "./src/js/calendar.js");
-/* harmony import */ var _listMatch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./listMatch */ "./src/js/listMatch.js");
-
-
-
-let currentLeagueHTML = undefined;
-function getLeagueMatch (idLeague, item) {
-    let d = new Date(),
-        month = d.getMonth()+1,
-        dateToday = d.getDate();
-    // to active
-    if(currentLeagueHTML) currentLeagueHTML.classList.remove('active')
-    item.classList.add('active')
-    document.querySelector('.league-container').style.left = '-100%' // rehefa le responsive
-    ;(0,_calendar__WEBPACK_IMPORTED_MODULE_0__.setDate)(false, month, dateToday, idLeague, _listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchToday)
-    currentLeagueHTML = item
-    window.scroll(0,0)
-}
-
-/***/ }),
-
-/***/ "./src/js/getStanding.js":
-/*!*******************************!*\
-  !*** ./src/js/getStanding.js ***!
-  \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-let apiKey = "5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda";
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (idLeague) => {
-    return await new Promise((resolve, reject) => {
-        let url = `https://apiv3.apifootball.com/?action=get_standings&league_id=${idLeague}&APIkey=${apiKey}`;
-        fetch(url, {method : 'get'})
-        .then(response => response.json())
-        .then((value) => {
-            // console.log('getStanding');
-            // console.log(value);
-            resolve(value.error ? [] : value)
-        })
-    })
-}); 
-
-/***/ }),
-
-/***/ "./src/js/infoMatch.js":
-/*!*****************************!*\
-  !*** ./src/js/infoMatch.js ***!
-  \*****************************/
+/***/ "./src/js/infoMatch/infoMatch.js":
+/*!***************************************!*\
+  !*** ./src/js/infoMatch/infoMatch.js ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -785,10 +557,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "clearIntervalUpdate": () => (/* binding */ clearIntervalUpdate),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _getInfoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getInfoMatch */ "./src/js/getInfoMatch.js");
-/* harmony import */ var _getStanding__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getStanding */ "./src/js/getStanding.js");
-/* harmony import */ var _addHistory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./addHistory */ "./src/js/addHistory.js");
-/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
+/* harmony import */ var _getInfoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getInfoMatch */ "./src/js/infoMatch/getInfoMatch.js");
+/* harmony import */ var _func_getStanding__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../func/getStanding */ "./src/js/func/getStanding.js");
+/* harmony import */ var _history_addHistory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../history/addHistory */ "./src/js/history/addHistory.js");
+/* harmony import */ var _others_animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../others/animation */ "./src/js/others/animation.js");
  
 
 
@@ -799,7 +571,7 @@ let navMatch = undefined,
     interval = undefined,
     currentDisplay = undefined;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (isPopState=false, idMatch, toDisplay) => {
-    (0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
+    (0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
     let game = [],
         standing = [];
     
@@ -813,35 +585,36 @@ let navMatch = undefined,
     // display moment fort
     displayMoment(game)
     if(toDisplay === "standing") { // raha tiana specifie-na ho classement
-        standing = await (0,_getStanding__WEBPACK_IMPORTED_MODULE_1__["default"])(game.league_id)
+        standing = await (0,_func_getStanding__WEBPACK_IMPORTED_MODULE_1__["default"])(game.league_id)
         displayStanding(isPopState, standing, game.match_id)
     } else if(toDisplay === "stats") {
-        (0,_getStanding__WEBPACK_IMPORTED_MODULE_1__["default"])(game.league_id).then((value) => standing = value)
+        (0,_func_getStanding__WEBPACK_IMPORTED_MODULE_1__["default"])(game.league_id).then((value) => standing = value)
         displayStats(isPopState, game)
     } else {
-        (0,_getStanding__WEBPACK_IMPORTED_MODULE_1__["default"])(game.league_id).then((value) => standing = value)
+        (0,_func_getStanding__WEBPACK_IMPORTED_MODULE_1__["default"])(game.league_id).then((value) => standing = value)
         displayPreGame(isPopState, game)
     }
-    (0,_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
+    (0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
 
+    /* nav match (standing, pregame, stats) */
     navMatch.addEventListener('click', (e) => {
-        ;(0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
+        ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
         // console.log(e.target);
         if(e.target.id === 'standing') {
-            (0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
+            (0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
             // display
             displayStanding(isPopState, standing, game.match_id)
-            ;(0,_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
+            ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
         }else if(e.target.id === 'stats') {
-            (0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
+            (0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
             // display
             displayStats(isPopState, game)
-            ;(0,_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
+            ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
         } else {
-            (0,_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
+            (0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
             // display
             displayPreGame(isPopState, game)
-            ;(0,_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
+            ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
         }
     })
     // mettre a jour le resultat chaque 60 seconde 
@@ -997,7 +770,7 @@ function displayPreGame(isPopState=false,game) {
     currentDisplay = "pregame"
     // add history
     if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
-        (0,_addHistory__WEBPACK_IMPORTED_MODULE_2__["default"])(`game/pregame/${game.match_id}`);
+        (0,_history_addHistory__WEBPACK_IMPORTED_MODULE_2__["default"])(`game/pregame/${game.match_id}`);
     let home = {
         system : game.match_hometeam_system || "4-3-3",
         lineup : game.lineup.home.starting_lineups,
@@ -1117,7 +890,7 @@ function displayStanding(isPopState=false ,standing, idMatch) {
     currentDisplay = "standing"
     // add history
     if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
-        (0,_addHistory__WEBPACK_IMPORTED_MODULE_2__["default"])(`game/standing/${idMatch}`);
+        (0,_history_addHistory__WEBPACK_IMPORTED_MODULE_2__["default"])(`game/standing/${idMatch}`);
     let standingHTML =
     `<table class="standing-container">
         <tr class="head-table">
@@ -1154,7 +927,7 @@ function displayStats(isPopState=false, game) {
     currentDisplay = "stat"
     // add history
     if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
-        (0,_addHistory__WEBPACK_IMPORTED_MODULE_2__["default"])(`game/stats/${game.match_id}`);
+        (0,_history_addHistory__WEBPACK_IMPORTED_MODULE_2__["default"])(`game/stats/${game.match_id}`);
     let statistics = game.statistics.reverse();
     let statsHTML = 
     `<div class="statistics">
@@ -1177,10 +950,524 @@ function displayStats(isPopState=false, game) {
 
 /***/ }),
 
-/***/ "./src/js/league.js":
-/*!**************************!*\
-  !*** ./src/js/league.js ***!
-  \**************************/
+/***/ "./src/js/league/getLeagueMatch.js":
+/*!*****************************************!*\
+  !*** ./src/js/league/getLeagueMatch.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getLeagueMatch": () => (/* binding */ getLeagueMatch)
+/* harmony export */ });
+/* harmony import */ var _calendar_calendar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../calendar/calendar */ "./src/js/calendar/calendar.js");
+/* harmony import */ var _listMatch_listMatch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../listMatch/listMatch */ "./src/js/listMatch/listMatch.js");
+
+
+
+let currentLeagueHTML = undefined;
+function getLeagueMatch (idLeague, item) {
+    let d = new Date(),
+        month = d.getMonth()+1,
+        dateToday = d.getDate();
+    // to active
+    if(currentLeagueHTML) currentLeagueHTML.classList.remove('active')
+    item.classList.add('active')
+    document.querySelector('.league-container').style.left = '-100%' // rehefa le responsive
+    ;(0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_0__.setDate)(false, month, dateToday, idLeague, _listMatch_listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchToday)
+    currentLeagueHTML = item
+    window.scroll(0,0)
+}
+
+/***/ }),
+
+/***/ "./src/js/league/listLeague.js":
+/*!*************************************!*\
+  !*** ./src/js/league/listLeague.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../others/contryAndLeague */ "./src/js/others/contryAndLeague.js");
+/* harmony import */ var _others_popularAndException__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../others/popularAndException */ "./src/js/others/popularAndException.js");
+
+
+
+let listContainer = document.querySelector('.list-league'),
+    url = "https://apiv3.apifootball.com/?action=get_leagues&APIkey=5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda",
+    listCountry = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListCountry)(),
+    listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListLeague)();
+listCountry = listCountry.split(',');
+listLeague = listLeague.split(',')
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async () => {
+    fetch(url, {
+        method : 'get'
+    })
+        .then(response => response.json())
+        .then((value) => {
+            // izay ao anaty liste iany no raisina
+            let list = value
+                    .filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name)),
+                leagueId = list.map(e => e.league_id)
+            // console.log('listleague');
+            // console.log(list);
+            // popular league and exception league
+            let popularLeague = (0,_others_popularAndException__WEBPACK_IMPORTED_MODULE_1__.getPopularLeague)(leagueId),
+                exceptionLeague = (0,_others_popularAndException__WEBPACK_IMPORTED_MODULE_1__.getExceptionLeague)(leagueId),
+                currentNumber = 1;
+            // console.log('popularLeague listleague');
+            // console.log(popularLeague);
+            // correct league logo
+            for(let element of exceptionLeague) {
+                list[element.index].league_logo = element.photo
+            }
+            // atao any amin farany ambony ireo ligue populaire
+            // omena numero voalohany ireo league popular
+            for(let element of popularLeague) {
+                list[element.index].number =  currentNumber
+                list[element.index].league_logo = element.photo
+                currentNumber++
+            }
+            // omena numero ireo league mbola tsy nahazo
+            for(let element of list) {
+                if(!element.number) {
+                    element.number =  currentNumber
+                    currentNumber++
+                }
+            }
+            // trier-na selon ny nom ana league aloha
+            list.sort((a,b) => a.league_name - b.league_name)
+            // trier-na selon ny numero anle league
+            list.sort((a,b) => a.number - b.number)
+
+            // display list league `<li class="list-item" onclick="getLeagueMatch(${e.league_id})">
+            let listItem = ``;
+            for(let e of list) {
+                listItem += 
+                `<li class="list-item kk${e.league_id}" id="${e.league_id}" onclick="league.getLeagueMatch(${e.league_id}, this)">
+                    <img src="${e.league_logo}" alt="icon-league" id="${e.league_id}" onerror="this.src = 'assets/img/logo2.png'">
+                    <span id="${e.league_id}">${e.league_name}
+                        <span class="line-list" id="${e.league_id}"></span>
+                    </span>
+                </li>`;
+            }
+            listContainer.innerHTML = listItem
+        })
+        .catch(err => console.log(err))
+});
+
+/***/ }),
+
+/***/ "./src/js/listMatch/displayListMatch.js":
+/*!**********************************************!*\
+  !*** ./src/js/listMatch/displayListMatch.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js");
+/* harmony import */ var _listMatch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./listMatch */ "./src/js/listMatch/listMatch.js");
+
+
+
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(listGame) {
+    let currentElement = document.querySelector('.current-element');
+    
+    let countryGameHTML = ``;
+    if(listGame.length === 0) {
+        countryGameHTML = `<p style="padding-left:15px">No match</p>`
+    }
+    for(let country of listGame) {
+        countryGameHTML += 
+        `<div class="matchs">
+            <h3>
+                <img src="${country.logoCountry}" alt="icon-country" onerror="this.src = 'assets/img/logo2.png'">
+                <div class="d-inline">
+                    <span class="country">${country.countryName}</span>
+                    <span class="league">${country.leagueName}</span>
+                </div>
+            </h3>
+            <ul class="list-match">`;
+        for(let game of country.game) {
+            // live match
+            if(game.match_live === '1') 
+                countryGameHTML += 
+                `<li class="live" id="${game.match_id}">
+                    <span class="hour-match" id="${game.match_id}">${isNaN(game.match_status) ? game.match_status : ((game.match_status + ' min'))}</span>`;
+            // match mbola tsy nandeha; finished game and postponed
+            else 
+            countryGameHTML += 
+                `<li id="${game.match_id}">
+                    <span class="hour-match" id="${game.match_id}">${(game.match_status === 'Postponed') ? 'postponed' : game.match_time}</span>`
+            countryGameHTML += 
+                `<div class="match-item" id="${game.match_id}">
+                    <div class="home" id="${game.match_id}">
+                        <img src="${game.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}" onerror="this.src = 'assets/img/logo2.png'">
+                        <span id="${game.match_id}">${game.match_hometeam_name}</span>
+                        <span class="score-home score" id="${game.match_id}">${(game.match_hometeam_score.length > 0) ? game.match_hometeam_score : '  '}</span> 
+                    </div>
+                    <span class="vs" id="${game.match_id}">vs</span>
+                    <div class="away" id="${game.match_id}">
+                        <span class="away-home score" id="${game.match_id}">${(game.match_awayteam_score.length > 0) ? game.match_awayteam_score : '  '}</span>
+                        <img src="${game.team_away_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}" onerror="this.src = 'assets/img/logo2.png'">
+                        <span id="${game.match_id}">${game.match_awayteam_name}</span>
+                    </div>
+                </div>
+            </li>`;
+        }
+        countryGameHTML += 
+        `   </ul>
+        </div>`
+    }
+
+    let listMatchHTML =
+    `<div class="match-container">
+        <nav class="navbar-match">
+            <ul class="nav-list">
+                <li class="active col-4 match-today">Today</li>
+                <li class="col-4 match-live">Live</li>
+                <li class="col-4 match-finished">Finished</li>
+            </ul>
+        </nav>
+        ${countryGameHTML}
+    </div>
+    <!-- actual  -->
+    <div class="actual">
+        <!-- calendar  -->
+        <div class="calendar-month">
+            <div class="current-month">
+                <div class="jump-month left">
+                    <div class="jump" onclick="calendar.downMonth();">
+                        <span class="ti ti-angle-left"></span>
+                    </div>
+    
+                </div>
+                <div class="current-date">
+                    date du jour
+                </div>
+                <div class="jump-month right">
+                    <div class="jump" onclick="calendar.upMonth()">
+                        <span class="ti ti-angle-right"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="day-container">
+                <table style="border-collapse: collapse; display: flex;">
+                    <tbody style="width: 100%;" class="addDayMonth">
+                        <tr class="week">
+                            <td>Lun</td>
+                            <td>Mar</td>
+                            <td>Mer</td>
+                            <td>Jeu</td>
+                            <td>Ven</td>
+                            <td>Sam</td>
+                            <td>Dim</td>
+                        </tr>
+                        <!-- day month here -->
+                    </tbody>
+                
+                </table>
+            </div>
+        </div>
+        <span id="close-calendar" class="ti ti-close close""></span>
+    </div>`;
+    currentElement.innerHTML = listMatchHTML;
+    // event onclick 
+    listMatchHTML = document.querySelector('.match-container')
+    listMatchHTML.addEventListener('click', (e) => {
+        // console.log(e.target.id);
+        let idMatch = e.target.id
+        if(isNaN(idMatch) || idMatch === '') return; // au cas ou tsy nombre
+        (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(false, idMatch)
+    })
+
+    /* onclick match today, live, finished */
+    document.querySelector('.match-today').addEventListener('click', () => {
+        ;(0,_listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchToday)()
+    })
+
+    document.querySelector('.match-live').addEventListener('click', () => {
+        ;(0,_listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchLive)()
+    })
+
+    document.querySelector('.match-finished').addEventListener('click', () => {
+        ;(0,_listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchFinished)()
+    })
+
+    /* onclick close calendar */
+    document.querySelector('#close-calendar').addEventListener('click', () => {
+        console.log('closec');
+        document.querySelector('.actual').style.top = '-100%'
+    })
+}
+
+/***/ }),
+
+/***/ "./src/js/listMatch/listMatch.js":
+/*!***************************************!*\
+  !*** ./src/js/listMatch/listMatch.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "listMatch": () => (/* binding */ listMatch),
+/* harmony export */   "listMatchFinished": () => (/* binding */ listMatchFinished),
+/* harmony export */   "listMatchLive": () => (/* binding */ listMatchLive),
+/* harmony export */   "listMatchToday": () => (/* binding */ listMatchToday),
+/* harmony export */   "updateScore": () => (/* binding */ updateScore)
+/* harmony export */ });
+/* harmony import */ var _others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../others/contryAndLeague */ "./src/js/others/contryAndLeague.js");
+/* harmony import */ var _others_popularAndException__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../others/popularAndException */ "./src/js/others/popularAndException.js");
+/* harmony import */ var _others_animation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../others/animation */ "./src/js/others/animation.js");
+/* harmony import */ var _displayListMatch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./displayListMatch */ "./src/js/listMatch/displayListMatch.js");
+/* harmony import */ var _calendar_calendar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../calendar/calendar */ "./src/js/calendar/calendar.js");
+/* harmony import */ var _history_addHistory__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../history/addHistory */ "./src/js/history/addHistory.js");
+
+
+
+
+
+
+
+let APIkey = "5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda";
+let listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListLeague)(),
+    listCountry = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListCountry)(),
+    gamePerLeague = [],
+    activeInNavBar = document.querySelector('.navbar-match .nav-list li.active'),
+    currentItem = listMatchToday; // ilaina amle update-na score
+
+async function listMatch(isPopState=false, date, idLeague, toDisplay) {
+    gamePerLeague = [];
+    let d = new Date(date),
+        currentYear = d.getFullYear(),
+        currentMonth = d.getMonth()+1,
+        currentDay = d.getDate(),
+        currentDate = currentYear + '-' + currentMonth + '-' + currentDay;
+    console.log('date');
+    console.log(date);
+    // add history (rehefa popstate de tsy mila mi-ajouter)
+    if(!isPopState)
+        (0,_history_addHistory__WEBPACK_IMPORTED_MODULE_5__["default"])(`listgame/${currentDate}${idLeague ? ('&'+idLeague) : ''}`)
+    let url = `https://apiv3.apifootball.com/?action=get_events&from=${currentDate}&to=${currentDate}&APIkey=${APIkey}&timezone=Africa/Nairobi`;
+    fetch(url, {method : 'get'})
+        .then(response => response.json())
+        .then((value) => {
+            // ireo anaty liste iany no alaina
+            let list = value.filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name)),
+                leagueId = [],
+                countryId = [];
+            // au cas ou idLeague est donne
+            if(idLeague > 0) {
+                list = list.filter(e => e.league_id == idLeague)
+                // active league (raha sendra ery amin url no novaina ny id no tena mahatonga azy ovaina eto)
+                let activeLeague = document.querySelector('.list-league li.active');
+                if(activeLeague) activeLeague.classList.remove('active')
+                document.querySelector('.kk'+idLeague).classList.add('active') // nasiako "kk" de mora azo
+            }
+            // trier selon l'heure du match
+            list.sort((a,b) => new Date(`${a.match_date} ${a.match_time}`) - new Date(`${b.match_date} ${b.match_time}`))
+            // console.log('list match');
+            // console.log(list);
+            // filter by country and league
+            // sady alaina ny liste ana leagueId (tsy azo asiana miverina) ary tonga dia alaina ny match 
+            for(let e of list) {
+                if(!leagueId.includes(e.league_id)) {  // raha mbola tsy ao
+                    gamePerLeague.push({
+                        number : undefined,
+                        id : e.league_id,
+                        countryName : e.country_name,
+                        leagueName : e.league_name,
+                        logoCountry : e.country_logo || e.league_logo,
+                        game : list.filter(g => g.league_id === e.league_id)
+                    })
+                    leagueId.push(e.league_id)
+                    countryId.push(e.country_id)
+                }
+                    
+            }
+            
+            let popularLeague = (0,_others_popularAndException__WEBPACK_IMPORTED_MODULE_1__.getPopularLeague)(leagueId);
+            let currentNumber = 1;
+            // asorina izay tsy hita ao anaty tableau ny indice-ny, zany oe tsy misy match
+            // omena numero voalohany ireo popular league mba anamorana ny ampisehoana azy voalohany
+            popularLeague = popularLeague.filter(e => e.index >= 0)
+            for(let element of popularLeague) {
+                gamePerLeague[element.index].number = currentNumber;
+                currentNumber++;
+            }
+            // omena numero ireo mbola tsy nahazo
+            for(let element of gamePerLeague) {
+                if(element.number === undefined){
+                    element.number = currentNumber;
+                    currentNumber++
+                }
+            }
+            // correct logo country
+            if(countryId.includes('2'))
+                gamePerLeague[countryId.indexOf('2')].logoCountry = 'assets/img/intl.png'
+            // correct ldc and uel logo
+            if(leagueId.includes('4'))
+                gamePerLeague[leagueId.indexOf('4')].logoCountry = 'assets/img/uel.png'
+            if(leagueId.includes('3'))
+                gamePerLeague[leagueId.indexOf('3')].logoCountry = 'assets/img/ldc.png'
+    
+            // trier-na selon an'ny numero any
+            gamePerLeague.sort((a,b) => a.number - b.number)
+            // console.log('gamePerLeague');
+            // console.log(gamePerLeague);
+            // affiche-na ny match androany na ireo live na ireo match vita
+            if(toDisplay) { // raha misy no specifie-na
+                currentItem = toDisplay
+            } 
+            currentItem()
+            ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
+        })
+}
+
+function listMatchToday() {
+    currentItem = listMatchToday;
+    (0,_others_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
+    ;(0,_displayListMatch__WEBPACK_IMPORTED_MODULE_3__["default"])(gamePerLeague)
+    activeInNavBar = document.querySelector('.match-container .nav-list li.active')
+    activeInNavBar.classList.remove('active')
+    activeInNavBar = document.querySelector('.match-today');
+    activeInNavBar.classList.add('active')
+    // re-creer le calendrier (eviter queqlue erreur)
+    let {currentYear, currentMonth, currentDate} = (0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__.getCurrentDate)()
+    ;(0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__.deleteCurrentMonth)()
+    ;(0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__.createCalendar)(currentMonth, currentYear, currentDate);
+    (0,_others_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
+}
+
+async function listMatchLive() {
+    currentItem = listMatchLive;
+    (0,_others_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
+    // recuperena ireo match en live
+    let gameLive = [];
+    for(let e of gamePerLeague) {
+        gameLive.push({
+            countryName : e.countryName,
+            leagueName : e.leagueName,
+            logoCountry : e.logoCountry,
+            game : e.game.filter(i => i.match_live === "1") // recuperena ireo match en live
+        })
+    }
+    // asorina ireo tsy misy match
+    gameLive = gameLive.filter(e => e.game.length > 0)
+    // console.log('game live');
+    // console.log(gameLive);
+    ;(0,_displayListMatch__WEBPACK_IMPORTED_MODULE_3__["default"])(gameLive)
+    activeInNavBar = document.querySelector('.match-container .nav-list li.active')
+    activeInNavBar.classList.remove('active')
+    activeInNavBar = document.querySelector('.match-live');
+    activeInNavBar.classList.add('active')
+    // re-creer le calendrier (eviter queqlue erreur)
+    let {currentYear, currentMonth, currentDate} = (0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__.getCurrentDate)()
+    ;(0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__.deleteCurrentMonth)()
+    ;(0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__.createCalendar)(currentMonth, currentYear, currentDate);
+    (0,_others_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
+}
+
+function listMatchFinished() {
+    currentItem = listMatchFinished;
+    // recuperena ireo match efa tapitra
+    let initialGame = gamePerLeague,
+        gameFinished = [];
+    gameFinished = initialGame
+        .map(e => {
+            return {
+                countryName : e.countryName,
+                leagueName : e.leagueName,
+                logoCountry : e.logoCountry,
+                game : e.game
+                    .filter(i => (i.match_live === "0") && ((i.match_hometeam_score.length > 0) || (i.match_awayteam_score.length > 0)))
+            }
+        })
+    // asorina ireo tsy misy match
+    gameFinished = gameFinished.filter(e => e.game.length > 0)
+    // console.log('gameFinished');
+    // console.log(gameFinished);
+    ;(0,_displayListMatch__WEBPACK_IMPORTED_MODULE_3__["default"])(gameFinished)
+    activeInNavBar = document.querySelector('.match-container .nav-list li.active')
+    activeInNavBar.classList.remove('active')
+    activeInNavBar = document.querySelector('.match-finished');
+    activeInNavBar.classList.add('active')
+    // re-creer le calendrier (eviter queqlue erreur)
+    let {currentYear, currentMonth, currentDate} = (0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__.getCurrentDate)()
+    ;(0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__.deleteCurrentMonth)()
+    ;(0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_4__.createCalendar)(currentMonth, currentYear, currentDate);
+    (0,_others_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
+}
+
+async function updateScore() {
+    currentItem()
+}
+
+/***/ }),
+
+/***/ "./src/js/others/animation.js":
+/*!************************************!*\
+  !*** ./src/js/others/animation.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "loading": () => (/* binding */ loading),
+/* harmony export */   "stopLoading": () => (/* binding */ stopLoading)
+/* harmony export */ });
+let animation = document.querySelector('.animation');
+function loading() {
+    animation.style.display = 'flex'
+    animation.classList.add('loading')
+}
+
+function stopLoading() {
+    animation.style.display = 'none'
+    animation.classList.remove('loading')
+}
+
+/***/ }),
+
+/***/ "./src/js/others/contryAndLeague.js":
+/*!******************************************!*\
+  !*** ./src/js/others/contryAndLeague.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getListCountry": () => (/* binding */ getListCountry),
+/* harmony export */   "getListLeague": () => (/* binding */ getListLeague)
+/* harmony export */ });
+function getListCountry() {
+    return "England,Belgium,Germany,Croatia,Spain,Czech Republic,France,Romania,Bulgaria,Italy,intl,eurocups,South Africa,Qatar,Worldcup,USA,Denmark,Norway,Sweden,Korea Republic,Netherlands,Mexico,Argentina,Portugal,Russia,Brazil,Switzerland,Brazil,Morocco"
+};
+
+function getListLeague() {
+    return "Championship,Community Shield,FA Cup,League Cup,League One,Premier League,EFL Trophy,National League,Women's Championship,Copa del Rey,La Liga,Segunda División,Super Cup,Primera División Femenina,Primera División RFEF,DFB Pokal,Regionalliga,Super Cup,2. Bundesliga,Bundesliga,Ligue 1,Ligue 2,Coupe de la Ligue,Feminine Division 1,National 1,Trophée des Champions,Coupe de France,Serie A,Serie B,Super Cup,Coppa Italia,First Division A,Challenger Pro League,First NL,Czech Liga,Liga I,First League,CAF Super Cup,Club Friendlies,COSAFA Cup,Friendlies,UEFA U21 Championship,Africa Cup of Nations,CAF Champions League,CAF Confederation Cup,UEFA Champions League,UEFA Champions League - Group Stage,UEFA Europa League,UEFA Europa League - Group Stage,UEFA Youth League,UEFA Youth League - Group Stage,PSL,QSL Cup,World Cup,MLS,Superliga,1. Division,Damallsvenskan,K League 1,Eredivisie,Eerste Divisie,Liga MX,Liga Profesional Argentina,Primeira Liga,Premier League,Serie A,Super League,Botola Pro,Premier League";
+}
+
+/***/ }),
+
+/***/ "./src/js/others/popularAndException.js":
+/*!**********************************************!*\
+  !*** ./src/js/others/popularAndException.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1242,298 +1529,10 @@ function getExceptionCountry(countryId) {
 
 /***/ }),
 
-/***/ "./src/js/listLeague.js":
-/*!******************************!*\
-  !*** ./src/js/listLeague.js ***!
-  \******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
-/* harmony import */ var _contryAndLeague__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./contryAndLeague */ "./src/js/contryAndLeague.js");
-/* harmony import */ var _league__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./league */ "./src/js/league.js");
-
-
-
-
-let listContainer = document.querySelector('.list-league'),
-    url = "https://apiv3.apifootball.com/?action=get_leagues&APIkey=5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda",
-    listCountry = (0,_contryAndLeague__WEBPACK_IMPORTED_MODULE_1__.getListCountry)(),
-    listLeague = (0,_contryAndLeague__WEBPACK_IMPORTED_MODULE_1__.getListLeague)();
-listCountry = listCountry.split(',');
-listLeague = listLeague.split(',')
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async () => {
-    fetch(url, {
-        method : 'get'
-    })
-        .then(response => response.json())
-        .then((value) => {
-            // izay ao anaty liste iany no raisina
-            let list = value
-                    .filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name)),
-                leagueId = list.map(e => e.league_id)
-            // console.log('listleague');
-            // console.log(list);
-            // popular league and exception league
-            let popularLeague = (0,_league__WEBPACK_IMPORTED_MODULE_2__.getPopularLeague)(leagueId),
-                exceptionLeague = (0,_league__WEBPACK_IMPORTED_MODULE_2__.getExceptionLeague)(leagueId),
-                currentNumber = 1;
-            // console.log('popularLeague listleague');
-            // console.log(popularLeague);
-            // correct league logo
-            for(let element of exceptionLeague) {
-                list[element.index].league_logo = element.photo
-            }
-            // atao any amin farany ambony ireo ligue populaire
-            // omena numero voalohany ireo league popular
-            for(let element of popularLeague) {
-                list[element.index].number =  currentNumber
-                list[element.index].league_logo = element.photo
-                currentNumber++
-            }
-            // omena numero ireo league mbola tsy nahazo
-            for(let element of list) {
-                if(!element.number) {
-                    element.number =  currentNumber
-                    currentNumber++
-                }
-            }
-            // trier-na selon ny nom ana league aloha
-            list.sort((a,b) => a.league_name - b.league_name)
-            // trier-na selon ny numero anle league
-            list.sort((a,b) => a.number - b.number)
-
-            // display list league `<li class="list-item" onclick="getLeagueMatch(${e.league_id})">
-            let listItem = ``;
-            for(let e of list) {
-                listItem += 
-                `<li class="list-item kk${e.league_id}" id="${e.league_id}" onclick="league.getLeagueMatch(${e.league_id}, this)">
-                    <img src="${e.league_logo}" alt="icon-league" id="${e.league_id}" onerror="this.src = 'assets/img/logo2.png'">
-                    <span id="${e.league_id}">${e.league_name}
-                        <span class="line-list" id="${e.league_id}"></span>
-                    </span>
-                </li>`;
-            }
-            listContainer.innerHTML = listItem
-        })
-        .catch(err => console.log(err))
-});
-
-/***/ }),
-
-/***/ "./src/js/listMatch.js":
-/*!*****************************!*\
-  !*** ./src/js/listMatch.js ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "listMatch": () => (/* binding */ listMatch),
-/* harmony export */   "listMatchFinished": () => (/* binding */ listMatchFinished),
-/* harmony export */   "listMatchLive": () => (/* binding */ listMatchLive),
-/* harmony export */   "listMatchToday": () => (/* binding */ listMatchToday),
-/* harmony export */   "updateScore": () => (/* binding */ updateScore)
-/* harmony export */ });
-/* harmony import */ var _contryAndLeague__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./contryAndLeague */ "./src/js/contryAndLeague.js");
-/* harmony import */ var _league__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./league */ "./src/js/league.js");
-/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
-/* harmony import */ var _displayListMatch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./displayListMatch */ "./src/js/displayListMatch.js");
-/* harmony import */ var _calendar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./calendar */ "./src/js/calendar.js");
-/* harmony import */ var _addHistory__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./addHistory */ "./src/js/addHistory.js");
-
-
-
-
-
-
-
-let APIkey = "5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda";
-let listLeague = (0,_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListLeague)(),
-    listCountry = (0,_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListCountry)(),
-    gamePerLeague = [],
-    activeInNavBar = document.querySelector('.navbar-match .nav-list li.active'),
-    currentItem = listMatchToday; // ilaina amle update-na score
-
-async function listMatch(isPopState=false, date, idLeague, toDisplay) {
-    gamePerLeague = [];
-    let d = new Date(date),
-        currentYear = d.getFullYear(),
-        currentMonth = d.getMonth()+1,
-        currentDay = d.getDate(),
-        currentDate = currentYear + '-' + currentMonth + '-' + currentDay;
-    console.log('date');
-    console.log(date);
-    // add history (rehefa popstate de tsy mila mi-ajouter)
-    if(!isPopState)
-        (0,_addHistory__WEBPACK_IMPORTED_MODULE_5__["default"])(`listgame/${currentDate}${idLeague ? ('&'+idLeague) : ''}`)
-    let url = `https://apiv3.apifootball.com/?action=get_events&from=${currentDate}&to=${currentDate}&APIkey=${APIkey}&timezone=Africa/Nairobi`;
-    fetch(url, {method : 'get'})
-        .then(response => response.json())
-        .then((value) => {
-            // ireo anaty liste iany no alaina
-            let list = value.filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name)),
-                leagueId = [],
-                countryId = [];
-            // au cas ou idLeague est donne
-            if(idLeague > 0) {
-                list = list.filter(e => e.league_id == idLeague)
-                // active league (raha sendra ery amin url no novaina ny id no tena mahatonga azy ovaina eto)
-                let activeLeague = document.querySelector('.list-league li.active');
-                if(activeLeague) activeLeague.classList.remove('active')
-                document.querySelector('.kk'+idLeague).classList.add('active') // nasiako "kk" de mora azo
-            }
-            // trier selon l'heure du match
-            list.sort((a,b) => new Date(`${a.match_date} ${a.match_time}`) - new Date(`${b.match_date} ${b.match_time}`))
-            // console.log('list match');
-            // console.log(list);
-            // filter by country and league
-            // sady alaina ny liste ana leagueId (tsy azo asiana miverina) ary tonga dia alaina ny match 
-            for(let e of list) {
-                if(!leagueId.includes(e.league_id)) {  // raha mbola tsy ao
-                    gamePerLeague.push({
-                        number : undefined,
-                        id : e.league_id,
-                        countryName : e.country_name,
-                        leagueName : e.league_name,
-                        logoCountry : e.country_logo || e.league_logo,
-                        game : list.filter(g => g.league_id === e.league_id)
-                    })
-                    leagueId.push(e.league_id)
-                    countryId.push(e.country_id)
-                }
-                    
-            }
-            
-            let popularLeague = (0,_league__WEBPACK_IMPORTED_MODULE_1__.getPopularLeague)(leagueId);
-            let currentNumber = 1;
-            // asorina izay tsy hita ao anaty tableau ny indice-ny, zany oe tsy misy match
-            // omena numero voalohany ireo popular league mba anamorana ny ampisehoana azy voalohany
-            popularLeague = popularLeague.filter(e => e.index >= 0)
-            for(let element of popularLeague) {
-                gamePerLeague[element.index].number = currentNumber;
-                currentNumber++;
-            }
-            // omena numero ireo mbola tsy nahazo
-            for(let element of gamePerLeague) {
-                if(element.number === undefined){
-                    element.number = currentNumber;
-                    currentNumber++
-                }
-            }
-            // correct logo country
-            if(countryId.includes('2'))
-                gamePerLeague[countryId.indexOf('2')].logoCountry = 'assets/img/intl.png'
-            // correct ldc and uel logo
-            if(leagueId.includes('4'))
-                gamePerLeague[leagueId.indexOf('4')].logoCountry = 'assets/img/uel.png'
-            if(leagueId.includes('3'))
-                gamePerLeague[leagueId.indexOf('3')].logoCountry = 'assets/img/ldc.png'
-    
-            // trier-na selon an'ny numero any
-            gamePerLeague.sort((a,b) => a.number - b.number)
-            // console.log('gamePerLeague');
-            // console.log(gamePerLeague);
-            // affiche-na ny match androany na ireo live na ireo match vita
-            if(toDisplay) { // raha misy no specifie-na
-                currentItem = toDisplay
-            } 
-            currentItem()
-            ;(0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
-        })
-}
-
-function listMatchToday() {
-    currentItem = listMatchToday;
-    (0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
-    ;(0,_displayListMatch__WEBPACK_IMPORTED_MODULE_3__["default"])(gamePerLeague)
-    activeInNavBar = document.querySelector('.match-container .nav-list li.active')
-    activeInNavBar.classList.remove('active')
-    activeInNavBar = document.querySelector('.match-today');
-    activeInNavBar.classList.add('active')
-    // re-creer le calendrier (eviter queqlue erreur)
-    let {currentYear, currentMonth, currentDate} = (0,_calendar__WEBPACK_IMPORTED_MODULE_4__.getCurrentDate)()
-    ;(0,_calendar__WEBPACK_IMPORTED_MODULE_4__.deleteCurrentMonth)()
-    ;(0,_calendar__WEBPACK_IMPORTED_MODULE_4__.createCalendar)(currentMonth, currentYear, currentDate);
-    (0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
-}
-
-async function listMatchLive() {
-    currentItem = listMatchLive;
-    (0,_animation__WEBPACK_IMPORTED_MODULE_2__.loading)()
-    // recuperena ireo match en live
-    let gameLive = [];
-    for(let e of gamePerLeague) {
-        gameLive.push({
-            countryName : e.countryName,
-            leagueName : e.leagueName,
-            logoCountry : e.logoCountry,
-            game : e.game.filter(i => i.match_live === "1") // recuperena ireo match en live
-        })
-    }
-    // asorina ireo tsy misy match
-    gameLive = gameLive.filter(e => e.game.length > 0)
-    // console.log('game live');
-    // console.log(gameLive);
-    ;(0,_displayListMatch__WEBPACK_IMPORTED_MODULE_3__["default"])(gameLive)
-    activeInNavBar = document.querySelector('.match-container .nav-list li.active')
-    activeInNavBar.classList.remove('active')
-    activeInNavBar = document.querySelector('.match-live');
-    activeInNavBar.classList.add('active')
-    // re-creer le calendrier (eviter queqlue erreur)
-    let {currentYear, currentMonth, currentDate} = (0,_calendar__WEBPACK_IMPORTED_MODULE_4__.getCurrentDate)()
-    ;(0,_calendar__WEBPACK_IMPORTED_MODULE_4__.deleteCurrentMonth)()
-    ;(0,_calendar__WEBPACK_IMPORTED_MODULE_4__.createCalendar)(currentMonth, currentYear, currentDate);
-    (0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
-}
-
-function listMatchFinished() {
-    currentItem = listMatchFinished;
-    // recuperena ireo match efa tapitra
-    let initialGame = gamePerLeague,
-        gameFinished = [];
-    gameFinished = initialGame
-        .map(e => {
-            return {
-                countryName : e.countryName,
-                leagueName : e.leagueName,
-                logoCountry : e.logoCountry,
-                game : e.game
-                    .filter(i => (i.match_live === "0") && ((i.match_hometeam_score.length > 0) || (i.match_awayteam_score.length > 0)))
-            }
-        })
-    // asorina ireo tsy misy match
-    gameFinished = gameFinished.filter(e => e.game.length > 0)
-    // console.log('gameFinished');
-    // console.log(gameFinished);
-    ;(0,_displayListMatch__WEBPACK_IMPORTED_MODULE_3__["default"])(gameFinished)
-    activeInNavBar = document.querySelector('.match-container .nav-list li.active')
-    activeInNavBar.classList.remove('active')
-    activeInNavBar = document.querySelector('.match-finished');
-    activeInNavBar.classList.add('active')
-    // re-creer le calendrier (eviter queqlue erreur)
-    let {currentYear, currentMonth, currentDate} = (0,_calendar__WEBPACK_IMPORTED_MODULE_4__.getCurrentDate)()
-    ;(0,_calendar__WEBPACK_IMPORTED_MODULE_4__.deleteCurrentMonth)()
-    ;(0,_calendar__WEBPACK_IMPORTED_MODULE_4__.createCalendar)(currentMonth, currentYear, currentDate);
-    (0,_animation__WEBPACK_IMPORTED_MODULE_2__.stopLoading)()
-}
-
-async function updateScore() {
-    currentItem()
-}
-
-/***/ }),
-
-/***/ "./src/js/someEventlistener.js":
-/*!*************************************!*\
-  !*** ./src/js/someEventlistener.js ***!
-  \*************************************/
+/***/ "./src/js/others/someEventlistener.js":
+/*!********************************************!*\
+  !*** ./src/js/others/someEventlistener.js ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1679,14 +1678,14 @@ var __webpack_exports__ = {};
   !*** ./src/js/main.js ***!
   \************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
-/* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! expose-loader?exposes=calendar!./calendar */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar.js");
-/* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! expose-loader?exposes=league!./getLeagueMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getLeagueMatch.js");
-/* harmony import */ var expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _checkHistory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./checkHistory */ "./src/js/checkHistory.js");
-/* harmony import */ var _addHistory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./addHistory */ "./src/js/addHistory.js");
-/* harmony import */ var _someEventlistener__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./someEventlistener */ "./src/js/someEventlistener.js");
+/* harmony import */ var _others_animation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./others/animation */ "./src/js/others/animation.js");
+/* harmony import */ var expose_loader_exposes_calendar_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! expose-loader?exposes=calendar!./calendar/calendar */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar/calendar.js");
+/* harmony import */ var expose_loader_exposes_calendar_calendar_calendar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_calendar_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var expose_loader_exposes_league_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! expose-loader?exposes=league!./league/getLeagueMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/league/getLeagueMatch.js");
+/* harmony import */ var expose_loader_exposes_league_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_league_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _history_checkHistory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./history/checkHistory */ "./src/js/history/checkHistory.js");
+/* harmony import */ var _history_addHistory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./history/addHistory */ "./src/js/history/addHistory.js");
+/* harmony import */ var _others_someEventlistener__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./others/someEventlistener */ "./src/js/others/someEventlistener.js");
 /* harmony import */ var _css_color_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../css/color.css */ "./src/css/color.css");
 /* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../css/style.css */ "./src/css/style.css");
 /* harmony import */ var _css_listMatch_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../css/listMatch.css */ "./src/css/listMatch.css");
@@ -1704,20 +1703,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_animation__WEBPACK_IMPORTED_MODULE_0__.loading)()
-;(0,_someEventlistener__WEBPACK_IMPORTED_MODULE_5__["default"])() // onclick sy ny namany
-;(0,_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(false) // false satria pushstate 
+(0,_others_animation__WEBPACK_IMPORTED_MODULE_0__.loading)()
+;(0,_others_someEventlistener__WEBPACK_IMPORTED_MODULE_5__["default"])() // onclick sy ny namany
+;(0,_history_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(false) // false satria pushstate 
 
 window.onpopstate = (e) => {
     // console.log('onpopstate');
     // console.log(e);
-    ;(0,_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(true)
+    ;(0,_history_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(true)
 }
 
 /* logo onclick */
 document.querySelector('.nav-bar .logo').addEventListener('click', () => {
-    ;(0,_addHistory__WEBPACK_IMPORTED_MODULE_4__["default"])('')
-    ;(0,_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(false)
+    ;(0,_history_addHistory__WEBPACK_IMPORTED_MODULE_4__["default"])('')
+    ;(0,_history_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(false)
 })
 
 // stopLoading()

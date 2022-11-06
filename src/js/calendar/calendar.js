@@ -1,5 +1,5 @@
-import {listMatch} from './listMatch'
-import {loading} from './animation'
+import {listMatch} from '../listMatch/listMatch'
+import {loading} from '../others/animation'
 
 /* calendar */
 let date =  new Date(),
