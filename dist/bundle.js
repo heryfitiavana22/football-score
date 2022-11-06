@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar-exposed.js":
+/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar.js":
 /*!****************************************************************************************************************************************************!*\
   !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar-exposed.js ***!
   \****************************************************************************************************************************************************/
@@ -401,11 +401,12 @@ function getCurrentDate() {
 let currentIdLeague = undefined; // tazomina le idLeague jerena raha misy
 /* manova date */
 function setDate(isPopState=false, m, d, idLeague, toDisplay) {
-    // raha sendra amle date efa affiché no click-eny ary tsy miova ny idLeague
-    // if((d === currentDate) && (m === month)) return
     // hideCalendar (valable ito rehefa le ecran <= 768)
     let actualContainer = document.querySelector('.actual')
     if(actualContainer) actualContainer.style.top = '-100%' // raha misy
+    // raha sendra amle date efa affiché no click-eny ary tsy miova ny idLeague
+    // if((currentDate === d) && (m === monthSelected) && (idLeague === currentIdLeague)) 
+    //     return
     
     ;(0,_animation__WEBPACK_IMPORTED_MODULE_1__.loading)()
 
@@ -1311,7 +1312,7 @@ listLeague = listLeague.split(',')
             let listItem = ``;
             for(let e of list) {
                 listItem += 
-                `<li class="list-item" id="${e.league_id}" onclick="league.getLeagueMatch(${e.league_id}, this)">
+                `<li class="list-item kk${e.league_id}" id="${e.league_id}" onclick="league.getLeagueMatch(${e.league_id}, this)">
                     <img src="${e.league_logo}" alt="icon-league" id="${e.league_id}" onerror="this.src = 'assets/img/logo2.png'">
                     <span id="${e.league_id}">${e.league_name}
                         <span class="line-list" id="${e.league_id}"></span>
@@ -1383,6 +1384,10 @@ async function listMatch(isPopState=false, date, idLeague, toDisplay) {
             // au cas ou idLeague est donne
             if(idLeague > 0) {
                 list = list.filter(e => e.league_id == idLeague)
+                // active league (raha sendra ery amin url no novaina ny id no tena mahatonga azy ovaina eto)
+                let activeLeague = document.querySelector('.list-league li.active');
+                if(activeLeague) activeLeague.classList.remove('active')
+                document.querySelector('.kk'+idLeague).classList.add('active') // nasiako "kk" de mora azo
             }
             // trier selon l'heure du match
             list.sort((a,b) => new Date(`${a.match_date} ${a.match_time}`) - new Date(`${b.match_date} ${b.match_time}`))
@@ -1675,7 +1680,7 @@ var __webpack_exports__ = {};
   \************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
-/* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! expose-loader?exposes=calendar!./calendar */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar-exposed.js");
+/* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! expose-loader?exposes=calendar!./calendar */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar.js");
 /* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! expose-loader?exposes=league!./getLeagueMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getLeagueMatch.js");
 /* harmony import */ var expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2__);

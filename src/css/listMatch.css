@@ -217,7 +217,7 @@ td .day-item {
 @media screen and (max-width : 768px) {
     #icon-toggle-calendar {
         margin-left: 10px;
-        display: block;
+        display: block !important;
         position: relative;
         right: -3px;
         cursor: pointer;

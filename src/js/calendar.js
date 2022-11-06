@@ -180,11 +180,12 @@ export function getCurrentDate() {
 let currentIdLeague = undefined; // tazomina le idLeague jerena raha misy
 /* manova date */
 export function setDate(isPopState=false, m, d, idLeague, toDisplay) {
-    // raha sendra amle date efa affiché no click-eny ary tsy miova ny idLeague
-    // if((d === currentDate) && (m === month)) return
     // hideCalendar (valable ito rehefa le ecran <= 768)
     let actualContainer = document.querySelector('.actual')
     if(actualContainer) actualContainer.style.top = '-100%' // raha misy
+    // raha sendra amle date efa affiché no click-eny ary tsy miova ny idLeague
+    // if((currentDate === d) && (m === monthSelected) && (idLeague === currentIdLeague)) 
+    //     return
     
     loading()
 

@@ -35,6 +35,10 @@ export async function listMatch(isPopState=false, date, idLeague, toDisplay) {
             // au cas ou idLeague est donne
             if(idLeague > 0) {
                 list = list.filter(e => e.league_id == idLeague)
+                // active league (raha sendra ery amin url no novaina ny id no tena mahatonga azy ovaina eto)
+                let activeLeague = document.querySelector('.list-league li.active');
+                if(activeLeague) activeLeague.classList.remove('active')
+                document.querySelector('.kk'+idLeague).classList.add('active') // nasiako "kk" de mora azo
             }
             // trier selon l'heure du match
             list.sort((a,b) => new Date(`${a.match_date} ${a.match_time}`) - new Date(`${b.match_date} ${b.match_time}`))

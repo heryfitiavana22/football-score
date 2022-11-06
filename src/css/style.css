@@ -62,7 +62,7 @@ h1 span {
     transition: all 0.3s ease;
 }
 .icon-nav:hover {color: rgb(178, 178, 178);}
-.icon-toggle, .close {display: none;}
+.icon-toggle, .close {display: none !important;}
 .close {
     position: absolute;
     top: 15px;
@@ -131,7 +131,7 @@ h1 span {
     .nav-content, .container-element > .content {width: 98%;}
     .nav-option {margin-right: 10px;}
     #icon-toggle-league {
-        display: block;
+        display: block !important;
         position: relative;
         right: -3px;
         cursor: pointer;
@@ -157,7 +157,7 @@ h1 span {
     }
     .list-league {margin-top: 40px}
     .list-league .active {background-color: var(--blue1);}
-    #close-league {display: block;}
+    #close-league {display: block !important;}
 }
 
 @media screen and (max-width : 576px) {
