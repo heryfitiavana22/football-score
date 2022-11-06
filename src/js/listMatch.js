@@ -2,7 +2,7 @@ import {getListCountry, getListLeague} from './contryAndLeague'
 import {getPopularLeague} from './league'
 import {loading, stopLoading} from './animation'
 import displayListMatch from './displayListMatch'
-import {deleteCurrentMonth, createCalendar,getCurrentDate} from './calendar'
+import {deleteCurrentMonth, createCalendar, getCurrentDate} from './calendar'
 import addHistory from './addHistory'
 
 let APIkey = process.env.API_KEY;
@@ -105,9 +105,9 @@ export function listMatchToday() {
     activeInNavBar = document.querySelector('.match-today');
     activeInNavBar.classList.add('active')
     // re-creer le calendrier (eviter queqlue erreur)
-    let {year, month, currentDate} = getCurrentDate()
+    let {currentYear, currentMonth, currentDate} = getCurrentDate()
     deleteCurrentMonth()
-    createCalendar(month, year, currentDate)
+    createCalendar(currentMonth, currentYear, currentDate);
     stopLoading()
 }
 
@@ -134,9 +134,9 @@ export async function listMatchLive() {
     activeInNavBar = document.querySelector('.match-live');
     activeInNavBar.classList.add('active')
     // re-creer le calendrier (eviter queqlue erreur)
-    let {year, month, currentDate} = getCurrentDate()
+    let {currentYear, currentMonth, currentDate} = getCurrentDate()
     deleteCurrentMonth()
-    createCalendar(month, year, currentDate)
+    createCalendar(currentMonth, currentYear, currentDate);
     stopLoading()
 }
 
@@ -165,9 +165,9 @@ export function listMatchFinished() {
     activeInNavBar = document.querySelector('.match-finished');
     activeInNavBar.classList.add('active')
     // re-creer le calendrier (eviter queqlue erreur)
-    let {year, month, currentDate} = getCurrentDate()
+    let {currentYear, currentMonth, currentDate} = getCurrentDate()
     deleteCurrentMonth()
-    createCalendar(month, year, currentDate)
+    createCalendar(currentMonth, currentYear, currentDate);
     stopLoading()
 }
 
