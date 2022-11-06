@@ -126,8 +126,8 @@ export async function listMatchLive() {
     }
     // asorina ireo tsy misy match
     gameLive = gameLive.filter(e => e.game.length > 0)
-    console.log('game live');
-    console.log(gameLive);
+    // console.log('game live');
+    // console.log(gameLive);
     displayListMatch(gameLive)
     activeInNavBar = document.querySelector('.match-container .nav-list li.active')
     activeInNavBar.classList.remove('active')
@@ -157,8 +157,8 @@ export function listMatchFinished() {
         })
     // asorina ireo tsy misy match
     gameFinished = gameFinished.filter(e => e.game.length > 0)
-    console.log('gameFinished');
-    console.log(gameFinished);
+    // console.log('gameFinished');
+    // console.log(gameFinished);
     displayListMatch(gameFinished)
     activeInNavBar = document.querySelector('.match-container .nav-list li.active')
     activeInNavBar.classList.remove('active')

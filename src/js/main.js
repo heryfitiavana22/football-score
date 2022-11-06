@@ -15,8 +15,8 @@ eventListener() // onclick sy ny namany
 checkHistory(false) // false satria pushstate 
 
 window.onpopstate = (e) => {
-    console.log('onpopstate');
-    console.log(e);
+    // console.log('onpopstate');
+    // console.log(e);
     checkHistory(true)
 }
 

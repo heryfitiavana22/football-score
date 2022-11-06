@@ -114,7 +114,6 @@ export default function (listGame) {
 
     /* onclick match today, live, finished */
     document.querySelector('.match-today').addEventListener('click', () => {
-        console.log('ati');
         listMatchToday()
     })
 

@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar.js":
+/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar-exposed.js":
 /*!****************************************************************************************************************************************************!*\
   !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar-exposed.js ***!
   \****************************************************************************************************************************************************/
@@ -17,7 +17,7 @@ module.exports = ___EXPOSE_LOADER_IMPORT___;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getLeagueMatch.js":
+/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getLeagueMatch-exposed.js":
 /*!********************************************************************************************************************************************************!*\
   !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getLeagueMatch-exposed.js ***!
   \********************************************************************************************************************************************************/
@@ -232,8 +232,7 @@ function createCalendar(month,year,date) {
     let currentMonthHTML = document.querySelector('.current-date'),
         tbody = document.querySelector('.day-container tbody');
 
-    // recuperer la date du jour
-    let monthFrench = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+    let monthText = ['January','February','Mars','April','May','June','July','August','September','October','November','December'];
 
     let firstMonth = year + '-' + (month) + '-01',
         dateFirstMonth = new Date(firstMonth),
@@ -353,7 +352,7 @@ function createCalendar(month,year,date) {
     }
     dayContainer += '</tr>';
 
-    currentMonthHTML.innerHTML = monthFrench[month-1] + ' ' + year;
+    currentMonthHTML.innerHTML = monthText[month-1] + ' ' + year;
     if(window.innerWidth <= 768) 
         document.querySelector('#icon-toggle-calendar').style.display = 'block'
     tbody.insertAdjacentHTML('beforeend', dayContainer)
@@ -653,8 +652,7 @@ __webpack_require__.r(__webpack_exports__);
 
     /* onclick match today, live, finished */
     document.querySelector('.match-today').addEventListener('click', () => {
-        console.log('ati');
-        (0,_listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchToday)()
+        ;(0,_listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchToday)()
     })
 
     document.querySelector('.match-live').addEventListener('click', () => {
@@ -725,11 +723,11 @@ function getLeagueMatch (idLeague, item) {
     let d = new Date(),
         month = d.getMonth()+1,
         dateToday = d.getDate();
-    (0,_calendar__WEBPACK_IMPORTED_MODULE_0__.setDate)(false, month, dateToday, idLeague, _listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchToday)
     // to active
     if(currentLeagueHTML) currentLeagueHTML.classList.remove('active')
     item.classList.add('active')
     document.querySelector('.league-container').style.left = '-100%' // rehefa le responsive
+    ;(0,_calendar__WEBPACK_IMPORTED_MODULE_0__.setDate)(false, month, dateToday, idLeague, _listMatch__WEBPACK_IMPORTED_MODULE_1__.listMatchToday)
     currentLeagueHTML = item
     window.scroll(0,0)
 }
@@ -1465,9 +1463,9 @@ async function listMatchLive() {
     }
     // asorina ireo tsy misy match
     gameLive = gameLive.filter(e => e.game.length > 0)
-    console.log('game live');
-    console.log(gameLive);
-    (0,_displayListMatch__WEBPACK_IMPORTED_MODULE_3__["default"])(gameLive)
+    // console.log('game live');
+    // console.log(gameLive);
+    ;(0,_displayListMatch__WEBPACK_IMPORTED_MODULE_3__["default"])(gameLive)
     activeInNavBar = document.querySelector('.match-container .nav-list li.active')
     activeInNavBar.classList.remove('active')
     activeInNavBar = document.querySelector('.match-live');
@@ -1496,9 +1494,9 @@ function listMatchFinished() {
         })
     // asorina ireo tsy misy match
     gameFinished = gameFinished.filter(e => e.game.length > 0)
-    console.log('gameFinished');
-    console.log(gameFinished);
-    (0,_displayListMatch__WEBPACK_IMPORTED_MODULE_3__["default"])(gameFinished)
+    // console.log('gameFinished');
+    // console.log(gameFinished);
+    ;(0,_displayListMatch__WEBPACK_IMPORTED_MODULE_3__["default"])(gameFinished)
     activeInNavBar = document.querySelector('.match-container .nav-list li.active')
     activeInNavBar.classList.remove('active')
     activeInNavBar = document.querySelector('.match-finished');
@@ -1666,9 +1664,9 @@ var __webpack_exports__ = {};
   \************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animation */ "./src/js/animation.js");
-/* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! expose-loader?exposes=calendar!./calendar */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar.js");
+/* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! expose-loader?exposes=calendar!./calendar */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar-exposed.js");
 /* harmony import */ var expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! expose-loader?exposes=league!./getLeagueMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getLeagueMatch.js");
+/* harmony import */ var expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! expose-loader?exposes=league!./getLeagueMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/getLeagueMatch-exposed.js");
 /* harmony import */ var expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _checkHistory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./checkHistory */ "./src/js/checkHistory.js");
 /* harmony import */ var _addHistory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./addHistory */ "./src/js/addHistory.js");
@@ -1695,9 +1693,9 @@ __webpack_require__.r(__webpack_exports__);
 ;(0,_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(false) // false satria pushstate 
 
 window.onpopstate = (e) => {
-    console.log('onpopstate');
-    console.log(e);
-    (0,_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(true)
+    // console.log('onpopstate');
+    // console.log(e);
+    ;(0,_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(true)
 }
 
 /* logo onclick */
