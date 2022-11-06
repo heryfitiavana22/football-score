@@ -38,8 +38,8 @@ export async function listMatch(isPopState=false, date, idLeague, toDisplay) {
             }
             // trier selon l'heure du match
             list.sort((a,b) => new Date(`${a.match_date} ${a.match_time}`) - new Date(`${b.match_date} ${b.match_time}`))
-            console.log('list match');
-            console.log(list);
+            // console.log('list match');
+            // console.log(list);
             // filter by country and league
             // sady alaina ny liste ana leagueId (tsy azo asiana miverina) ary tonga dia alaina ny match 
             for(let e of list) {
@@ -85,8 +85,8 @@ export async function listMatch(isPopState=false, date, idLeague, toDisplay) {
     
             // trier-na selon an'ny numero any
             gamePerLeague.sort((a,b) => a.number - b.number)
-            console.log('gamePerLeague');
-            console.log(gamePerLeague);
+            // console.log('gamePerLeague');
+            // console.log(gamePerLeague);
             // affiche-na ny match androany na ireo live na ireo match vita
             if(toDisplay) { // raha misy no specifie-na
                 currentItem = toDisplay
@@ -126,8 +126,8 @@ export async function listMatchLive() {
     }
     // asorina ireo tsy misy match
     gameLive = gameLive.filter(e => e.game.length > 0)
-    console.log('game live');
-    console.log(gameLive);
+    // console.log('game live');
+    // console.log(gameLive);
     displayListMatch(gameLive)
     activeInNavBar = document.querySelector('.match-container .nav-list li.active')
     activeInNavBar.classList.remove('active')
@@ -157,8 +157,8 @@ export function listMatchFinished() {
         })
     // asorina ireo tsy misy match
     gameFinished = gameFinished.filter(e => e.game.length > 0)
-    console.log('gameFinished');
-    console.log(gameFinished);
+    // console.log('gameFinished');
+    // console.log(gameFinished);
     displayListMatch(gameFinished)
     activeInNavBar = document.querySelector('.match-container .nav-list li.active')
     activeInNavBar.classList.remove('active')

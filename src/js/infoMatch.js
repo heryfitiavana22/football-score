@@ -4,16 +4,17 @@ import addHistory from "./addHistory"
 import {loading, stopLoading} from './animation'
 
 let navMatch = undefined,
-    container = undefined;
+    container = undefined,
+    interval = undefined,
+    currentDisplay = undefined;
 export default async (isPopState=false, idMatch, toDisplay) => {
     loading()
     let game = [],
         standing = [];
     
     game = await getInfoMatch(idMatch)
-    // classement
-    console.log('game');
-    console.log(game);
+    // console.log('game');
+    // console.log(game);
     // display game (home vs away)
     displayGame(game)
     navMatch = document.querySelector('.nav-match');
@@ -34,7 +35,7 @@ export default async (isPopState=false, idMatch, toDisplay) => {
 
     navMatch.addEventListener('click', (e) => {
         loading()
-        console.log(e.target);
+        // console.log(e.target);
         if(e.target.id === 'standing') {
             loading()
             // display
@@ -52,8 +53,23 @@ export default async (isPopState=false, idMatch, toDisplay) => {
             stopLoading()
         }
     })
+    // mettre a jour le resultat chaque 60 seconde 
+    // interval = setInterval(async () => {
+    //     // console.log('maj info');
+    //     game = await getInfoMatch(idMatch)
+    //     // true : tsy mila enregistre-na anaty historique
+    //     if(currentDisplay === "standing") 
+    //         displayStanding(true, standing, game.match_id)
+    //     else if(toDisplay === "stats")
+    //         displayStats(true, game)
+    //     else 
+    //         displayPreGame(true, game)
+    // },60000)
 }
 
+export function clearIntervalUpdate() {
+    clearInterval(interval)
+}
 
 function displayGame(game) {
     let currentElement = document.querySelector('.current-element'),
@@ -65,13 +81,13 @@ function displayGame(game) {
     let gameHTML =
     `<div class="info-match">
         <h3 class="country-league">
-            <img src="${game.country_logo || "assets/img/logo2.png"}" alt="icon-country">
+            <img src="${game.country_logo || "assets/img/logo2.png"}" alt="icon-country" onerror="this.src = 'assets/img/logo2.png'">
             <span class="country">${game.country_name} : </span>
             <span class="league">${game.league_name}</span>
         </h3>
         <div class="match ${(game.match_live == "1") ? 'live' : ''}">
             <div class="home team">
-                <img src="${game.team_home_badge || "assets/img/logo2.png"}" alt="icon-team">
+                <img src="${game.team_home_badge || "assets/img/logo2.png"}" alt="icon-team" onerror="this.src = 'assets/img/logo2.png'">
                 <span class="team-name">${game.match_hometeam_name}</span>
                 <span class="score">${game.match_hometeam_score}</span>
             </div>
@@ -81,7 +97,7 @@ function displayGame(game) {
             </div>
             <div class="away team">
                 <span class="score">${game.match_awayteam_score}</span>
-                <img src="${game.team_away_badge || "assets/img/logo2.png"}" alt="icon-team">
+                <img src="${game.team_away_badge || "assets/img/logo2.png"}" alt="icon-team" onerror="this.src = 'assets/img/logo2.png'">
                 <span class="team-name">${game.match_awayteam_name}</span>
             </div>
         </div>
@@ -146,8 +162,8 @@ function displayMoment(game) {
     }
     // sort by time
     moment.sort((a,b) => eval(a.time) - eval(b.time)) // i-eviter-na 45+1, 90+4 reny amle temps additionnel
-    console.log('moment');
-    console.log(moment);
+    // console.log('moment');
+    // console.log(moment);
 
     let momentContainer = document.querySelector('.moment-container');
     let momentHTML = '';
@@ -187,6 +203,7 @@ function displayMoment(game) {
 }
 
 function displayPreGame(isPopState=false,game) {
+    currentDisplay = "pregame"
     // add history
     if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
         addHistory(`game/pregame/${game.match_id}`);
@@ -208,7 +225,7 @@ function displayPreGame(isPopState=false,game) {
     if(home.lineup.length > 0) {
         preGameHTML += 
         `<div class="lineup">
-            <img src="assets/img/terrain.png" alt="terrain">
+            <img src="assets/img/terrain.png" alt="terrain" onerror="this.src = '../../assets/img/terrain.png'">
             <div class="players-container">
                 <div class="home">
                     <!-- system  -->
@@ -306,6 +323,7 @@ function displayPreGame(isPopState=false,game) {
 }
 
 function displayStanding(isPopState=false ,standing, idMatch) {
+    currentDisplay = "standing"
     // add history
     if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
         addHistory(`game/standing/${idMatch}`);
@@ -313,11 +331,11 @@ function displayStanding(isPopState=false ,standing, idMatch) {
     `<table class="standing-container">
         <tr class="head-table">
             <td class="team">Team</td>
-            <td>P</td>
-            <td>GF</td>
-            <td>GA</td>
-            <td>GD</td>
-            <td>Pts</td>
+            <td>P <span>played<span></td>
+            <td>GF <span>goal for<span></td>
+            <td>GA <span>goal against<span></td>
+            <td>GD <span>goal difference<span></td>
+            <td>Pts <span>points<span></td>
         </tr>`;
         for(let element of standing) {
             standingHTML += 
@@ -342,6 +360,7 @@ function displayStanding(isPopState=false ,standing, idMatch) {
 }
 
 function displayStats(isPopState=false, game) {
+    currentDisplay = "stat"
     // add history
     if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
         addHistory(`game/stats/${game.match_id}`);

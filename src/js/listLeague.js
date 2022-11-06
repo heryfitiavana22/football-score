@@ -19,14 +19,14 @@ export default async () => {
             let list = value
                     .filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name)),
                 leagueId = list.map(e => e.league_id)
-            console.log('listleague');
-            console.log(list);
+            // console.log('listleague');
+            // console.log(list);
             // popular league and exception league
             let popularLeague = getPopularLeague(leagueId),
                 exceptionLeague = getExceptionLeague(leagueId),
                 currentNumber = 1;
-            console.log('popularLeague listleague');
-            console.log(popularLeague);
+            // console.log('popularLeague listleague');
+            // console.log(popularLeague);
             // correct league logo
             for(let element of exceptionLeague) {
                 list[element.index].league_logo = element.photo
@@ -55,7 +55,7 @@ export default async () => {
             for(let e of list) {
                 listItem += 
                 `<li class="list-item" id="${e.league_id}" onclick="league.getLeagueMatch(${e.league_id}, this)">
-                    <img src="${e.league_logo}" alt="icon-league" id="${e.league_id}" onerror="this.src = '../../assets/img/logo2.png'">
+                    <img src="${e.league_logo}" alt="icon-league" id="${e.league_id}" onerror="this.src = 'assets/img/logo2.png'">
                     <span id="${e.league_id}">${e.league_name}
                         <span class="line-list" id="${e.league_id}"></span>
                     </span>

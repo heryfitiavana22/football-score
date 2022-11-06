@@ -11,13 +11,11 @@ export default () => {
         inputSearch = document.querySelector('#search');
 
     /* icon calendar */
-    console.log(closeCalendar);
     iconCalendar.addEventListener('click', () => {
         document.querySelector('.actual').style.top = '0'
     })
 
     closeCalendar.addEventListener('click', () => {
-        console.log('closec');
         document.querySelector('.actual').style.top = '-100%'
     })
 

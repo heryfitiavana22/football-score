@@ -11,8 +11,7 @@ export function createCalendar(month,year,date) {
     let currentMonthHTML = document.querySelector('.current-date'),
         tbody = document.querySelector('.day-container tbody');
 
-    // recuperer la date du jour
-    let monthFrench = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+    let monthText = ['January','February','Mars','April','May','June','July','August','September','October','November','December'];
 
     let firstMonth = year + '-' + (month) + '-01',
         dateFirstMonth = new Date(firstMonth),
@@ -132,7 +131,7 @@ export function createCalendar(month,year,date) {
     }
     dayContainer += '</tr>';
 
-    currentMonthHTML.innerHTML = monthFrench[month-1] + ' ' + year;
+    currentMonthHTML.innerHTML = monthText[month-1] + ' ' + year;
     if(window.innerWidth <= 768) 
         document.querySelector('#icon-toggle-calendar').style.display = 'block'
     tbody.insertAdjacentHTML('beforeend', dayContainer)
@@ -181,8 +180,8 @@ export function setDate(isPopState=false, m, d, idLeague, toDisplay) {
     loading()
 
     if(idLeague !== undefined) currentIdLeague = idLeague // raha misy valeur vao ovaina
-    console.log('currentIdLeague');
-    console.log(currentIdLeague);
+    // console.log('currentIdLeague');
+    // console.log(currentIdLeague);
     month = m;
     currentDate = d
     if(m > 12) {
