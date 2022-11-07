@@ -62,7 +62,7 @@ h1 span {
     transition: all 0.3s ease;
 }
 .icon-nav:hover {color: rgb(178, 178, 178);}
-.icon-toggle, .close {display: none;}
+.icon-toggle, .close {display: none !important;}
 .close {
     position: absolute;
     top: 15px;
@@ -125,13 +125,40 @@ h1 span {
     display: flex;
     justify-content: space-between;
     width: 73%;
+    height: max-content;
+}
+
+.current-item {padding: 10px;}
+
+/* nav-info (ary amin infoMatch sy infoLeague */
+.nav-info {
+    display: flex;
+    margin-top: 25px;
+    background-color: aliceblue;
+    border: 1px solid rgb(230, 230, 230);
+    color: rgb(94, 94, 94);
+}
+.nav-info li {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+.nav-info li:hover {
+    background-color: rgb(223, 239, 252); 
+    border-left: 1px solid aliceblue;
+    border-right: 1px solid aliceblue
+}
+.nav-info .active {
+    background-color: rgb(223, 239, 252);
+    color: black;
 }
 
 @media screen and (max-width : 992px) {
     .nav-content, .container-element > .content {width: 98%;}
     .nav-option {margin-right: 10px;}
     #icon-toggle-league {
-        display: block;
+        display: block !important;
         position: relative;
         right: -3px;
         cursor: pointer;
@@ -157,7 +184,7 @@ h1 span {
     }
     .list-league {margin-top: 40px}
     .list-league .active {background-color: var(--blue1);}
-    #close-league {display: block;}
+    #close-league {display: block !important;}
 }
 
 @media screen and (max-width : 576px) {
@@ -166,4 +193,6 @@ h1 span {
     .nav-bar .logo h1 {font-size: 16px;}
     .nav-bar .logo img {width: 39px;}
     .search-container input {left: -171px; width: 200px;}
+
+    .nav-info {margin-top: 10px; font-size: 12px;}
 }

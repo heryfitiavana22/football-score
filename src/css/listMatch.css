@@ -30,7 +30,8 @@
     justify-content: center;
     align-items: center;
     padding: 10px 0;
-    background-color: rgb(236, 236, 236)
+    background-color: rgb(236, 236, 236);
+    cursor: pointer;
 }
 .matchs h3 img {width: 30px; height: 25px; margin-right: 5px;}
 .matchs h3 .country {
@@ -45,6 +46,9 @@
     font-size: 16px;
     top: -4px;
 }
+.matchs h3 div span {transition: all 0.3s ease;}
+.matchs h3:hover div span {text-decoration: underline;}
+
 .list-match {padding: 0 10px;}
 .list-match li {
     display: flex;
@@ -217,7 +221,7 @@ td .day-item {
 @media screen and (max-width : 768px) {
     #icon-toggle-calendar {
         margin-left: 10px;
-        display: block;
+        display: block !important;
         position: relative;
         right: -3px;
         cursor: pointer;

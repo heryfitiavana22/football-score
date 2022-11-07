@@ -7,6 +7,7 @@
 .info-match h3 {
     padding: 10px 0 10px 0;
     border-bottom: 1px solid rgb(222, 222, 222); 
+    cursor: pointer;
 }
 .info-match h3 img {width: 30px; height: 25px; margin-left: 10px;}
 .info-match h3 .country {font-size: 18px; color: rgb(78, 78, 78);}
@@ -15,6 +16,8 @@
     font-weight: bold;
     color: var(--blue1);
 }
+.info-match h3 span {transition: all 0.3s ease;}
+.info-match h3:hover span {text-decoration: underline;}
 
 .match {
     display: flex;
@@ -134,29 +137,6 @@
     color: aliceblue;
     padding: 0 4px;
     border-radius: 4px;
-}
-
-.nav-match {
-    display: flex;
-    margin-top: 25px;
-    background-color: aliceblue;
-    border: 1px solid rgb(230, 230, 230);
-    color: rgb(94, 94, 94);
-}
-.nav-match li {
-    padding: 10px 20px;
-    cursor: pointer;
-    border: 1px solid transparent;
-    transition: all 0.3s ease;
-}
-.nav-match li:hover {
-    background-color: rgb(223, 239, 252); 
-    border-left: 1px solid aliceblue;
-    border-right: 1px solid aliceblue
-}
-.nav-match .active {
-    background-color: rgb(223, 239, 252);
-    color: black;
 }
 
 /* pre-game */
@@ -289,7 +269,7 @@
     justify-content: center;
     width: 8%;
 }
-.standing-container .team-container:hover {background-color: aliceblue;}
+.standing-container .item-container:hover {background-color: aliceblue;}
 .standing-container img {width: 32px; height: 32px; margin-right: 10px;}
 .standing-container .number {
     margin: 0 7px; 
@@ -402,7 +382,6 @@
     .moment.away .item {padding-right: 0;}
     #icon-substitute {margin: 5px;}
 
-    .nav-match {margin-top: 10px; font-size: 12px;}
     .info-match > div {padding: 5px !important;}
     .lineup {height: 550px;}
     .players-container .icon-player {width: 26px; height: 26px;}

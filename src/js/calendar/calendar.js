@@ -1,11 +1,13 @@
-import {listMatch} from './listMatch'
-import {loading} from './animation'
+import {listMatch} from '../listMatch/listMatch'
+import {loading} from '../others/animation'
 
 /* calendar */
 let date =  new Date(),
     currentDate = date.getDate(),
-    month = date.getMonth() + 1,
-    year = date.getFullYear();
+    monthSelected = date.getMonth() + 1, // mois selectionné (miova rehefa manao setDate)
+    currentMonth = monthSelected, // ilay miovaova rehfe upMonth sy down
+    yearSelected = date.getFullYear(), // annee selectionné (miova rehefa manao setDate)
+    currentYear = yearSelected; // ilay miovaova rehfe upMonth sy down
 
 export function createCalendar(month,year,date) {
     let currentMonthHTML = document.querySelector('.current-date'),
@@ -32,6 +34,7 @@ export function createCalendar(month,year,date) {
     dayContainer += '<tr class="day" >';
     // calculeo amle sary 
     endMonthBefore = endMonthBefore - dayFirstMonth + 2;
+    
     for(let i=1; i<=7; i++) {
         // verifier quelle est le jour du premier mois
         if(dayFirstMonth > i) {
@@ -40,7 +43,7 @@ export function createCalendar(month,year,date) {
             endMonthBefore++;
         } else {
             // premiere jour du mois
-            if(countDay === date) {
+            if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
                 dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             } else {
                 dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
@@ -53,7 +56,7 @@ export function createCalendar(month,year,date) {
     // créer la seconde
     dayContainer += '<tr class="day" >';
     for(let i=1; i<=7; i++) {
-        if(countDay === date) {
+        if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
             dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
         } else {
             dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
@@ -65,7 +68,7 @@ export function createCalendar(month,year,date) {
     // créer la troiseme
     dayContainer += '<tr class="day" >';
     for(let i=1; i<=7; i++) {
-        if(countDay === date) {
+        if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
             dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
         } else {
             dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
@@ -79,7 +82,7 @@ export function createCalendar(month,year,date) {
     for(let i=1; i<=7; i++) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
-            if(countDay === date) {
+            if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
                 dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             } else {
                 dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
@@ -98,7 +101,7 @@ export function createCalendar(month,year,date) {
     for(let i=1; i<=7; i++) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
-            if(countDay === date) {
+            if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
                 dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             } else {
                 dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
@@ -117,7 +120,7 @@ export function createCalendar(month,year,date) {
     for(let i=1; i<=7; i++) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
-            if(countDay === date) {
+            if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
                 dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             } else {
                 dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
@@ -137,60 +140,69 @@ export function createCalendar(month,year,date) {
     tbody.insertAdjacentHTML('beforeend', dayContainer)
 }
 
+/* mampidina mois */
 export function downMonth() {
-    month--;
+    currentMonth--;
     // si annee precedent
-    if(month < 1) {
-        year--;
-        month = 12;
+    if(currentMonth < 1) {
+        currentYear--;
+        currentMonth = 12;
     }
     deleteCurrentMonth();
-    createCalendar(month,year, currentDate);
+    createCalendar(currentMonth, currentYear, currentDate);
 }
 
+/* mampiakatra mois */
 export function upMonth() {
-    month++;
+    currentMonth++;
     // si anne suivant
-    if(month > 12) {
-        year++;
-        month = 1;
+    if(currentMonth > 12) {
+        currentYear++;
+        currentMonth = 1;
     }
     deleteCurrentMonth();
-    createCalendar(month,year, currentDate);
+    createCalendar(currentMonth, currentYear, currentDate);
 }
+
+/* mamafa anle mi-affiche eo */
 export function deleteCurrentMonth() {
     let dayContainer = document.querySelectorAll('.day');
     dayContainer.forEach(e => e.remove())
 }
 
+/* maka ireo annee, mois , date courant */
 export function getCurrentDate() {
     return {
-        year, month, currentDate
+        currentYear, currentMonth, currentDate
     }
 }
 
 let currentIdLeague = undefined; // tazomina le idLeague jerena raha misy
+/* manova date */
 export function setDate(isPopState=false, m, d, idLeague, toDisplay) {
-    // raha sendra amle date efa affiché no click-eny ary tsy miova ny idLeague
-    // if((d === currentDate) && (m === month)) return
     // hideCalendar (valable ito rehefa le ecran <= 768)
     let actualContainer = document.querySelector('.actual')
     if(actualContainer) actualContainer.style.top = '-100%' // raha misy
+    // raha sendra amle date efa affiché no click-eny ary tsy miova ny idLeague
+    // if((currentDate === d) && (m === monthSelected) && (idLeague === currentIdLeague)) 
+    //     return
     
     loading()
 
     if(idLeague !== undefined) currentIdLeague = idLeague // raha misy valeur vao ovaina
     // console.log('currentIdLeague');
     // console.log(currentIdLeague);
-    month = m;
+    currentMonth = m;
     currentDate = d
     if(m > 12) {
-        month = 1
-        year++
+        currentMonth = 1
+        currentYear++
     } else if(m < 1) {
-        month = 12
-        year--
+        currentMonth = 12
+        currentYear--
     }
-    listMatch(isPopState, (`${year}-${month}-${currentDate}`), currentIdLeague, toDisplay)
+    monthSelected = currentMonth;
+    yearSelected = currentYear;
+    listMatch(isPopState, (`${currentYear}-${currentMonth}-${currentDate}`), currentIdLeague, toDisplay)
 }
 /* end calendar */

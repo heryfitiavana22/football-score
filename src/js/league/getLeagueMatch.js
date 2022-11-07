@@ -1,5 +1,5 @@
-import {setDate} from './calendar'
-import {listMatchToday} from './listMatch'
+import {setDate} from '../calendar/calendar'
+import {listMatchToday} from '../listMatch/listMatch'
 
 let currentLeagueHTML = undefined;
 export function getLeagueMatch (idLeague, item) {
