@@ -11,11 +11,11 @@ export default function (listGame) {
     for(let country of listGame) {
         countryGameHTML += 
         `<div class="matchs">
-            <h3>
-                <img src="${country.logoCountry}" alt="icon-country" onerror="this.src = 'assets/img/logo2.png'">
-                <div class="d-inline">
-                    <span class="country">${country.countryName}</span>
-                    <span class="league">${country.leagueName}</span>
+            <h3 id="l${country.id}">
+                <img src="${country.logoCountry}" alt="icon-country" id="l${country.id}" onerror="this.src = 'assets/img/logo2.png'">
+                <div class="d-inline" id="l${country.id}">
+                    <span class="country" id="l${country.id}">${country.countryName}</span>
+                    <span class="league" id="l${country.id}">${country.leagueName}</span>
                 </div>
             </h3>
             <ul class="list-match">`;
@@ -52,7 +52,7 @@ export default function (listGame) {
     }
 
     let listMatchHTML =
-    `<div class="match-container">
+    `<div class="match-container listMatch">
         <nav class="navbar-match">
             <ul class="nav-list">
                 <li class="active col-4 match-today">Today</li>
@@ -104,11 +104,12 @@ export default function (listGame) {
     </div>`;
     currentElement.innerHTML = listMatchHTML;
     // event onclick 
-    listMatchHTML = document.querySelector('.match-container')
+    listMatchHTML = document.querySelector('.listMatch')
     listMatchHTML.addEventListener('click', (e) => {
-        // console.log(e.target.id);
+        console.log(e.target.id);
         let idMatch = e.target.id
-        if(isNaN(idMatch) || idMatch === '') return; // au cas ou tsy nombre
+        if(isNaN(idMatch) || idMatch === '') 
+            return; // au cas ou tsy nombre
         infoMatch(false, idMatch)
     })
 

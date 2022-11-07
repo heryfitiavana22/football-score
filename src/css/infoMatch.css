@@ -136,29 +136,6 @@
     border-radius: 4px;
 }
 
-.nav-match {
-    display: flex;
-    margin-top: 25px;
-    background-color: aliceblue;
-    border: 1px solid rgb(230, 230, 230);
-    color: rgb(94, 94, 94);
-}
-.nav-match li {
-    padding: 10px 20px;
-    cursor: pointer;
-    border: 1px solid transparent;
-    transition: all 0.3s ease;
-}
-.nav-match li:hover {
-    background-color: rgb(223, 239, 252); 
-    border-left: 1px solid aliceblue;
-    border-right: 1px solid aliceblue
-}
-.nav-match .active {
-    background-color: rgb(223, 239, 252);
-    color: black;
-}
-
 /* pre-game */
 .lineup {
     position: relative;
@@ -402,7 +379,6 @@
     .moment.away .item {padding-right: 0;}
     #icon-substitute {margin: 5px;}
 
-    .nav-match {margin-top: 10px; font-size: 12px;}
     .info-match > div {padding: 5px !important;}
     .lineup {height: 550px;}
     .players-container .icon-player {width: 26px; height: 26px;}

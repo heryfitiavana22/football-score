@@ -54,42 +54,17 @@
             </div>
             <!-- current-element  -->
             <div class="current-element">
-                <!-- match-container  -->
-                <div class="match-container">
+                <div class="match-container listMatch">
                     <nav class="navbar-match">
                         <ul class="nav-list">
-                            <li class="active col-4 match-today">Today</li>
-                            <li class="col-4 match-live">Live</li>
-                            <li class="col-4 match-finished">Finished</li>
+                            <li class="active col-4">
+                                Today
+                            </li>
+                            <li class="col-4">Live</li>
+                            <li class="col-4">Finished</li>
                         </ul>
-                    </nav>
-                    <!-- <div class="matchs">
-                        <h3>
-                            <img src="https://apiv3.apifootball.com/badges/3933_stuttart.jpg" alt="icon-team" id="1060580" onerror="this.src = '../../assets/img/logo2.png'">
-                            <div class="d-inline">
-                                <span class="country">Germany</span>
-                                <span class="league">Bundesliga</span>
-                            </div>
-                        </h3>
-                        <ul class="list-match">
-                            <li id="1060580">
-                                <span class="hour-match" id="1060580">22:30</span><div class="match-item" id="1060580">
-                                <div class="home" id="1060580">
-                                    <img src="https://apiv3.apifootball.com/badges/3933_stutgart.jpg" alt="icon-team" id="1060580" onerror="this.src = '../../assets/img/logo2.png'">
-                                    <span id="1060580">Borussia M'gladbach</span>
-                                    <span class="score-home score" id="1060580">3</span> 
-                                </div>
-                                <span class="vs" id="1060580">vs</span>
-                                <div class="away" id="1060580">
-                                    <span class="away-home score" id="1060580">1</span>
-                                    <img src="https://apiv3.apifootball.com/badges/3933_stutgart.jpg" alt="icon-team" id="1060580" onerror="this.src = '../../assets/img/logo2.png'">
-                                    <span id="1060580">Stuttgart</span>
-                                </div>
-                            </div>
-                        </li>   </ul>
-                    </div> -->
+                    </nav>                
                 </div>
-                <!-- actual  -->
                 <div class="actual">
                     <!-- calendar  -->
                     <div class="calendar-month">
@@ -101,7 +76,7 @@
                 
                             </div>
                             <div class="current-date">
-                                current month
+                                current date
                             </div>
                             <div class="jump-month right">
                                 <div class="jump" onclick="calendar.upMonth()">
@@ -111,7 +86,7 @@
                         </div>
                         <div class="day-container">
                             <table style="border-collapse: collapse; display: flex;">
-                                <tbody style="width: 100%;">
+                                <tbody style="width: 100%;" class="addDayMonth">
                                     <tr class="week">
                                         <td>Lun</td>
                                         <td>Mar</td>
@@ -127,7 +102,7 @@
                             </table>
                         </div>
                     </div>
-                    <span id="close-calendar" class="ti ti-close close"></span>
+                    <span id="close-calendar" class="ti ti-close close" onclick="hideCalendar()"></span>
                 </div>
             </div>
         </div>

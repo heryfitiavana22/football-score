@@ -1,0 +1,63 @@
+.info-league {
+    width: 100%;
+    background-color: white;
+    border-radius: 6px;
+}
+.info-league .country-league {padding: 20px 15px;}
+.info-league .country img {
+    width: 30px; 
+    height: 25px;
+    border: 1px solid rgb(242, 239, 239);
+    border-radius: 50px;
+}
+.info-league .country {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--blue1);
+}
+.info-league .league {
+    display: flex;
+    margin-top: 20px;
+}
+.info-league .league img {
+    width: 55px; 
+    height: 55px;
+    margin-right: 15px;
+}
+.info-league .league span {display: block;}
+.info-league .league .name {
+    font-size: 18px;
+    font-weight: bold;
+}
+.info-league .league .season {
+    font-size: 14px;
+    margin-top: 7px;
+}
+
+.info-league .nav-league li {
+    width: 25%;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.info-league .listMatch {font-size: 14px;}
+.info-league h3 {font-size: 16px;}
+
+.top-scorer tr td{width: 15%;}
+.top-scorer tr .player-td {
+    width: 25%; 
+    justify-content: start;
+}
+.top-scorer .head-table .team-player {color: aliceblue;}
+.top-scorer tr .team-player{
+    width: 30%; 
+    justify-content: start;
+    padding-left: 10px;
+    color: rgb(111, 111, 111);
+}
+.top-scorer .name {height: 26px; overflow: hidden;}
+.top-scorer .hov{display: none;}
+
+@media screen and (max-width : 576px) {
+    .top-scorer .name {height: 19px;}
+}

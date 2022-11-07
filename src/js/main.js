@@ -8,9 +8,11 @@ import '../css/color.css'
 import '../css/style.css'
 import '../css/listMatch.css'
 import '../css/infoMatch.css'
+import '../css/infoLeague.css'
 import '../css/animation.css'
 
 loading()
+stopLoading()
 eventListener() // onclick sy ny namany
 checkHistory(false) // false satria pushstate 
 
