@@ -45,12 +45,12 @@
 
 .top-scorer tr td{width: 15%;}
 .top-scorer tr .player-td {
-    width: 25%; 
+    width: 30%; 
     justify-content: start;
 }
 .top-scorer .head-table .team-player {color: aliceblue;}
 .top-scorer tr .team-player{
-    width: 30%; 
+    width: 25%; 
     justify-content: start;
     padding-left: 10px;
     color: rgb(111, 111, 111);

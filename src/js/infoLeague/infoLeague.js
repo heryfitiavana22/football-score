@@ -57,8 +57,8 @@ export default async (isPopState, idLeague) => {
             // maka vaovao
             calendar = await getMatch(new Date(), plus15(), idLeague);
             calendar = filterByDate(calendar);
-            console.log('calendar');
-            console.log(calendar);
+            // console.log('calendar');
+            // console.log(calendar);
             // sao novainy tampoka nefa taraiky vao azo
             if (currentDisplay === "calendar")
                 currentDisplay = displayMatch(calendar, "calendar");
@@ -68,8 +68,8 @@ export default async (isPopState, idLeague) => {
             // maka vaovao
             result = await getMatch(minus15(), new Date(), idLeague);
             result = filterByDate(result);
-            console.log("result");
-            console.log(result);
+            // console.log("result");
+            // console.log(result);
             // sao novainy tampoka nefa taraiky vao azo
             if (currentDisplay === "result")
                 currentDisplay = displayMatch(result, "result");

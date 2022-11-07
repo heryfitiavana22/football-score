@@ -135,8 +135,7 @@ export function createCalendar(month,year,date) {
     dayContainer += '</tr>';
 
     currentMonthHTML.innerHTML = monthText[month-1] + ' ' + year;
-    if(window.innerWidth <= 768) 
-        document.querySelector('#icon-toggle-calendar').style.display = 'block'
+    document.querySelector('#icon-toggle-calendar').style.visibility = 'visible'
     tbody.insertAdjacentHTML('beforeend', dayContainer)
 }
 

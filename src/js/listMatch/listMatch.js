@@ -17,7 +17,7 @@ export async function listMatch(isPopState=false, date, idLeague, toDisplay) {
     if(!isPopState)
         addHistory(`listgame/${date}${idLeague ? ('&'+idLeague) : ''}`)
     // getMatch
-    let list = await getMatch(date),
+    let list = await getMatch(date, date, idLeague),
         leagueId = [],
         countryId = [];
     // au cas ou idLeague est donne

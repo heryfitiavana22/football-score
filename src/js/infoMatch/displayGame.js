@@ -41,7 +41,8 @@ export default (game) => {
         </div>
     </div>`
     currentElement.innerHTML = gameHTML
-    document.querySelector('#icon-toggle-calendar').style.display = 'none' 
+    let iconCalendar = document.querySelector('#icon-toggle-calendar')
+    if(iconCalendar) iconCalendar.style.visibility = 'hidden' 
     
     let league = document.querySelector('.info-match h3');
     league.addEventListener('click', () => {

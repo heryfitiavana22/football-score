@@ -26,4 +26,6 @@ export default (league) => {
         </div>
     </div>`;
     currentElement.innerHTML = infoLeague;
+    let iconCalendar = document.querySelector('#icon-toggle-calendar')
+    if(iconCalendar) iconCalendar.style.visibility = 'hidden' 
 }

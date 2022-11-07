@@ -24,6 +24,6 @@ export default async (from, to = from, idLeague=0) => {
                     list = list.filter(e => e.league_id == idLeague)
                 resolve(list)
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err.type))
     });
 };
