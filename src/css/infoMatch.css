@@ -258,7 +258,7 @@
 .standing-container tr td.team {
     display: flex;
     justify-content: start; 
-    width: 75%;
+    width: 65%;
     text-align: start;
     overflow: hidden;
 }
@@ -267,7 +267,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 8%;
+    width: 10%;
 }
 .standing-container .item-container:hover {background-color: aliceblue;}
 .standing-container img {width: 32px; height: 32px; margin-right: 10px;}

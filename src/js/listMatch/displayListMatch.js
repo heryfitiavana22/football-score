@@ -133,7 +133,6 @@ export default function (listGame) {
 
     /* onclick close calendar */
     document.querySelector('#close-calendar').addEventListener('click', () => {
-        console.log('closec');
         document.querySelector('.actual').style.top = '-100%'
     })
 }
