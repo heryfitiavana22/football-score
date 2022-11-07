@@ -1,4 +1,5 @@
-export default () => {
+export default (scorer) => {
+    let scorerHTML =
     `<table class="standing-container top-scorer">
         <tr class="head-table">
             <td class="player-td">Player</td>
@@ -6,18 +7,26 @@ export default () => {
             <td>Goals</td>
             <td>Assists</td>
             <td>Penalty </td>
-        </tr>
-        <tr>
+        </tr>`;
+    for(let player of scorer) {
+        scorerHTML += 
+        `<tr class="item-container">
             <td class="player-td">
-                <span class="number">1</span>
-                <span class="name">Hery dj herydj herydj herydj</span>
+                <span class="number">${player.player_place}</span>
+                <span class="name">${player.player_name}</span>
             </td>
             <td class="team-player">
-                <span class="name">Real Madrid </span>
+                <span class="name">${player.team_name}</span>
             </td>
-            <td>20</td>
-            <td>10</td>
-            <td>2</td>
-        </tr>
-    </table>`
+            <td>${player.goals}</td>
+            <td>${player.assists ? player.assists : 0}</td>
+            <td>${player.penalty_goals ? player.penalty_goals : 0}</td>
+        </tr>`    
+    }
+    scorerHTML +=
+    `</table>`
+    document.querySelector('.current-item').innerHTML = scorerHTML
+    document.querySelector('.info-league .active').classList.remove('active')
+    document.querySelector('.info-league #scorer').classList.add('active')
+    return "scorer"
 }

@@ -125,7 +125,10 @@ h1 span {
     display: flex;
     justify-content: space-between;
     width: 73%;
+    height: max-content;
 }
+
+.current-item {padding: 10px;}
 
 /* nav-info (ary amin infoMatch sy infoLeague */
 .nav-info {

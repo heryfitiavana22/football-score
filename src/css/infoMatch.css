@@ -7,6 +7,7 @@
 .info-match h3 {
     padding: 10px 0 10px 0;
     border-bottom: 1px solid rgb(222, 222, 222); 
+    cursor: pointer;
 }
 .info-match h3 img {width: 30px; height: 25px; margin-left: 10px;}
 .info-match h3 .country {font-size: 18px; color: rgb(78, 78, 78);}
@@ -15,6 +16,8 @@
     font-weight: bold;
     color: var(--blue1);
 }
+.info-match h3 span {transition: all 0.3s ease;}
+.info-match h3:hover span {text-decoration: underline;}
 
 .match {
     display: flex;
@@ -266,7 +269,7 @@
     justify-content: center;
     width: 8%;
 }
-.standing-container .team-container:hover {background-color: aliceblue;}
+.standing-container .item-container:hover {background-color: aliceblue;}
 .standing-container img {width: 32px; height: 32px; margin-right: 10px;}
 .standing-container .number {
     margin: 0 7px; 

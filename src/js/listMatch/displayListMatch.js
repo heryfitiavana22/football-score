@@ -1,4 +1,5 @@
 import infoMatch from '../infoMatch/infoMatch'
+import infoLeague from '../infoLeague/infoLeague'
 import {listMatchToday, listMatchLive, listMatchFinished} from './listMatch'
 
 export default function (listGame) {
@@ -107,10 +108,14 @@ export default function (listGame) {
     listMatchHTML = document.querySelector('.listMatch')
     listMatchHTML.addEventListener('click', (e) => {
         console.log(e.target.id);
-        let idMatch = e.target.id
-        if(isNaN(idMatch) || idMatch === '') 
+        let id = e.target.id
+        // raha id ana league
+        if(id.includes('l')) { // nasiako "l" ny id ana league
+            return infoLeague(false, id)
+        }
+        if(isNaN(id) || id === '') 
             return; // au cas ou tsy nombre
-        infoMatch(false, idMatch)
+        infoMatch(false, id)
     })
 
     /* onclick match today, live, finished */

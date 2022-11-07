@@ -1,4 +1,4 @@
-export default (standing, container) => {
+export default (standing) => {
     let standingHTML =
     `<table class="standing-container">
         <tr class="head-table">
@@ -11,7 +11,7 @@ export default (standing, container) => {
         </tr>`;
         for(let element of standing) {
             standingHTML += 
-            `<tr class="team-container">
+            `<tr class="item-container">
                 <td class="team">
                     <span class="number">${element.overall_league_position}</span> 
                     <img src="${element.team_badge || 'assets/img/logo2.png'}" alt="icon-team" onerror="this.src = '../../assets/img/logo2.png'">
@@ -25,9 +25,9 @@ export default (standing, container) => {
             </tr>`
         }
     standingHTML += `</table>`
-    container.innerHTML = standingHTML
+    document.querySelector('.current-item').innerHTML = standingHTML
     // active
     document.querySelector('.nav-info li.active').classList.remove('active');
-    document.querySelectorAll('.nav-info li')[2].classList.add('active');
+    document.querySelector('#standing').classList.add('active');
     return "standing"
 }

@@ -5,8 +5,8 @@ export default async (idLeague) => {
         fetch(url, {method : 'get'})
         .then(response => response.json())
         .then((value) => {
-            console.log('get_topscorers');
-            console.log(value);
+            // console.log('get_topscorers');
+            // console.log(value);
             resolve(value.error ? [] : value)
         })
     })

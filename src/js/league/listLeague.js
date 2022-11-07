@@ -8,6 +8,7 @@ let listContainer = document.querySelector('.list-league'),
 listCountry = listCountry.split(',');
 listLeague = listLeague.split(',')
 
+let list = [];
 export default async () => {
     fetch(url, {
         method : 'get'
@@ -15,9 +16,9 @@ export default async () => {
         .then(response => response.json())
         .then((value) => {
             // izay ao anaty liste iany no raisina
-            let list = value
-                    .filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name)),
-                leagueId = list.map(e => e.league_id)
+            list = value
+                    .filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name));
+            let leagueId = list.map(e => e.league_id)
             // console.log('listleague');
             // console.log(list);
             // popular league and exception league
@@ -63,4 +64,8 @@ export default async () => {
             listContainer.innerHTML = listItem
         })
         .catch(err => console.log(err))
+}
+
+export function getLeagues() {
+    return list;
 }

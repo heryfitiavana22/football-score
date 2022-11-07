@@ -1,3 +1,4 @@
+import infoLeague from '../infoLeague/infoLeague'
 export default (game) => {
     let currentElement = document.querySelector('.current-element'),
             hour = '';
@@ -7,7 +8,7 @@ export default (game) => {
             hour = (game.match_status === 'Postponed') ? 'postponed' : game.match_time
     let gameHTML =
     `<div class="info-match">
-        <h3 class="country-league">
+        <h3 class="country-league" id="l${game.league_id}">
             <img src="${game.country_logo || "assets/img/logo2.png"}" alt="icon-country" onerror="this.src = 'assets/img/logo2.png'">
             <span class="country">${game.country_name} : </span>
             <span class="league">${game.league_name}</span>
@@ -32,13 +33,18 @@ export default (game) => {
         <div class="moment-container"></div>
         <ul class="nav-match nav-info">
             <li class="active" id="pregame">Pre-game</li>
-            <li id="stats" class="">Stats</li> 
             <li id="standing" class="">Standing</li>
+            <li id="stats" class="">Stats</li> 
         </ul>
-        <div style="padding: 10px;">
+        <div class="current-item">
             
         </div>
     </div>`
     currentElement.innerHTML = gameHTML
-    document.querySelector('#icon-toggle-calendar').style.display = 'none'   
+    document.querySelector('#icon-toggle-calendar').style.display = 'none' 
+    
+    let league = document.querySelector('.info-match h3');
+    league.addEventListener('click', () => {
+        infoLeague(false, league.id)
+    })
 }

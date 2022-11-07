@@ -1,5 +1,5 @@
 import addHistory from "../history/addHistory"
-export default (isPopState=false, game, container) => {
+export default (isPopState=false, game) => {
     // add history
     if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
         addHistory(`game/pregame/${game.match_id}`);
@@ -112,9 +112,9 @@ export default (isPopState=false, game, container) => {
         </div>
     </div>
     <!-- end pre-game  -->`
-    container.innerHTML = preGameHTML
+    document.querySelector('.current-item').innerHTML = preGameHTML
     // active
     document.querySelector('.info-match .nav-match li.active').classList.remove('active');
-    document.querySelectorAll('.info-match .nav-match li')[0].classList.add('active');
+    document.querySelector('#pregame').classList.add('active');
     return "pregame"
 }

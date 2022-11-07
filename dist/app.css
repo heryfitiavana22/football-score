@@ -138,7 +138,10 @@ h1 span {
     display: flex;
     justify-content: space-between;
     width: 73%;
+    height: max-content;
 }
+
+.current-item {padding: 10px;}
 
 /* nav-info (ary amin infoMatch sy infoLeague */
 .nav-info {
@@ -241,7 +244,8 @@ h1 span {
     justify-content: center;
     align-items: center;
     padding: 10px 0;
-    background-color: rgb(236, 236, 236)
+    background-color: rgb(236, 236, 236);
+    cursor: pointer;
 }
 .matchs h3 img {width: 30px; height: 25px; margin-right: 5px;}
 .matchs h3 .country {
@@ -256,6 +260,9 @@ h1 span {
     font-size: 16px;
     top: -4px;
 }
+.matchs h3 div span {transition: all 0.3s ease;}
+.matchs h3:hover div span {text-decoration: underline;}
+
 .list-match {padding: 0 10px;}
 .list-match li {
     display: flex;
@@ -487,6 +494,7 @@ td .day-item {
 .info-match h3 {
     padding: 10px 0 10px 0;
     border-bottom: 1px solid rgb(222, 222, 222); 
+    cursor: pointer;
 }
 .info-match h3 img {width: 30px; height: 25px; margin-left: 10px;}
 .info-match h3 .country {font-size: 18px; color: rgb(78, 78, 78);}
@@ -495,6 +503,8 @@ td .day-item {
     font-weight: bold;
     color: var(--blue1);
 }
+.info-match h3 span {transition: all 0.3s ease;}
+.info-match h3:hover span {text-decoration: underline;}
 
 .match {
     display: flex;
@@ -746,7 +756,7 @@ td .day-item {
     justify-content: center;
     width: 8%;
 }
-.standing-container .team-container:hover {background-color: aliceblue;}
+.standing-container .item-container:hover {background-color: aliceblue;}
 .standing-container img {width: 32px; height: 32px; margin-right: 10px;}
 .standing-container .number {
     margin: 0 7px; 
@@ -962,9 +972,11 @@ td .day-item {
 }
 .top-scorer .name {height: 26px; overflow: hidden;}
 .top-scorer .hov{display: none;}
+.top-scorer .number {margin-bottom: 5px;}
 
 @media screen and (max-width : 576px) {
     .top-scorer .name {height: 19px;}
+    .top-scorer .number {margin-bottom: 3px;}
 }
 /*!****************************************************************************************************************************!*\
   !*** css ./node_modules/.pnpm/css-loader@6.7.1_webpack@5.74.0/node_modules/css-loader/dist/cjs.js!./src/css/animation.css ***!

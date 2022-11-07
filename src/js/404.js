@@ -1,3 +1,5 @@
-export default () => {
-    document.querySelector('.current-element').innerHTML = 'page not found'
+import {stopLoading} from './others/animation'
+export default (message = 'page not found') => {
+    document.querySelector('.current-element').innerHTML = message
+    stopLoading()
 }
