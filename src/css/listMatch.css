@@ -30,7 +30,7 @@
     justify-content: center;
     align-items: center;
     padding: 10px 0;
-    background-color: rgb(236, 236, 236);
+    background-color: var(--gray1);
     cursor: pointer;
 }
 .matchs h3 img {width: 30px; height: 25px; margin-right: 5px;}
@@ -223,7 +223,6 @@ td .day-item {
         margin-left: 10px;
         display: block !important;
         position: relative;
-        right: -3px;
         cursor: pointer;
     }
     .match-container {width: 100%;}

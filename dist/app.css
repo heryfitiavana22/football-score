@@ -7,6 +7,7 @@
     --blue1 : #6297d6;
     --blue2 : #5fa0ff;
     --background : rgb(227, 227, 227);
+    --gray1 : rgb(236, 236, 236);
 }
 /*!************************************************************************************************************************!*\
   !*** css ./node_modules/.pnpm/css-loader@6.7.1_webpack@5.74.0/node_modules/css-loader/dist/cjs.js!./src/css/style.css ***!
@@ -143,6 +144,108 @@ h1 span {
 
 .current-item {padding: 10px;}
 
+/* infoLeague, infoTeam */
+.info {
+    width: 100%;
+    background-color: white;
+    border-radius: 6px;
+}
+.info .nav-info li {
+    padding: 10px 0;
+    text-align: center;
+}
+.info .country-league {padding: 20px 15px;}
+.info .country img {
+    width: 30px; 
+    height: 25px;
+    border: 1px solid rgb(242, 239, 239);
+    border-radius: 50px;
+}
+.info .country {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--blue1);
+}
+.info .league {
+    display: flex;
+    margin-top: 20px;
+}
+.info .league img {
+    width: 55px; 
+    height: 55px;
+    margin-right: 15px;
+}
+.info .league span {display: block;}
+.info .league .name {
+    font-size: 18px;
+    font-weight: bold;
+}
+.info .league .season {
+    font-size: 14px;
+    margin-top: 7px;
+}
+.info .listMatch {font-size: 14px;}
+.info h3 {font-size: 16px;}
+
+/* standing */
+.standing-container {width: 100%;}
+.head-table {
+    background-color: var(--blue2) !important;
+    color: white;
+    border-bottom: none;
+    height: 38px;
+}
+.standing-container tr {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    padding: 6px 0 6px 10px;
+    /* border-bottom: 1px solid rgb(224, 224, 224); */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.standing-container .current-team {background-color: rgb(223 234 245) !important;}
+.standing-container tr:nth-child(odd) {
+    background-color: rgb(244, 244, 244);
+}
+.standing-container tr td.team {
+    display: flex;
+    justify-content: start; 
+    width: 65%;
+    text-align: start;
+    overflow: hidden;
+}
+.standing-container tr td {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+}
+.standing-container .item-container:hover {background-color: aliceblue}
+.standing-container img {width: 32px; height: 32px; margin-right: 10px;}
+.standing-container .number {
+    margin: 0 7px; 
+    font-size: 18px; 
+    display: inline-block;
+    width: 21px !important;
+}
+.head-table td span {
+    position: absolute;
+    display: none;
+    width: max-content;
+    top: 29px;
+    left: -10px;
+    padding: 0 4px;
+    font-size: 12px;
+    color: aliceblue;
+    background: #6d6d69;
+    border-radius: 6px;
+    z-index: 1;
+}
+.head-table td:hover span {display: block;}
+/* end standing */
+
 /* nav-info (ary amin infoMatch sy infoLeague */
 .nav-info {
     display: flex;
@@ -152,7 +255,9 @@ h1 span {
     color: rgb(94, 94, 94);
 }
 .nav-info li {
-    padding: 10px 20px;
+    padding: 10px 0;
+    width: 100% !important;
+    text-align: center;
     cursor: pointer;
     border: 1px solid transparent;
     transition: all 0.3s ease;
@@ -244,7 +349,7 @@ h1 span {
     justify-content: center;
     align-items: center;
     padding: 10px 0;
-    background-color: rgb(236, 236, 236);
+    background-color: var(--gray1);
     cursor: pointer;
 }
 .matchs h3 img {width: 30px; height: 25px; margin-right: 5px;}
@@ -437,7 +542,6 @@ td .day-item {
         margin-left: 10px;
         display: block !important;
         position: relative;
-        right: -3px;
         cursor: pointer;
     }
     .match-container {width: 100%;}
@@ -516,9 +620,17 @@ td .day-item {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    cursor: pointer;
 }
-.match .team img {width: 70px; height: 70px;}
-.match .team .team-name {width: 100%; text-align: center; margin-top: 10px;}
+.match .team img {width: 70px; height: 70px; transition: all 0.3s ease;}
+.match .team .team-name {
+    width: 100%; 
+    text-align: center; 
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+.match .team:hover img {transform: translate(1px);}
+.match .team:hover .team-name {text-decoration: underline;}
 
 .match .info {
     width: 30%;
@@ -722,64 +834,6 @@ td .day-item {
 }
 /* end pre-game */
 
-/* standing */
-.standing-container {width: 100%;}
-.head-table {
-    background-color: var(--blue2) !important;
-    color: white;
-    border-bottom: none;
-    height: 38px;
-}
-.standing-container tr {
-    display: flex;
-    width: 100%;
-    height: 50px;
-    padding: 6px 0 6px 10px;
-    /* border-bottom: 1px solid rgb(224, 224, 224); */
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-.standing-container tr:nth-child(odd) {
-    background-color: rgb(244, 244, 244);
-}
-.standing-container tr td.team {
-    display: flex;
-    justify-content: start; 
-    width: 65%;
-    text-align: start;
-    overflow: hidden;
-}
-.standing-container tr td {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 10%;
-}
-.standing-container .item-container:hover {background-color: aliceblue;}
-.standing-container img {width: 32px; height: 32px; margin-right: 10px;}
-.standing-container .number {
-    margin: 0 7px; 
-    font-size: 18px; 
-    display: inline-block;
-    width: 21px !important;
-}
-.head-table td span {
-    position: absolute;
-    display: none;
-    width: max-content;
-    top: 29px;
-    left: -10px;
-    padding: 0 4px;
-    font-size: 12px;
-    color: aliceblue;
-    background: #6d6d69;
-    border-radius: 6px;
-    z-index: 1;
-}
-.head-table td:hover span {display: block;}
-/* end standing */
-
 /* statistics */
 .statistics {
     padding: 10px;
@@ -913,51 +967,6 @@ td .day-item {
 /*!*****************************************************************************************************************************!*\
   !*** css ./node_modules/.pnpm/css-loader@6.7.1_webpack@5.74.0/node_modules/css-loader/dist/cjs.js!./src/css/infoLeague.css ***!
   \*****************************************************************************************************************************/
-.info-league {
-    width: 100%;
-    background-color: white;
-    border-radius: 6px;
-}
-.info-league .country-league {padding: 20px 15px;}
-.info-league .country img {
-    width: 30px; 
-    height: 25px;
-    border: 1px solid rgb(242, 239, 239);
-    border-radius: 50px;
-}
-.info-league .country {
-    font-size: 16px;
-    font-weight: bold;
-    color: var(--blue1);
-}
-.info-league .league {
-    display: flex;
-    margin-top: 20px;
-}
-.info-league .league img {
-    width: 55px; 
-    height: 55px;
-    margin-right: 15px;
-}
-.info-league .league span {display: block;}
-.info-league .league .name {
-    font-size: 18px;
-    font-weight: bold;
-}
-.info-league .league .season {
-    font-size: 14px;
-    margin-top: 7px;
-}
-
-.info-league .nav-league li {
-    width: 25%;
-    padding: 10px 0;
-    text-align: center;
-}
-
-.info-league .listMatch {font-size: 14px;}
-.info-league h3 {font-size: 16px;}
-
 .top-scorer tr td{width: 15%;}
 .top-scorer tr .player-td {
     width: 30%; 
@@ -977,6 +986,155 @@ td .day-item {
 @media screen and (max-width : 576px) {
     .top-scorer .name {height: 19px;}
     .top-scorer .number {margin-bottom: 3px;}
+}
+/*!***************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/css-loader@6.7.1_webpack@5.74.0/node_modules/css-loader/dist/cjs.js!./src/css/infoTeam.css ***!
+  \***************************************************************************************************************************/
+.info .league .name {margin-top: 13px;}
+.info-team .nav-team li {width: 20%;}
+
+/* players */
+.info-team .type {
+    display: grid;
+    grid-template-columns: 24% 24% 24% 24%;
+    grid-gap: 0 1%;
+    margin-bottom: 20px;
+}
+.info-team .caption {
+    grid-column: 1 / 5;
+}
+.info-team .caption.Goalkeepers {color: var(--blue1);}
+.info-team .caption.Defenders {color: red;}
+.info-team .caption.Midfielders {color: green;}
+.info-team .caption.Forwards {color: darkblue;}
+
+.info-team .player {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--gray1);
+    padding-top: 10px;
+    border-radius: 6px;
+    margin-bottom: 4%;
+}
+.info-team .img-player {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.info .img-player img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.info-team .player .name {
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 10px;
+    height: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+.info-team .player .number {
+    position: absolute;
+    top: 85px;
+    left: 56%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: var(--darkblue);
+    color: aliceblue;
+    border-radius: 50%;
+    font-size: 14px;
+}
+.info-team .player footer {
+    width: 100%;
+    background-color: rgb(219, 219, 219);
+    color: rgb(85, 85, 85);
+    margin-top: 15px;
+    padding: 3px 10px;
+    font-size: 14px;
+}
+.info-team .type .rate {
+    float: right;
+}
+.info-team .type .rate .ti-star {color: rgb(229, 173, 31);}
+
+/* stats-player */
+.stats-player .head-table img {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+.player-table {
+    display: flex !important;
+    justify-content: start !important;
+    width: 30% !important;
+}
+.player-table span{
+    height: 25px;
+    overflow: hidden;
+}
+.stats-player tr td {width: 10%;}
+.stats-player.head-table td span {left: 19px;}
+
+.nav-stats {
+    display: flex;
+    flex-wrap: wrap;
+    color: var(--blue1);
+}
+.nav-stats li {
+    padding: 3px 10px;
+    margin-bottom: 5px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.nav-stats li:hover {
+    border: 1px solid var(--blue1);
+    padding: 3px 15px;
+}
+.nav-stats li.active {
+    color: white;
+    background-color: var(--blue1);
+}
+
+@media screen and (max-width : 768px) {
+    .info-team .caption {grid-column: 1 / 4;}
+    .info-team .type {
+        grid-template-columns: 32.5% 32.5% 32.5%;
+    } 
+    .info-team .player {margin-bottom: 3%;}  
+}
+
+@media screen and (max-width : 576px) {
+    .info-team .caption {grid-column: 1 / 3;}
+    .info-team .type {
+        grid-template-columns: 49.5% 49.5%;
+        font-size: 12px;
+    } 
+    .info-team .player {margin-bottom: 2%;} 
+    .info .img-player img {width: 60px; height: 60px;}
+    .info-team .player .number {
+        height: 20px;
+        width: 20px;
+        font-size: 12px;
+        top: 57px;
+    }
+    .info-team .player .name {font-size: 12px; height: 35px;}
+    .info-team .player footer {
+        margin-top: 10px;
+        font-size: 12px;
+    }
+
+    .stats-player .head-table img {
+        width: 12px;
+        height: 12px;
+    }
+    .nav-stats {font-size: 12px;}
 }
 /*!****************************************************************************************************************************!*\
   !*** css ./node_modules/.pnpm/css-loader@6.7.1_webpack@5.74.0/node_modules/css-loader/dist/cjs.js!./src/css/animation.css ***!

@@ -26,8 +26,8 @@ export default (game, idHTML) => {
                 listGameHTML += 
                     `<div class="match-item" id="${match.match_id}">
                         <div class="home" id="${match.match_id}">
-                            <img src="${match.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${match.match_id}" onerror="this.src = 'assets/img/logo2.png'">
                             <span id="${match.match_id}">${match.match_hometeam_name}</span>
+                            <img src="${match.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${match.match_id}" onerror="this.src = 'assets/img/logo2.png'">
                             <span class="score-home score" id="${match.match_id}">${(match.match_hometeam_score.length > 0) ? match.match_hometeam_score : '  '}</span> 
                         </div>
                         <span class="vs" id="${match.match_id}">vs</span>
@@ -45,8 +45,8 @@ export default (game, idHTML) => {
     listGameHTML +=
     `</div>`;
     document.querySelector('.current-item').innerHTML = listGameHTML
-    document.querySelector('.info-league .active').classList.remove('active')
-    document.querySelector('.info-league #'+idHTML).classList.add('active')
+    document.querySelector('.nav-info .active').classList.remove('active')
+    document.querySelector('#'+idHTML).classList.add('active')
     /* onclick match */
     document.querySelector('.listMatch').addEventListener('click', (e) => {
         let id = e.target.id

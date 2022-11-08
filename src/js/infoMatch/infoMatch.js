@@ -5,13 +5,15 @@ import {loading, stopLoading} from '../others/animation'
 import displayGame from './displayGame'
 import displayMoment from './displayMoment'
 import displayPreGame from './displayPregame'
-import displayStanding from './displayStanding'
+import displayStanding from '../func/displayStanding'
 import displayStats from './displayStats'
+import {clearIntervalInfoLeague} from '../infoLeague/infoLeague'
 
 let interval = undefined,
     currentDisplay = undefined;
 export default async (isPopState=false, idMatch, toDisplay) => {
     loading()
+    clearIntervalInfoLeague()
     let game = [],
         standing = [];
     
@@ -27,7 +29,7 @@ export default async (isPopState=false, idMatch, toDisplay) => {
         // add history (ajouteko mitokana ito)
         if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
             addHistory(`game/standing/${game.match_id}`);
-        currentDisplay = displayStanding(standing)
+        currentDisplay = displayStanding(standing, game.match_hometeam_id, game.match_awayteam_id)
     } else if(toDisplay === "stats") {
         getStanding(game.league_id).then((value) => standing = value)
         currentDisplay = displayStats(isPopState, game)
@@ -47,7 +49,7 @@ export default async (isPopState=false, idMatch, toDisplay) => {
             if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
                 addHistory(`game/standing/${game.match_id}`);
             // display
-            currentDisplay = displayStanding(standing)
+            currentDisplay = displayStanding(standing, game.match_hometeam_id, game.match_awayteam_id)
             stopLoading()
         }else if(e.target.id === 'stats') {
             loading()
@@ -67,7 +69,7 @@ export default async (isPopState=false, idMatch, toDisplay) => {
     //     game = await getInfoMatch(idMatch)
     //     // true : tsy mila enregistre-na anaty historique
     //     if(currentDisplay === "standing") 
-    //         currentDisplay = displayStanding(true, standing, game.match_id)
+    //         currentDisplay = displayStanding(standing, game.match_hometeam_id, game.match_awayteam_id)
     //     else if(toDisplay === "stats")
     //         currentDisplay = displayStats(true, game)
     //     else 

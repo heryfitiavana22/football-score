@@ -1,5 +1,6 @@
 import infoMatch from "../infoMatch/infoMatch";
 import infoLeague from "../infoLeague/infoLeague";
+import infoTeam from "../infoTeam/infoTeam";
 import { clearIntervalUpdate } from "../infoMatch/infoMatch";
 import { clearIntervalInfoLeague } from "../infoLeague/infoLeague";
 import { setDate } from "../calendar/calendar";
@@ -64,5 +65,15 @@ export default (isPopState) => {
             if(isNaN(id)) return pageNotFound(); // 404
             infoLeague(true, hash)
         } else return pageNotFound(); // 404
+    } else if(item === "team") {
+        hash = hash.split('&') // sarahana le idTeam sy idLeague
+        if (hash.length !== 2)
+            return pageNotFound("team not found"); // 404
+        // sao de tsy nombre le id
+        hash.forEach(element => {
+            if(isNaN(element))
+                return pageNotFound("team not found"); // 404
+        });
+        infoTeam(isPopState, ...hash)
     } else return pageNotFound(); // 404
 };

@@ -1,4 +1,5 @@
-export default (standing) => {
+export default (standing, ...idTeams) => {
+    console.log(idTeams);
     let standingHTML =
     `<table class="standing-container">
         <tr class="head-table">
@@ -11,7 +12,7 @@ export default (standing) => {
         </tr>`;
         for(let element of standing) {
             standingHTML += 
-            `<tr class="item-container">
+            `<tr class="item-container ${idTeams.includes(element.team_id) ? 'current-team' : ''}">
                 <td class="team">
                     <span class="number">${element.overall_league_position}</span> 
                     <img src="${element.team_badge || 'assets/img/logo2.png'}" alt="icon-team" onerror="this.src = '../../assets/img/logo2.png'">
