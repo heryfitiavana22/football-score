@@ -4,6 +4,7 @@ import {toYYYYMMDD} from './date'
 let APIkey = process.env.API_KEY;
 let listLeague = getListLeague(),
     listCountry = getListCountry();
+
 // raha tsy mahazo valeur le "to" de atao mitovy amin "from"
 export default async (from, to = from, idLeague=0) => {
     return await new Promise((resolve, reject) => {
@@ -24,6 +25,6 @@ export default async (from, to = from, idLeague=0) => {
                     list = list.filter(e => e.league_id == idLeague)
                 resolve(list)
             })
-            .catch(err => console.log(err.type))
+            .catch(err => console.log(err))
     });
 };

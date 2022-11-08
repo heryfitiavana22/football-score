@@ -1,6 +1,7 @@
 import infoMatch from "../infoMatch/infoMatch";
 import infoLeague from "../infoLeague/infoLeague";
 import { clearIntervalUpdate } from "../infoMatch/infoMatch";
+import { clearIntervalInfoLeague } from "../infoLeague/infoLeague";
 import { setDate } from "../calendar/calendar";
 import listLeague from "../league/listLeague";
 import { loading, stopLoading } from "../others/animation";
@@ -12,6 +13,7 @@ export default (isPopState) => {
     listLeague();
     if (hash.length === 0 || hash === "#") {
         clearIntervalUpdate(); // ilay interval any amin' infoMatch
+        clearIntervalInfoLeague()
         loading();
         let d = new Date();
         // ovaina aloha ny date de ao vao maka ny listMatch
@@ -27,6 +29,7 @@ export default (isPopState) => {
     hash = hash.slice(hash.indexOf("/") + 1);
     if (item === "listgame") {
         clearIntervalUpdate(); // ilay interval any amin' infoMatch
+        clearIntervalInfoLeague()
         let index = hash.indexOf("&");
         if (index > 0) {
             let date = hash.slice(0, index),

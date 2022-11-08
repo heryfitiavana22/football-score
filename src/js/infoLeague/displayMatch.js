@@ -1,6 +1,8 @@
 import infoMatch from '../infoMatch/infoMatch'
 
 export default (game, idHTML) => {
+    // console.log(idHTML);
+    // console.log(game);
     let listGameHTML =
     `<div class="listMatch">`;
     if(game.length === 0)
