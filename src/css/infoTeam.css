@@ -1,0 +1,146 @@
+.info .league .name {margin-top: 13px;}
+.info-team .nav-team li {width: 20%;}
+
+/* players */
+.info-team .type {
+    display: grid;
+    grid-template-columns: 24% 24% 24% 24%;
+    grid-gap: 0 1%;
+    margin-bottom: 20px;
+}
+.info-team .caption {
+    grid-column: 1 / 5;
+}
+.info-team .caption.Goalkeepers {color: var(--blue1);}
+.info-team .caption.Defenders {color: red;}
+.info-team .caption.Midfielders {color: green;}
+.info-team .caption.Forwards {color: darkblue;}
+
+.info-team .player {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--gray1);
+    padding-top: 10px;
+    border-radius: 6px;
+    margin-bottom: 4%;
+}
+.info-team .img-player {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.info .img-player img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.info-team .player .name {
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 10px;
+    height: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+.info-team .player .number {
+    position: absolute;
+    top: 85px;
+    left: 56%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: var(--darkblue);
+    color: aliceblue;
+    border-radius: 50%;
+    font-size: 14px;
+}
+.info-team .player footer {
+    width: 100%;
+    background-color: rgb(219, 219, 219);
+    color: rgb(85, 85, 85);
+    margin-top: 15px;
+    padding: 3px 10px;
+    font-size: 14px;
+}
+.info-team .type .rate {
+    float: right;
+}
+.info-team .type .rate .ti-star {color: rgb(229, 173, 31);}
+
+/* stats-player */
+.stats-player .head-table img {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+.player-table {
+    display: flex !important;
+    justify-content: start !important;
+    width: 30% !important;
+}
+.player-table span{
+    height: 25px;
+    overflow: hidden;
+}
+.stats-player tr td {width: 10%;}
+.stats-player.head-table td span {left: 19px;}
+
+.nav-stats {
+    display: flex;
+    flex-wrap: wrap;
+    color: var(--blue1);
+}
+.nav-stats li {
+    padding: 3px 10px;
+    margin-bottom: 5px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.nav-stats li:hover {
+    border: 1px solid var(--blue1);
+    padding: 3px 15px;
+}
+.nav-stats li.active {
+    color: white;
+    background-color: var(--blue1);
+}
+
+@media screen and (max-width : 768px) {
+    .info-team .caption {grid-column: 1 / 4;}
+    .info-team .type {
+        grid-template-columns: 32.5% 32.5% 32.5%;
+    } 
+    .info-team .player {margin-bottom: 3%;}  
+}
+
+@media screen and (max-width : 576px) {
+    .info-team .caption {grid-column: 1 / 3;}
+    .info-team .type {
+        grid-template-columns: 49.5% 49.5%;
+        font-size: 12px;
+    } 
+    .info-team .player {margin-bottom: 2%;} 
+    .info .img-player img {width: 60px; height: 60px;}
+    .info-team .player .number {
+        height: 20px;
+        width: 20px;
+        font-size: 12px;
+        top: 57px;
+    }
+    .info-team .player .name {font-size: 12px; height: 35px;}
+    .info-team .player footer {
+        margin-top: 10px;
+        font-size: 12px;
+    }
+
+    .stats-player .head-table img {
+        width: 12px;
+        height: 12px;
+    }
+    .nav-stats {font-size: 12px;}
+}

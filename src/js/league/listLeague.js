@@ -1,8 +1,9 @@
 import {getListCountry, getListLeague} from '../others/contryAndLeague'
 import {getExceptionLeague, getPopularLeague} from '../others/popularAndException'
 
+let APIkey = process.env.API_KEY;
 let listContainer = document.querySelector('.list-league'),
-    url = "https://apiv3.apifootball.com/?action=get_leagues&APIkey=5abf557ce643bfb8836e00496fc0e64543d61180848a164763839561abbbafda",
+    url = `https://apiv3.apifootball.com/?action=get_leagues&APIkey=${APIkey}`,
     listCountry = getListCountry(),
     listLeague = getListLeague();
 listCountry = listCountry.split(',');

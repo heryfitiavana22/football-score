@@ -34,8 +34,8 @@ export default function (listGame) {
             countryGameHTML += 
                 `<div class="match-item" id="${game.match_id}">
                     <div class="home" id="${game.match_id}">
-                        <img src="${game.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}" onerror="this.src = 'assets/img/logo2.png'">
                         <span id="${game.match_id}">${game.match_hometeam_name}</span>
+                        <img src="${game.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}" onerror="this.src = 'assets/img/logo2.png'">
                         <span class="score-home score" id="${game.match_id}">${(game.match_hometeam_score.length > 0) ? game.match_hometeam_score : '  '}</span> 
                     </div>
                     <span class="vs" id="${game.match_id}">vs</span>

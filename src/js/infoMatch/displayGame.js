@@ -1,11 +1,15 @@
 import infoLeague from '../infoLeague/infoLeague'
+import infoTeam from '../infoTeam/infoTeam'
+
 export default (game) => {
     let currentElement = document.querySelector('.current-element'),
-            hour = '';
-        if(game.match_live === '1') 
-            hour = isNaN(game.match_status) ? game.match_status : (game.match_status + ' min')
-        else
-            hour = (game.match_status === 'Postponed') ? 'postponed' : game.match_time
+        hour = '',
+        awayId = game.match_awayteam_id,
+        homeId = game.match_hometeam_id;
+    if(game.match_live === '1') 
+        hour = isNaN(game.match_status) ? game.match_status : (game.match_status + ' min')
+    else
+        hour = (game.match_status === 'Postponed') ? 'postponed' : game.match_time
     let gameHTML =
     `<div class="info-match">
         <h3 class="country-league" id="l${game.league_id}">
@@ -47,5 +51,13 @@ export default (game) => {
     let league = document.querySelector('.info-match h3');
     league.addEventListener('click', () => {
         infoLeague(false, league.id)
+    })
+
+    document.querySelector('.info-match .home').addEventListener('click', () => {
+        infoTeam(false, game.league_id, homeId)
+    })
+
+    document.querySelector('.info-match .away').addEventListener('click', () => {
+        infoTeam(false, game.league_id, awayId)
     })
 }

@@ -1,7 +1,7 @@
 export default (league) => {
     let currentElement = document.querySelector('.current-element');
     let infoLeague =
-    `<div class="info-league">
+    `<div class="info-league info">
         <div class="country-league">
             <div class="country">
                 <img src="${league.country_logo}" alt="icon-country" onerror="this.src = 'assets/img/logo2.png'">
