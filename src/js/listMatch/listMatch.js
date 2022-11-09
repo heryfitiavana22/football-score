@@ -5,6 +5,8 @@ import {loading, stopLoading} from '../others/animation'
 import displayListMatch from './displayListMatch'
 import {deleteCurrentMonth, createCalendar, getCurrentDate} from '../calendar/calendar'
 import addHistory from '../history/addHistory'
+import {clearIntervalInfoLeague} from '../infoLeague/infoLeague'
+import {clearIntervalUpdate} from '../infoMatch/infoMatch'
 
 let gamePerLeague = [],
     activeInNavBar = document.querySelector('.navbar-match .nav-list li.active'),
@@ -13,6 +15,8 @@ let gamePerLeague = [],
 export async function listMatch(isPopState=false, date, idLeague, toDisplay) {
     gamePerLeague = [];
     date = toYYYYMMDD(date)
+    clearIntervalInfoLeague()
+    clearIntervalUpdate()
     // add history (rehefa popstate de tsy mila mi-ajouter)
     if(!isPopState)
         addHistory(`listgame/${date}${idLeague ? ('&'+idLeague) : ''}`)

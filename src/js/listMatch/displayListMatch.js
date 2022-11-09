@@ -111,11 +111,16 @@ export default function (listGame) {
         let id = e.target.id
         // raha id ana league
         if(id.includes('l')) { // nasiako "l" ny id ana league
-            return infoLeague(false, id)
+            return import("../infoLeague/infoLeague").then(module => 
+                module.default(false, id)
+            )
         }
         if(isNaN(id) || id === '') 
             return; // au cas ou tsy nombre
-        infoMatch(false, id)
+        // info Match
+        import("../infoMatch/infoMatch").then(module => 
+            module.default(false, id)
+        )
     })
 
     /* onclick match today, live, finished */
