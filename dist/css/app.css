@@ -1072,13 +1072,20 @@ td .day-item {
     display: flex !important;
     justify-content: start !important;
     width: 30% !important;
+    font-size: 16px !important;
+    color: black !important;
 }
 .player-table span{
     height: 25px;
     overflow: hidden;
 }
-.stats-player tr td {width: 10%;}
-.stats-player.head-table td span {left: 19px;}
+.stats-player tr td {
+    width: 10%;
+    font-size: 14px;
+}
+.stats-player .tr-player td {color: rgb(64, 64, 64);}
+.stats-player .head-table td {color: white !important;}
+.stats-player .head-table td span {left: 19px;}
 
 .nav-stats {
     display: flex;
@@ -1135,6 +1142,8 @@ td .day-item {
         width: 12px;
         height: 12px;
     }
+    .player-table {font-size: 12px !important;}
+    .stats-player tr td {font-size: 10px !important;}
     .nav-stats {font-size: 12px;}
 }
 /*!****************************************************************************************************************************!*\
