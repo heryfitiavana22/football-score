@@ -24,16 +24,20 @@ export default (players, coach) => {
         playerHTML +=
         `</div>`
     }
-    playerHTML +=
-    `<div class="type">
-        <span class="caption">Coach</span>
-        <div class="player">
-            <div class="img-player">
-            <img src="assets/img/player.jpg" alt="img-player" onerror="this.src='assets/img/player.jpg'">
+    if(players.length > 0)
+        playerHTML +=
+        `<div class="type">
+            <span class="caption">Coach</span>
+            <div class="player">
+                <div class="img-player">
+                <img src="assets/img/player.jpg" alt="img-player" onerror="this.src='assets/img/player.jpg'">
+                </div>
+                <span class="name">${coach.coach_name}</span>
             </div>
-            <span class="name">${coach.coach_name}</span>
-        </div>
-    </div>`
+        </div>`
+    else 
+        playerHTML +=
+        `<p style="padding-left:15px">not given</p>`
 
     document.querySelector('.current-item').innerHTML = playerHTML
     document.querySelector('.nav-team li.active').classList.remove('active')

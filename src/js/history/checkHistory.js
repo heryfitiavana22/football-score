@@ -5,17 +5,17 @@ import { clearIntervalUpdate } from "../infoMatch/infoMatch";
 import { clearIntervalInfoLeague } from "../infoLeague/infoLeague";
 import { setDate } from "../calendar/calendar";
 import listLeague from "../league/listLeague";
-import { loading, stopLoading } from "../others/animation";
+import { loading } from "../others/animation";
 import pageNotFound from "../404";
 
 export default (isPopState) => {
     let hash = window.location.hash;
     console.log(hash);
+    loading()
     listLeague();
     if (hash.length === 0 || hash === "#") {
         clearIntervalUpdate(); // ilay interval any amin' infoMatch
         clearIntervalInfoLeague()
-        loading();
         let d = new Date();
         // ovaina aloha ny date de ao vao maka ny listMatch
         setDate(isPopState, d.getMonth() + 1, d.getDate(), 0);

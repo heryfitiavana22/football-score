@@ -536,8 +536,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _infoTeam_infoTeam__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js");
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((standing, ...idTeams) => {
-    console.log(idTeams);
+    // console.log(idTeams);
     let standingHTML =
     `<table class="standing-container">
         <tr class="head-table">
@@ -550,17 +553,17 @@ __webpack_require__.r(__webpack_exports__);
         </tr>`;
         for(let element of standing) {
             standingHTML += 
-            `<tr class="item-container ${idTeams.includes(element.team_id) ? 'current-team' : ''}">
-                <td class="team">
-                    <span class="number">${element.overall_league_position}</span> 
-                    <img src="${element.team_badge || 'assets/img/logo2.png'}" alt="icon-team" onerror="this.src = '../../assets/img/logo2.png'">
-                    <span class="name">${element.team_name}</span>
+            `<tr class="item-container ${idTeams.includes(element.team_id) ? 'current-team' : ''}" id="${element.league_id}t${element.team_id}">
+                <td class="team" id="${element.league_id}t${element.team_id}">
+                    <span class="number" id="${element.league_id}t${element.team_id}">${element.overall_league_position}</span> 
+                    <img src="${element.team_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${element.league_id}t${element.team_id}" onerror="this.src = '../../assets/img/logo2.png'">
+                    <span class="name" id="${element.league_id}t${element.team_id}">${element.team_name}</span>
                 </td>
-                <td>${element.overall_league_payed}</td>
-                <td>${element.overall_league_GF}</td>
-                <td>${element.overall_league_GA}</td>
-                <td>${element.overall_league_GF - element.overall_league_GA}</td>
-                <td>${element.overall_league_PTS}</td>
+                <td id="${element.league_id}t${element.team_id}">${element.overall_league_payed}</td>
+                <td id="${element.league_id}t${element.team_id}">${element.overall_league_GF}</td>
+                <td id="${element.league_id}t${element.team_id}">${element.overall_league_GA}</td>
+                <td id="${element.league_id}t${element.team_id}">${element.overall_league_GF - element.overall_league_GA}</td>
+                <td id="${element.league_id}t${element.team_id}">${element.overall_league_PTS}</td>
             </tr>`
         }
     standingHTML += `</table>`
@@ -568,6 +571,16 @@ __webpack_require__.r(__webpack_exports__);
     // active
     document.querySelector('.nav-info li.active').classList.remove('active');
     document.querySelector('#standing').classList.add('active');
+
+    document.querySelector('.standing-container').addEventListener('click', (e) => {
+        // console.log(e.target.attributes.class);
+        if(e.target.attributes.class.nodeValue.includes("current-team")) return
+
+        let id = e.target.id.split('t');
+        if(id.length !== 2) return
+
+        ;(0,_infoTeam_infoTeam__WEBPACK_IMPORTED_MODULE_0__["default"])(false, ...id)
+    })
     return "standing"
 });
 
@@ -760,11 +773,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((isPopState) => {
     let hash = window.location.hash;
     console.log(hash);
-    (0,_league_listLeague__WEBPACK_IMPORTED_MODULE_4__["default"])();
+    (0,_others_animation__WEBPACK_IMPORTED_MODULE_5__.loading)()
+    ;(0,_league_listLeague__WEBPACK_IMPORTED_MODULE_4__["default"])();
     if (hash.length === 0 || hash === "#") {
         (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__.clearIntervalUpdate)(); // ilay interval any amin' infoMatch
         (0,_infoLeague_infoLeague__WEBPACK_IMPORTED_MODULE_1__.clearIntervalInfoLeague)()
-        ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_5__.loading)();
         let d = new Date();
         // ovaina aloha ny date de ao vao maka ny listMatch
         (0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__.setDate)(isPopState, d.getMonth() + 1, d.getDate(), 0);
@@ -1596,16 +1609,20 @@ __webpack_require__.r(__webpack_exports__);
         playerHTML +=
         `</div>`
     }
-    playerHTML +=
-    `<div class="type">
-        <span class="caption">Coach</span>
-        <div class="player">
-            <div class="img-player">
-            <img src="assets/img/player.jpg" alt="img-player" onerror="this.src='assets/img/player.jpg'">
+    if(players.length > 0)
+        playerHTML +=
+        `<div class="type">
+            <span class="caption">Coach</span>
+            <div class="player">
+                <div class="img-player">
+                <img src="assets/img/player.jpg" alt="img-player" onerror="this.src='assets/img/player.jpg'">
+                </div>
+                <span class="name">${coach.coach_name}</span>
             </div>
-            <span class="name">${coach.coach_name}</span>
-        </div>
-    </div>`
+        </div>`
+    else 
+        playerHTML +=
+        `<p style="padding-left:15px">not given</p>`
 
     document.querySelector('.current-item').innerHTML = playerHTML
     document.querySelector('.nav-team li.active').classList.remove('active')
@@ -1895,15 +1912,20 @@ __webpack_require__.r(__webpack_exports__);
         if(!listPlace.includes(element.player_type)) {
             result.push({
                 place : element.player_type,
-                players : players.filter(p => p.player_type === element.player_type)
+                players : players.filter(p => p.player_type === element.player_type),
+                number : undefined
             })
             listPlace.push(element.player_type)
         }
     }
-    result[listPlace.indexOf('Goalkeepers')].number = 1;
-    result[listPlace.indexOf('Defenders')].number = 2;
-    result[listPlace.indexOf('Midfielders')].number = 3;
-    result[listPlace.indexOf('Forwards')].number = 4;
+    if(listPlace.indexOf('Goalkeepers') >= 0)
+        result[listPlace.indexOf('Goalkeepers')].number = 1;
+    if(listPlace.indexOf('Defenders') >= 0)
+        result[listPlace.indexOf('Defenders')].number = 2;
+    if(listPlace.indexOf('Midfielders') >= 0)
+        result[listPlace.indexOf('Midfielders')].number = 3;
+    if(listPlace.indexOf('Forwards') >= 0)
+        result[listPlace.indexOf('Forwards')].number = 4;
     result.sort((a,b) => a.number - b.number)
     return result
 });
@@ -2317,6 +2339,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _displayListMatch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./displayListMatch */ "./src/js/listMatch/displayListMatch.js");
 /* harmony import */ var _calendar_calendar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../calendar/calendar */ "./src/js/calendar/calendar.js");
 /* harmony import */ var _history_addHistory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../history/addHistory */ "./src/js/history/addHistory.js");
+/* harmony import */ var _infoLeague_infoLeague__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js");
+/* harmony import */ var _infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js");
+
+
 
 
 
@@ -2332,6 +2358,8 @@ let gamePerLeague = [],
 async function listMatch(isPopState=false, date, idLeague, toDisplay) {
     gamePerLeague = [];
     date = (0,_func_date__WEBPACK_IMPORTED_MODULE_1__.toYYYYMMDD)(date)
+    ;(0,_infoLeague_infoLeague__WEBPACK_IMPORTED_MODULE_7__.clearIntervalInfoLeague)()
+    ;(0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_8__.clearIntervalUpdate)()
     // add history (rehefa popstate de tsy mila mi-ajouter)
     if(!isPopState)
         (0,_history_addHistory__WEBPACK_IMPORTED_MODULE_6__["default"])(`listgame/${date}${idLeague ? ('&'+idLeague) : ''}`)
