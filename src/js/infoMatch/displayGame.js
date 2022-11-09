@@ -1,6 +1,3 @@
-import infoLeague from '../infoLeague/infoLeague'
-import infoTeam from '../infoTeam/infoTeam'
-
 export default (game) => {
     let currentElement = document.querySelector('.current-element'),
         hour = '',
@@ -49,15 +46,22 @@ export default (game) => {
     if(iconCalendar) iconCalendar.style.visibility = 'hidden' 
     
     let league = document.querySelector('.info-match h3');
+
     league.addEventListener('click', () => {
-        infoLeague(false, league.id)
+        import("../infoLeague/infoLeague").then(module => 
+            module.default(false, league.id)
+        )
     })
 
     document.querySelector('.info-match .home').addEventListener('click', () => {
-        infoTeam(false, game.league_id, homeId)
+        import("../infoTeam/infoTeam").then(module => 
+            module.default(false, game.league_id, homeId)
+        )
     })
 
     document.querySelector('.info-match .away').addEventListener('click', () => {
-        infoTeam(false, game.league_id, awayId)
+        import("../infoTeam/infoTeam").then(module => 
+            module.default(false, game.league_id, awayId)
+        )
     })
 }

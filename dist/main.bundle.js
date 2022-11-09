@@ -753,34 +753,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js");
-/* harmony import */ var _infoLeague_infoLeague__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js");
-/* harmony import */ var _infoTeam_infoTeam__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js");
-/* harmony import */ var _calendar_calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../calendar/calendar */ "./src/js/calendar/calendar.js");
-/* harmony import */ var _league_listLeague__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../league/listLeague */ "./src/js/league/listLeague.js");
-/* harmony import */ var _others_animation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../others/animation */ "./src/js/others/animation.js");
-/* harmony import */ var _404__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../404 */ "./src/js/404.js");
-
-
-
-
-
-
-
-
+/* harmony import */ var _404__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../404 */ "./src/js/404.js");
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((isPopState) => {
     let hash = window.location.hash;
-    console.log(hash);
-    (0,_others_animation__WEBPACK_IMPORTED_MODULE_5__.loading)()
-    ;(0,_league_listLeague__WEBPACK_IMPORTED_MODULE_4__["default"])();
+    // console.log(hash);
+    importInit();
+    
     if (hash.length === 0 || hash === "#") {
-        (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__.clearIntervalUpdate)(); // ilay interval any amin' infoMatch
-        (0,_infoLeague_infoLeague__WEBPACK_IMPORTED_MODULE_1__.clearIntervalInfoLeague)()
         let d = new Date();
         // ovaina aloha ny date de ao vao maka ny listMatch
-        (0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__.setDate)(isPopState, d.getMonth() + 1, d.getDate(), 0);
+        importCalendar(isPopState, d.getMonth() + 1, d.getDate(), 0);
         // let intervalListMatch = setInterval(() => {
         //     listMatch(new Date())
         // }, 10000)
@@ -791,8 +775,6 @@ __webpack_require__.r(__webpack_exports__);
     // asorina ilay efa azo
     hash = hash.slice(hash.indexOf("/") + 1);
     if (item === "listgame") {
-        (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__.clearIntervalUpdate)(); // ilay interval any amin' infoMatch
-        (0,_infoLeague_infoLeague__WEBPACK_IMPORTED_MODULE_1__.clearIntervalInfoLeague)()
         let index = hash.indexOf("&");
         if (index > 0) {
             let date = hash.slice(0, index),
@@ -800,14 +782,14 @@ __webpack_require__.r(__webpack_exports__);
             date = new Date(date);
             // si date n'est pas valide et l'id n'est pas un nombre
             if (date.toString() === "Invalid Date" && isNaN(idLeague))
-                return (0,_404__WEBPACK_IMPORTED_MODULE_6__["default"])(); // 404
+                return (0,_404__WEBPACK_IMPORTED_MODULE_0__["default"])(); // 404
             // ovaina aloha ny date de ao vao maka ny listMatch
-            (0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__.setDate)(isPopState, date.getMonth() + 1, date.getDate(), idLeague);
+            importCalendar(isPopState, date.getMonth() + 1, date.getDate(), idLeague);
         } else {
             // hash correspond au date, le izy notapahana mantsy
             hash = new Date(hash);
-            if (hash.toString() === "Invalid Date") return (0,_404__WEBPACK_IMPORTED_MODULE_6__["default"])(); // 404
-            (0,_calendar_calendar__WEBPACK_IMPORTED_MODULE_3__.setDate)(isPopState, hash.getMonth() + 1, hash.getDate());
+            if (hash.toString() === "Invalid Date") return (0,_404__WEBPACK_IMPORTED_MODULE_0__["default"])(); // 404
+            importCalendar(isPopState, hash.getMonth() + 1, hash.getDate());
         }
     } else if (item === "game") {
         let indexSlash = hash.indexOf("/"),
@@ -816,30 +798,58 @@ __webpack_require__.r(__webpack_exports__);
         indexSlash = hash.indexOf("/"); // slash manaraka
         let id = hash.slice(0); // idMatch
         // raha tsy nombre le id
-        if (isNaN(id)) return (0,_404__WEBPACK_IMPORTED_MODULE_6__["default"])(); // 404
-        if (type === "pregame") (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(isPopState, id);
-        else if (type === "standing") (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(isPopState, id, "standing");
-        else if (type === "stats") (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(isPopState, id, "stats");
-        else return (0,_404__WEBPACK_IMPORTED_MODULE_6__["default"])(); // 404
+        if (isNaN(id)) return (0,_404__WEBPACK_IMPORTED_MODULE_0__["default"])(); // 404
+        if (type === "pregame") importInfoMatch(isPopState, id);
+        else if (type === "standing") importInfoMatch(isPopState, id, "standing");
+        else if (type === "stats") importInfoMatch(isPopState, id, "stats");
+        else return (0,_404__WEBPACK_IMPORTED_MODULE_0__["default"])(); // 404
     } else if (item === "league") {
         if(hash.includes('l')) { // raha misy "l"
             let id = hash.slice(1); // asorina le "l"
-            if(isNaN(id)) return (0,_404__WEBPACK_IMPORTED_MODULE_6__["default"])(); // 404
-            (0,_infoLeague_infoLeague__WEBPACK_IMPORTED_MODULE_1__["default"])(true, hash)
-        } else return (0,_404__WEBPACK_IMPORTED_MODULE_6__["default"])(); // 404
+            if(isNaN(id)) return (0,_404__WEBPACK_IMPORTED_MODULE_0__["default"])(); // 404
+            importInfoLeague(true, hash)
+        } else return (0,_404__WEBPACK_IMPORTED_MODULE_0__["default"])(); // 404
     } else if(item === "team") {
         hash = hash.split('&') // sarahana le idTeam sy idLeague
         if (hash.length !== 2)
-            return (0,_404__WEBPACK_IMPORTED_MODULE_6__["default"])("team not found"); // 404
+            return (0,_404__WEBPACK_IMPORTED_MODULE_0__["default"])("team not found"); // 404
         // sao de tsy nombre le id
         hash.forEach(element => {
             if(isNaN(element))
-                return (0,_404__WEBPACK_IMPORTED_MODULE_6__["default"])("team not found"); // 404
+                return (0,_404__WEBPACK_IMPORTED_MODULE_0__["default"])("team not found"); // 404
         });
-        (0,_infoTeam_infoTeam__WEBPACK_IMPORTED_MODULE_2__["default"])(isPopState, ...hash)
-    } else return (0,_404__WEBPACK_IMPORTED_MODULE_6__["default"])(); // 404
+        importInfoTeam(isPopState, ...hash)
+    } else return (0,_404__WEBPACK_IMPORTED_MODULE_0__["default"])(); // 404
 });
 
+async function importInit() {
+    // effacer le setInterval'interval
+    Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../others/animation */ "./src/js/others/animation.js")).then(module => module.loading())
+    Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js")).then(module => module.clearIntervalUpdate())
+    Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js")).then(module => module.clearIntervalInfoLeague())
+    Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../league/listLeague */ "./src/js/league/listLeague.js")).then(module => module.default())
+}
+
+async function importInfoLeague(isPopState, idLeague) {
+    let infoLeague = await Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js"));
+    infoLeague.default(isPopState, idLeague)
+}
+
+async function importInfoTeam(isPopState, idLeague, idTeam) {
+    let infoTeam = await Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js"));
+    infoTeam.default(isPopState, idLeague, idTeam)
+}
+
+async function importInfoMatch(isPopState, idMatch, toDisplay) {
+    let infoMatch = await Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js"));
+    infoMatch.default(isPopState, idMatch, toDisplay)
+}
+
+
+async function importCalendar(isPopState, m, d, idLeague) {
+    let calendar = await Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../calendar/calendar */ "./src/js/calendar/calendar.js"));
+    calendar.setDate(isPopState, m, d, idLeague)
+}
 
 /***/ }),
 
@@ -1054,11 +1064,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _infoLeague_infoLeague__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js");
-/* harmony import */ var _infoTeam_infoTeam__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js");
-
-
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((game) => {
     let currentElement = document.querySelector('.current-element'),
         hour = '',
@@ -1107,16 +1112,23 @@ __webpack_require__.r(__webpack_exports__);
     if(iconCalendar) iconCalendar.style.visibility = 'hidden' 
     
     let league = document.querySelector('.info-match h3');
+
     league.addEventListener('click', () => {
-        (0,_infoLeague_infoLeague__WEBPACK_IMPORTED_MODULE_0__["default"])(false, league.id)
+        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js")).then(module => 
+            module.default(false, league.id)
+        )
     })
 
     document.querySelector('.info-match .home').addEventListener('click', () => {
-        ;(0,_infoTeam_infoTeam__WEBPACK_IMPORTED_MODULE_1__["default"])(false, game.league_id, homeId)
+        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js")).then(module => 
+            module.default(false, game.league_id, homeId)
+        )
     })
 
     document.querySelector('.info-match .away').addEventListener('click', () => {
-        ;(0,_infoTeam_infoTeam__WEBPACK_IMPORTED_MODULE_1__["default"])(false, game.league_id, awayId)
+        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js")).then(module => 
+            module.default(false, game.league_id, awayId)
+        )
     })
 });
 
@@ -1232,12 +1244,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _history_addHistory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../history/addHistory */ "./src/js/history/addHistory.js");
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((isPopState=false, game) => {
     // add history
+    
     if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
-        (0,_history_addHistory__WEBPACK_IMPORTED_MODULE_0__["default"])(`game/pregame/${game.match_id}`);
+        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../history/addHistory */ "./src/js/history/addHistory.js")).then(module => 
+            module.default(`game/pregame/${game.match_id}`)
+        )
     let home = {
         system : game.match_hometeam_system || "4-3-3",
         lineup : game.lineup.home.starting_lineups,
@@ -1367,12 +1380,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _history_addHistory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../history/addHistory */ "./src/js/history/addHistory.js");
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((isPopState=false, game) => {
     // add history
     if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
-        (0,_history_addHistory__WEBPACK_IMPORTED_MODULE_0__["default"])(`game/stats/${game.match_id}`);
+        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../history/addHistory */ "./src/js/history/addHistory.js")).then(module => 
+            module.default(`game/stats/${game.match_id}`)
+        )
     let statistics = game.statistics.reverse();
     let statsHTML = 
     `<div class="statistics">
@@ -2289,11 +2302,16 @@ __webpack_require__.r(__webpack_exports__);
         let id = e.target.id
         // raha id ana league
         if(id.includes('l')) { // nasiako "l" ny id ana league
-            return (0,_infoLeague_infoLeague__WEBPACK_IMPORTED_MODULE_1__["default"])(false, id)
+            return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js")).then(module => 
+                module.default(false, id)
+            )
         }
         if(isNaN(id) || id === '') 
             return; // au cas ou tsy nombre
-        (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(false, id)
+        // info Match
+        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js")).then(module => 
+            module.default(false, id)
+        )
     })
 
     /* onclick match today, live, finished */
@@ -2803,7 +2821,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (0,_others_animation__WEBPACK_IMPORTED_MODULE_0__.loading)()
-;(0,_others_animation__WEBPACK_IMPORTED_MODULE_0__.stopLoading)()
+// stopLoading()
 ;(0,_others_someEventlistener__WEBPACK_IMPORTED_MODULE_5__["default"])() // onclick sy ny namany
 ;(0,_history_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(false) // false satria pushstate 
 
@@ -2824,4 +2842,4 @@ document.querySelector('.nav-bar .logo').addEventListener('click', () => {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle.js.map
+//# sourceMappingURL=main.bundle.js.map

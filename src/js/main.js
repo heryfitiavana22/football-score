@@ -13,7 +13,7 @@ import '../css/infoTeam.css'
 import '../css/animation.css'
 
 loading()
-stopLoading()
+// stopLoading()
 eventListener() // onclick sy ny namany
 checkHistory(false) // false satria pushstate 
 

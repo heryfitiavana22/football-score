@@ -1,8 +1,9 @@
-import addHistory from "../history/addHistory"
 export default (isPopState=false, game) => {
     // add history
     if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
-        addHistory(`game/stats/${game.match_id}`);
+        import("../history/addHistory").then(module => 
+            module.default(`game/stats/${game.match_id}`)
+        )
     let statistics = game.statistics.reverse();
     let statsHTML = 
     `<div class="statistics">

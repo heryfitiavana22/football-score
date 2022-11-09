@@ -1,24 +1,14 @@
-import infoMatch from "../infoMatch/infoMatch";
-import infoLeague from "../infoLeague/infoLeague";
-import infoTeam from "../infoTeam/infoTeam";
-import { clearIntervalUpdate } from "../infoMatch/infoMatch";
-import { clearIntervalInfoLeague } from "../infoLeague/infoLeague";
-import { setDate } from "../calendar/calendar";
-import listLeague from "../league/listLeague";
-import { loading } from "../others/animation";
 import pageNotFound from "../404";
 
 export default (isPopState) => {
     let hash = window.location.hash;
-    console.log(hash);
-    loading()
-    listLeague();
+    // console.log(hash);
+    importInit();
+    
     if (hash.length === 0 || hash === "#") {
-        clearIntervalUpdate(); // ilay interval any amin' infoMatch
-        clearIntervalInfoLeague()
         let d = new Date();
         // ovaina aloha ny date de ao vao maka ny listMatch
-        setDate(isPopState, d.getMonth() + 1, d.getDate(), 0);
+        importCalendar(isPopState, d.getMonth() + 1, d.getDate(), 0);
         // let intervalListMatch = setInterval(() => {
         //     listMatch(new Date())
         // }, 10000)
@@ -29,8 +19,6 @@ export default (isPopState) => {
     // asorina ilay efa azo
     hash = hash.slice(hash.indexOf("/") + 1);
     if (item === "listgame") {
-        clearIntervalUpdate(); // ilay interval any amin' infoMatch
-        clearIntervalInfoLeague()
         let index = hash.indexOf("&");
         if (index > 0) {
             let date = hash.slice(0, index),
@@ -40,12 +28,12 @@ export default (isPopState) => {
             if (date.toString() === "Invalid Date" && isNaN(idLeague))
                 return pageNotFound(); // 404
             // ovaina aloha ny date de ao vao maka ny listMatch
-            setDate(isPopState, date.getMonth() + 1, date.getDate(), idLeague);
+            importCalendar(isPopState, date.getMonth() + 1, date.getDate(), idLeague);
         } else {
             // hash correspond au date, le izy notapahana mantsy
             hash = new Date(hash);
             if (hash.toString() === "Invalid Date") return pageNotFound(); // 404
-            setDate(isPopState, hash.getMonth() + 1, hash.getDate());
+            importCalendar(isPopState, hash.getMonth() + 1, hash.getDate());
         }
     } else if (item === "game") {
         let indexSlash = hash.indexOf("/"),
@@ -55,15 +43,15 @@ export default (isPopState) => {
         let id = hash.slice(0); // idMatch
         // raha tsy nombre le id
         if (isNaN(id)) return pageNotFound(); // 404
-        if (type === "pregame") infoMatch(isPopState, id);
-        else if (type === "standing") infoMatch(isPopState, id, "standing");
-        else if (type === "stats") infoMatch(isPopState, id, "stats");
+        if (type === "pregame") importInfoMatch(isPopState, id);
+        else if (type === "standing") importInfoMatch(isPopState, id, "standing");
+        else if (type === "stats") importInfoMatch(isPopState, id, "stats");
         else return pageNotFound(); // 404
     } else if (item === "league") {
         if(hash.includes('l')) { // raha misy "l"
             let id = hash.slice(1); // asorina le "l"
             if(isNaN(id)) return pageNotFound(); // 404
-            infoLeague(true, hash)
+            importInfoLeague(true, hash)
         } else return pageNotFound(); // 404
     } else if(item === "team") {
         hash = hash.split('&') // sarahana le idTeam sy idLeague
@@ -74,6 +62,35 @@ export default (isPopState) => {
             if(isNaN(element))
                 return pageNotFound("team not found"); // 404
         });
-        infoTeam(isPopState, ...hash)
+        importInfoTeam(isPopState, ...hash)
     } else return pageNotFound(); // 404
 };
+
+async function importInit() {
+    // effacer le setInterval'interval
+    import("../others/animation").then(module => module.loading())
+    import("../infoMatch/infoMatch").then(module => module.clearIntervalUpdate())
+    import("../infoLeague/infoLeague").then(module => module.clearIntervalInfoLeague())
+    import("../league/listLeague").then(module => module.default())
+}
+
+async function importInfoLeague(isPopState, idLeague) {
+    let infoLeague = await import("../infoLeague/infoLeague");
+    infoLeague.default(isPopState, idLeague)
+}
+
+async function importInfoTeam(isPopState, idLeague, idTeam) {
+    let infoTeam = await import("../infoTeam/infoTeam");
+    infoTeam.default(isPopState, idLeague, idTeam)
+}
+
+async function importInfoMatch(isPopState, idMatch, toDisplay) {
+    let infoMatch = await import("../infoMatch/infoMatch");
+    infoMatch.default(isPopState, idMatch, toDisplay)
+}
+
+
+async function importCalendar(isPopState, m, d, idLeague) {
+    let calendar = await import("../calendar/calendar");
+    calendar.setDate(isPopState, m, d, idLeague)
+}

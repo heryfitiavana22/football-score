@@ -12,7 +12,7 @@ let config = {
     entry : './src/js/main.js',
     output : {
         path : path.resolve(__dirname, 'dist'),
-        filename : (mode === "development") ? 'bundle.js' : 'bundle.[contenthash:8].js',
+        filename : (mode === "development") ? '[name].bundle.js' : '[name].[contenthash:8].js',
         clean : (mode === "production"),
     },
     watch : mode === "development",

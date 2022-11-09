@@ -1,8 +1,10 @@
-import addHistory from "../history/addHistory"
 export default (isPopState=false, game) => {
     // add history
+    
     if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
-        addHistory(`game/pregame/${game.match_id}`);
+        import("../history/addHistory").then(module => 
+            module.default(`game/pregame/${game.match_id}`)
+        )
     let home = {
         system : game.match_hometeam_system || "4-3-3",
         lineup : game.lineup.home.starting_lineups,
