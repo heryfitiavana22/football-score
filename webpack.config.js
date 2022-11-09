@@ -12,7 +12,7 @@ let config = {
     entry : './src/js/main.js',
     output : {
         path : path.resolve(__dirname, 'dist'),
-        filename : (mode === "development") ? '[name].bundle.js' : '[name].[contenthash:8].js',
+        filename : (mode === "development") ? 'js/[name].bundle.js' : 'js/[name].[contenthash:8].js',
         clean : (mode === "production"),
     },
     watch : mode === "development",
@@ -42,7 +42,7 @@ let config = {
         publicPath : 'dist/',
         inject : 'body'
       }),
-      new MiniCssExtractPlugin({filename : (mode === "development") ? 'app.css' : 'app.[contenthash:8].css'}),
+      new MiniCssExtractPlugin({filename : (mode === "development") ? 'css/app.css' : 'css/app.[contenthash:8].css'}),
       new Dotenv({
         path: './.env',
         safe: true
