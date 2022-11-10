@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkFootball_score"] = self["webpackChunkFootball_score"] || []).push([["src_js_func_displayStanding_js"],{
+(self["webpackChunkFootball_score"] = self["webpackChunkFootball_score"] || []).push([["src_js_func_displayStanding_js-src_js_infoTeam_infoTeam_js"],{
 
 /***/ "./src/js/func/displayMatchByDate.js":
 /*!*******************************************!*\
@@ -120,14 +120,14 @@ __webpack_require__.r(__webpack_exports__);
     document.querySelector('.nav-info li.active').classList.remove('active');
     document.querySelector('#standing').classList.add('active');
 
-    document.querySelector('.standing-container').addEventListener('click', async (e) => {
+    document.querySelector('.standing-container').addEventListener('click', (e) => {
         // console.log(e.target.attributes.class);
         if(e.target.attributes.class.nodeValue.includes("current-team")) return
 
         let id = e.target.id.split('t');
         if(id.length !== 2) return
-        let infoTeam = await Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js"))
-        infoTeam.default(false, ...id)
+
+        ;(0,_infoTeam_infoTeam__WEBPACK_IMPORTED_MODULE_0__["default"])(false, ...id)
     })
     return "standing"
 });
@@ -1195,4 +1195,4 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 }]);
-//# sourceMappingURL=src_js_func_displayStanding_js.bundle.js.map
+//# sourceMappingURL=src_js_func_displayStanding_js-src_js_infoTeam_infoTeam_js.bundle.js.map

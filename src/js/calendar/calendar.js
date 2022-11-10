@@ -1,4 +1,3 @@
-import {listMatch} from '../listMatch/listMatch'
 import {loading} from '../others/animation'
 
 /* calendar */
@@ -137,6 +136,9 @@ export function createCalendar(month,year,date) {
     currentMonthHTML.innerHTML = monthText[month-1] + ' ' + year;
     document.querySelector('#icon-toggle-calendar').style.visibility = 'visible'
     tbody.insertAdjacentHTML('beforeend', dayContainer)
+    document.querySelector('#close-calendar').addEventListener('click', () => {
+        document.querySelector('.actual').style.top = '-100%'
+    })
 }
 
 /* mampidina mois */
@@ -178,7 +180,7 @@ export function getCurrentDate() {
 
 let currentIdLeague = undefined; // tazomina le idLeague jerena raha misy
 /* manova date */
-export function setDate(isPopState=false, m, d, idLeague, toDisplay) {
+export async function setDate(isPopState=false, m, d, idLeague, toDisplay) {
     // hideCalendar (valable ito rehefa le ecran <= 768)
     let actualContainer = document.querySelector('.actual')
     if(actualContainer) actualContainer.style.top = '-100%' // raha misy
@@ -202,6 +204,8 @@ export function setDate(isPopState=false, m, d, idLeague, toDisplay) {
     }
     monthSelected = currentMonth;
     yearSelected = currentYear;
-    listMatch(isPopState, (`${currentYear}-${currentMonth}-${currentDate}`), currentIdLeague, toDisplay)
+    
+    let listMatch = await import('../listMatch/listMatch');
+    listMatch.listMatch(isPopState, (`${currentYear}-${currentMonth}-${currentDate}`), currentIdLeague, toDisplay)
 }
 /* end calendar */

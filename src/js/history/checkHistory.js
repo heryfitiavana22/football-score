@@ -1,8 +1,10 @@
 import pageNotFound from "../404";
+import {loading} from "../others/animation"
 
 export default (isPopState) => {
     let hash = window.location.hash;
     // console.log(hash);
+    loading()
     importInit();
     
     if (hash.length === 0 || hash === "#") {
@@ -19,6 +21,7 @@ export default (isPopState) => {
     // asorina ilay efa azo
     hash = hash.slice(hash.indexOf("/") + 1);
     if (item === "listgame") {
+
         let index = hash.indexOf("&");
         if (index > 0) {
             let date = hash.slice(0, index),
@@ -35,7 +38,9 @@ export default (isPopState) => {
             if (hash.toString() === "Invalid Date") return pageNotFound(); // 404
             importCalendar(isPopState, hash.getMonth() + 1, hash.getDate());
         }
+
     } else if (item === "game") {
+
         let indexSlash = hash.indexOf("/"),
             type = hash.slice(0, indexSlash); // mety ho pregame,standing,stats
         hash = hash.slice(indexSlash + 1); // asorina izay efa azo
@@ -47,32 +52,40 @@ export default (isPopState) => {
         else if (type === "standing") importInfoMatch(isPopState, id, "standing");
         else if (type === "stats") importInfoMatch(isPopState, id, "stats");
         else return pageNotFound(); // 404
+
     } else if (item === "league") {
+
         if(hash.includes('l')) { // raha misy "l"
             let id = hash.slice(1); // asorina le "l"
             if(isNaN(id)) return pageNotFound(); // 404
             importInfoLeague(true, hash)
         } else return pageNotFound(); // 404
+
     } else if(item === "team") {
+
         hash = hash.split('&') // sarahana le idTeam sy idLeague
         if (hash.length !== 2)
             return pageNotFound("team not found"); // 404
         // sao de tsy nombre le id
+        let isCorrect = true;
         hash.forEach(element => {
             if(isNaN(element))
-                return pageNotFound("team not found"); // 404
+                return isCorrect = false
         });
-        importInfoTeam(isPopState, ...hash)
+        
+        if(isCorrect)importInfoTeam(isPopState, ...hash)
+        else pageNotFound("team not found"); // 404
+
     } else return pageNotFound(); // 404
 };
 
-async function importInit() {
+function importInit() {
     // effacer le setInterval'interval
-    import("../others/animation").then(module => module.loading())
     import("../league/listLeague").then(module => module.default())
     import("../infoMatch/infoMatch").then(module => module.clearIntervalInfoMatch())
     import("../infoLeague/infoLeague").then(module => module.clearIntervalInfoLeague())
     import("../listMatch/listMatch").then(module => module.clearIntervalListMatch())
+    import("../infoTeam/infoTeam").then(module => module.clearIntervalInfoTeam())
 }
 
 async function importInfoLeague(isPopState, idLeague) {

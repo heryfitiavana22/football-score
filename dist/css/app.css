@@ -230,12 +230,12 @@ h1 span {
     display: inline-block;
     width: 21px !important;
 }
-.head-table td span {
+td .caption-td {
     position: absolute;
     display: none;
     width: max-content;
     top: 29px;
-    left: -10px;
+    left: 13%;
     padding: 0 4px;
     font-size: 12px;
     color: aliceblue;
@@ -243,7 +243,8 @@ h1 span {
     border-radius: 6px;
     z-index: 1;
 }
-.head-table td:hover span {display: block;}
+td:hover .caption-td {display: block;}
+/* .head-table td:hover span {display: block;} */
 /* end standing */
 
 /* nav-info (ary amin infoMatch sy infoLeague */
@@ -703,9 +704,8 @@ td .day-item {
     position: absolute;  
     top: 8px;
     display: flex;
+    flex-wrap: wrap;
     width: 45%;
-    height: 24px;
-    overflow: hidden;
 }
 .moment.home .item {
     right: 55%; 
@@ -717,7 +717,7 @@ td .day-item {
     justify-content: start;
     padding-right: 10px;
 }
-.item.substitution .in, .item.substitution .on {max-width: 47%;}
+/* .item.substitution .in, .item.substitution .on {max-width: 47%;} */
 .item.substitution .out {color: rgb(122, 122, 122)}
 #icon-substitute {margin: 5px 10px;}
 .item img {width: 25px; height: 25px;}
@@ -869,6 +869,8 @@ td .day-item {
     .match .team img {width: 55px; height: 55px;}
     .match .team .score {top: 20%;}
 
+    .moment-container {font-size: 14px;}
+
     .lineup {height: 730px;}
     .lineup > img {
         content: url(../d0d947c682dc8e9fb74a.jpg) !important;
@@ -899,6 +901,12 @@ td .day-item {
         right: 34px;
         top: unset;
     }
+
+    .coach .team {font-size: 18px;}
+    .coach .team img {
+        width: 40px;
+        height: 40px;
+    }
 }
 
 @media screen and (max-width : 576px) {
@@ -921,7 +929,16 @@ td .day-item {
     .moment .item img {width: 20px; height: 20px;}
     .moment.home .item {padding-left: 0;}
     .moment.away .item {padding-right: 0;}
-    #icon-substitute {margin: 5px;}
+    .item.substitution .in, .item.substitution .on {
+        max-width: 90%;
+        overflow: hidden;
+        height: 16px;
+    }
+    #icon-substitute {
+        margin: 5px 4px 0 4px;
+        font-size: 10px;
+    }
+    
 
     .info-match > div {padding: 5px !important;}
     .lineup {height: 550px;}
@@ -943,6 +960,8 @@ td .day-item {
     .coach > div > div {padding: 10px 5px 5px 10px;}
     .coach .team img {width: 30px; height: 30px;}
     .coach .team {font-size: 16px;}
+    .coach .manager-name {font-size: 13px;}
+    .coach .caption {font-size: 12px;}
 
     .standing-container {font-size: 12px;}
     .head-table {height: 30px;}
@@ -955,12 +974,13 @@ td .day-item {
         width: 20px;
         height: 20px;
     }
-    .head-table td span {
+    td .caption-td {
         font-size: 9px;    
         top: 23px;
-        left: 1px;
+        left: -10px;
     }
-    
+    td .caption-td.gd {left: -25px;}
+
     .statistics h4 {font-size: 16px;}
     .statistics .row-item {font-size: 12px; height: 35px;}
 }
@@ -1085,7 +1105,7 @@ td .day-item {
 }
 .stats-player .tr-player td {color: rgb(64, 64, 64);}
 .stats-player .head-table td {color: white !important;}
-.stats-player .head-table td span {left: 19px;}
+.stats-player td .caption-td {left: 19px;}
 .stats-player .number {font-size: 15px;}
 
 .nav-stats {

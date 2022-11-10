@@ -6,4 +6,5 @@ export default (hash) => {
     import("../infoMatch/infoMatch").then(module => module.clearIntervalInfoMatch())
     import("../infoLeague/infoLeague").then(module => module.clearIntervalInfoLeague())
     import("../listMatch/listMatch").then(module => module.clearIntervalListMatch())
+    import("../infoTeam/infoTeam").then(module => module.clearIntervalInfoTeam())
 }

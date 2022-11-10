@@ -11,13 +11,28 @@ export default (players) => {
     <table class="standing-container stats-player">
         <tr class="head-table">
             <td class="player-table">Player</td>
-            <td>P <span>played<span></td>
+            <td>P <span class="caption-td">played<span></td>
             <td>age</td>
-            <td><img src="assets/img/goal.png" alt="goal" onerror="this.src='assets/img/goal.png'"> <span>goal<span></td>
-            <td><img src="assets/img/l.png" alt="assists" onerror="this.src='assets/img/l.png'"> <span>assists<span></td>
-            <td><img src="assets/img/yellow-card.png" alt="yellow-card" onerror="this.src='assets/img/yellow-card.png'"> <span>yellow card<span></td>
-            <td><img src="assets/img/red-card.png" alt="red-card" onerror="this.src='assets/img/red-card.png'"> <span>red card<span></td>
-            <td><img src="assets/img/injury.png" alt="injury-card" onerror="this.src='assets/img/injury.png'"> <span>injury<span></td>
+            <td>
+                <img src="assets/img/goal.png" alt="goal" onerror="this.src='assets/img/goal.png'"> 
+                <span class="caption-td">goal<span>
+            </td>
+            <td>
+                <img src="assets/img/l.png" alt="assists" onerror="this.src='assets/img/l.png'"> 
+                <span class="caption-td">assists<span>
+            </td>
+            <td>
+                <img src="assets/img/yellow-card.png" alt="yellow-card" onerror="this.src='assets/img/yellow-card.png'"> 
+                <span class="caption-td">yellow card<span>
+            </td>
+            <td>
+                <img src="assets/img/red-card.png" alt="red-card" onerror="this.src='assets/img/red-card.png'"> 
+                <span class="caption-td">red card<span>
+            </td>
+            <td>
+                <img src="assets/img/injury.png" alt="injury-card" onerror="this.src='assets/img/injury.png'"> 
+                <span class="caption-td">injury<span>
+            </td>
         </tr>`;
     for(let element of players) { // satria le izy filtrer par place (milieu, attaquant, ...)
         for(let p of element.players) {
@@ -27,13 +42,13 @@ export default (players) => {
                     <span class="number">${p.player_number}</span> 
                     <span>${p.player_name}</span>
                 </td>
-                <td>${p.player_match_played}</td>
-                <td>${p.player_age}</td>
-                <td>${p.player_goals}</td>
-                <td>${p.player_assists}</td>
-                <td>${p.player_yellow_cards}</td>
-                <td>${p.player_red_cards}</td>
-                <td>${(p.player_injured === "No" ? "" : "yes")}</td>
+                <td>${p.player_match_played} <span class="caption-td">played<span></td>
+                <td>${p.player_age} <span class="caption-td">age<span></td>
+                <td>${p.player_goals} <span class="caption-td">goal<span></td>
+                <td>${p.player_assists} <span class="caption-td">assists<span></td>
+                <td>${p.player_yellow_cards} <span class="caption-td">yellow card<span></td>
+                <td>${p.player_red_cards} <span class="caption-td">red card<span></td>
+                <td>${(p.player_injured === "No" ? "" : "yes")} <span class="caption-td">injury<span></td>
             </tr>`
         }
     }
@@ -61,13 +76,13 @@ function displayDefault(players, headTr, tr) {
     let i=0;
     headTr.innerHTML = 
     `<td class="player-table">Player</td>
-    <td>P <span>played<span></td>
+    <td>P <span class="caption-td">played<span></td>
     <td>age</td>
-    <td><img src="assets/img/goal.png" alt="goal" onerror="this.src='assets/img/goal.png'"> <span>goal<span></td>
-    <td><img src="assets/img/l.png" alt="assists" onerror="this.src='assets/img/l.png'"> <span>assists<span></td>
-    <td><img src="assets/img/yellow-card.png" alt="yellow-card" onerror="this.src='assets/img/yellow-card.png'"> <span>yellow card<span></td>
-    <td><img src="assets/img/red-card.png" alt="red-card" onerror="this.src='assets/img/red-card.png'"> <span>red card<span></td>
-    <td><img src="assets/img/injury.png" alt="injury-card" onerror="this.src='assets/img/injury.png'"> <span>injury<span></td>`;
+    <td><img src="assets/img/goal.png" alt="goal" onerror="this.src='assets/img/goal.png'"> <span class="caption-td">goal<span></td>
+    <td><img src="assets/img/l.png" alt="assists" onerror="this.src='assets/img/l.png'"> <span class="caption-td">assists<span></td>
+    <td><img src="assets/img/yellow-card.png" alt="yellow-card" onerror="this.src='assets/img/yellow-card.png'"> <span class="caption-td">yellow card<span></td>
+    <td><img src="assets/img/red-card.png" alt="red-card" onerror="this.src='assets/img/red-card.png'"> <span class="caption-td">red card<span></td>
+    <td><img src="assets/img/injury.png" alt="injury-card" onerror="this.src='assets/img/injury.png'"> <span class="caption-td">injury<span></td>`;
     
     for(let element of players) { // satria le izy filtrer par place (milieu, attaquant, ...)
         for(let p of element.players) {
@@ -76,13 +91,13 @@ function displayDefault(players, headTr, tr) {
                 <span class="number">${p.player_number}</span> 
                 <span>${p.player_name}</span>
             </td>
-            <td>${p.player_match_played}</td>
-            <td>${p.player_age}</td>
-            <td>${p.player_goals}</td>
-            <td>${p.player_assists}</td>
-            <td>${p.player_yellow_cards}</td>
-            <td>${p.player_red_cards}</td>
-            <td>${(p.player_injured === "No" ? "" : "yes")}</td>`;
+            <td>${p.player_match_played} <span class="caption-td">played<span></td>
+            <td>${p.player_age} <span class="caption-td">age<span></td>
+            <td>${p.player_goals} <span class="caption-td">goal<span></td>
+            <td>${p.player_assists} <span class="caption-td">assists<span></td>
+            <td>${p.player_yellow_cards} <span class="caption-td">yellow card<span></td>
+            <td>${p.player_red_cards} <span class="caption-td">red card<span></td>
+                <td>${(p.player_injured === "No" ? "" : "yes")} <span class="caption-td">injury<span></td>`;
             i++;
         }
     }
@@ -94,12 +109,12 @@ function displayDribble(players, headTr, tr) {
     let i=0;
     headTr.innerHTML = 
     `<td class="player-table">Player</td>
-    <td>P <span>played<span></td>
+    <td>P <span class="caption-td">played<span></td>
     <td>age</td>
-    <td><img src="assets/img/goal.png" alt="goal" onerror="this.src='assets/img/goal.png'"> <span>goal<span></td>
-    <td><img src="assets/img/l.png" alt="assists" onerror="this.src='assets/img/l.png'"> <span>assists<span></td>
-    <td>DA <span>dribble attempts<span></td>
-    <td>DS <span>dribble succeed<span></td>
+    <td><img src="assets/img/goal.png" alt="goal" onerror="this.src='assets/img/goal.png'"> <span class="caption-td">goal<span></td>
+    <td><img src="assets/img/l.png" alt="assists" onerror="this.src='assets/img/l.png'"> <span class="caption-td">assists<span></td>
+    <td>DA <spa class="caption-td">dribble attempts<span></td>
+    <td>DS <span class="caption-td">dribble succeed<span></td>
     <td>shots</td>`    
     for(let element of players) { // satria le izy filtrer par place (milieu, attaquant, ...)
         for(let p of element.players) {
@@ -108,13 +123,13 @@ function displayDribble(players, headTr, tr) {
                 <span class="number">${p.player_number}</span> 
                 <span>${p.player_name}</span>
             </td>
-            <td>${p.player_match_played}</td>
-            <td>${p.player_age}</td>
-            <td>${p.player_goals}</td>
-            <td>${p.player_assists}</td>
-            <td>${p.player_dribble_attempts}</td>
-            <td>${p.player_dribble_succ}</td>
-            <td>${p.player_shots_total}</td>`;
+            <td>${p.player_match_played} <span class="caption-td">played<span></td>
+            <td>${p.player_age} <span class="caption-td">age<span></td>
+            <td>${p.player_goals} <span class="caption-td">goal<span></td>
+            <td>${p.player_assists} <span class="caption-td">assists<span></td>
+            <td>${p.player_dribble_attempts} <span class="caption-td">dribble attempts<span></td>
+            <td>${p.player_dribble_succ} <span class="caption-td">dribble succeed<span></td>
+            <td>${p.player_shots_total} <span class="caption-td">shots<span></td>`;
             i++;
         }
     }
@@ -126,13 +141,13 @@ function displayPasses(players, headTr, tr) {
     let i=0;
     headTr.innerHTML = 
     `<td class="player-table">Player</td>
-    <td>P <span>played<span></td>
+    <td>P <span class="caption-td">played<span></td>
     <td>age</td>
-    <td><img src="assets/img/l.png" alt="assists" onerror="this.src='assets/img/l.png'"> <span>assists<span></td>
-    <td>TP <span>total passes<span></td>
-    <td>PA <span>passes accuracy<span></td>
-    <td>KP<span>key passes<span></td>
-    <td><img src="assets/img/injury.png" alt="injury-card" onerror="this.src='assets/img/injury.png'"> <span>injury<span></td>`
+    <td><img src="assets/img/l.png" alt="assists" onerror="this.src='assets/img/l.png'"> <span class="caption-td">assists<span></td>
+    <td>TP <span class="caption-td">total passes<span></td>
+    <td>PA <span class="caption-td">passes accuracy<span></td>
+    <td>KP <span class="caption-td">key passes<span></td>
+    <td><img src="assets/img/injury.png" alt="injury-card" onerror="this.src='assets/img/injury.png'"> <span class="caption-td">injury<span></td>`
     
     for(let element of players) { // satria le izy filtrer par place (milieu, attaquant, ...)
         for(let p of element.players) {
@@ -141,13 +156,13 @@ function displayPasses(players, headTr, tr) {
                 <span class="number">${p.player_number}</span> 
                 <span>${p.player_name}</span>
             </td>
-            <td>${p.player_match_played}</td>
-            <td>${p.player_age}</td>
-            <td>${p.player_assists}</td>
-            <td>${p.player_passes}</td>
-            <td>${p.player_passes_accuracy}</td>
-            <td>${p.player_key_passes}</td>
-            <td>${(p.player_injured === "No" ? "" : "yes")}</td>`;
+            <td>${p.player_match_played} <span class="caption-td">played<span></td>
+            <td>${p.player_age} <span class="caption-td">age<span></td>
+            <td>${p.player_assists} <span class="caption-td">assists<span></td>
+            <td>${p.player_passes} <span class="caption-td">total passes<span></td>
+            <td>${p.player_passes_accuracy} <span class="caption-td">passes accuracy<span></td>
+            <td>${p.player_key_passes} <span class="caption-td">key passes<span></td>
+            <td>${(p.player_injured === "No" ? "" : "yes")} <span class="caption-td">injury<span></td>`;
             i++;
         }
     }
@@ -159,13 +174,13 @@ function displayTackles(players, headTr, tr) {
     let i=0;
     headTr.innerHTML = 
     `<td class="player-table">Player</td>
-    <td>P <span>played<span></td>
+    <td>P <span class="caption-td">played<span></td>
     <td>tackles</td>
-    <td>INT <span>interceptions<span></td>
-    <td>F <span>fouls<span></td>
-    <td><img src="assets/img/yellow-card.png" alt="yellow-card" onerror="this.src='assets/img/yellow-card.png'"> <span>yellow card<span></td>
-    <td><img src="assets/img/red-card.png" alt="red-card" onerror="this.src='assets/img/red-card.png'"> <span>red card<span></td>
-    <td><img src="assets/img/injury.png" alt="injury-card" onerror="this.src='assets/img/injury.png'"> <span>injury<span></td>`
+    <td>INT <span class="caption-td">interceptions<span></td>
+    <td>F <span class="caption-td">fouls<span></td>
+    <td><img src="assets/img/yellow-card.png" alt="yellow-card" onerror="this.src='assets/img/yellow-card.png'"> <span class="caption-td">yellow card<span></td>
+    <td><img src="assets/img/red-card.png" alt="red-card" onerror="this.src='assets/img/red-card.png'"> <span class="caption-td">red card<span></td>
+    <td><img src="assets/img/injury.png" alt="injury-card" onerror="this.src='assets/img/injury.png'"> <span class="caption-td">injury<span></td>`
     
     for(let element of players) { // satria le izy filtrer par place (milieu, attaquant, ...)
         for(let p of element.players) {
@@ -174,13 +189,13 @@ function displayTackles(players, headTr, tr) {
                 <span class="number">${p.player_number}</span> 
                 <span>${p.player_name}</span>
             </td>
-            <td>${p.player_match_played}</td>
-            <td>${p.player_tackles}</td>
-            <td>${p.player_interceptions}</td>
-            <td>${p.player_fouls_committed}</td>
-            <td>${p.player_yellow_cards}</td>
-            <td>${p.player_red_cards}</td>
-            <td>${(p.player_injured === "No" ? "" : "yes")}</td>`;
+            <td>${p.player_match_played} <span class="caption-td">played<span></td></td>
+            <td>${p.player_tackles} <span class="caption-td">tackles<span></td>
+            <td>${p.player_interceptions} <span class="caption-td">interceptions<span></td>
+            <td>${p.player_fouls_committed} <span class="caption-td">fouls<span></td>
+            <td>${p.player_yellow_cards} <span class="caption-td">yellow card<span></td>
+            <td>${p.player_red_cards} <span class="caption-td">red card<span></td>
+            <td>${(p.player_injured === "No" ? "" : "yes")} <span class="caption-td">injury<span></td>`;
             i++;
         }
     }
@@ -192,13 +207,22 @@ function displayDuels(players, headTr, tr) {
     let i=0;
     headTr.innerHTML = 
     `<td class="player-table">Player</td>
-    <td>P <span>played<span></td>
+    <td>P <span class="caption-td">played<span></td>
     <td>age</td>
     <td>DT <span>duels total<span></td>
     <td>DW <span>duels won<span></td>
-    <td><img src="assets/img/yellow-card.png" alt="yellow-card" onerror="this.src='assets/img/yellow-card.png'"> <span>yellow card<span></td>
-    <td><img src="assets/img/red-card.png" alt="red-card" onerror="this.src='assets/img/red-card.png'"> <span>red card<span></td>
-    <td><img src="assets/img/injury.png" alt="injury-card" onerror="this.src='assets/img/injury.png'"> <span>injury<span></td>`
+    <td>
+        <img src="assets/img/yellow-card.png" alt="yellow-card" onerror="this.src='assets/img/yellow-card.png'"> 
+        <span class="caption-td">yellow card<span>
+    </td>
+    <td>
+        <img src="assets/img/red-card.png" alt="red-card" onerror="this.src='assets/img/red-card.png'">
+        <span class="caption-td">red card<span>
+    </td>
+    <td>
+        <img src="assets/img/injury.png" alt="injury-card" onerror="this.src='assets/img/injury.png'"> 
+        <span class="caption-td">injury<span>
+    </td>`
     
     for(let element of players) { // satria le izy filtrer par place (milieu, attaquant, ...)
         for(let p of element.players) {
@@ -207,13 +231,13 @@ function displayDuels(players, headTr, tr) {
                 <span class="number">${p.player_number}</span> 
                 <span>${p.player_name}</span>
             </td>
-            <td>${p.player_match_played}</td>
-            <td>${p.player_age}</td>
-            <td>${p.player_duels_total}</td>
-            <td>${p.player_duels_won}</td>
-            <td>${p.player_yellow_cards}</td>
-            <td>${p.player_red_cards}</td>
-            <td>${(p.player_injured === "No" ? "" : "yes")}</td>`;
+            <td>${p.player_match_played} <span class="caption-td">played<span></td>
+            <td>${p.player_age} <span class="caption-td">age<span></td>
+            <td>${p.player_duels_total} <span class="caption-td">duels total<span></td>
+            <td>${p.player_duels_won} <span class="caption-td">duels won<span></td>
+            <td>${p.player_yellow_cards} <span class="caption-td">yellow card<span></td>
+            <td>${p.player_red_cards} <span class="caption-td">red card<span></td>
+            <td>${(p.player_injured === "No" ? "" : "yes")} <span class="caption-td">injury<span></td>`;
             i++;
         }
     }
@@ -225,13 +249,13 @@ function displayGoal(players, headTr, tr) {
     let i=0;
     headTr.innerHTML = 
     `<td class="player-table">Player</td>
-    <td>P <span>played<span></td>
+    <td>P <span class="caption-td">played<span></td>
     <td>age</td>
-    <td>GC<span>goal conceded<span></td>
+    <td>GC <span class="caption-td">goal conceded<span></td>
     <td>saves</td>
-    <td><img src="assets/img/yellow-card.png" alt="yellow-card" onerror="this.src='assets/img/yellow-card.png'"> <span>yellow card<span></td>
-    <td><img src="assets/img/red-card.png" alt="red-card" onerror="this.src='assets/img/red-card.png'"> <span>red card<span></td>
-    <td><img src="assets/img/injury.png" alt="injury-card" onerror="this.src='assets/img/injury.png'"> <span>injury<span></td>`;
+    <td><img src="assets/img/yellow-card.png" alt="yellow-card" onerror="this.src='assets/img/yellow-card.png'"> <span class="caption-td">yellow card<span></td>
+    <td><img src="assets/img/red-card.png" alt="red-card" onerror="this.src='assets/img/red-card.png'"> <span class="caption-td">red card<span></td>
+    <td><img src="assets/img/injury.png" alt="injury-card" onerror="this.src='assets/img/injury.png'"> <span class="caption-td">injury<span></td>`;
     
     for(let element of players) { // satria le izy filtrer par place (milieu, attaquant, ...)
         for(let p of element.players) {
@@ -240,13 +264,13 @@ function displayGoal(players, headTr, tr) {
                 <span class="number">${p.player_number}</span> 
                 <span>${p.player_name}</span>
             </td>
-            <td>${p.player_match_played}</td>
-            <td>${p.player_age}</td>
-            <td>${(p.player_goals_conceded == 0 || p.player_goals_conceded === "") ? '' : p.player_goals_conceded}</td>
-            <td>${p.player_saves ? p.player_saves : ''}</td>
-            <td>${p.player_yellow_cards}</td>
-            <td>${p.player_red_cards}</td>
-            <td>${(p.player_injured === "No" ? "" : "yes")}</td>`;
+            <td>${p.player_match_played} <span class="caption-td">played<span></td>
+            <td>${p.player_age} <span class="caption-td">age<span></td>
+            <td>${(p.player_goals_conceded == 0 || p.player_goals_conceded === "") ? '' : p.player_goals_conceded} <span class="caption-td">goal conceded<span></td>
+            <td>${p.player_saves ? p.player_saves : ''} <span class="caption-td">saves<span></td>
+            <td>${p.player_yellow_cards} <span class="caption-td">yellow card<span></td>
+            <td>${p.player_red_cards} <span class="caption-td">red card<span></td>
+            <td>${(p.player_injured === "No" ? "" : "yes")} <span class="caption-td">injury<span></td>`;
             i++;
         }
     }

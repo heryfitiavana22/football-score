@@ -30,13 +30,13 @@ export default async function infoMatch(isPopState=false, idMatch, toDisplay) {
     // display moment fort
     displayMoment(game)
 
-    if(toDisplay === "standing") { // raha tiana specifie-na ho classement
+    if((toDisplay === "standing") || (currentDisplay === "standing")) { // raha tiana specifie-na ho classement
         standing = await getStanding(game.league_id)
         // add history (ajouteko mitokana ito)
         if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
             addHistory(`game/standing/${game.match_id}`);
         currentDisplay = displayStanding(standing, game.match_hometeam_id, game.match_awayteam_id)
-    } else if(toDisplay === "stats") {
+    } else if((toDisplay === "stats") || (currentDisplay === "stats")) {
         getStanding(game.league_id).then((value) => standing = value)
         currentDisplay = displayStats(isPopState, game)
     } else {
@@ -78,9 +78,10 @@ export default async function infoMatch(isPopState=false, idMatch, toDisplay) {
     //     // mettre a jour le resultat chaque 60 seconde 
     //     interval = setInterval(async () => {
     //         isUpdate = true
-    //         // console.log('maj info');
-    //         infoMatch(true, idMatch, toDisplay)
-    //     },60000)
+    //         console.log(currentDisplay);
+    //         console.log('maj info');
+    //         infoMatch(true, idMatch)
+    //     }, 55000) // tous les une minutes  (alatsako kely amle mbola alaina)
     //     // console.log("interval");
     // }, 2000)
 }

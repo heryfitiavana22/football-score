@@ -1,16 +1,14 @@
-import infoTeam from '../infoTeam/infoTeam'
-
 export default (standing, ...idTeams) => {
     // console.log(idTeams);
     let standingHTML =
     `<table class="standing-container">
         <tr class="head-table">
             <td class="team">Team</td>
-            <td>P <span>played<span></td>
-            <td>GF <span>goal for<span></td>
-            <td>GA <span>goal against<span></td>
-            <td>GD <span>goal difference<span></td>
-            <td>Pts <span>points<span></td>
+            <td>P <span class="caption-td">played<span></td>
+            <td>GF <span class="caption-td">goal for<span></td>
+            <td>GA <span class="caption-td">goal against<span></td>
+            <td>GD <span class="caption-td gd">goal difference<span></td>
+            <td>Pts <span class="caption-td">points<span></td>
         </tr>`;
         for(let element of standing) {
             standingHTML += 
@@ -20,11 +18,26 @@ export default (standing, ...idTeams) => {
                     <img src="${element.team_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${element.league_id}t${element.team_id}" onerror="this.src = '../../assets/img/logo2.png'">
                     <span class="name" id="${element.league_id}t${element.team_id}">${element.team_name}</span>
                 </td>
-                <td id="${element.league_id}t${element.team_id}">${element.overall_league_payed}</td>
-                <td id="${element.league_id}t${element.team_id}">${element.overall_league_GF}</td>
-                <td id="${element.league_id}t${element.team_id}">${element.overall_league_GA}</td>
-                <td id="${element.league_id}t${element.team_id}">${element.overall_league_GF - element.overall_league_GA}</td>
-                <td id="${element.league_id}t${element.team_id}">${element.overall_league_PTS}</td>
+                <td id="${element.league_id}t${element.team_id}">
+                    ${element.overall_league_payed} 
+                    <span class="caption-td">played<span>
+                </td>
+                <td id="${element.league_id}t${element.team_id}">
+                    ${element.overall_league_GF}
+                    <span class="caption-td">goal for<span>
+                </td>
+                <td id="${element.league_id}t${element.team_id}">
+                    ${element.overall_league_GA}
+                    <span class="caption-td">goal against<span>
+                </td>
+                <td id="${element.league_id}t${element.team_id}">
+                    ${element.overall_league_GF - element.overall_league_GA}
+                    <span class="caption-td gd">goal difference<span>
+                </td>
+                <td id="${element.league_id}t${element.team_id}">
+                    ${element.overall_league_PTS}
+                    <span class="caption-td">points<span>
+                </td>
             </tr>`
         }
     standingHTML += `</table>`
@@ -33,14 +46,15 @@ export default (standing, ...idTeams) => {
     document.querySelector('.nav-info li.active').classList.remove('active');
     document.querySelector('#standing').classList.add('active');
 
-    document.querySelector('.standing-container').addEventListener('click', (e) => {
-        // console.log(e.target.attributes.class);
-        if(e.target.attributes.class.nodeValue.includes("current-team")) return
+    document.querySelector('.standing-container').addEventListener('click', async (e) => {
+        let className = e.target.attributes.class;
+        if(className && className.nodeValue.includes("current-team")) return
+
 
         let id = e.target.id.split('t');
         if(id.length !== 2) return
-
-        infoTeam(false, ...id)
+        let infoTeam = await import('../infoTeam/infoTeam')
+        infoTeam.default(false, ...id)
     })
     return "standing"
 }

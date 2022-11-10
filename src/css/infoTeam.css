@@ -93,7 +93,7 @@
 }
 .stats-player .tr-player td {color: rgb(64, 64, 64);}
 .stats-player .head-table td {color: white !important;}
-.stats-player .head-table td span {left: 19px;}
+.stats-player td .caption-td {left: 19px;}
 .stats-player .number {font-size: 15px;}
 
 .nav-stats {

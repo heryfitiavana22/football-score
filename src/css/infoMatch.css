@@ -112,9 +112,8 @@
     position: absolute;  
     top: 8px;
     display: flex;
+    flex-wrap: wrap;
     width: 45%;
-    height: 24px;
-    overflow: hidden;
 }
 .moment.home .item {
     right: 55%; 
@@ -126,7 +125,7 @@
     justify-content: start;
     padding-right: 10px;
 }
-.item.substitution .in, .item.substitution .on {max-width: 47%;}
+/* .item.substitution .in, .item.substitution .on {max-width: 47%;} */
 .item.substitution .out {color: rgb(122, 122, 122)}
 #icon-substitute {margin: 5px 10px;}
 .item img {width: 25px; height: 25px;}
@@ -278,6 +277,8 @@
     .match .team img {width: 55px; height: 55px;}
     .match .team .score {top: 20%;}
 
+    .moment-container {font-size: 14px;}
+
     .lineup {height: 730px;}
     .lineup > img {
         content: url(../../assets/img/terrain2.jpg) !important;
@@ -308,6 +309,12 @@
         right: 34px;
         top: unset;
     }
+
+    .coach .team {font-size: 18px;}
+    .coach .team img {
+        width: 40px;
+        height: 40px;
+    }
 }
 
 @media screen and (max-width : 576px) {
@@ -330,7 +337,16 @@
     .moment .item img {width: 20px; height: 20px;}
     .moment.home .item {padding-left: 0;}
     .moment.away .item {padding-right: 0;}
-    #icon-substitute {margin: 5px;}
+    .item.substitution .in, .item.substitution .on {
+        max-width: 90%;
+        overflow: hidden;
+        height: 16px;
+    }
+    #icon-substitute {
+        margin: 5px 4px 0 4px;
+        font-size: 10px;
+    }
+    
 
     .info-match > div {padding: 5px !important;}
     .lineup {height: 550px;}
@@ -352,6 +368,8 @@
     .coach > div > div {padding: 10px 5px 5px 10px;}
     .coach .team img {width: 30px; height: 30px;}
     .coach .team {font-size: 16px;}
+    .coach .manager-name {font-size: 13px;}
+    .coach .caption {font-size: 12px;}
 
     .standing-container {font-size: 12px;}
     .head-table {height: 30px;}
@@ -364,12 +382,13 @@
         width: 20px;
         height: 20px;
     }
-    .head-table td span {
+    td .caption-td {
         font-size: 9px;    
         top: 23px;
-        left: 1px;
+        left: -10px;
     }
-    
+    td .caption-td.gd {left: -25px;}
+
     .statistics h4 {font-size: 16px;}
     .statistics .row-item {font-size: 12px; height: 35px;}
 }

@@ -73,7 +73,7 @@ export default async (isPopState, idLeague) => {
     //         if (currentDisplay === "result")
     //             currentDisplay = displayMatch(result, "result");
     //     }
-    // }, 60000); // tous les une minute
+    // }, 55000) // tous les une minute  (alatsako kely amle mbola alaina)
 };
 
 export function clearIntervalInfoLeague() {
