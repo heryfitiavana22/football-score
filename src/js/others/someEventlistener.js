@@ -1,7 +1,6 @@
 export default () => {
     let iconCalendar = document.querySelector('#icon-toggle-calendar'),
         iconListLeague = document.querySelector('#icon-toggle-league'),
-        closeCalendar = document.querySelector('#close-calendar'),
         closeListLeague = document.querySelector('#close-league');
 
     let leagueContainer = document.querySelector('.league-container'),
@@ -13,10 +12,6 @@ export default () => {
     /* icon calendar */
     iconCalendar.addEventListener('click', () => {
         document.querySelector('.actual').style.top = '0'
-    })
-
-    closeCalendar.addEventListener('click', () => {
-        document.querySelector('.actual').style.top = '-100%'
     })
 
     /* icon listLeague */

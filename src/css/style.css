@@ -216,12 +216,12 @@ h1 span {
     display: inline-block;
     width: 21px !important;
 }
-.head-table td span {
+td .caption-td {
     position: absolute;
     display: none;
     width: max-content;
     top: 29px;
-    left: -10px;
+    left: 13%;
     padding: 0 4px;
     font-size: 12px;
     color: aliceblue;
@@ -229,7 +229,8 @@ h1 span {
     border-radius: 6px;
     z-index: 1;
 }
-.head-table td:hover span {display: block;}
+td:hover .caption-td {display: block;}
+/* .head-table td:hover span {display: block;} */
 /* end standing */
 
 /* nav-info (ary amin infoMatch sy infoLeague */

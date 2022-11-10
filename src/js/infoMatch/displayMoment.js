@@ -1,5 +1,4 @@
 export default (game) => {
-    window.scroll(0,0)
     let moment = [],
         goal = game.goalscorer,
         card = game.cards,

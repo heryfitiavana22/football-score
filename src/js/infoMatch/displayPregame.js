@@ -104,11 +104,11 @@ export default (isPopState=false, game) => {
             <div class="manager">
                 <div class="home">
                     <span class="caption">Manager : </span>
-                    <span class="manager">${home.coach}</span>
+                    <span class="manager-name">${home.coach}</span>
                 </div>
                 <div class="away">
                     <span class="caption">Manager : </span>
-                    <span class="manager">${away.coach}</span>
+                    <span class="manager-name">${away.coach}</span>
                 </div>
             </div>
         </div>

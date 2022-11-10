@@ -11,7 +11,9 @@ import filterByPlace from "./filterByPlace";
 import filterByDate from "../func/filterByDate";
 import { plus15, minus15 } from "../func/date";
 import {loading, stopLoading} from '../others/animation'
-import {clearIntervalInfoLeague} from '../infoLeague/infoLeague'
+
+let currentDisplay = undefined,
+    intervalUpdate;
 
 export default async (isPopState = false, idLeague, idTeam) => {
     let calendar = [],
@@ -20,7 +22,7 @@ export default async (isPopState = false, idLeague, idTeam) => {
         players = [],
         coach = []
     loading()
-    clearIntervalInfoLeague()
+
     window.scroll(0,0)
      // rehefa popstate de tsy mila mi-ajouter
     if(!isPopState) addHistory(`team/${idLeague}&${idTeam}`) 
@@ -43,11 +45,39 @@ export default async (isPopState = false, idLeague, idTeam) => {
     /* onclick nav */
     document.querySelector('.nav-team').addEventListener('click', (e) => {
         let id = e.target.id;
-        if(id === "calendar") displayMatch(calendar, "calendar")
-        else if (id === "results") displayMatch(result, "results")
+        if(id === "calendar") currentDisplay = displayMatch(calendar, "calendar")
+        else if (id === "results") currentDisplay = displayMatch(result, "results")
         else if (id === "standing") displayStanding(standing, idTeam)
         else if (id === "stats") displayStatsPlayer(players)
         else displayPlayers(players, coach)
     })
     stopLoading()
+
+    intervalUpdate = setInterval(async () => {
+        if (currentDisplay === "calendar") {
+            // affiche-na aloha sao taraiky le resultat teo aloha
+            currentDisplay = displayMatch(calendar, "calendar");
+            // maka vaovao
+            calendar = await getMatch(new Date(), plus15(), 0, idTeam)
+            calendar = filterByDate(calendar, "ASC");
+            // sao novainy tampoka nefa taraiky vao azo
+            if (currentDisplay === "calendar")
+                currentDisplay = displayMatch(calendar, "calendar");
+        } else if (currentDisplay === "results") {
+            // affiche-na aloha sao taraiky le resultat teo aloha
+            currentDisplay = displayMatch(result, "results");
+            // maka vaovao
+            result = await getMatch(minus15(), new Date(), 0, idTeam);
+            result = filterByDate(result);
+            result.shift(); // shift satria lasa voaray ao le date androany;
+            // sao novainy tampoka nefa taraiky vao azo
+            if (currentDisplay === "result")
+                currentDisplay = displayMatch(result, "result");
+        }
+        
+        }, 55000) // tous les une minute  (alatsako kely amle mbola alaina)
 };
+
+export function clearIntervalInfoTeam() {
+    clearInterval(intervalUpdate)
+}

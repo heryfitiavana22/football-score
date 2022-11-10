@@ -93,7 +93,8 @@
 }
 .stats-player .tr-player td {color: rgb(64, 64, 64);}
 .stats-player .head-table td {color: white !important;}
-.stats-player .head-table td span {left: 19px;}
+.stats-player td .caption-td {left: 19px;}
+.stats-player .number {font-size: 15px;}
 
 .nav-stats {
     display: flex;
@@ -150,7 +151,8 @@
         width: 12px;
         height: 12px;
     }
-    .player-table {font-size: 12px !important;}
-    .stats-player tr td {font-size: 10px !important;}
+    .player-table {font-size: 13px !important;}
+    .stats-player tr td {font-size: 12px;}
+    .stats-player .number {font-size: 12px; margin-top: 5px;}
     .nav-stats {font-size: 12px;}
 }

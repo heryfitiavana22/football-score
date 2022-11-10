@@ -1,5 +1,3 @@
-import infoMatch from '../infoMatch/infoMatch'
-import infoLeague from '../infoLeague/infoLeague'
 import {listMatchToday, listMatchLive, listMatchFinished} from './listMatch'
 
 export default function (listGame) {

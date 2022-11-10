@@ -18,9 +18,13 @@ eventListener() // onclick sy ny namany
 checkHistory(false) // false satria pushstate 
 
 window.onpopstate = (e) => {
+    loading()
     // console.log('onpopstate');
     // console.log(e);
     checkHistory(true)
+    import("./infoMatch/infoMatch").then(module => module.clearIntervalInfoMatch())
+    import("./infoLeague/infoLeague").then(module => module.clearIntervalInfoLeague())
+    import("./listMatch/listMatch").then(module => module.clearIntervalListMatch())
 }
 
 /* logo onclick */
