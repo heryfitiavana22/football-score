@@ -13,7 +13,7 @@ import { endSeason, startSeason } from "../func/date";
 import {loading, stopLoading} from '../others/animation'
 
 let currentDisplay = undefined,
-    intervalUpdate;
+    intervalUpdate = undefined;
 
 export default async (isPopState = false, idLeague, idTeam) => {
     let calendar = [],
@@ -60,6 +60,8 @@ export default async (isPopState = false, idLeague, idTeam) => {
             // maka vaovao
             calendar = await getMatch(new Date(), endSeason(), 0, idTeam)
             calendar = filterByDate(calendar, "ASC");
+            // au cas ou efa lancé le izy nefa taraiky vao voafafa
+            if(intervalUpdate === "cleared") return
             // sao novainy tampoka nefa taraiky vao azo
             if (currentDisplay === "calendar")
                 currentDisplay = displayMatch(calendar, "calendar");
@@ -70,6 +72,8 @@ export default async (isPopState = false, idLeague, idTeam) => {
             result = await getMatch(startSeason(), new Date(), 0, idTeam);
             result = filterByDate(result);
             result.shift(); // shift satria lasa voaray ao le date androany;
+            // au cas ou efa lancé le izy nefa taraiky vao voafafa
+            if(intervalUpdate === "cleared") return
             // sao novainy tampoka nefa taraiky vao azo
             if (currentDisplay === "result")
                 currentDisplay = displayMatch(result, "result");
@@ -79,5 +83,9 @@ export default async (isPopState = false, idLeague, idTeam) => {
 };
 
 export function clearIntervalInfoTeam() {
+    // rehefa mbola tsy nahazo valeur de tsy mila atao clearInterval
+    if(intervalUpdate === undefined) return
+
     clearInterval(intervalUpdate)
+    intervalUpdate = "cleared"
 }

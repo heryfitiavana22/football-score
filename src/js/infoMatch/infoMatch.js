@@ -23,6 +23,8 @@ export default async function infoMatch(isPopState=false, idMatch, toDisplay) {
         standing = [];
     
     game = await getInfoMatch(idMatch)
+    // au cas ou efa lancé le izy nefa taraiky vao voafafa
+    if(interval === "cleared") return
     // console.log('game');
     // console.log(game);
     // display game (home vs away)
@@ -87,6 +89,10 @@ export default async function infoMatch(isPopState=false, idMatch, toDisplay) {
 }
 
 export function clearIntervalInfoMatch() {
+    // rehefa mbola tsy nahazo valeur de tsy mila atao clearInterval
+    if(interval === undefined) return
+    
     clearInterval(interval)
+    interval = "cleared"
     isUpdate = false
 }
