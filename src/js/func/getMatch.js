@@ -18,7 +18,7 @@ export default async (from, to = from, idLeague = 0, idTeam = 0) => {
         if(idLeague > 0) url += `&league_id=${idLeague}`
         // au cas ou idLeague est donne
         if(idTeam > 0) url += `&team_id=${idTeam}`
-        console.log(url);
+        // console.log(url);
         fetch(url, { method: "get" })
             .then((response) => response.json())
             .then((value) => {

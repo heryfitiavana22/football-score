@@ -192,7 +192,7 @@ let listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getList
         if(idLeague > 0) url += `&league_id=${idLeague}`
         // au cas ou idLeague est donne
         if(idTeam > 0) url += `&team_id=${idTeam}`
-        console.log(url);
+        // console.log(url);
         fetch(url, { method: "get" })
             .then((response) => response.json())
             .then((value) => {
@@ -743,6 +743,10 @@ let currentDisplay = undefined,
         else (0,_displayPlayers__WEBPACK_IMPORTED_MODULE_6__["default"])(players, coach)
     })
     ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_12__.stopLoading)()
+
+    // asorina ny league active raha misy
+    let activeLeague = document.querySelector('.list-league li.active');
+    if(activeLeague) activeLeague.classList.remove('active')
 
     intervalUpdate = setInterval(async () => {
         if (currentDisplay === "calendar") {

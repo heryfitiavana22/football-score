@@ -53,6 +53,10 @@ export default async (isPopState = false, idLeague, idTeam) => {
     })
     stopLoading()
 
+    // asorina ny league active raha misy
+    let activeLeague = document.querySelector('.list-league li.active');
+    if(activeLeague) activeLeague.classList.remove('active')
+
     intervalUpdate = setInterval(async () => {
         if (currentDisplay === "calendar") {
             // affiche-na aloha sao taraiky le resultat teo aloha

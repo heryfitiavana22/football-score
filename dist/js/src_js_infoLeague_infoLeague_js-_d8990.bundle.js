@@ -1,106 +1,106 @@
 "use strict";
-(self["webpackChunkFootball_score"] = self["webpackChunkFootball_score"] || []).push([["src_js_infoLeague_infoLeague_js"],{
+(self["webpackChunkFootball_score"] = self["webpackChunkFootball_score"] || []).push([["src_js_infoLeague_infoLeague_js-_d8990"],{
 
-/***/ "./src/js/func/displayMatchByDate.js":
-/*!*******************************************!*\
-  !*** ./src/js/func/displayMatchByDate.js ***!
-  \*******************************************/
+/***/ "./src/js/func/date.js":
+/*!*****************************!*\
+  !*** ./src/js/func/date.js ***!
+  \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "endSeason": () => (/* binding */ endSeason),
+/* harmony export */   "minus15": () => (/* binding */ minus15),
+/* harmony export */   "plus15": () => (/* binding */ plus15),
+/* harmony export */   "startSeason": () => (/* binding */ startSeason),
+/* harmony export */   "toYYYYMMDD": () => (/* binding */ toYYYYMMDD)
 /* harmony export */ });
-/* harmony import */ var _infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js");
+function toYYYYMMDD(date) {
+    let d = new Date(date),
+        year = d.getFullYear(),
+        month = d.getMonth() + 1,
+        day = d.getDate();
+    return year + "-" + month + "-" + day;
+}
+/* ampiana 15 jours */
+function plus15(date = new Date()) {
+    let d = new Date(date),
+        dateEnd = new Date(d.getFullYear(), d.getMonth(), d.getDate()+15);
+    return dateEnd.getFullYear() + '-' + (dateEnd.getMonth()+1) + '-' + dateEnd.getDate()
+}
 
+/* anasorana 15 jous */
+function minus15(date = new Date()) {
+    let d = new Date(date),
+        dateFirst = new Date(d.getFullYear(), d.getMonth(), d.getDate()-15);
+    return dateFirst.getFullYear() + '-' + (dateFirst.getMonth()+1) + '-' + dateFirst.getDate()
+}
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((game, idHTML) => {
-    // console.log(idHTML);
-    // console.log(game);
-    let listGameHTML =
-    `<div class="listMatch">`;
-    if(game.length === 0)
-        listGameHTML +=  `<p style="padding-left:15px">to wait or no match</p>`
-    for(let date of game) {
-        listGameHTML +=
-        `<div class="matchs">
-            <h3>${date.date}</h3>
-            <ul class="list-match">`;
-            for(let match of date.game) {
-                // live match
-                if(match.match_live === '1') 
-                listGameHTML += 
-                `<li class="live" id="${match.match_id}">
-                    <span class="hour-match" id="${match.match_id}">${isNaN(match.match_status) ? match.match_status : ((match.match_status + ' min'))}</span>`;
-                // match mbola tsy nandeha; finished game and postponed
-                else 
-                listGameHTML += 
-                `<li id="${match.match_id}">
-                    <span class="hour-match" id="${match.match_id}">${(match.match_status === 'Postponed') ? 'postponed' : match.match_time}</span>`
-                listGameHTML += 
-                    `<div class="match-item" id="${match.match_id}">
-                        <div class="home" id="${match.match_id}">
-                            <span id="${match.match_id}">${match.match_hometeam_name}</span>
-                            <img src="${match.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${match.match_id}" onerror="this.src = 'assets/img/logo2.png'">
-                            <span class="score-home score" id="${match.match_id}">${(match.match_hometeam_score.length > 0) ? match.match_hometeam_score : '  '}</span> 
-                        </div>
-                        <span class="vs" id="${match.match_id}">vs</span>
-                        <div class="away" id="${match.match_id}">
-                            <span class="away-home score" id="${match.match_id}">${(match.match_awayteam_score.length > 0) ? match.match_awayteam_score : '  '}</span>
-                            <img src="${match.team_away_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${match.match_id}" onerror="this.src = 'assets/img/logo2.png'">
-                            <span id="${match.match_id}">${match.match_awayteam_name}</span>
-                        </div>
-                    </div>
-                </li>`;
-            }
-            `</ul>
-        </div>`
-    }
-    listGameHTML +=
-    `</div>`;
-    document.querySelector('.current-item').innerHTML = listGameHTML
-    document.querySelector('.nav-info .active').classList.remove('active')
-    document.querySelector('#'+idHTML).classList.add('active')
-    /* onclick match */
-    document.querySelector('.listMatch').addEventListener('click', (e) => {
-        let id = e.target.id
-        if(isNaN(id) || id === '') 
-            return; // au cas ou tsy nombre
-        (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(false, id)
-    })
-    return idHTML;
-});
+/* start season */
+function startSeason(date = new Date()) {
+    let d = new Date(date);
+    if((d.getMonth()+1) >= 8) 
+        return d.getFullYear() + '-08-01'
+    return (d.getFullYear()-1) + '-08-01' // supposition oe mois d'aout ny debut
+}
+
+/* start season */
+function endSeason(date = new Date()) {
+    let d = new Date(date);
+    if((d.getMonth()+1) >= 8) // (mois d'aout ny debut)
+        return (d.getFullYear()+1) + '-07-01'
+    return (d.getFullYear()) + '-07-01' // supposition oe mois de juillet ny fin
+}
 
 
 /***/ }),
 
-/***/ "./src/js/func/filterByDate.js":
-/*!*************************************!*\
-  !*** ./src/js/func/filterByDate.js ***!
-  \*************************************/
+/***/ "./src/js/func/getMatch.js":
+/*!*********************************!*\
+  !*** ./src/js/func/getMatch.js ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((game, type) => {
-    let result = [],
-        listDate = [];
-    for (let element of game) {
-        // raha mbola tsy ao le date
-        if (!listDate.includes(element.match_date)) {
-            result.push({
-                date: element.match_date,
-                game: game.filter((g) => g.match_date === element.match_date), // ireo match amnio date io
-            });
-            listDate.push(element.match_date);
-        }
-    }
-    if (type === "ASC")
-        result.sort((a, b) => new Date(a.date) - new Date(b.date));
-    else result.sort((a, b) => new Date(b.date) - new Date(a.date));
-    return result;
+/* harmony import */ var _others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../others/contryAndLeague */ "./src/js/others/contryAndLeague.js");
+/* harmony import */ var _date__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./date */ "./src/js/func/date.js");
+
+
+
+let APIkey = "92268e4434769b7515b45be3b45cd3d9bdc9d3e4cf62885a85ada0a22c9acf8b";
+let listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListLeague)(),
+    listCountry = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListCountry)();
+
+// raha tsy mahazo valeur le "to" de atao mitovy amin "from"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (from, to = from, idLeague = 0, idTeam = 0) => {
+    return await new Promise((resolve, reject) => {
+        let fromDate = (0,_date__WEBPACK_IMPORTED_MODULE_1__.toYYYYMMDD)(from),
+            toDate = (0,_date__WEBPACK_IMPORTED_MODULE_1__.toYYYYMMDD)(to);
+        // console.log("from-to");
+        // console.log(fromDate+'-'+toDate);
+        let url = `https://apiv3.apifootball.com/?action=get_events&from=${fromDate}&to=${toDate}&APIkey=${APIkey}&timezone=Africa/Nairobi`;
+        
+        // au cas ou idLeague est donne
+        if(idLeague > 0) url += `&league_id=${idLeague}`
+        // au cas ou idLeague est donne
+        if(idTeam > 0) url += `&team_id=${idTeam}`
+        console.log(url);
+        fetch(url, { method: "get" })
+            .then((response) => response.json())
+            .then((value) => {
+                if(value.error) return resolve([])
+                // ireo anaty liste iany no alaina
+                let list = value.filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name));
+                // trier selon l'heure du match
+                list.sort((a,b) => new Date(`${a.match_date} ${a.match_time}`) - new Date(`${b.match_date} ${b.match_time}`))
+                // console.log(list);
+                resolve(list)
+            })
+            .catch(err => console.log(err))
+    });
 });
 
 
@@ -298,12 +298,7 @@ let intervalUpdate = undefined,
         else if (id === "scorer") currentDisplay = (0,_displayScorer__WEBPACK_IMPORTED_MODULE_5__["default"])(scorer);
         else currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_4__["default"])(calendar, "calendar");
     });
-
-    // asorina ny league active raha misy
-    let activeLeague = document.querySelector('.list-league li.active');
-    if(activeLeague) activeLeague.classList.remove('active')
-    
-    ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_10__.stopLoading)();
+    (0,_others_animation__WEBPACK_IMPORTED_MODULE_10__.stopLoading)();
     intervalUpdate = setInterval(async () => {
         if (currentDisplay === "calendar") {
             // affiche-na aloha sao taraiky le resultat teo aloha
@@ -420,7 +415,92 @@ function getLeagues() {
     return list;
 }
 
+/***/ }),
+
+/***/ "./src/js/others/contryAndLeague.js":
+/*!******************************************!*\
+  !*** ./src/js/others/contryAndLeague.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getListCountry": () => (/* binding */ getListCountry),
+/* harmony export */   "getListLeague": () => (/* binding */ getListLeague)
+/* harmony export */ });
+function getListCountry() {
+    return "England,Belgium,Germany,Croatia,Spain,Czech Republic,France,Romania,Bulgaria,Italy,intl,eurocups,South Africa,Qatar,Worldcup,USA,Denmark,Norway,Sweden,Korea Republic,Netherlands,Mexico,Argentina,Portugal,Russia,Brazil,Switzerland,Brazil,Morocco"
+};
+
+function getListLeague() {
+    return "Championship,Community Shield,FA Cup,League Cup,League One,Premier League,EFL Trophy,National League,Women's Championship,Copa del Rey,La Liga,Segunda División,Super Cup,Primera División Femenina,Primera División RFEF,DFB Pokal,Regionalliga,Super Cup,2. Bundesliga,Bundesliga,Ligue 1,Ligue 2,Coupe de la Ligue,Feminine Division 1,National 1,Trophée des Champions,Coupe de France,Serie A,Serie B,Super Cup,Coppa Italia,First Division A,Challenger Pro League,First NL,Czech Liga,Liga I,First League,CAF Super Cup,Club Friendlies,COSAFA Cup,Friendlies,UEFA U21 Championship,Africa Cup of Nations,CAF Champions League,CAF Confederation Cup,UEFA Champions League,UEFA Champions League - Group Stage,UEFA Europa League,UEFA Europa League - Group Stage,UEFA Youth League,UEFA Youth League - Group Stage,PSL,QSL Cup,World Cup,MLS,Superliga,1. Division,Damallsvenskan,K League 1,Eredivisie,Eerste Divisie,Liga MX,Liga Profesional Argentina,Primeira Liga,Premier League,Serie A,Super League,Botola Pro,Premier League";
+}
+
+/***/ }),
+
+/***/ "./src/js/others/popularAndException.js":
+/*!**********************************************!*\
+  !*** ./src/js/others/popularAndException.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getExceptionCountry": () => (/* binding */ getExceptionCountry),
+/* harmony export */   "getExceptionLeague": () => (/* binding */ getExceptionLeague),
+/* harmony export */   "getPopularCountry": () => (/* binding */ getPopularCountry),
+/* harmony export */   "getPopularLeague": () => (/* binding */ getPopularLeague)
+/* harmony export */ });
+function getPopularLeague(leagueId) {
+    // index : index anle ligue ao anatinle tableau
+    return [
+        {index : leagueId.indexOf('152'), id : 152 , photo : 'assets/img/pl.jpg'}, // PL
+        {index : leagueId.indexOf('175'), id : 175 , photo : 'assets/img/Bundesliga.svg.png'}, // bundesliga
+        {index : leagueId.indexOf('302'), id : 302 , photo : 'assets/img/laliga.png'}, // la liga
+        {index : leagueId.indexOf('168'), id : 168 , photo : 'assets/img/ligue1.png'}, // ligue 1
+        {index : leagueId.indexOf('207'), id : 207 , photo : 'assets/img/serie a.svg'}, // serie a
+        {index : leagueId.indexOf('3'), id : 3 , photo : 'assets/img/ldc.png'}, // ldc
+        {index : leagueId.indexOf('4'), id : 4 , photo : 'assets/img/uel.png'}, // europa league
+        {index : leagueId.indexOf('244'), id : 244 , photo : 'assets/img/eredivisie.png'}, // eredivisie
+        {index : leagueId.indexOf('28'), id : 28 , photo : 'assets/img/worldcup.jpg'}, //  world cup
+    ]
+}
+
+function getExceptionLeague(leagueId) {
+    return [
+        {index : leagueId.indexOf('301'), photo : 'assets/img/laliga.png'}, 
+        {index : leagueId.indexOf('688'), photo : 'assets/img/cosafa.png'}, 
+        {index : leagueId.indexOf('365'), photo : 'assets/img/psl.jpeg'}, 
+        {index : leagueId.indexOf('579'), photo : 'assets/img/PrimeiraLigaBrasil.png'}, 
+        {index : leagueId.indexOf('647'), photo : 'assets/img/qsl.png'}, 
+        {index : leagueId.indexOf('412'), photo : 'assets/img/supercoupnorway.png'}, 
+        {index : leagueId.indexOf('380'), photo : 'assets/img/Czech_Republic_Football_Supercup.jpg'}, 
+        {index : leagueId.indexOf('268'), photo : 'assets/img/supertaca.jpg'}, 
+        {index : leagueId.indexOf('574'), photo : 'assets/img/belgium-super-league-women.webp'}, 
+        {index : leagueId.indexOf('652'), photo : "assets/img/FA_Women's_Championship.png"}
+    ]
+}
+
+function getPopularCountry(countryId) {
+    return [
+        {index : countryId.indexOf('44')}, // angleterre
+        {index : countryId.indexOf('4')}, // allemagne
+        {index : countryId.indexOf('6')}, // espagne
+        {index : countryId.indexOf('3')}, // france
+        {index : countryId.indexOf('5')}, // italy
+        {index : countryId.indexOf('1')}, // ldc, uel
+        {index : countryId.indexOf('8')} // world cup
+    ]
+}
+
+function getExceptionCountry(countryId) {
+    return [
+        {index : countryId.indexOf('44'), photo : 'assets/img/england.png'}, // angleterre
+        {index : countryId.indexOf('2'), photo : 'assets/img/intl.png'}, // intl
+    ]
+}
+
 /***/ })
 
 }]);
-//# sourceMappingURL=src_js_infoLeague_infoLeague_js.bundle.js.map
+//# sourceMappingURL=src_js_infoLeague_infoLeague_js-_d8990.bundle.js.map

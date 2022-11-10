@@ -51,6 +51,11 @@ export default async (isPopState, idLeague) => {
         else if (id === "scorer") currentDisplay = displayScorer(scorer);
         else currentDisplay = displayMatch(calendar, "calendar");
     });
+
+    // asorina ny league active raha misy
+    let activeLeague = document.querySelector('.list-league li.active');
+    if(activeLeague) activeLeague.classList.remove('active')
+    
     stopLoading();
     intervalUpdate = setInterval(async () => {
         if (currentDisplay === "calendar") {

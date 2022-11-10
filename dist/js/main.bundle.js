@@ -249,7 +249,7 @@ function createCalendar(month,year,date) {
         } else {
             // premiere jour du mois
             if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate">${countDay}</span></td>`;
             } else {
                 dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             }
@@ -262,7 +262,7 @@ function createCalendar(month,year,date) {
     dayContainer += '<tr class="day" >';
     for(let i=1; i<=7; i++) {
         if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
-            dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
+            dayContainer += `<td><span class="day-item currentDate">${countDay}</span></td>`;
         } else {
             dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
         }
@@ -274,7 +274,7 @@ function createCalendar(month,year,date) {
     dayContainer += '<tr class="day" >';
     for(let i=1; i<=7; i++) {
         if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
-            dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
+            dayContainer += `<td><span class="day-item currentDate">${countDay}</span></td>`;
         } else {
             dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
         }
@@ -288,7 +288,7 @@ function createCalendar(month,year,date) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
             if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate">${countDay}</span></td>`;
             } else {
                 dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             }
@@ -307,7 +307,7 @@ function createCalendar(month,year,date) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
             if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate">${countDay}</span></td>`;
             } else {
                 dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             }
@@ -326,7 +326,7 @@ function createCalendar(month,year,date) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
             if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate">${countDay}</span></td>`;
             } else {
                 dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             }
@@ -390,10 +390,6 @@ async function setDate(isPopState=false, m, d, idLeague, toDisplay) {
     // hideCalendar (valable ito rehefa le ecran <= 768)
     let actualContainer = document.querySelector('.actual')
     if(actualContainer) actualContainer.style.top = '-100%' // raha misy
-    // raha sendra amle date efa affiché no click-eny ary tsy miova ny idLeague
-    // if((currentDate === d) && (m === monthSelected) && (idLeague === currentIdLeague)) 
-    //     return
-    
     ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_0__.loading)()
 
     if(idLeague !== undefined) currentIdLeague = idLeague // raha misy valeur vao ovaina
@@ -431,13 +427,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((hash) => {
     // console.log(hash);
-    let url = location.protocol + '//' + location.host + '#' + hash
-    window.history.pushState(null,'', url)
-    // effacer le setInterval'interval
-    __webpack_require__.e(/*! import() */ "src_js_infoMatch_infoMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js")).then(module => module.clearIntervalInfoMatch())
-    Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_infoLeague_infoLeague_js"), __webpack_require__.e("src_js_func_getMatch_js-src_js_others_popularAndException_js-_9c97-_855b0")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js")).then(module => module.clearIntervalInfoLeague())
-    __webpack_require__.e(/*! import() */ "src_js_listMatch_displayListMatch_js-src_js_listMatch_listMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../listMatch/listMatch */ "./src/js/listMatch/listMatch.js")).then(module => module.clearIntervalListMatch())
-    Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_infoTeam_infoTeam_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js")).then(module => module.clearIntervalInfoTeam())
+    return new Promise(async (resolve, reject) => {
+        let url = location.protocol + '//' + location.host + '#' + hash
+        window.history.pushState(null,'', url)
+        // effacer le setInterval'interval
+        let {clearIntervalInfoMatch} = await __webpack_require__.e(/*! import() */ "src_js_infoMatch_infoMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js"))
+        let {clearIntervalInfoLeague} = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_infoLeague_infoLeague_js"), __webpack_require__.e("src_js_func_getMatch_js-src_js_others_popularAndException_js-_9c97-_855b0")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js"))
+        let {clearIntervalListMatch} = await __webpack_require__.e(/*! import() */ "src_js_listMatch_displayListMatch_js-src_js_listMatch_listMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../listMatch/listMatch */ "./src/js/listMatch/listMatch.js"))
+        let {clearIntervalInfoTeam} = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_infoTeam_infoTeam_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js"))
+        clearIntervalInfoLeague()
+        clearIntervalInfoMatch()
+        clearIntervalListMatch()
+        clearIntervalInfoTeam()
+        resolve('cleared')
+    })
 });
 
 /***/ }),
@@ -537,12 +540,19 @@ __webpack_require__.r(__webpack_exports__);
 });
 
 function importInit() {
-    // effacer le setInterval'interval
-    __webpack_require__.e(/*! import() */ "src_js_league_listLeague_js").then(__webpack_require__.bind(__webpack_require__, /*! ../league/listLeague */ "./src/js/league/listLeague.js")).then(module => module.default())
-    __webpack_require__.e(/*! import() */ "src_js_infoMatch_infoMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js")).then(module => module.clearIntervalInfoMatch())
-    Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_infoLeague_infoLeague_js"), __webpack_require__.e("src_js_func_getMatch_js-src_js_others_popularAndException_js-_9c97-_855b0")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js")).then(module => module.clearIntervalInfoLeague())
-    __webpack_require__.e(/*! import() */ "src_js_listMatch_displayListMatch_js-src_js_listMatch_listMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../listMatch/listMatch */ "./src/js/listMatch/listMatch.js")).then(module => module.clearIntervalListMatch())
-    Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_infoTeam_infoTeam_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js")).then(module => module.clearIntervalInfoTeam())
+    return new Promise(async (resolve, reject) => {
+        __webpack_require__.e(/*! import() */ "src_js_league_listLeague_js").then(__webpack_require__.bind(__webpack_require__, /*! ../league/listLeague */ "./src/js/league/listLeague.js")).then(module => module.default())
+        // effacer le setInterval'interval
+        let {clearIntervalInfoMatch} = await __webpack_require__.e(/*! import() */ "src_js_infoMatch_infoMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js"))
+        let {clearIntervalInfoLeague} = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_infoLeague_infoLeague_js"), __webpack_require__.e("src_js_func_getMatch_js-src_js_others_popularAndException_js-_9c97-_855b0")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js"))
+        let {clearIntervalListMatch} = await __webpack_require__.e(/*! import() */ "src_js_listMatch_displayListMatch_js-src_js_listMatch_listMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../listMatch/listMatch */ "./src/js/listMatch/listMatch.js"))
+        let {clearIntervalInfoTeam} = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_infoTeam_infoTeam_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js"))
+        clearIntervalInfoLeague()
+        clearIntervalInfoMatch()
+        clearIntervalListMatch()
+        clearIntervalInfoTeam()
+        resolve('init')
+    })
 }
 
 async function importInfoLeague(isPopState, idLeague) {

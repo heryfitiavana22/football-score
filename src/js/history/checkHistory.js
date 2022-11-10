@@ -81,9 +81,6 @@ export default (isPopState) => {
 
 function importInit() {
     return new Promise(async (resolve, reject) => {
-        let url = location.protocol + '//' + location.host + '#' + hash
-        window.history.pushState(null,'', url)
-
         import("../league/listLeague").then(module => module.default())
         // effacer le setInterval'interval
         let {clearIntervalInfoMatch} = await import("../infoMatch/infoMatch")
