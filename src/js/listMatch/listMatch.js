@@ -22,8 +22,6 @@ export async function listMatch(isPopState=false, date, idLeague, toDisplay) {
     let list = await getMatch(date, date, idLeague),
         leagueId = [],
         countryId = [];
-    // au cas ou efa lancé le izy nefa taraiky vao voafafa
-    if(interval === "cleared") return
     // au cas ou idLeague est donne
     if(idLeague > 0) {
         // active league (raha sendra ery amin url no novaina ny id no tena mahatonga azy ovaina eto)
@@ -97,10 +95,7 @@ export async function listMatch(isPopState=false, date, idLeague, toDisplay) {
 }
 
 export function clearIntervalListMatch() {
-    // rehefa mbola tsy nahazo valeur de tsy mila atao clearInterval
-    if(interval === undefined) return
     clearInterval(interval)
-    interval = "cleared"
     isUpdate = false
 }
 
