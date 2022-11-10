@@ -22,5 +22,5 @@ export default (isPopState=false, game) => {
     // active
     document.querySelector('.info-match .nav-match li.active').classList.remove('active');
     document.querySelector('#stats').classList.add('active');
-    return "stat"
+    return "stats"
 }

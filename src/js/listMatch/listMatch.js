@@ -87,11 +87,11 @@ export async function listMatch(isPopState=false, date, idLeague, toDisplay) {
     // rehefa mandeha ny a jour de tsy atao intsony
     if(isUpdate) return
 
-    // interval = setInterval(() => {
-    //     // console.log('update listMatch');
-    //     isUpdate = true
-    //     listMatch(true, date, idLeague)
-    // }, 55000) // tous les une minutes  (alatsako kely amle mbola alaina)
+    interval = setInterval(() => {
+        // console.log('update listMatch');
+        isUpdate = true
+        listMatch(true, date, idLeague)
+    }, 55000) // tous les une minutes  (alatsako kely amle mbola alaina)
 }
 
 export function clearIntervalListMatch() {
