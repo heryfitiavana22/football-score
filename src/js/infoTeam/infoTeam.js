@@ -9,7 +9,7 @@ import displayStatsPlayer from "./displayStatsPlayer";
 import addHistory from "../history/addHistory";
 import filterByPlace from "./filterByPlace";
 import filterByDate from "../func/filterByDate";
-import { plus15, minus15 } from "../func/date";
+import { endSeason, startSeason } from "../func/date";
 import {loading, stopLoading} from '../others/animation'
 
 let currentDisplay = undefined,
@@ -27,11 +27,11 @@ export default async (isPopState = false, idLeague, idTeam) => {
      // rehefa popstate de tsy mila mi-ajouter
     if(!isPopState) addHistory(`team/${idLeague}&${idTeam}`) 
 
-    getMatch(minus15(), new Date(), 0, idTeam).then((value) => {
+    getMatch(startSeason(), new Date(), 0, idTeam).then((value) => {
         result = filterByDate(value);
         result.shift(); // shift satria lasa voaray ao le date androany
     });
-    getMatch(new Date(), plus15(), 0, idTeam).then(
+    getMatch(new Date(), endSeason(), 0, idTeam).then(
         (value) => (calendar = filterByDate(value, "ASC"))
     );
     getStanding(idLeague).then((value) => (standing = value));
@@ -58,7 +58,7 @@ export default async (isPopState = false, idLeague, idTeam) => {
             // affiche-na aloha sao taraiky le resultat teo aloha
             currentDisplay = displayMatch(calendar, "calendar");
             // maka vaovao
-            calendar = await getMatch(new Date(), plus15(), 0, idTeam)
+            calendar = await getMatch(new Date(), endSeason(), 0, idTeam)
             calendar = filterByDate(calendar, "ASC");
             // sao novainy tampoka nefa taraiky vao azo
             if (currentDisplay === "calendar")
@@ -67,7 +67,7 @@ export default async (isPopState = false, idLeague, idTeam) => {
             // affiche-na aloha sao taraiky le resultat teo aloha
             currentDisplay = displayMatch(result, "results");
             // maka vaovao
-            result = await getMatch(minus15(), new Date(), 0, idTeam);
+            result = await getMatch(startSeason(), new Date(), 0, idTeam);
             result = filterByDate(result);
             result.shift(); // shift satria lasa voaray ao le date androany;
             // sao novainy tampoka nefa taraiky vao azo

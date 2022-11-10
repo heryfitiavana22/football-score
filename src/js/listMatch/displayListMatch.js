@@ -105,7 +105,7 @@ export default function (listGame) {
     // event onclick 
     listMatchHTML = document.querySelector('.listMatch')
     listMatchHTML.addEventListener('click', (e) => {
-        console.log(e.target.id);
+        // console.log(e.target.id);
         let id = e.target.id
         // raha id ana league
         if(id.includes('l')) { // nasiako "l" ny id ana league

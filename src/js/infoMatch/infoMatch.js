@@ -78,7 +78,7 @@ export default async function infoMatch(isPopState=false, idMatch, toDisplay) {
         // mettre a jour le resultat chaque 60 seconde 
         interval = setInterval(async () => {
             isUpdate = true
-            console.log(currentDisplay);
+            // console.log(currentDisplay);
             // console.log('maj info');
             infoMatch(true, idMatch)
         }, 55000) // tous les une minutes  (alatsako kely amle mbola alaina)

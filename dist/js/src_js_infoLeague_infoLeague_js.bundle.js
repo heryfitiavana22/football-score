@@ -272,11 +272,11 @@ let intervalUpdate = undefined,
         standing = [],
         scorer = [];
     (0,_func_getScorer__WEBPACK_IMPORTED_MODULE_1__["default"])(idLeague).then((value) => (scorer = value));
-    (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_func_date__WEBPACK_IMPORTED_MODULE_6__.minus15)(), new Date(), idLeague).then((value) => {
+    (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_func_date__WEBPACK_IMPORTED_MODULE_6__.startSeason)(), new Date(), idLeague).then((value) => {
         result = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_9__["default"])(value);
         result.shift(); // shift satria lasa voaray ao le date androany
     });
-    (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])(new Date(), (0,_func_date__WEBPACK_IMPORTED_MODULE_6__.plus15)(), idLeague).then(
+    (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])(new Date(), (0,_func_date__WEBPACK_IMPORTED_MODULE_6__.endSeason)(), idLeague).then(
         (value) => (calendar = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_9__["default"])(value, "ASC"))
     );
     // getStanding league
@@ -304,7 +304,7 @@ let intervalUpdate = undefined,
             // affiche-na aloha sao taraiky le resultat teo aloha
             currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_4__["default"])(calendar, "calendar");
             // maka vaovao
-            calendar = await (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])(new Date(), (0,_func_date__WEBPACK_IMPORTED_MODULE_6__.plus15)(), idLeague);
+            calendar = await (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])(new Date(), (0,_func_date__WEBPACK_IMPORTED_MODULE_6__.endSeason)(), idLeague);
             calendar = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_9__["default"])(calendar, "ASC");
             // sao novainy tampoka nefa taraiky vao azo
             if (currentDisplay === "calendar")
@@ -313,7 +313,7 @@ let intervalUpdate = undefined,
             // affiche-na aloha sao taraiky le resultat teo aloha
             currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_4__["default"])(result, "result");
             // maka vaovao
-            result = await (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_func_date__WEBPACK_IMPORTED_MODULE_6__.minus15)(), new Date(), idLeague);
+            result = await (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_func_date__WEBPACK_IMPORTED_MODULE_6__.startSeason)(), new Date(), idLeague);
             result = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_9__["default"])(result);
             result.shift(); // shift satria lasa voaray ao le date androany;
             // sao novainy tampoka nefa taraiky vao azo

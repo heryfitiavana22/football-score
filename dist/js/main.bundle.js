@@ -430,7 +430,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((hash) => {
-    console.log(hash);
+    // console.log(hash);
     let url = location.protocol + '//' + location.host + '#' + hash
     window.history.pushState(null,'', url)
     // effacer le setInterval'interval

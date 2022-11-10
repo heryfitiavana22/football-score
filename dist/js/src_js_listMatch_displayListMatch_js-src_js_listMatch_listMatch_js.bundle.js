@@ -9,8 +9,10 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "endSeason": () => (/* binding */ endSeason),
 /* harmony export */   "minus15": () => (/* binding */ minus15),
 /* harmony export */   "plus15": () => (/* binding */ plus15),
+/* harmony export */   "startSeason": () => (/* binding */ startSeason),
 /* harmony export */   "toYYYYMMDD": () => (/* binding */ toYYYYMMDD)
 /* harmony export */ });
 function toYYYYMMDD(date) {
@@ -26,11 +28,28 @@ function plus15(date = new Date()) {
         dateEnd = new Date(d.getFullYear(), d.getMonth(), d.getDate()+15);
     return dateEnd.getFullYear() + '-' + (dateEnd.getMonth()+1) + '-' + dateEnd.getDate()
 }
+
 /* anasorana 15 jous */
 function minus15(date = new Date()) {
     let d = new Date(date),
         dateFirst = new Date(d.getFullYear(), d.getMonth(), d.getDate()-15);
     return dateFirst.getFullYear() + '-' + (dateFirst.getMonth()+1) + '-' + dateFirst.getDate()
+}
+
+/* start season */
+function startSeason(date = new Date()) {
+    let d = new Date(date);
+    if((d.getMonth()+1) >= 8) 
+        return d.getFullYear() + '-08-01'
+    return (d.getFullYear()-1) + '-08-01' // supposition oe mois d'aout ny debut
+}
+
+/* start season */
+function endSeason(date = new Date()) {
+    let d = new Date(date);
+    if((d.getMonth()+1) >= 8) // (mois d'aout ny debut)
+        return (d.getFullYear()+1) + '-07-01'
+    return (d.getFullYear()) + '-07-01' // supposition oe mois de juillet ny fin
 }
 
 
@@ -68,7 +87,7 @@ let listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getList
         if(idLeague > 0) url += `&league_id=${idLeague}`
         // au cas ou idLeague est donne
         if(idTeam > 0) url += `&team_id=${idTeam}`
-        
+        console.log(url);
         fetch(url, { method: "get" })
             .then((response) => response.json())
             .then((value) => {
@@ -77,6 +96,7 @@ let listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getList
                 let list = value.filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name));
                 // trier selon l'heure du match
                 list.sort((a,b) => new Date(`${a.match_date} ${a.match_time}`) - new Date(`${b.match_date} ${b.match_time}`))
+                // console.log(list);
                 resolve(list)
             })
             .catch(err => console.log(err))
@@ -204,7 +224,7 @@ __webpack_require__.r(__webpack_exports__);
     // event onclick 
     listMatchHTML = document.querySelector('.listMatch')
     listMatchHTML.addEventListener('click', (e) => {
-        console.log(e.target.id);
+        // console.log(e.target.id);
         let id = e.target.id
         // raha id ana league
         if(id.includes('l')) { // nasiako "l" ny id ana league

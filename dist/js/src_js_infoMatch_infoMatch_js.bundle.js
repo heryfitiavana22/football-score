@@ -446,7 +446,7 @@ __webpack_require__.r(__webpack_exports__);
     // active
     document.querySelector('.info-match .nav-match li.active').classList.remove('active');
     document.querySelector('#stats').classList.add('active');
-    return "stat"
+    return "stats"
 });
 
 /***/ }),
@@ -578,7 +578,7 @@ async function infoMatch(isPopState=false, idMatch, toDisplay) {
         // mettre a jour le resultat chaque 60 seconde 
         interval = setInterval(async () => {
             isUpdate = true
-            console.log(currentDisplay);
+            // console.log(currentDisplay);
             // console.log('maj info');
             infoMatch(true, idMatch)
         }, 55000) // tous les une minutes  (alatsako kely amle mbola alaina)

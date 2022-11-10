@@ -9,8 +9,10 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "endSeason": () => (/* binding */ endSeason),
 /* harmony export */   "minus15": () => (/* binding */ minus15),
 /* harmony export */   "plus15": () => (/* binding */ plus15),
+/* harmony export */   "startSeason": () => (/* binding */ startSeason),
 /* harmony export */   "toYYYYMMDD": () => (/* binding */ toYYYYMMDD)
 /* harmony export */ });
 function toYYYYMMDD(date) {
@@ -26,11 +28,28 @@ function plus15(date = new Date()) {
         dateEnd = new Date(d.getFullYear(), d.getMonth(), d.getDate()+15);
     return dateEnd.getFullYear() + '-' + (dateEnd.getMonth()+1) + '-' + dateEnd.getDate()
 }
+
 /* anasorana 15 jous */
 function minus15(date = new Date()) {
     let d = new Date(date),
         dateFirst = new Date(d.getFullYear(), d.getMonth(), d.getDate()-15);
     return dateFirst.getFullYear() + '-' + (dateFirst.getMonth()+1) + '-' + dateFirst.getDate()
+}
+
+/* start season */
+function startSeason(date = new Date()) {
+    let d = new Date(date);
+    if((d.getMonth()+1) >= 8) 
+        return d.getFullYear() + '-08-01'
+    return (d.getFullYear()-1) + '-08-01' // supposition oe mois d'aout ny debut
+}
+
+/* start season */
+function endSeason(date = new Date()) {
+    let d = new Date(date);
+    if((d.getMonth()+1) >= 8) // (mois d'aout ny debut)
+        return (d.getFullYear()+1) + '-07-01'
+    return (d.getFullYear()) + '-07-01' // supposition oe mois de juillet ny fin
 }
 
 
@@ -173,7 +192,7 @@ let listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getList
         if(idLeague > 0) url += `&league_id=${idLeague}`
         // au cas ou idLeague est donne
         if(idTeam > 0) url += `&team_id=${idTeam}`
-        
+        console.log(url);
         fetch(url, { method: "get" })
             .then((response) => response.json())
             .then((value) => {
@@ -182,6 +201,7 @@ let listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getList
                 let list = value.filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name));
                 // trier selon l'heure du match
                 list.sort((a,b) => new Date(`${a.match_date} ${a.match_time}`) - new Date(`${b.match_date} ${b.match_time}`))
+                // console.log(list);
                 resolve(list)
             })
             .catch(err => console.log(err))
@@ -698,11 +718,11 @@ let currentDisplay = undefined,
      // rehefa popstate de tsy mila mi-ajouter
     if(!isPopState) (0,_history_addHistory__WEBPACK_IMPORTED_MODULE_8__["default"])(`team/${idLeague}&${idTeam}`) 
 
-    ;(0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_func_date__WEBPACK_IMPORTED_MODULE_11__.minus15)(), new Date(), 0, idTeam).then((value) => {
+    ;(0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_func_date__WEBPACK_IMPORTED_MODULE_11__.startSeason)(), new Date(), 0, idTeam).then((value) => {
         result = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_10__["default"])(value);
         result.shift(); // shift satria lasa voaray ao le date androany
     });
-    (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])(new Date(), (0,_func_date__WEBPACK_IMPORTED_MODULE_11__.plus15)(), 0, idTeam).then(
+    (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])(new Date(), (0,_func_date__WEBPACK_IMPORTED_MODULE_11__.endSeason)(), 0, idTeam).then(
         (value) => (calendar = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_10__["default"])(value, "ASC"))
     );
     (0,_func_getStanding__WEBPACK_IMPORTED_MODULE_1__["default"])(idLeague).then((value) => (standing = value));
@@ -729,7 +749,7 @@ let currentDisplay = undefined,
             // affiche-na aloha sao taraiky le resultat teo aloha
             currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_5__["default"])(calendar, "calendar");
             // maka vaovao
-            calendar = await (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])(new Date(), (0,_func_date__WEBPACK_IMPORTED_MODULE_11__.plus15)(), 0, idTeam)
+            calendar = await (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])(new Date(), (0,_func_date__WEBPACK_IMPORTED_MODULE_11__.endSeason)(), 0, idTeam)
             calendar = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_10__["default"])(calendar, "ASC");
             // sao novainy tampoka nefa taraiky vao azo
             if (currentDisplay === "calendar")
@@ -738,7 +758,7 @@ let currentDisplay = undefined,
             // affiche-na aloha sao taraiky le resultat teo aloha
             currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_5__["default"])(result, "results");
             // maka vaovao
-            result = await (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_func_date__WEBPACK_IMPORTED_MODULE_11__.minus15)(), new Date(), 0, idTeam);
+            result = await (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_func_date__WEBPACK_IMPORTED_MODULE_11__.startSeason)(), new Date(), 0, idTeam);
             result = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_10__["default"])(result);
             result.shift(); // shift satria lasa voaray ao le date androany;
             // sao novainy tampoka nefa taraiky vao azo
