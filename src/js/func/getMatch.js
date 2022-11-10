@@ -10,8 +10,8 @@ export default async (from, to = from, idLeague = 0, idTeam = 0) => {
     return await new Promise((resolve, reject) => {
         let fromDate = toYYYYMMDD(from),
             toDate = toYYYYMMDD(to);
-        console.log("from-to");
-        console.log(fromDate+'-'+toDate);
+        // console.log("from-to");
+        // console.log(fromDate+'-'+toDate);
         let url = `https://apiv3.apifootball.com/?action=get_events&from=${fromDate}&to=${toDate}&APIkey=${APIkey}&timezone=Africa/Nairobi`;
         
         // au cas ou idLeague est donne

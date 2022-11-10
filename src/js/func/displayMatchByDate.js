@@ -6,7 +6,7 @@ export default (game, idHTML) => {
     let listGameHTML =
     `<div class="listMatch">`;
     if(game.length === 0)
-        listGameHTML +=  `<p style="padding-left:15px">to wait</p>`
+        listGameHTML +=  `<p style="padding-left:15px">to wait or no match</p>`
     for(let date of game) {
         listGameHTML +=
         `<div class="matchs">

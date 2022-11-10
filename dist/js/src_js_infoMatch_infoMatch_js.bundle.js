@@ -574,16 +574,16 @@ async function infoMatch(isPopState=false, idMatch, toDisplay) {
     if(isUpdate) return
 
     // ataoko miandry kely fa misy erreur
-    // setTimeout(() => {
-    //     // mettre a jour le resultat chaque 60 seconde 
-    //     interval = setInterval(async () => {
-    //         isUpdate = true
-    //         console.log(currentDisplay);
-    //         console.log('maj info');
-    //         infoMatch(true, idMatch)
-    //     }, 55000) // tous les une minutes  (alatsako kely amle mbola alaina)
-    //     // console.log("interval");
-    // }, 2000)
+    setTimeout(() => {
+        // mettre a jour le resultat chaque 60 seconde 
+        interval = setInterval(async () => {
+            isUpdate = true
+            console.log(currentDisplay);
+            // console.log('maj info');
+            infoMatch(true, idMatch)
+        }, 55000) // tous les une minutes  (alatsako kely amle mbola alaina)
+        // console.log("interval");
+    }, 2000)
 }
 
 function clearIntervalInfoMatch() {

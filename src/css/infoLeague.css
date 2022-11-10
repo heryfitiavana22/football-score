@@ -13,8 +13,10 @@
 .top-scorer .name {height: 26px; overflow: hidden;}
 .top-scorer .hov{display: none;}
 .top-scorer .number {margin-bottom: 5px;}
+.top-scorer td .caption-td {left: 32%;}
 
 @media screen and (max-width : 576px) {
     .top-scorer .name {height: 19px;}
     .top-scorer .number {margin-bottom: 3px;}
+    .top-scorer td .caption-td {left: 19%;}
 }

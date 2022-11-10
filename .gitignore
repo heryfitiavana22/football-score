@@ -2,3 +2,4 @@
 /assets/theme
 /src/template
 .env
+.vscode

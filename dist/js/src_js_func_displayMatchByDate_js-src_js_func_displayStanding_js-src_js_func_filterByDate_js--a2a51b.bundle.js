@@ -20,7 +20,7 @@ __webpack_require__.r(__webpack_exports__);
     let listGameHTML =
     `<div class="listMatch">`;
     if(game.length === 0)
-        listGameHTML +=  `<p style="padding-left:15px">to wait</p>`
+        listGameHTML +=  `<p style="padding-left:15px">to wait or no match</p>`
     for(let date of game) {
         listGameHTML +=
         `<div class="matchs">
@@ -214,7 +214,7 @@ let apiKey = "92268e4434769b7515b45be3b45cd3d9bdc9d3e4cf62885a85ada0a22c9acf8b";
   \***************************************/
 /***/ (() => {
 
-throw new Error("Module parse failed: 'import' and 'export' may only appear at the top level (89:0)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n| // }\n| \n> export function clearIntervalInfoMatch() {\n|     clearInterval(interval)\n|     isUpdate = false");
+throw new Error("Module parse failed: Unexpected token (76:11)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n|     if(isUpdate) return\n| \n>     ataoko miandry kely fa misy erreur\n|     setTimeout(() => {\n|         // mettre a jour le resultat chaque 60 seconde ");
 
 /***/ })
 

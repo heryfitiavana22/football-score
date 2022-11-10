@@ -18,9 +18,9 @@ export default (scorer) => {
             <td class="team-player">
                 <span class="name">${player.team_name}</span>
             </td>
-            <td>${player.goals}</td>
-            <td>${player.assists ? player.assists : 0}</td>
-            <td>${player.penalty_goals ? player.penalty_goals : 0}</td>
+            <td>${player.goals} <span class="caption-td">goals<span></td>
+            <td>${player.assists ? player.assists : 0} <span class="caption-td">assists<span></td>
+            <td>${player.penalty_goals ? player.penalty_goals : 0} <span class="caption-td">penalty<span></td>
         </tr>`    
     }
     scorerHTML +=

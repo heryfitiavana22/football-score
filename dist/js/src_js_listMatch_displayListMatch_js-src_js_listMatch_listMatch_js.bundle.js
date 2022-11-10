@@ -60,8 +60,8 @@ let listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getList
     return await new Promise((resolve, reject) => {
         let fromDate = (0,_date__WEBPACK_IMPORTED_MODULE_1__.toYYYYMMDD)(from),
             toDate = (0,_date__WEBPACK_IMPORTED_MODULE_1__.toYYYYMMDD)(to);
-        console.log("from-to");
-        console.log(fromDate+'-'+toDate);
+        // console.log("from-to");
+        // console.log(fromDate+'-'+toDate);
         let url = `https://apiv3.apifootball.com/?action=get_events&from=${fromDate}&to=${toDate}&APIkey=${APIkey}&timezone=Africa/Nairobi`;
         
         // au cas ou idLeague est donne
@@ -352,11 +352,11 @@ async function listMatch(isPopState=false, date, idLeague, toDisplay) {
     // rehefa mandeha ny a jour de tsy atao intsony
     if(isUpdate) return
 
-    // interval = setInterval(() => {
-    //     // console.log('update listMatch');
-    //     isUpdate = true
-    //     listMatch(true, date, idLeague)
-    // }, 55000) // tous les une minutes  (alatsako kely amle mbola alaina)
+    interval = setInterval(() => {
+        // console.log('update listMatch');
+        isUpdate = true
+        listMatch(true, date, idLeague)
+    }, 55000) // tous les une minutes  (alatsako kely amle mbola alaina)
 }
 
 function clearIntervalListMatch() {

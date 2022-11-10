@@ -186,9 +186,9 @@ __webpack_require__.r(__webpack_exports__);
             <td class="team-player">
                 <span class="name">${player.team_name}</span>
             </td>
-            <td>${player.goals}</td>
-            <td>${player.assists ? player.assists : 0}</td>
-            <td>${player.penalty_goals ? player.penalty_goals : 0}</td>
+            <td>${player.goals} <span class="caption-td">goals<span></td>
+            <td>${player.assists ? player.assists : 0} <span class="caption-td">assists<span></td>
+            <td>${player.penalty_goals ? player.penalty_goals : 0} <span class="caption-td">penalty<span></td>
         </tr>`    
     }
     scorerHTML +=
@@ -279,28 +279,28 @@ let intervalUpdate = undefined,
         else currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_4__["default"])(calendar, "calendar");
     });
     (0,_others_animation__WEBPACK_IMPORTED_MODULE_10__.stopLoading)();
-    // intervalUpdate = setInterval(async () => {
-    //     if (currentDisplay === "calendar") {
-    //         // affiche-na aloha sao taraiky le resultat teo aloha
-    //         currentDisplay = displayMatch(calendar, "calendar");
-    //         // maka vaovao
-    //         calendar = await getMatch(new Date(), plus15(), idLeague);
-    //         calendar = filterByDate(calendar, "ASC");
-    //         // sao novainy tampoka nefa taraiky vao azo
-    //         if (currentDisplay === "calendar")
-    //             currentDisplay = displayMatch(calendar, "calendar");
-    //     } else if (currentDisplay === "result") {
-    //         // affiche-na aloha sao taraiky le resultat teo aloha
-    //         currentDisplay = displayMatch(result, "result");
-    //         // maka vaovao
-    //         result = await getMatch(minus15(), new Date(), idLeague);
-    //         result = filterByDate(result);
-    //         result.shift(); // shift satria lasa voaray ao le date androany;
-    //         // sao novainy tampoka nefa taraiky vao azo
-    //         if (currentDisplay === "result")
-    //             currentDisplay = displayMatch(result, "result");
-    //     }
-    // }, 60000); // tous les une minute
+    intervalUpdate = setInterval(async () => {
+        if (currentDisplay === "calendar") {
+            // affiche-na aloha sao taraiky le resultat teo aloha
+            currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_4__["default"])(calendar, "calendar");
+            // maka vaovao
+            calendar = await (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])(new Date(), (0,_func_date__WEBPACK_IMPORTED_MODULE_6__.plus15)(), idLeague);
+            calendar = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_9__["default"])(calendar, "ASC");
+            // sao novainy tampoka nefa taraiky vao azo
+            if (currentDisplay === "calendar")
+                currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_4__["default"])(calendar, "calendar");
+        } else if (currentDisplay === "result") {
+            // affiche-na aloha sao taraiky le resultat teo aloha
+            currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_4__["default"])(result, "result");
+            // maka vaovao
+            result = await (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_func_date__WEBPACK_IMPORTED_MODULE_6__.minus15)(), new Date(), idLeague);
+            result = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_9__["default"])(result);
+            result.shift(); // shift satria lasa voaray ao le date androany;
+            // sao novainy tampoka nefa taraiky vao azo
+            if (currentDisplay === "result")
+                currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_4__["default"])(result, "result");
+        }
+    }, 55000) // tous les une minute  (alatsako kely amle mbola alaina)
 });
 
 function clearIntervalInfoLeague() {
