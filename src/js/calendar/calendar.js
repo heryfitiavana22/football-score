@@ -43,7 +43,7 @@ export function createCalendar(month,year,date) {
         } else {
             // premiere jour du mois
             if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate">${countDay}</span></td>`;
             } else {
                 dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             }
@@ -56,7 +56,7 @@ export function createCalendar(month,year,date) {
     dayContainer += '<tr class="day" >';
     for(let i=1; i<=7; i++) {
         if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
-            dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
+            dayContainer += `<td><span class="day-item currentDate">${countDay}</span></td>`;
         } else {
             dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
         }
@@ -68,7 +68,7 @@ export function createCalendar(month,year,date) {
     dayContainer += '<tr class="day" >';
     for(let i=1; i<=7; i++) {
         if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
-            dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
+            dayContainer += `<td><span class="day-item currentDate">${countDay}</span></td>`;
         } else {
             dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
         }
@@ -82,7 +82,7 @@ export function createCalendar(month,year,date) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
             if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate">${countDay}</span></td>`;
             } else {
                 dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             }
@@ -101,7 +101,7 @@ export function createCalendar(month,year,date) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
             if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate">${countDay}</span></td>`;
             } else {
                 dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             }
@@ -120,7 +120,7 @@ export function createCalendar(month,year,date) {
         // verifier si c'est le fin du mois
         if(endMonth >= countDay) {
             if((countDay === date) && (month === monthSelected) && (year === yearSelected)) { // raha date courant
-                dayContainer += `<td><span class="day-item currentDate" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
+                dayContainer += `<td><span class="day-item currentDate">${countDay}</span></td>`;
             } else {
                 dayContainer += `<td><span class="day-item" onclick="calendar.setDate(false, ${month},${countDay})">${countDay}</span></td>`;
             }
@@ -184,10 +184,6 @@ export async function setDate(isPopState=false, m, d, idLeague, toDisplay) {
     // hideCalendar (valable ito rehefa le ecran <= 768)
     let actualContainer = document.querySelector('.actual')
     if(actualContainer) actualContainer.style.top = '-100%' // raha misy
-    // raha sendra amle date efa affiché no click-eny ary tsy miova ny idLeague
-    // if((currentDate === d) && (m === monthSelected) && (idLeague === currentIdLeague)) 
-    //     return
-    
     loading()
 
     if(idLeague !== undefined) currentIdLeague = idLeague // raha misy valeur vao ovaina

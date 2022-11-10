@@ -72,6 +72,10 @@ export default async function infoMatch(isPopState=false, idMatch, toDisplay) {
         }
     })
 
+    // asorina ny league active raha misy
+    let activeLeague = document.querySelector('.list-league li.active');
+    if(activeLeague) activeLeague.classList.remove('active')
+
     // rehefa mandeha ny a jour de tsy atao intsony
     if(isUpdate) return
 
@@ -85,7 +89,7 @@ export default async function infoMatch(isPopState=false, idMatch, toDisplay) {
             infoMatch(true, idMatch)
         }, 55000) // tous les une minutes  (alatsako kely amle mbola alaina)
         // console.log("interval");
-    }, 2000)
+    }, 250)
 }
 
 export function clearIntervalInfoMatch() {
@@ -95,4 +99,5 @@ export function clearIntervalInfoMatch() {
     clearInterval(interval)
     interval = "cleared"
     isUpdate = false
+    // console.log('clearr');
 }
