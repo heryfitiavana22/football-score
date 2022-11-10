@@ -24,6 +24,7 @@ export default (players) => {
             statsHTML +=
             `<tr class="tr-player">
                 <td class="player-table">
+                    <span class="number">${p.player_number}</span> 
                     <span>${p.player_name}</span>
                 </td>
                 <td>${p.player_match_played}</td>
@@ -72,6 +73,7 @@ function displayDefault(players, headTr, tr) {
         for(let p of element.players) {
             tr[i].innerHTML = 
             `<td class="player-table">
+                <span class="number">${p.player_number}</span> 
                 <span>${p.player_name}</span>
             </td>
             <td>${p.player_match_played}</td>
@@ -103,6 +105,7 @@ function displayDribble(players, headTr, tr) {
         for(let p of element.players) {
             tr[i].innerHTML = 
             `<td class="player-table">
+                <span class="number">${p.player_number}</span> 
                 <span>${p.player_name}</span>
             </td>
             <td>${p.player_match_played}</td>
@@ -135,6 +138,7 @@ function displayPasses(players, headTr, tr) {
         for(let p of element.players) {
             tr[i].innerHTML = 
             `<td class="player-table">
+                <span class="number">${p.player_number}</span> 
                 <span>${p.player_name}</span>
             </td>
             <td>${p.player_match_played}</td>
@@ -167,6 +171,7 @@ function displayTackles(players, headTr, tr) {
         for(let p of element.players) {
             tr[i].innerHTML = 
             `<td class="player-table">
+                <span class="number">${p.player_number}</span> 
                 <span>${p.player_name}</span>
             </td>
             <td>${p.player_match_played}</td>
@@ -199,6 +204,7 @@ function displayDuels(players, headTr, tr) {
         for(let p of element.players) {
             tr[i].innerHTML = 
             `<td class="player-table">
+                <span class="number">${p.player_number}</span> 
                 <span>${p.player_name}</span>
             </td>
             <td>${p.player_match_played}</td>
@@ -231,6 +237,7 @@ function displayGoal(players, headTr, tr) {
         for(let p of element.players) {
             tr[i].innerHTML = 
             `<td class="player-table">
+                <span class="number">${p.player_number}</span> 
                 <span>${p.player_name}</span>
             </td>
             <td>${p.player_match_played}</td>

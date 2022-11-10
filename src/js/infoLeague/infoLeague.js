@@ -52,28 +52,28 @@ export default async (isPopState, idLeague) => {
         else currentDisplay = displayMatch(calendar, "calendar");
     });
     stopLoading();
-    intervalUpdate = setInterval(async () => {
-        if (currentDisplay === "calendar") {
-            // affiche-na aloha sao taraiky le resultat teo aloha
-            currentDisplay = displayMatch(calendar, "calendar");
-            // maka vaovao
-            calendar = await getMatch(new Date(), plus15(), idLeague);
-            calendar = filterByDate(calendar, "ASC");
-            // sao novainy tampoka nefa taraiky vao azo
-            if (currentDisplay === "calendar")
-                currentDisplay = displayMatch(calendar, "calendar");
-        } else if (currentDisplay === "result") {
-            // affiche-na aloha sao taraiky le resultat teo aloha
-            currentDisplay = displayMatch(result, "result");
-            // maka vaovao
-            result = await getMatch(minus15(), new Date(), idLeague);
-            result = filterByDate(result);
-            result.shift(); // shift satria lasa voaray ao le date androany;
-            // sao novainy tampoka nefa taraiky vao azo
-            if (currentDisplay === "result")
-                currentDisplay = displayMatch(result, "result");
-        }
-    }, 60000); // tous les une minute
+    // intervalUpdate = setInterval(async () => {
+    //     if (currentDisplay === "calendar") {
+    //         // affiche-na aloha sao taraiky le resultat teo aloha
+    //         currentDisplay = displayMatch(calendar, "calendar");
+    //         // maka vaovao
+    //         calendar = await getMatch(new Date(), plus15(), idLeague);
+    //         calendar = filterByDate(calendar, "ASC");
+    //         // sao novainy tampoka nefa taraiky vao azo
+    //         if (currentDisplay === "calendar")
+    //             currentDisplay = displayMatch(calendar, "calendar");
+    //     } else if (currentDisplay === "result") {
+    //         // affiche-na aloha sao taraiky le resultat teo aloha
+    //         currentDisplay = displayMatch(result, "result");
+    //         // maka vaovao
+    //         result = await getMatch(minus15(), new Date(), idLeague);
+    //         result = filterByDate(result);
+    //         result.shift(); // shift satria lasa voaray ao le date androany;
+    //         // sao novainy tampoka nefa taraiky vao azo
+    //         if (currentDisplay === "result")
+    //             currentDisplay = displayMatch(result, "result");
+    //     }
+    // }, 60000); // tous les une minute
 };
 
 export function clearIntervalInfoLeague() {

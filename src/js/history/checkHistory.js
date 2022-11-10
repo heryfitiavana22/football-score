@@ -69,9 +69,10 @@ export default (isPopState) => {
 async function importInit() {
     // effacer le setInterval'interval
     import("../others/animation").then(module => module.loading())
-    import("../infoMatch/infoMatch").then(module => module.clearIntervalUpdate())
-    import("../infoLeague/infoLeague").then(module => module.clearIntervalInfoLeague())
     import("../league/listLeague").then(module => module.default())
+    import("../infoMatch/infoMatch").then(module => module.clearIntervalInfoMatch())
+    import("../infoLeague/infoLeague").then(module => module.clearIntervalInfoLeague())
+    import("../listMatch/listMatch").then(module => module.clearIntervalListMatch())
 }
 
 async function importInfoLeague(isPopState, idLeague) {

@@ -7,13 +7,18 @@ import displayMoment from './displayMoment'
 import displayPreGame from './displayPregame'
 import displayStanding from '../func/displayStanding'
 import displayStats from './displayStats'
-import {clearIntervalInfoLeague} from '../infoLeague/infoLeague'
 
 let interval = undefined,
-    currentDisplay = undefined;
-export default async (isPopState=false, idMatch, toDisplay) => {
-    loading()
-    clearIntervalInfoLeague()
+    currentDisplay = undefined,
+    isUpdate = false;
+
+export default async function infoMatch(isPopState=false, idMatch, toDisplay) {
+    // tsy mila manao loading rehefa manao update
+    if(!isUpdate) {
+        loading()
+        window.scroll(0,0)
+    }
+
     let game = [],
         standing = [];
     
@@ -24,6 +29,7 @@ export default async (isPopState=false, idMatch, toDisplay) => {
     displayGame(game)
     // display moment fort
     displayMoment(game)
+
     if(toDisplay === "standing") { // raha tiana specifie-na ho classement
         standing = await getStanding(game.league_id)
         // add history (ajouteko mitokana ito)
@@ -63,20 +69,23 @@ export default async (isPopState=false, idMatch, toDisplay) => {
             stopLoading()
         }
     })
-    // mettre a jour le resultat chaque 60 seconde 
-    // interval = setInterval(async () => {
-    //     // console.log('maj info');
-    //     game = await getInfoMatch(idMatch)
-    //     // true : tsy mila enregistre-na anaty historique
-    //     if(currentDisplay === "standing") 
-    //         currentDisplay = displayStanding(standing, game.match_hometeam_id, game.match_awayteam_id)
-    //     else if(toDisplay === "stats")
-    //         currentDisplay = displayStats(true, game)
-    //     else 
-    //         currentDisplay = displayPreGame(true, game)
-    // },60000)
+
+    // rehefa mandeha ny a jour de tsy atao intsony
+    if(isUpdate) return
+
+    // ataoko miandry kely fa misy erreur
+    // setTimeout(() => {
+    //     // mettre a jour le resultat chaque 60 seconde 
+    //     interval = setInterval(async () => {
+    //         isUpdate = true
+    //         // console.log('maj info');
+    //         infoMatch(true, idMatch, toDisplay)
+    //     },60000)
+    //     // console.log("interval");
+    // }, 2000)
 }
 
-export function clearIntervalUpdate() {
+export function clearIntervalInfoMatch() {
     clearInterval(interval)
+    isUpdate = false
 }

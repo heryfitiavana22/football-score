@@ -5,18 +5,16 @@ import {loading, stopLoading} from '../others/animation'
 import displayListMatch from './displayListMatch'
 import {deleteCurrentMonth, createCalendar, getCurrentDate} from '../calendar/calendar'
 import addHistory from '../history/addHistory'
-import {clearIntervalInfoLeague} from '../infoLeague/infoLeague'
-import {clearIntervalUpdate} from '../infoMatch/infoMatch'
 
 let gamePerLeague = [],
     activeInNavBar = document.querySelector('.navbar-match .nav-list li.active'),
-    currentItem = listMatchToday; // ilaina amle update-na score
+    currentItem = listMatchToday, // ilaina amle update-na score
+    interval = undefined,
+    isUpdate = false;
 
 export async function listMatch(isPopState=false, date, idLeague, toDisplay) {
     gamePerLeague = [];
     date = toYYYYMMDD(date)
-    clearIntervalInfoLeague()
-    clearIntervalUpdate()
     // add history (rehefa popstate de tsy mila mi-ajouter)
     if(!isPopState)
         addHistory(`listgame/${date}${idLeague ? ('&'+idLeague) : ''}`)
@@ -86,7 +84,21 @@ export async function listMatch(isPopState=false, date, idLeague, toDisplay) {
     } 
     currentItem()
     stopLoading()
+    // rehefa mandeha ny a jour de tsy atao intsony
+    if(isUpdate) return
+
+    interval = setInterval(() => {
+        // console.log('update listMatch');
+        isUpdate = true
+        // listMatch(true, date, idLeague, toDisplay)
+    }, 60000) // tous les une seconde  
 }
+
+export function clearIntervalListMatch() {
+    clearInterval(interval)
+    isUpdate = false
+}
+
 
 export function listMatchToday() {
     currentItem = listMatchToday;

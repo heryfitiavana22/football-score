@@ -11,7 +11,6 @@ import filterByPlace from "./filterByPlace";
 import filterByDate from "../func/filterByDate";
 import { plus15, minus15 } from "../func/date";
 import {loading, stopLoading} from '../others/animation'
-import {clearIntervalInfoLeague} from '../infoLeague/infoLeague'
 
 export default async (isPopState = false, idLeague, idTeam) => {
     let calendar = [],
@@ -20,7 +19,7 @@ export default async (isPopState = false, idLeague, idTeam) => {
         players = [],
         coach = []
     loading()
-    clearIntervalInfoLeague()
+
     window.scroll(0,0)
      // rehefa popstate de tsy mila mi-ajouter
     if(!isPopState) addHistory(`team/${idLeague}&${idTeam}`) 
