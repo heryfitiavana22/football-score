@@ -5,8 +5,8 @@ export default async (first, second) => {
         fetch(url, {method : 'get'})
         .then(response => response.json())
         .then((value) => {
-            console.log('get_H2H');
-            console.log(value);
+            // console.log('get_H2H');
+            // console.log(value);
             reslove(value.error ? [] : value)
         })
     })

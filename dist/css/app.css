@@ -187,7 +187,7 @@ h1 span {
     margin-top: 7px;
 }
 .info .listMatch {font-size: 14px;}
-.listMatch h3 {font-size: 16px;}
+.info h3 {font-size: 16px;}
 
 /* standing */
 .standing-container {width: 100%;}
@@ -379,24 +379,27 @@ td:hover .caption-td {display: block;}
     align-items: center;
     margin-bottom: 15px;
     height: 50px;
-    padding-left: 10px;
-    padding-bottom: 8px;
+    padding: 0 4px 8px 4px;
     transition: all 0.5s ease;
     border-radius: 4px;
     cursor: pointer;
 }
 .list-match li:hover {background-color: aliceblue;}
-ul li .hour-match {color: rgb(126, 126, 126); width: 100%; text-align: center; font-size: 12px; margin-left: 18px;}
+ul li .hour-match {
+    color: rgb(126, 126, 126); 
+    width: 100%; 
+    text-align: center; 
+    font-size: 12px; 
+}
 .match-item {
     display: flex;
     width: 100%;
     align-items: center;
-    margin-left: 17px;
 }
 .match-item > div {
     display: flex;
     width: 47%;
-    height: 20px;
+    height: 23px;
     overflow: hidden;
 }
 .match-item > .home {justify-content: end;}
@@ -577,7 +580,7 @@ td .day-item {
     .matchs h3 .league {font-size: 14px;}
     .matchs h3 .country {font-size: 12px;}
     .match-item {margin-bottom: 2px;}
-    /* .match-item > div {width: 47%;} */
+    .match-item > div {height: 19px;}
     .match-item .score {
         font-size: 14px;
         top: -1px;
@@ -588,6 +591,7 @@ td .day-item {
         width: 16px;
         height: 16px;
     }
+    
 }
 /*!****************************************************************************************************************************!*\
   !*** css ./node_modules/.pnpm/css-loader@6.7.1_webpack@5.74.0/node_modules/css-loader/dist/cjs.js!./src/css/infoMatch.css ***!
@@ -836,6 +840,9 @@ td .day-item {
 }
 /* end pre-game */
 
+.info-match .listMatch h3 {font-size: 16px;}
+.info-match .listMatch {font-size: 14px;}
+
 /* statistics */
 .statistics {
     padding: 10px;
@@ -964,6 +971,9 @@ td .day-item {
     .coach .team {font-size: 16px;}
     .coach .manager-name {font-size: 13px;}
     .coach .caption {font-size: 12px;}
+
+    .info-match .listMatch h3 {font-size: 12px;}
+    .info-match .listMatch {font-size: 12px;}
 
     .standing-container {font-size: 12px;}
     .head-table {height: 30px;}

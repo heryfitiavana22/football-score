@@ -96,7 +96,7 @@ let listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getList
                 let list = value.filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name));
                 // trier selon l'heure du match
                 list.sort((a,b) => new Date(`${a.match_date} ${a.match_time}`) - new Date(`${b.match_date} ${b.match_time}`))
-                console.log(list);
+                // console.log(list);
                 resolve(list)
             })
             .catch(err => console.log(err))

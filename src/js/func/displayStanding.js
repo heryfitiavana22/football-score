@@ -10,6 +10,8 @@ export default (standing, ...idTeams) => {
             <td>GD <span class="caption-td gd">goal difference<span></td>
             <td>Pts <span class="caption-td">points<span></td>
         </tr>`;
+        if(standing.length === 0)
+            standingHTML +=  `<tr class="item-container" style="padding-left:15px"><td style="width: 100% !important">to wait after 1 min or not given</td></tr>`
         for(let element of standing) {
             standingHTML += 
             `<tr class="item-container ${idTeams.includes(element.team_id) ? 'current-team' : ''}" id="${element.league_id}t${element.team_id}">

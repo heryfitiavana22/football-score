@@ -52,7 +52,7 @@ export default async function infoMatch(isPopState=false, idMatch, toDisplay) {
         h2h = await getH2H(game.match_hometeam_id, game.match_awayteam_id)
         currentDisplay = displayMatch(h2h.firstTeam_VS_secondTeam, "h2h")
     } else {
-        getH2H(game.match_hometeam_id, game.match_awayteam_id).then((value) => h2h = value)
+        getStanding(game.league_id).then((value) => standing = value)
         currentDisplay = displayPreGame(isPopState, game)
         h2h = await getH2H(game.match_hometeam_id, game.match_awayteam_id)
     }
@@ -95,8 +95,8 @@ export default async function infoMatch(isPopState=false, idMatch, toDisplay) {
     // rehefa mandeha ny a jour de tsy atao intsony
     if(isUpdate) return
 
-    // rehefa live iany vao manao update    
-    if(game.match_status=== "1") {
+    // rehefa live iany vao manao update   
+    if(game.match_live === "1") {
         // ataoko miandry kely fa misy erreur
         setTimeout(() => {
             // mettre a jour le resultat chaque 60 seconde 
@@ -116,5 +116,4 @@ export function clearIntervalInfoMatch() {
     isUpdate = false
     currentDisplay = undefined
     initMoment()
-    // console.log('clearr');
 }

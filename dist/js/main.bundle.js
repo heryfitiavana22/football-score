@@ -436,9 +436,11 @@ __webpack_require__.r(__webpack_exports__);
         let {clearIntervalListMatch} = await __webpack_require__.e(/*! import() */ "src_js_listMatch_displayListMatch_js-src_js_listMatch_listMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../listMatch/listMatch */ "./src/js/listMatch/listMatch.js"))
         let {clearIntervalInfoTeam} = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoTeam_infoTeam_js"), __webpack_require__.e("src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_getStanding_js-_-7ce89f1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js"))
         clearIntervalInfoLeague()
-        clearIntervalInfoMatch()
         clearIntervalListMatch()
         clearIntervalInfoTeam()
+        if( !(hash.includes("pregame") || hash.includes("h2h") ||
+            hash.includes("standing") || hash.includes("stats"))) 
+                clearIntervalInfoMatch()
         resolve('cleared')
     })
 });
@@ -465,7 +467,7 @@ __webpack_require__.r(__webpack_exports__);
     let hash = window.location.hash;
     // console.log(hash);
     (0,_others_animation__WEBPACK_IMPORTED_MODULE_1__.loading)()
-    importInit();
+    importInit(hash);
     
     if (hash.length === 0 || hash === "#") {
         let d = new Date();
@@ -539,7 +541,7 @@ __webpack_require__.r(__webpack_exports__);
     } else return (0,_404__WEBPACK_IMPORTED_MODULE_0__["default"])(); // 404
 });
 
-function importInit() {
+function importInit(hash) {
     return new Promise(async (resolve, reject) => {
         __webpack_require__.e(/*! import() */ "src_js_league_listLeague_js").then(__webpack_require__.bind(__webpack_require__, /*! ../league/listLeague */ "./src/js/league/listLeague.js")).then(module => module.default())
         // effacer le setInterval'interval
@@ -548,9 +550,11 @@ function importInit() {
         let {clearIntervalListMatch} = await __webpack_require__.e(/*! import() */ "src_js_listMatch_displayListMatch_js-src_js_listMatch_listMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../listMatch/listMatch */ "./src/js/listMatch/listMatch.js"))
         let {clearIntervalInfoTeam} = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoTeam_infoTeam_js"), __webpack_require__.e("src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_getStanding_js-_-7ce89f1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js"))
         clearIntervalInfoLeague()
-        clearIntervalInfoMatch()
         clearIntervalListMatch()
         clearIntervalInfoTeam()
+        if( !(hash.includes("pregame") || hash.includes("h2h") ||
+            hash.includes("standing") || hash.includes("stats"))) 
+            clearIntervalInfoMatch()
         resolve('init')
     })
 }

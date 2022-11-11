@@ -5,7 +5,7 @@ export default (isPopState) => {
     let hash = window.location.hash;
     // console.log(hash);
     loading()
-    importInit();
+    importInit(hash);
     
     if (hash.length === 0 || hash === "#") {
         let d = new Date();
@@ -79,7 +79,7 @@ export default (isPopState) => {
     } else return pageNotFound(); // 404
 };
 
-function importInit() {
+function importInit(hash) {
     return new Promise(async (resolve, reject) => {
         import("../league/listLeague").then(module => module.default())
         // effacer le setInterval'interval
@@ -88,9 +88,11 @@ function importInit() {
         let {clearIntervalListMatch} = await import("../listMatch/listMatch")
         let {clearIntervalInfoTeam} = await import("../infoTeam/infoTeam")
         clearIntervalInfoLeague()
-        clearIntervalInfoMatch()
         clearIntervalListMatch()
         clearIntervalInfoTeam()
+        if( !(hash.includes("pregame") || hash.includes("h2h") ||
+            hash.includes("standing") || hash.includes("stats"))) 
+            clearIntervalInfoMatch()
         resolve('init')
     })
 }

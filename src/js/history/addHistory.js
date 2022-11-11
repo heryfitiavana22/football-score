@@ -9,9 +9,11 @@ export default (hash) => {
         let {clearIntervalListMatch} = await import("../listMatch/listMatch")
         let {clearIntervalInfoTeam} = await import("../infoTeam/infoTeam")
         clearIntervalInfoLeague()
-        clearIntervalInfoMatch()
         clearIntervalListMatch()
         clearIntervalInfoTeam()
+        if( !(hash.includes("pregame") || hash.includes("h2h") ||
+            hash.includes("standing") || hash.includes("stats"))) 
+                clearIntervalInfoMatch()
         resolve('cleared')
     })
 }

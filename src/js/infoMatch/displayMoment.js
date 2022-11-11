@@ -72,7 +72,7 @@ export default (game) => {
             `<div class="bar"></div>
         </div>`
     }
-    if(moment.length > 0)
+    if(moment.length > 0 && !isClicked)
         momentHTML += 
         `<!-- voir plus  -->
         <div class="show-more"><span>show more</span></div>`;

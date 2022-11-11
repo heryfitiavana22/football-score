@@ -73,7 +73,7 @@ __webpack_require__.r(__webpack_exports__);
     let listGameHTML =
     `<div class="listMatch">`;
     if(game.length === 0)
-        listGameHTML +=  `<p style="padding-left:15px">to wait or no match</p>`
+        listGameHTML +=  `<p style="padding-left:15px">to wait after 1 min or no match</p>`
     for(let date of game) {
         listGameHTML +=
         `<div class="matchs">
@@ -150,6 +150,8 @@ __webpack_require__.r(__webpack_exports__);
             <td>GD <span class="caption-td gd">goal difference<span></td>
             <td>Pts <span class="caption-td">points<span></td>
         </tr>`;
+        if(standing.length === 0)
+            standingHTML +=  `<tr class="item-container" style="padding-left:15px"><td style="width: 100% !important">to wait after 1 min or not given</td></tr>`
         for(let element of standing) {
             standingHTML += 
             `<tr class="item-container ${idTeams.includes(element.team_id) ? 'current-team' : ''}" id="${element.league_id}t${element.team_id}">
@@ -242,7 +244,7 @@ let listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getList
                 let list = value.filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name));
                 // trier selon l'heure du match
                 list.sort((a,b) => new Date(`${a.match_date} ${a.match_time}`) - new Date(`${b.match_date} ${b.match_time}`))
-                console.log(list);
+                // console.log(list);
                 resolve(list)
             })
             .catch(err => console.log(err))

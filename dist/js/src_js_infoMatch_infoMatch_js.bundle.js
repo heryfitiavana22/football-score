@@ -167,7 +167,7 @@ let isClicked = false; // raha efa clicke le "show more"
             `<div class="bar"></div>
         </div>`
     }
-    if(moment.length > 0)
+    if(moment.length > 0 && !isClicked)
         momentHTML += 
         `<!-- voir plus  -->
         <div class="show-more"><span>show more</span></div>`;
@@ -380,8 +380,8 @@ let apiKey = "92268e4434769b7515b45be3b45cd3d9bdc9d3e4cf62885a85ada0a22c9acf8b";
         fetch(url, {method : 'get'})
         .then(response => response.json())
         .then((value) => {
-            console.log('get_H2H');
-            console.log(value);
+            // console.log('get_H2H');
+            // console.log(value);
             reslove(value.error ? [] : value)
         })
     })
@@ -492,7 +492,7 @@ async function infoMatch(isPopState=false, idMatch, toDisplay) {
         h2h = await (0,_getH2H__WEBPACK_IMPORTED_MODULE_1__["default"])(game.match_hometeam_id, game.match_awayteam_id)
         currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_10__["default"])(h2h.firstTeam_VS_secondTeam, "h2h")
     } else {
-        (0,_getH2H__WEBPACK_IMPORTED_MODULE_1__["default"])(game.match_hometeam_id, game.match_awayteam_id).then((value) => h2h = value)
+        (0,_func_getStanding__WEBPACK_IMPORTED_MODULE_2__["default"])(game.league_id).then((value) => standing = value)
         currentDisplay = (0,_displayPregame__WEBPACK_IMPORTED_MODULE_7__["default"])(isPopState, game)
         h2h = await (0,_getH2H__WEBPACK_IMPORTED_MODULE_1__["default"])(game.match_hometeam_id, game.match_awayteam_id)
     }
@@ -535,8 +535,8 @@ async function infoMatch(isPopState=false, idMatch, toDisplay) {
     // rehefa mandeha ny a jour de tsy atao intsony
     if(isUpdate) return
 
-    // rehefa live iany vao manao update    
-    if(game.match_status=== "1") {
+    // rehefa live iany vao manao update   
+    if(game.match_live === "1") {
         // ataoko miandry kely fa misy erreur
         setTimeout(() => {
             // mettre a jour le resultat chaque 60 seconde 
@@ -556,7 +556,6 @@ function clearIntervalInfoMatch() {
     isUpdate = false
     currentDisplay = undefined
     ;(0,_displayMoment__WEBPACK_IMPORTED_MODULE_6__.initMoment)()
-    // console.log('clearr');
 }
 
 /***/ })

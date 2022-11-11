@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((game = [], type) => {
     let filterByDate = [],
         listDate = [];
-        console.log(game);
+        // console.log(game);
     for (let element of game) {
         // raha mbola tsy ao le date
         if (!listDate.includes(element.match_date)) {
