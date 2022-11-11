@@ -1,3 +1,5 @@
+let isClicked = false; // raha efa clicke le "show more"
+
 export default (game) => {
     let moment = [],
         goal = game.goalscorer,
@@ -75,10 +77,17 @@ export default (game) => {
         `<!-- voir plus  -->
         <div class="show-more"><span>show more</span></div>`;
     momentContainer.innerHTML = momentHTML;
+
+    if(isClicked) momentContainer.style.height = "auto"
     let showMore = document.querySelector('.show-more')
     if(showMore) // raha misy
         showMore.addEventListener('click', () => {
             momentContainer.style.height = "auto"
             showMore.style.display = 'none'
+            isClicked = true
         })
+}
+
+export function initMoment() {
+    isClicked = false
 }
