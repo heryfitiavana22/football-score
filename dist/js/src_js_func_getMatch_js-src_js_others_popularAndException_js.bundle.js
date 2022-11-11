@@ -1,92 +1,108 @@
 "use strict";
-(self["webpackChunkFootball_score"] = self["webpackChunkFootball_score"] || []).push([["src_js_league_listLeague_js"],{
+(self["webpackChunkFootball_score"] = self["webpackChunkFootball_score"] || []).push([["src_js_func_getMatch_js-src_js_others_popularAndException_js"],{
 
-/***/ "./src/js/league/listLeague.js":
-/*!*************************************!*\
-  !*** ./src/js/league/listLeague.js ***!
-  \*************************************/
+/***/ "./src/js/func/date.js":
+/*!*****************************!*\
+  !*** ./src/js/func/date.js ***!
+  \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   "getLeagues": () => (/* binding */ getLeagues)
+/* harmony export */   "endSeason": () => (/* binding */ endSeason),
+/* harmony export */   "minus15": () => (/* binding */ minus15),
+/* harmony export */   "plus15": () => (/* binding */ plus15),
+/* harmony export */   "startSeason": () => (/* binding */ startSeason),
+/* harmony export */   "toYYYYMMDD": () => (/* binding */ toYYYYMMDD)
+/* harmony export */ });
+function toYYYYMMDD(date) {
+    let d = new Date(date),
+        year = d.getFullYear(),
+        month = d.getMonth() + 1,
+        day = d.getDate();
+    return year + "-" + month + "-" + day;
+}
+/* ampiana 15 jours */
+function plus15(date = new Date()) {
+    let d = new Date(date),
+        dateEnd = new Date(d.getFullYear(), d.getMonth(), d.getDate()+15);
+    return dateEnd.getFullYear() + '-' + (dateEnd.getMonth()+1) + '-' + dateEnd.getDate()
+}
+
+/* anasorana 15 jous */
+function minus15(date = new Date()) {
+    let d = new Date(date),
+        dateFirst = new Date(d.getFullYear(), d.getMonth(), d.getDate()-15);
+    return dateFirst.getFullYear() + '-' + (dateFirst.getMonth()+1) + '-' + dateFirst.getDate()
+}
+
+/* start season */
+function startSeason(date = new Date()) {
+    let d = new Date(date);
+    if((d.getMonth()+1) >= 8) 
+        return d.getFullYear() + '-08-01'
+    return (d.getFullYear()-1) + '-08-01' // supposition oe mois d'aout ny debut
+}
+
+/* start season */
+function endSeason(date = new Date()) {
+    let d = new Date(date);
+    if((d.getMonth()+1) >= 8) // (mois d'aout ny debut)
+        return (d.getFullYear()+1) + '-07-01'
+    return (d.getFullYear()) + '-07-01' // supposition oe mois de juillet ny fin
+}
+
+
+/***/ }),
+
+/***/ "./src/js/func/getMatch.js":
+/*!*********************************!*\
+  !*** ./src/js/func/getMatch.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../others/contryAndLeague */ "./src/js/others/contryAndLeague.js");
-/* harmony import */ var _others_popularAndException__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../others/popularAndException */ "./src/js/others/popularAndException.js");
+/* harmony import */ var _date__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./date */ "./src/js/func/date.js");
 
 
 
 let APIkey = "aeb8cfee1fe2069ff47ef42ad13a32ab605910fd7267a6cd39538190d1b705be";
-let listContainer = document.querySelector('.list-league'),
-    url = `https://apiv3.apifootball.com/?action=get_leagues&APIkey=${APIkey}`,
-    listCountry = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListCountry)(),
-    listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListLeague)();
-listCountry = listCountry.split(',');
-listLeague = listLeague.split(',')
+let listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListLeague)(),
+    listCountry = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListCountry)();
 
-let list = [];
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async () => {
-    fetch(url, {
-        method : 'get'
-    })
-        .then(response => response.json())
-        .then((value) => {
-            // izay ao anaty liste iany no raisina
-            list = value
-                    .filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name));
-            let leagueId = list.map(e => e.league_id)
-            // console.log('listleague');
-            // console.log(list);
-            // popular league and exception league
-            let popularLeague = (0,_others_popularAndException__WEBPACK_IMPORTED_MODULE_1__.getPopularLeague)(leagueId),
-                exceptionLeague = (0,_others_popularAndException__WEBPACK_IMPORTED_MODULE_1__.getExceptionLeague)(leagueId),
-                currentNumber = 1;
-            // console.log('popularLeague listleague');
-            // console.log(popularLeague);
-            // correct league logo
-            for(let element of exceptionLeague) {
-                list[element.index].league_logo = element.photo
-            }
-            // atao any amin farany ambony ireo ligue populaire
-            // omena numero voalohany ireo league popular
-            let leaguesPopular = [];
-            for(let element of popularLeague) {
-                list[element.index].number =  currentNumber
-                list[element.index].league_logo = element.photo
-                leaguesPopular.push(list[element.index]);
-                currentNumber++
-            }
-            // omena numero ireo league mbola tsy nahazo
-            let othersLeague = [];
-            for(let element of list) {
-                if(!element.number) {
-                    othersLeague.push(element)
-                }
-            }
-            // trier-na selon ny id ana pays anle league 
-            console.log(othersLeague.sort((a,b) => a.country_id - b.country_id));
-            // atambatra
-            list = [...leaguesPopular, ...othersLeague]
-            // display list league `<li class="list-item" onclick="getLeagueMatch(${e.league_id})">
-            let listItem = ``;
-            for(let e of list) {
-                listItem += 
-                `<li class="list-item kk${e.league_id}" id="${e.league_id}" onclick="league.getLeagueMatch(${e.league_id}, this)">
-                    <img src="${e.league_logo}" alt="icon-league" id="${e.league_id}" onerror="this.src = 'assets/img/logo2.png'">
-                    <span id="${e.league_id}">${e.league_name}
-                        <span class="line-list" id="${e.league_id}"></span>
-                    </span>
-                </li>`;
-            }
-            listContainer.innerHTML = listItem
-        })
-        .catch(err => console.log(err))
+// raha tsy mahazo valeur le "to" de atao mitovy amin "from"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (from, to = from, idLeague = 0, idTeam = 0) => {
+    return await new Promise((resolve, reject) => {
+        let fromDate = (0,_date__WEBPACK_IMPORTED_MODULE_1__.toYYYYMMDD)(from),
+            toDate = (0,_date__WEBPACK_IMPORTED_MODULE_1__.toYYYYMMDD)(to);
+        // console.log("from-to");
+        // console.log(fromDate+'-'+toDate);
+        let url = `https://apiv3.apifootball.com/?action=get_events&from=${fromDate}&to=${toDate}&APIkey=${APIkey}&timezone=Africa/Nairobi`;
+        
+        // au cas ou idLeague est donne
+        if(idLeague > 0) url += `&league_id=${idLeague}`
+        // au cas ou idLeague est donne
+        if(idTeam > 0) url += `&team_id=${idTeam}`
+        // console.log(url);
+        fetch(url, { method: "get" })
+            .then((response) => response.json())
+            .then((value) => {
+                if(value.error) return resolve([])
+                // ireo anaty liste iany no alaina
+                let list = value.filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name));
+                // trier selon l'heure du match
+                list.sort((a,b) => new Date(`${a.match_date} ${a.match_time}`) - new Date(`${b.match_date} ${b.match_time}`))
+                // console.log(list);
+                resolve(list)
+            })
+            .catch(err => console.log(err))
+    });
 });
 
-function getLeagues() {
-    return list;
-}
 
 /***/ }),
 
@@ -176,4 +192,4 @@ function getExceptionCountry(countryId) {
 /***/ })
 
 }]);
-//# sourceMappingURL=src_js_league_listLeague_js.bundle.js.map
+//# sourceMappingURL=src_js_func_getMatch_js-src_js_others_popularAndException_js.bundle.js.map

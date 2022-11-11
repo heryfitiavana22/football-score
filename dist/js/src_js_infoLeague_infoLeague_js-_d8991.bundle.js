@@ -378,23 +378,24 @@ let list = [];
             }
             // atao any amin farany ambony ireo ligue populaire
             // omena numero voalohany ireo league popular
+            let leaguesPopular = [];
             for(let element of popularLeague) {
                 list[element.index].number =  currentNumber
                 list[element.index].league_logo = element.photo
+                leaguesPopular.push(list[element.index]);
                 currentNumber++
             }
             // omena numero ireo league mbola tsy nahazo
+            let othersLeague = [];
             for(let element of list) {
                 if(!element.number) {
-                    element.number =  currentNumber
-                    currentNumber++
+                    othersLeague.push(element)
                 }
             }
-            // trier-na selon ny nom ana league aloha
-            list.sort((a,b) => a.league_name - b.league_name)
-            // trier-na selon ny numero anle league
-            list.sort((a,b) => a.number - b.number)
-
+            // trier-na selon ny id ana pays anle league 
+            console.log(othersLeague.sort((a,b) => a.country_id - b.country_id));
+            // atambatra
+            list = [...leaguesPopular, ...othersLeague]
             // display list league `<li class="list-item" onclick="getLeagueMatch(${e.league_id})">
             let listItem = ``;
             for(let e of list) {

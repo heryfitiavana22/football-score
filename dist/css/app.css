@@ -641,6 +641,7 @@ td .day-item {
 
 .match .info {
     width: 30%;
+    padding: 5px;
 }
 .match .info span {display: block; text-align: center;}
 .match .hour-match {font-weight: bold;}
@@ -660,6 +661,11 @@ td .day-item {
     transition: all 1s ease;
     animation: score-live 1s infinite alternate;
 }
+.stadium-match {
+    font-size: 14px;
+    margin-top: 7px;
+}
+.stadium-match img {width: 20px; height: 20px;}
 
 .moment-container {
     position: relative;
@@ -926,7 +932,13 @@ td .day-item {
     .match .team img {width: 40px; height: 40px;}
     .match .team .team-name, .match .info {font-size: 12px;}
     .match .team .score {font-size: 20px; top: 14%;}
-    
+
+    .stadium-match {
+        font-size: 9px;
+        margin-top: 4px;
+    }
+    .stadium-match img {width: 11px; height: 11px;}
+
     .moment-container {font-size: 12px; height: 55px;}
     .moment {margin-bottom: 15px;}
     .moment .time {width: 28px; height: 28px;}

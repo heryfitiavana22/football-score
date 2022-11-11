@@ -23,6 +23,10 @@ export default (game) => {
             <div class="info">
                 <span class="hour-match">${hour}</span>
                 <span class="date-match">${game.match_date}</span>
+                <span class="stadium-match">
+                    <img src="assets/img/stadium.jpg" onerror="this.src = 'assets/img/stadium.jpg'">
+                    ${game.match_stadium}
+                </span>
             </div>
             <div class="away team">
                 <span class="score">${game.match_awayteam_score}</span>
