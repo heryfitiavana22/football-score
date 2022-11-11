@@ -3,8 +3,7 @@ export default () => {
         iconListLeague = document.querySelector('#icon-toggle-league'),
         closeListLeague = document.querySelector('#close-league');
 
-    let leagueContainer = document.querySelector('.league-container'),
-        matchContainer = document.querySelector('.match-container');
+    let leagueContainer = document.querySelector('.league-container');
 
     let searchContainer = document.querySelector('.search-container'),
         inputSearch = document.querySelector('#search');
@@ -17,12 +16,13 @@ export default () => {
     /* icon listLeague */
     iconListLeague.addEventListener('click', () => {
         leagueContainer.style.left = '0'
-        matchContainer.style.display = 'none' // eviter queqlue bug
+        leagueContainer.scroll(0,0)
+        document.querySelector('.current-element').style.display = 'none' // eviter queqlue bug
     })
 
     closeListLeague.addEventListener('click', () => {
         leagueContainer.style.left = '-100%'
-        matchContainer.style.display = 'block'
+        document.querySelector('.current-element').style.display = 'block'
     })
 
     /* search */

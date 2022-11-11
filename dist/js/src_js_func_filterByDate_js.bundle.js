@@ -15,6 +15,7 @@ __webpack_require__.r(__webpack_exports__);
     let filterByDate = [],
         listDate = [];
         // console.log(game);
+    if(game.length === 0) return []
     for (let element of game) {
         // raha mbola tsy ao le date
         if (!listDate.includes(element.match_date)) {

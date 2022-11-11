@@ -566,7 +566,7 @@ td .day-item {
         z-index: 99999999;
         transition: all 0.3s ease;
     }
-    #close-calendar {display: block;}
+    #close-calendar {display: block !important;}
     .calendar-month {width: 80%;}
 }
 

@@ -13,7 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (game, idHTML, type) => {
     let filterByDate = await __webpack_require__.e(/*! import() */ "src_js_func_filterByDate_js").then(__webpack_require__.bind(__webpack_require__, /*! ./filterByDate */ "./src/js/func/filterByDate.js"))
-    game = filterByDate.default(game, idHTML, type)
+    game = filterByDate.default(game, type)
     // console.log(idHTML);
     // console.log(game);
     let listGameHTML =
@@ -159,7 +159,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-let apiKey = "92268e4434769b7515b45be3b45cd3d9bdc9d3e4cf62885a85ada0a22c9acf8b";
+let apiKey = "aeb8cfee1fe2069ff47ef42ad13a32ab605910fd7267a6cd39538190d1b705be";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (idLeague) => {
     return await new Promise((resolve, reject) => {
         let url = `https://apiv3.apifootball.com/?action=get_standings&league_id=${idLeague}&APIkey=${apiKey}`;

@@ -70,7 +70,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let APIkey = "92268e4434769b7515b45be3b45cd3d9bdc9d3e4cf62885a85ada0a22c9acf8b";
+let APIkey = "aeb8cfee1fe2069ff47ef42ad13a32ab605910fd7267a6cd39538190d1b705be";
 let listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListLeague)(),
     listCountry = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListCountry)();
 
@@ -544,7 +544,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-let APIkey = "92268e4434769b7515b45be3b45cd3d9bdc9d3e4cf62885a85ada0a22c9acf8b";
+let APIkey = "aeb8cfee1fe2069ff47ef42ad13a32ab605910fd7267a6cd39538190d1b705be";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (teamID) => {
     return new Promise((resolve, reject) => {
         let url = `https://apiv3.apifootball.com/?action=get_teams&team_id=${teamID}&APIkey=${APIkey}`;

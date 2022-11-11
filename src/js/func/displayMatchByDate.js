@@ -1,6 +1,6 @@
 export default async (game, idHTML, type) => {
     let filterByDate = await import('./filterByDate')
-    game = filterByDate.default(game, idHTML, type)
+    game = filterByDate.default(game, type)
     // console.log(idHTML);
     // console.log(game);
     let listGameHTML =

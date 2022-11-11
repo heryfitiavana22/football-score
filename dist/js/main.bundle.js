@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar/calendar.js":
+/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar/calendar-exposed.js":
 /*!*************************************************************************************************************************************************************!*\
   !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar/calendar-exposed.js ***!
   \*************************************************************************************************************************************************************/
@@ -17,7 +17,7 @@ module.exports = ___EXPOSE_LOADER_IMPORT___;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/league/getLeagueMatch.js":
+/***/ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/league/getLeagueMatch-exposed.js":
 /*!***************************************************************************************************************************************************************!*\
   !*** ./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/league/getLeagueMatch-exposed.js ***!
   \***************************************************************************************************************************************************************/
@@ -652,8 +652,7 @@ __webpack_require__.r(__webpack_exports__);
         iconListLeague = document.querySelector('#icon-toggle-league'),
         closeListLeague = document.querySelector('#close-league');
 
-    let leagueContainer = document.querySelector('.league-container'),
-        matchContainer = document.querySelector('.match-container');
+    let leagueContainer = document.querySelector('.league-container');
 
     let searchContainer = document.querySelector('.search-container'),
         inputSearch = document.querySelector('#search');
@@ -666,12 +665,13 @@ __webpack_require__.r(__webpack_exports__);
     /* icon listLeague */
     iconListLeague.addEventListener('click', () => {
         leagueContainer.style.left = '0'
-        matchContainer.style.display = 'none' // eviter queqlue bug
+        leagueContainer.scroll(0,0)
+        document.querySelector('.current-element').style.display = 'none' // eviter queqlue bug
     })
 
     closeListLeague.addEventListener('click', () => {
         leagueContainer.style.left = '-100%'
-        matchContainer.style.display = 'block'
+        document.querySelector('.current-element').style.display = 'block'
     })
 
     /* search */
@@ -971,9 +971,9 @@ var __webpack_exports__ = {};
   \************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _others_animation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./others/animation */ "./src/js/others/animation.js");
-/* harmony import */ var expose_loader_exposes_calendar_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! expose-loader?exposes=calendar!./calendar/calendar */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar/calendar.js");
+/* harmony import */ var expose_loader_exposes_calendar_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! expose-loader?exposes=calendar!./calendar/calendar */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=calendar!./src/js/calendar/calendar-exposed.js");
 /* harmony import */ var expose_loader_exposes_calendar_calendar_calendar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_calendar_calendar_calendar__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var expose_loader_exposes_league_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! expose-loader?exposes=league!./league/getLeagueMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/league/getLeagueMatch.js");
+/* harmony import */ var expose_loader_exposes_league_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! expose-loader?exposes=league!./league/getLeagueMatch */ "./node_modules/.pnpm/expose-loader@4.0.0_webpack@5.74.0/node_modules/expose-loader/dist/cjs.js?exposes=league!./src/js/league/getLeagueMatch-exposed.js");
 /* harmony import */ var expose_loader_exposes_league_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(expose_loader_exposes_league_league_getLeagueMatch__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _history_checkHistory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./history/checkHistory */ "./src/js/history/checkHistory.js");
 /* harmony import */ var _history_addHistory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./history/addHistory */ "./src/js/history/addHistory.js");
