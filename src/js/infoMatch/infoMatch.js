@@ -86,10 +86,10 @@ export default async function infoMatch(isPopState=false, idMatch, toDisplay) {
             interval = setInterval(async () => {
                 isUpdate = true
                 // console.log(currentDisplay);
-                console.log('maj info');
+                // console.log('maj info');
                 infoMatch(true, idMatch)
             }, 55000) // tous les une minutes  (alatsako kely amle mbola alaina)
-            console.log("interval");
+            // console.log("interval");
         }, 250)
     }
 }

@@ -130,6 +130,8 @@ h1 span {
 
 .current-item {padding: 10px;}
 
+.winner {color: forestgreen;}
+
 /* infoLeague, infoTeam */
 .info {
     width: 100%;
