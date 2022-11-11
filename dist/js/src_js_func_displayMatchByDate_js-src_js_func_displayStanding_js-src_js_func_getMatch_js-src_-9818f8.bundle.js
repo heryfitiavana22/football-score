@@ -1,4 +1,59 @@
-(self["webpackChunkFootball_score"] = self["webpackChunkFootball_score"] || []).push([["src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_filterByDate_js--a2a51b"],{
+"use strict";
+(self["webpackChunkFootball_score"] = self["webpackChunkFootball_score"] || []).push([["src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_getMatch_js-src_-9818f8"],{
+
+/***/ "./src/js/func/date.js":
+/*!*****************************!*\
+  !*** ./src/js/func/date.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "endSeason": () => (/* binding */ endSeason),
+/* harmony export */   "minus15": () => (/* binding */ minus15),
+/* harmony export */   "plus15": () => (/* binding */ plus15),
+/* harmony export */   "startSeason": () => (/* binding */ startSeason),
+/* harmony export */   "toYYYYMMDD": () => (/* binding */ toYYYYMMDD)
+/* harmony export */ });
+function toYYYYMMDD(date) {
+    let d = new Date(date),
+        year = d.getFullYear(),
+        month = d.getMonth() + 1,
+        day = d.getDate();
+    return year + "-" + month + "-" + day;
+}
+/* ampiana 15 jours */
+function plus15(date = new Date()) {
+    let d = new Date(date),
+        dateEnd = new Date(d.getFullYear(), d.getMonth(), d.getDate()+15);
+    return dateEnd.getFullYear() + '-' + (dateEnd.getMonth()+1) + '-' + dateEnd.getDate()
+}
+
+/* anasorana 15 jous */
+function minus15(date = new Date()) {
+    let d = new Date(date),
+        dateFirst = new Date(d.getFullYear(), d.getMonth(), d.getDate()-15);
+    return dateFirst.getFullYear() + '-' + (dateFirst.getMonth()+1) + '-' + dateFirst.getDate()
+}
+
+/* start season */
+function startSeason(date = new Date()) {
+    let d = new Date(date);
+    if((d.getMonth()+1) >= 8) 
+        return d.getFullYear() + '-08-01'
+    return (d.getFullYear()-1) + '-08-01' // supposition oe mois d'aout ny debut
+}
+
+/* start season */
+function endSeason(date = new Date()) {
+    let d = new Date(date);
+    if((d.getMonth()+1) >= 8) // (mois d'aout ny debut)
+        return (d.getFullYear()+1) + '-07-01'
+    return (d.getFullYear()) + '-07-01' // supposition oe mois de juillet ny fin
+}
+
+
+/***/ }),
 
 /***/ "./src/js/func/displayMatchByDate.js":
 /*!*******************************************!*\
@@ -6,15 +61,13 @@
   \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js");
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((game, idHTML) => {
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (game, idHTML, type) => {
+    let filterByDate = await __webpack_require__.e(/*! import() */ "src_js_func_filterByDate_js").then(__webpack_require__.bind(__webpack_require__, /*! ./filterByDate */ "./src/js/func/filterByDate.js"))
+    game = filterByDate.default(game, type)
     // console.log(idHTML);
     // console.log(game);
     let listGameHTML =
@@ -62,11 +115,12 @@ __webpack_require__.r(__webpack_exports__);
     document.querySelector('.nav-info .active').classList.remove('active')
     document.querySelector('#'+idHTML).classList.add('active')
     /* onclick match */
-    document.querySelector('.listMatch').addEventListener('click', (e) => {
+    document.querySelector('.listMatch').addEventListener('click', async (e) => {
+        let infoMatch = await __webpack_require__.e(/*! import() */ "src_js_infoMatch_infoMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js")) 
         let id = e.target.id
         if(isNaN(id) || id === '') 
             return; // au cas ou tsy nombre
-        (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(false, id)
+        infoMatch.default(false, id)
     })
     return idHTML;
 });
@@ -80,7 +134,6 @@ __webpack_require__.r(__webpack_exports__);
   \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -148,41 +201,52 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/js/func/filterByDate.js":
-/*!*************************************!*\
-  !*** ./src/js/func/filterByDate.js ***!
-  \*************************************/
+/***/ "./src/js/func/getMatch.js":
+/*!*********************************!*\
+  !*** ./src/js/func/getMatch.js ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((game, type) => {
-    let filterByDate = [],
-        listDate = [];
-    for (let element of game) {
-        // raha mbola tsy ao le date
-        if (!listDate.includes(element.match_date)) {
-            filterByDate.push({
-                date: element.match_date,
-                game: game.filter((g) => g.match_date === element.match_date), // ireo match amnio date io
-            });
-            listDate.push(element.match_date);
-        }
-    }
-    if (type === "ASC")
-        filterByDate.sort((a, b) => new Date(a.date) - new Date(b.date));
-    else {
-        filterByDate.sort((a, b) => new Date(b.date) - new Date(a.date));
-        let d = new Date();
-        // tsy raisina ny date androany 
-        if(filterByDate[0].date === `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`) {
-            filterByDate.shift()
-        }
-    }
-    return filterByDate;
+/* harmony import */ var _others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../others/contryAndLeague */ "./src/js/others/contryAndLeague.js");
+/* harmony import */ var _date__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./date */ "./src/js/func/date.js");
+
+
+
+let APIkey = "92268e4434769b7515b45be3b45cd3d9bdc9d3e4cf62885a85ada0a22c9acf8b";
+let listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListLeague)(),
+    listCountry = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getListCountry)();
+
+// raha tsy mahazo valeur le "to" de atao mitovy amin "from"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (from, to = from, idLeague = 0, idTeam = 0) => {
+    return await new Promise((resolve, reject) => {
+        let fromDate = (0,_date__WEBPACK_IMPORTED_MODULE_1__.toYYYYMMDD)(from),
+            toDate = (0,_date__WEBPACK_IMPORTED_MODULE_1__.toYYYYMMDD)(to);
+        // console.log("from-to");
+        // console.log(fromDate+'-'+toDate);
+        let url = `https://apiv3.apifootball.com/?action=get_events&from=${fromDate}&to=${toDate}&APIkey=${APIkey}&timezone=Africa/Nairobi`;
+        
+        // au cas ou idLeague est donne
+        if(idLeague > 0) url += `&league_id=${idLeague}`
+        // au cas ou idLeague est donne
+        if(idTeam > 0) url += `&team_id=${idTeam}`
+        // console.log(url);
+        fetch(url, { method: "get" })
+            .then((response) => response.json())
+            .then((value) => {
+                if(value.error) return resolve([])
+                // ireo anaty liste iany no alaina
+                let list = value.filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name));
+                // trier selon l'heure du match
+                list.sort((a,b) => new Date(`${a.match_date} ${a.match_time}`) - new Date(`${b.match_date} ${b.match_time}`))
+                // console.log(list);
+                resolve(list)
+            })
+            .catch(err => console.log(err))
+    });
 });
 
 
@@ -194,7 +258,6 @@ __webpack_require__.r(__webpack_exports__);
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -215,15 +278,26 @@ let apiKey = "92268e4434769b7515b45be3b45cd3d9bdc9d3e4cf62885a85ada0a22c9acf8b";
 
 /***/ }),
 
-/***/ "./src/js/infoMatch/infoMatch.js":
-/*!***************************************!*\
-  !*** ./src/js/infoMatch/infoMatch.js ***!
-  \***************************************/
-/***/ (() => {
+/***/ "./src/js/others/contryAndLeague.js":
+/*!******************************************!*\
+  !*** ./src/js/others/contryAndLeague.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module parse failed: Unexpected token (67:9)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n|             currentDisplay = displayStanding(standing, game.match_hometeam_id, game.match_awayteam_id)\n|             stopLoading()\n>         }else if(e.target.id === 'stats') {\n|             loading()\n|             // display");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getListCountry": () => (/* binding */ getListCountry),
+/* harmony export */   "getListLeague": () => (/* binding */ getListLeague)
+/* harmony export */ });
+function getListCountry() {
+    return "England,Belgium,Germany,Croatia,Spain,Czech Republic,France,Romania,Bulgaria,Italy,intl,eurocups,South Africa,Qatar,Worldcup,USA,Denmark,Norway,Sweden,Korea Republic,Netherlands,Mexico,Argentina,Portugal,Russia,Brazil,Switzerland,Brazil,Morocco"
+};
+
+function getListLeague() {
+    return "Championship,Community Shield,FA Cup,League Cup,League One,Premier League,EFL Trophy,National League,Women's Championship,Copa del Rey,La Liga,Segunda División,Super Cup,Primera División Femenina,Primera División RFEF,DFB Pokal,Regionalliga,Super Cup,2. Bundesliga,Bundesliga,Ligue 1,Ligue 2,Coupe de la Ligue,Feminine Division 1,National 1,Trophée des Champions,Coupe de France,Serie A,Serie B,Super Cup,Coppa Italia,First Division A,Challenger Pro League,First NL,Czech Liga,Liga I,First League,CAF Super Cup,Club Friendlies,COSAFA Cup,Friendlies,UEFA U21 Championship,Africa Cup of Nations,CAF Champions League,CAF Confederation Cup,UEFA Champions League,UEFA Champions League - Group Stage,UEFA Europa League,UEFA Europa League - Group Stage,UEFA Youth League,UEFA Youth League - Group Stage,PSL,QSL Cup,World Cup,MLS,Superliga,1. Division,Damallsvenskan,K League 1,Eredivisie,Eerste Divisie,Liga MX,Liga Profesional Argentina,Primeira Liga,Premier League,Serie A,Super League,Botola Pro,Premier League";
+}
 
 /***/ })
 
 }]);
-//# sourceMappingURL=src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_filterByDate_js--a2a51b.bundle.js.map
+//# sourceMappingURL=src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_getMatch_js-src_-9818f8.bundle.js.map

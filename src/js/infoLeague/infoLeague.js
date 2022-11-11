@@ -7,7 +7,6 @@ import displayScorer from "./displayScorer";
 import { endSeason, startSeason } from "../func/date";
 import displayStanding from "../func/displayStanding";
 import { getLeagues } from "../league/listLeague";
-import filterByDate from "../func/filterByDate";
 import { loading, stopLoading } from "../others/animation";
 import addHistory from "../history/addHistory";
 import pageNotFound from "../404";
@@ -26,10 +25,10 @@ export default async (isPopState, idLeague) => {
         scorer = [];
     getScorer(idLeague).then((value) => (scorer = value));
     getMatch(startSeason(), new Date(), idLeague).then((value) => {
-        result = filterByDate(value);
+        result = value;
     });
     getMatch(new Date(), endSeason(), idLeague).then(
-        (value) => (calendar = filterByDate(value, "ASC"))
+        (value) => (calendar = value)
     );
     // getStanding league
     standing = await getStanding(idLeague);
@@ -48,7 +47,7 @@ export default async (isPopState, idLeague) => {
         if (id === "result") currentDisplay = displayMatch(result, "result");
         else if (id === "standing") currentDisplay = displayStanding(standing);
         else if (id === "scorer") currentDisplay = displayScorer(scorer);
-        else currentDisplay = displayMatch(calendar, "calendar");
+        else currentDisplay = displayMatch(calendar, "calendar", "ASC");
     });
 
     // asorina ny league active raha misy
@@ -62,16 +61,14 @@ export default async (isPopState, idLeague) => {
             currentDisplay = displayMatch(calendar, "calendar");
             // maka vaovao
             calendar = await getMatch(new Date(), endSeason(), idLeague);
-            calendar = filterByDate(calendar, "ASC");
             // sao novainy tampoka nefa taraiky vao azo
             if (currentDisplay === "calendar")
-                currentDisplay = displayMatch(calendar, "calendar");
+                currentDisplay = displayMatch(calendar, "calendar", "ASC");
         } else if (currentDisplay === "result") {
             // affiche-na aloha sao taraiky le resultat teo aloha
             currentDisplay = displayMatch(result, "result");
             // maka vaovao
             result = await getMatch(startSeason(), new Date(), idLeague);
-            result = filterByDate(result);
             // sao novainy tampoka nefa taraiky vao azo
             if (currentDisplay === "result")
                 currentDisplay = displayMatch(result, "result");

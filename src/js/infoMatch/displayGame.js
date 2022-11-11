@@ -34,6 +34,7 @@ export default (game) => {
         <div class="moment-container"></div>
         <ul class="nav-match nav-info">
             <li class="active" id="pregame">Pre-game</li>
+            <li id="h2h">H2H</li>
             <li id="standing" class="">Standing</li>
             <li id="stats" class="">Stats</li> 
         </ul>

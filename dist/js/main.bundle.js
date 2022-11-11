@@ -431,10 +431,10 @@ __webpack_require__.r(__webpack_exports__);
         let url = location.protocol + '//' + location.host + '#' + hash
         window.history.pushState(null,'', url)
         // effacer le setInterval'interval
-        let {clearIntervalInfoMatch} = await __webpack_require__.e(/*! import() */ "src_js_infoMatch_infoMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js"))
-        let {clearIntervalInfoLeague} = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_infoLeague_infoLeague_js"), __webpack_require__.e("src_js_func_getMatch_js-src_js_others_popularAndException_js-_9c97-_855b0")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js"))
+        let {clearIntervalInfoMatch} = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_getStanding_js-_-7ce89f0")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js"))
+        let {clearIntervalInfoLeague} = await __webpack_require__.e(/*! import() */ "src_js_infoLeague_infoLeague_js-_d8990").then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js"))
         let {clearIntervalListMatch} = await __webpack_require__.e(/*! import() */ "src_js_listMatch_displayListMatch_js-src_js_listMatch_listMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../listMatch/listMatch */ "./src/js/listMatch/listMatch.js"))
-        let {clearIntervalInfoTeam} = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_infoTeam_infoTeam_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js"))
+        let {clearIntervalInfoTeam} = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoTeam_infoTeam_js"), __webpack_require__.e("src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_getStanding_js-_-7ce89f1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js"))
         clearIntervalInfoLeague()
         clearIntervalInfoMatch()
         clearIntervalListMatch()
@@ -507,11 +507,11 @@ __webpack_require__.r(__webpack_exports__);
         indexSlash = hash.indexOf("/"); // slash manaraka
         let id = hash.slice(0); // idMatch
         // raha tsy nombre le id
-        if (isNaN(id)) return (0,_404__WEBPACK_IMPORTED_MODULE_0__["default"])(); // 404
-        if (type === "pregame") importInfoMatch(isPopState, id);
-        else if (type === "standing") importInfoMatch(isPopState, id, "standing");
-        else if (type === "stats") importInfoMatch(isPopState, id, "stats");
-        else return (0,_404__WEBPACK_IMPORTED_MODULE_0__["default"])(); // 404
+        if (isNaN(id)) return (0,_404__WEBPACK_IMPORTED_MODULE_0__["default"])("team not found"); // 404
+        if((type === "pregame") || (type === "standing") || (type === "stats") || (type === "h2h"))
+            return importInfoMatch(isPopState, id, type);
+        
+        return (0,_404__WEBPACK_IMPORTED_MODULE_0__["default"])(); // 404
 
     } else if (item === "league") {
 
@@ -543,10 +543,10 @@ function importInit() {
     return new Promise(async (resolve, reject) => {
         __webpack_require__.e(/*! import() */ "src_js_league_listLeague_js").then(__webpack_require__.bind(__webpack_require__, /*! ../league/listLeague */ "./src/js/league/listLeague.js")).then(module => module.default())
         // effacer le setInterval'interval
-        let {clearIntervalInfoMatch} = await __webpack_require__.e(/*! import() */ "src_js_infoMatch_infoMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js"))
-        let {clearIntervalInfoLeague} = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_infoLeague_infoLeague_js"), __webpack_require__.e("src_js_func_getMatch_js-src_js_others_popularAndException_js-_9c97-_855b0")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js"))
+        let {clearIntervalInfoMatch} = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_getStanding_js-_-7ce89f0")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js"))
+        let {clearIntervalInfoLeague} = await __webpack_require__.e(/*! import() */ "src_js_infoLeague_infoLeague_js-_d8990").then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js"))
         let {clearIntervalListMatch} = await __webpack_require__.e(/*! import() */ "src_js_listMatch_displayListMatch_js-src_js_listMatch_listMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../listMatch/listMatch */ "./src/js/listMatch/listMatch.js"))
-        let {clearIntervalInfoTeam} = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_infoTeam_infoTeam_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js"))
+        let {clearIntervalInfoTeam} = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoTeam_infoTeam_js"), __webpack_require__.e("src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_getStanding_js-_-7ce89f1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js"))
         clearIntervalInfoLeague()
         clearIntervalInfoMatch()
         clearIntervalListMatch()
@@ -556,17 +556,17 @@ function importInit() {
 }
 
 async function importInfoLeague(isPopState, idLeague) {
-    let infoLeague = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_infoLeague_infoLeague_js"), __webpack_require__.e("src_js_func_getMatch_js-src_js_others_popularAndException_js-_9c97-_855b0")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js"));
+    let infoLeague = await __webpack_require__.e(/*! import() */ "src_js_infoLeague_infoLeague_js-_d8990").then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js"));
     infoLeague.default(isPopState, idLeague)
 }
 
 async function importInfoTeam(isPopState, idLeague, idTeam) {
-    let infoTeam = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_infoTeam_infoTeam_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js"));
+    let infoTeam = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoTeam_infoTeam_js"), __webpack_require__.e("src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_getStanding_js-_-7ce89f1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js"));
     infoTeam.default(isPopState, idLeague, idTeam)
 }
 
 async function importInfoMatch(isPopState, idMatch, toDisplay) {
-    let infoMatch = await __webpack_require__.e(/*! import() */ "src_js_infoMatch_infoMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js"));
+    let infoMatch = await Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_getStanding_js-_-7ce89f0")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js"));
     infoMatch.default(isPopState, idMatch, toDisplay)
 }
 
@@ -1005,8 +1005,8 @@ window.onpopstate = (e) => {
     // console.log('onpopstate');
     // console.log(e);
     ;(0,_history_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(true)
-    __webpack_require__.e(/*! import() */ "src_js_infoMatch_infoMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ./infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js")).then(module => module.clearIntervalInfoMatch())
-    Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_infoLeague_infoLeague_js"), __webpack_require__.e("src_js_func_getMatch_js-src_js_others_popularAndException_js-_9c97-_855b0")]).then(__webpack_require__.bind(__webpack_require__, /*! ./infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js")).then(module => module.clearIntervalInfoLeague())
+    Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_getStanding_js-_-7ce89f0")]).then(__webpack_require__.bind(__webpack_require__, /*! ./infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js")).then(module => module.clearIntervalInfoMatch())
+    __webpack_require__.e(/*! import() */ "src_js_infoLeague_infoLeague_js-_d8990").then(__webpack_require__.bind(__webpack_require__, /*! ./infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js")).then(module => module.clearIntervalInfoLeague())
     __webpack_require__.e(/*! import() */ "src_js_listMatch_displayListMatch_js-src_js_listMatch_listMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ./listMatch/listMatch */ "./src/js/listMatch/listMatch.js")).then(module => module.clearIntervalListMatch())
 }
 

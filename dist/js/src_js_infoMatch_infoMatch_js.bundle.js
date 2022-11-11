@@ -1,105 +1,6 @@
 "use strict";
 (self["webpackChunkFootball_score"] = self["webpackChunkFootball_score"] || []).push([["src_js_infoMatch_infoMatch_js"],{
 
-/***/ "./src/js/func/displayStanding.js":
-/*!****************************************!*\
-  !*** ./src/js/func/displayStanding.js ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((standing, ...idTeams) => {
-    // console.log(idTeams);
-    let standingHTML =
-    `<table class="standing-container">
-        <tr class="head-table">
-            <td class="team">Team</td>
-            <td>P <span class="caption-td">played<span></td>
-            <td>GF <span class="caption-td">goal for<span></td>
-            <td>GA <span class="caption-td">goal against<span></td>
-            <td>GD <span class="caption-td gd">goal difference<span></td>
-            <td>Pts <span class="caption-td">points<span></td>
-        </tr>`;
-        for(let element of standing) {
-            standingHTML += 
-            `<tr class="item-container ${idTeams.includes(element.team_id) ? 'current-team' : ''}" id="${element.league_id}t${element.team_id}">
-                <td class="team" id="${element.league_id}t${element.team_id}">
-                    <span class="number" id="${element.league_id}t${element.team_id}">${element.overall_league_position}</span> 
-                    <img src="${element.team_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${element.league_id}t${element.team_id}" onerror="this.src = '../../assets/img/logo2.png'">
-                    <span class="name" id="${element.league_id}t${element.team_id}">${element.team_name}</span>
-                </td>
-                <td id="${element.league_id}t${element.team_id}">
-                    ${element.overall_league_payed} 
-                    <span class="caption-td">played<span>
-                </td>
-                <td id="${element.league_id}t${element.team_id}">
-                    ${element.overall_league_GF}
-                    <span class="caption-td">goal for<span>
-                </td>
-                <td id="${element.league_id}t${element.team_id}">
-                    ${element.overall_league_GA}
-                    <span class="caption-td">goal against<span>
-                </td>
-                <td id="${element.league_id}t${element.team_id}">
-                    ${element.overall_league_GF - element.overall_league_GA}
-                    <span class="caption-td gd">goal difference<span>
-                </td>
-                <td id="${element.league_id}t${element.team_id}">
-                    ${element.overall_league_PTS}
-                    <span class="caption-td">points<span>
-                </td>
-            </tr>`
-        }
-    standingHTML += `</table>`
-    document.querySelector('.current-item').innerHTML = standingHTML
-    // active
-    document.querySelector('.nav-info li.active').classList.remove('active');
-    document.querySelector('#standing').classList.add('active');
-
-    document.querySelector('.standing-container').addEventListener('click', async (e) => {
-        let className = e.target.attributes.class;
-        if(className && className.nodeValue.includes("current-team")) return
-
-
-        let id = e.target.id.split('t');
-        if(id.length !== 2) return
-        let infoTeam = await __webpack_require__.e(/*! import() */ "src_js_infoTeam_infoTeam_js").then(__webpack_require__.bind(__webpack_require__, /*! ../infoTeam/infoTeam */ "./src/js/infoTeam/infoTeam.js"))
-        infoTeam.default(false, ...id)
-    })
-    return "standing"
-});
-
-/***/ }),
-
-/***/ "./src/js/func/getStanding.js":
-/*!************************************!*\
-  !*** ./src/js/func/getStanding.js ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-let apiKey = "92268e4434769b7515b45be3b45cd3d9bdc9d3e4cf62885a85ada0a22c9acf8b";
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (idLeague) => {
-    return await new Promise((resolve, reject) => {
-        let url = `https://apiv3.apifootball.com/?action=get_standings&league_id=${idLeague}&APIkey=${apiKey}`;
-        fetch(url, {method : 'get'})
-        .then(response => response.json())
-        .then((value) => {
-            // console.log('getStanding');
-            // console.log(value);
-            resolve(value.error ? [] : value)
-        })
-    })
-}); 
-
-/***/ }),
-
 /***/ "./src/js/infoMatch/displayGame.js":
 /*!*****************************************!*\
   !*** ./src/js/infoMatch/displayGame.js ***!
@@ -146,6 +47,7 @@ __webpack_require__.r(__webpack_exports__);
         <div class="moment-container"></div>
         <ul class="nav-match nav-info">
             <li class="active" id="pregame">Pre-game</li>
+            <li id="h2h">H2H</li>
             <li id="standing" class="">Standing</li>
             <li id="stats" class="">Stats</li> 
         </ul>
@@ -160,7 +62,7 @@ __webpack_require__.r(__webpack_exports__);
     let league = document.querySelector('.info-match h3');
 
     league.addEventListener('click', () => {
-        Promise.all(/*! import() */[__webpack_require__.e("src_js_infoLeague_infoLeague_js"), __webpack_require__.e("src_js_func_getMatch_js-src_js_others_popularAndException_js-_9c97-_855b1")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js")).then(module => 
+        __webpack_require__.e(/*! import() */ "src_js_infoLeague_infoLeague_js-_d8991").then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js")).then(module => 
             module.default(false, league.id)
         )
     })
@@ -461,6 +363,32 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/js/infoMatch/getH2H.js":
+/*!************************************!*\
+  !*** ./src/js/infoMatch/getH2H.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+let apiKey = "92268e4434769b7515b45be3b45cd3d9bdc9d3e4cf62885a85ada0a22c9acf8b";
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (first, second) => {
+    return await new Promise((reslove, reject) => {
+        let url = `https://apiv3.apifootball.com/?action=get_H2H&firstTeamId=${first}&secondTeamId=${second}&APIkey=${apiKey}&timezone=Africa/Nairobi`;
+        fetch(url, {method : 'get'})
+        .then(response => response.json())
+        .then((value) => {
+            console.log('get_H2H');
+            console.log(value);
+            reslove(value.error ? [] : value)
+        })
+    })
+});
+
+/***/ }),
+
 /***/ "./src/js/infoMatch/getInfoMatch.js":
 /*!******************************************!*\
   !*** ./src/js/infoMatch/getInfoMatch.js ***!
@@ -500,15 +428,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ infoMatch)
 /* harmony export */ });
 /* harmony import */ var _getInfoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getInfoMatch */ "./src/js/infoMatch/getInfoMatch.js");
-/* harmony import */ var _func_getStanding__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../func/getStanding */ "./src/js/func/getStanding.js");
-/* harmony import */ var _history_addHistory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../history/addHistory */ "./src/js/history/addHistory.js");
-/* harmony import */ var _others_animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../others/animation */ "./src/js/others/animation.js");
-/* harmony import */ var _displayGame__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./displayGame */ "./src/js/infoMatch/displayGame.js");
-/* harmony import */ var _displayMoment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./displayMoment */ "./src/js/infoMatch/displayMoment.js");
-/* harmony import */ var _displayPregame__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./displayPregame */ "./src/js/infoMatch/displayPregame.js");
-/* harmony import */ var _func_displayStanding__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../func/displayStanding */ "./src/js/func/displayStanding.js");
-/* harmony import */ var _displayStats__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./displayStats */ "./src/js/infoMatch/displayStats.js");
+/* harmony import */ var _getH2H__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getH2H */ "./src/js/infoMatch/getH2H.js");
+/* harmony import */ var _func_getStanding__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../func/getStanding */ "./src/js/func/getStanding.js");
+/* harmony import */ var _history_addHistory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../history/addHistory */ "./src/js/history/addHistory.js");
+/* harmony import */ var _others_animation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../others/animation */ "./src/js/others/animation.js");
+/* harmony import */ var _displayGame__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./displayGame */ "./src/js/infoMatch/displayGame.js");
+/* harmony import */ var _displayMoment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./displayMoment */ "./src/js/infoMatch/displayMoment.js");
+/* harmony import */ var _displayPregame__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./displayPregame */ "./src/js/infoMatch/displayPregame.js");
+/* harmony import */ var _func_displayStanding__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../func/displayStanding */ "./src/js/func/displayStanding.js");
+/* harmony import */ var _displayStats__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./displayStats */ "./src/js/infoMatch/displayStats.js");
+/* harmony import */ var _func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../func/displayMatchByDate */ "./src/js/func/displayMatchByDate.js");
  
+ 
+
 
 
 
@@ -526,58 +458,73 @@ let interval = undefined,
 async function infoMatch(isPopState=false, idMatch, toDisplay) {
     // tsy mila manao loading rehefa manao update
     if(!isUpdate) {
-        (0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
+        (0,_others_animation__WEBPACK_IMPORTED_MODULE_4__.loading)()
         window.scroll(0,0)
     }
 
     let game = [],
-        standing = [];
+        standing = [],
+        h2h = [];
     
     game = await (0,_getInfoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(idMatch)
     // console.log('game');
     // console.log(game);
     // display game (home vs away)
-    ;(0,_displayGame__WEBPACK_IMPORTED_MODULE_4__["default"])(game)
+    ;(0,_displayGame__WEBPACK_IMPORTED_MODULE_5__["default"])(game)
     // display moment fort
-    ;(0,_displayMoment__WEBPACK_IMPORTED_MODULE_5__["default"])(game)
+    ;(0,_displayMoment__WEBPACK_IMPORTED_MODULE_6__["default"])(game)
 
     if((toDisplay === "standing") || (currentDisplay === "standing")) { // raha tiana specifie-na ho classement
-        standing = await (0,_func_getStanding__WEBPACK_IMPORTED_MODULE_1__["default"])(game.league_id)
+        standing = await (0,_func_getStanding__WEBPACK_IMPORTED_MODULE_2__["default"])(game.league_id)
         // add history (ajouteko mitokana ito)
-        if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
-            (0,_history_addHistory__WEBPACK_IMPORTED_MODULE_2__["default"])(`game/standing/${game.match_id}`);
-        currentDisplay = (0,_func_displayStanding__WEBPACK_IMPORTED_MODULE_7__["default"])(standing, game.match_hometeam_id, game.match_awayteam_id)
+        // rehefa popstate de tsy mila mi-ajouter
+        if(!isPopState) (0,_history_addHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(`game/standing/${game.match_id}`);
+        currentDisplay = (0,_func_displayStanding__WEBPACK_IMPORTED_MODULE_8__["default"])(standing, game.match_hometeam_id, game.match_awayteam_id)
     } else if((toDisplay === "stats") || (currentDisplay === "stats")) {
-        (0,_func_getStanding__WEBPACK_IMPORTED_MODULE_1__["default"])(game.league_id).then((value) => standing = value)
-        currentDisplay = (0,_displayStats__WEBPACK_IMPORTED_MODULE_8__["default"])(isPopState, game)
+        // alaina any ambadika le standing
+        (0,_func_getStanding__WEBPACK_IMPORTED_MODULE_2__["default"])(game.league_id).then((value) => standing = value)
+        currentDisplay = (0,_displayStats__WEBPACK_IMPORTED_MODULE_9__["default"])(isPopState, game)
+    } else if((toDisplay === "h2h") || (currentDisplay === "h2h")) {
+        // rehefa popstate de tsy mila mi-ajouter
+        if(!isPopState) (0,_history_addHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(`game/h2h/${game.match_id}`);
+        // alaina any ambadika le standing
+        (0,_func_getStanding__WEBPACK_IMPORTED_MODULE_2__["default"])(game.league_id).then((value) => standing = value)
+        h2h = await (0,_getH2H__WEBPACK_IMPORTED_MODULE_1__["default"])(game.match_hometeam_id, game.match_awayteam_id)
+        currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_10__["default"])(h2h.firstTeam_VS_secondTeam, "h2h")
     } else {
-        (0,_func_getStanding__WEBPACK_IMPORTED_MODULE_1__["default"])(game.league_id).then((value) => standing = value)
-        currentDisplay = (0,_displayPregame__WEBPACK_IMPORTED_MODULE_6__["default"])(isPopState, game)
+        (0,_getH2H__WEBPACK_IMPORTED_MODULE_1__["default"])(game.match_hometeam_id, game.match_awayteam_id).then((value) => h2h = value)
+        currentDisplay = (0,_displayPregame__WEBPACK_IMPORTED_MODULE_7__["default"])(isPopState, game)
+        h2h = await (0,_getH2H__WEBPACK_IMPORTED_MODULE_1__["default"])(game.match_hometeam_id, game.match_awayteam_id)
     }
-    (0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
+    (0,_others_animation__WEBPACK_IMPORTED_MODULE_4__.stopLoading)()
 
     /* nav match (standing, pregame, stats) */
     document.querySelector('.nav-match').addEventListener('click', (e) => {
-        ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
+        ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_4__.loading)()
+        let id = e.target.id;
         // console.log(e.target);
-        if(e.target.id === 'standing') {
-            (0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
-            // add history (ajouteko mitokana ito)
-            if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
-                (0,_history_addHistory__WEBPACK_IMPORTED_MODULE_2__["default"])(`game/standing/${game.match_id}`);
+        if(id === 'standing') {
+            (0,_others_animation__WEBPACK_IMPORTED_MODULE_4__.loading)()
+            ;(0,_history_addHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(`game/standing/${game.match_id}`);
             // display
-            currentDisplay = (0,_func_displayStanding__WEBPACK_IMPORTED_MODULE_7__["default"])(standing, game.match_hometeam_id, game.match_awayteam_id)
-            ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
-        }else if(e.target.id === 'stats') {
-            (0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
+            currentDisplay = (0,_func_displayStanding__WEBPACK_IMPORTED_MODULE_8__["default"])(standing, game.match_hometeam_id, game.match_awayteam_id)
+            ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_4__.stopLoading)()
+        } else if(id === 'stats') {
+            (0,_others_animation__WEBPACK_IMPORTED_MODULE_4__.loading)()
             // display
-            currentDisplay = (0,_displayStats__WEBPACK_IMPORTED_MODULE_8__["default"])(isPopState, game)
-            ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
+            currentDisplay = (0,_displayStats__WEBPACK_IMPORTED_MODULE_9__["default"])(false, game)
+            ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_4__.stopLoading)()
+        } else if(id === 'h2h') {
+            (0,_others_animation__WEBPACK_IMPORTED_MODULE_4__.loading)()
+            ;(0,_history_addHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(`game/h2h/${game.match_id}`);
+            // display
+            currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_10__["default"])(h2h.firstTeam_VS_secondTeam, "h2h")
+            ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_4__.stopLoading)()
         } else {
-            (0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.loading)()
+            (0,_others_animation__WEBPACK_IMPORTED_MODULE_4__.loading)()
             // display
-            currentDisplay = (0,_displayPregame__WEBPACK_IMPORTED_MODULE_6__["default"])(isPopState, game)
-            ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
+            currentDisplay = (0,_displayPregame__WEBPACK_IMPORTED_MODULE_7__["default"])(false, game)
+            ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_4__.stopLoading)()
         }
     })
 
@@ -608,7 +555,7 @@ function clearIntervalInfoMatch() {
     clearInterval(interval)
     isUpdate = false
     currentDisplay = undefined
-    ;(0,_displayMoment__WEBPACK_IMPORTED_MODULE_5__.initMoment)()
+    ;(0,_displayMoment__WEBPACK_IMPORTED_MODULE_6__.initMoment)()
     // console.log('clearr');
 }
 

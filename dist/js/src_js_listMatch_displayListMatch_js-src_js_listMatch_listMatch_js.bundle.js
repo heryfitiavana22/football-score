@@ -96,7 +96,7 @@ let listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getList
                 let list = value.filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name));
                 // trier selon l'heure du match
                 list.sort((a,b) => new Date(`${a.match_date} ${a.match_time}`) - new Date(`${b.match_date} ${b.match_time}`))
-                // console.log(list);
+                console.log(list);
                 resolve(list)
             })
             .catch(err => console.log(err))
@@ -228,14 +228,14 @@ __webpack_require__.r(__webpack_exports__);
         let id = e.target.id
         // raha id ana league
         if(id.includes('l')) { // nasiako "l" ny id ana league
-            return Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_infoLeague_infoLeague_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js")).then(module => 
+            return __webpack_require__.e(/*! import() */ "src_js_infoLeague_infoLeague_js-_d8992").then(__webpack_require__.bind(__webpack_require__, /*! ../infoLeague/infoLeague */ "./src/js/infoLeague/infoLeague.js")).then(module => 
                 module.default(false, id)
             )
         }
         if(isNaN(id) || id === '') 
             return; // au cas ou tsy nombre
         // info Match
-        __webpack_require__.e(/*! import() */ "src_js_infoMatch_infoMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js")).then(module => 
+        Promise.all(/*! import() */[__webpack_require__.e("src_js_infoMatch_infoMatch_js"), __webpack_require__.e("src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_getStanding_js-_-7ce89f0")]).then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js")).then(module => 
             module.default(false, id)
         )
     })

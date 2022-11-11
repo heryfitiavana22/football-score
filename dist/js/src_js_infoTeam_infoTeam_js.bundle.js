@@ -55,118 +55,6 @@ function endSeason(date = new Date()) {
 
 /***/ }),
 
-/***/ "./src/js/func/displayMatchByDate.js":
-/*!*******************************************!*\
-  !*** ./src/js/func/displayMatchByDate.js ***!
-  \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js");
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((game, idHTML) => {
-    // console.log(idHTML);
-    // console.log(game);
-    let listGameHTML =
-    `<div class="listMatch">`;
-    if(game.length === 0)
-        listGameHTML +=  `<p style="padding-left:15px">to wait or no match</p>`
-    for(let date of game) {
-        listGameHTML +=
-        `<div class="matchs">
-            <h3>${date.date}</h3>
-            <ul class="list-match">`;
-            for(let match of date.game) {
-                // live match
-                if(match.match_live === '1') 
-                listGameHTML += 
-                `<li class="live" id="${match.match_id}">
-                    <span class="hour-match" id="${match.match_id}">${isNaN(match.match_status) ? match.match_status : ((match.match_status + ' min'))}</span>`;
-                // match mbola tsy nandeha; finished game and postponed
-                else 
-                listGameHTML += 
-                `<li id="${match.match_id}">
-                    <span class="hour-match" id="${match.match_id}">${(match.match_status === 'Postponed') ? 'postponed' : match.match_time}</span>`
-                listGameHTML += 
-                    `<div class="match-item" id="${match.match_id}">
-                        <div class="home" id="${match.match_id}">
-                            <span class="${(match.match_hometeam_score > match.match_awayteam_score) ? 'winner' : '  '}" id="${match.match_id}">${match.match_hometeam_name}</span>
-                            <img src="${match.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${match.match_id}" onerror="this.src = 'assets/img/logo2.png'">
-                            <span class="score-home score" id="${match.match_id}">${(match.match_hometeam_score.length > 0) ? match.match_hometeam_score : '  '}</span> 
-                        </div>
-                        <span class="vs" id="${match.match_id}">vs</span>
-                        <div class="away" id="${match.match_id}">
-                            <span class="away-home score" id="${match.match_id}">${(match.match_awayteam_score.length > 0) ? match.match_awayteam_score : '  '}</span>
-                            <img src="${match.team_away_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${match.match_id}" onerror="this.src = 'assets/img/logo2.png'">
-                            <span class="${(match.match_awayteam_score > match.match_hometeam_score) ? 'winner' : '  '}" id="${match.match_id}">${match.match_awayteam_name}</span>
-                        </div>
-                    </div>
-                </li>`;
-            }
-            `</ul>
-        </div>`
-    }
-    listGameHTML +=
-    `</div>`;
-    document.querySelector('.current-item').innerHTML = listGameHTML
-    document.querySelector('.nav-info .active').classList.remove('active')
-    document.querySelector('#'+idHTML).classList.add('active')
-    /* onclick match */
-    document.querySelector('.listMatch').addEventListener('click', (e) => {
-        let id = e.target.id
-        if(isNaN(id) || id === '') 
-            return; // au cas ou tsy nombre
-        (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(false, id)
-    })
-    return idHTML;
-});
-
-
-/***/ }),
-
-/***/ "./src/js/func/filterByDate.js":
-/*!*************************************!*\
-  !*** ./src/js/func/filterByDate.js ***!
-  \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((game, type) => {
-    let filterByDate = [],
-        listDate = [];
-    for (let element of game) {
-        // raha mbola tsy ao le date
-        if (!listDate.includes(element.match_date)) {
-            filterByDate.push({
-                date: element.match_date,
-                game: game.filter((g) => g.match_date === element.match_date), // ireo match amnio date io
-            });
-            listDate.push(element.match_date);
-        }
-    }
-    if (type === "ASC")
-        filterByDate.sort((a, b) => new Date(a.date) - new Date(b.date));
-    else {
-        filterByDate.sort((a, b) => new Date(b.date) - new Date(a.date));
-        let d = new Date();
-        // tsy raisina ny date androany 
-        if(filterByDate[0].date === `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`) {
-            filterByDate.shift()
-        }
-    }
-    return filterByDate;
-});
-
-
-/***/ }),
-
 /***/ "./src/js/func/getMatch.js":
 /*!*********************************!*\
   !*** ./src/js/func/getMatch.js ***!
@@ -208,7 +96,7 @@ let listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getList
                 let list = value.filter(e => listCountry.includes(e.country_name) && listLeague.includes(e.league_name));
                 // trier selon l'heure du match
                 list.sort((a,b) => new Date(`${a.match_date} ${a.match_time}`) - new Date(`${b.match_date} ${b.match_time}`))
-                // console.log(list);
+                console.log(list);
                 resolve(list)
             })
             .catch(err => console.log(err))
@@ -693,10 +581,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _displayStatsPlayer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./displayStatsPlayer */ "./src/js/infoTeam/displayStatsPlayer.js");
 /* harmony import */ var _history_addHistory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../history/addHistory */ "./src/js/history/addHistory.js");
 /* harmony import */ var _filterByPlace__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./filterByPlace */ "./src/js/infoTeam/filterByPlace.js");
-/* harmony import */ var _func_filterByDate__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../func/filterByDate */ "./src/js/func/filterByDate.js");
-/* harmony import */ var _func_date__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../func/date */ "./src/js/func/date.js");
-/* harmony import */ var _others_animation__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../others/animation */ "./src/js/others/animation.js");
-
+/* harmony import */ var _func_date__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../func/date */ "./src/js/func/date.js");
+/* harmony import */ var _others_animation__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../others/animation */ "./src/js/others/animation.js");
 
 
 
@@ -719,17 +605,17 @@ let currentDisplay = undefined,
         standing = [],
         players = [],
         coach = []
-    ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_12__.loading)()
+    ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_11__.loading)()
 
     window.scroll(0,0)
      // rehefa popstate de tsy mila mi-ajouter
     if(!isPopState) (0,_history_addHistory__WEBPACK_IMPORTED_MODULE_8__["default"])(`team/${idLeague}&${idTeam}`) 
 
-    ;(0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_func_date__WEBPACK_IMPORTED_MODULE_11__.startSeason)(), new Date(), 0, idTeam).then((value) => {
-        result = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_10__["default"])(value);
+    ;(0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_func_date__WEBPACK_IMPORTED_MODULE_10__.startSeason)(), new Date(), 0, idTeam).then((value) => {
+        result = value;
     });
-    (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])(new Date(), (0,_func_date__WEBPACK_IMPORTED_MODULE_11__.endSeason)(), 0, idTeam).then(
-        (value) => (calendar = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_10__["default"])(value, "ASC"))
+    (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])(new Date(), (0,_func_date__WEBPACK_IMPORTED_MODULE_10__.endSeason)(), 0, idTeam).then(
+        (value) => (calendar = value)
     );
     (0,_func_getStanding__WEBPACK_IMPORTED_MODULE_1__["default"])(idLeague).then((value) => (standing = value));
     // get player
@@ -742,13 +628,13 @@ let currentDisplay = undefined,
     /* onclick nav */
     document.querySelector('.nav-team').addEventListener('click', (e) => {
         let id = e.target.id;
-        if(id === "calendar") currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_5__["default"])(calendar, "calendar")
+        if(id === "calendar") currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_5__["default"])(calendar, "calendar", "ASC")
         else if (id === "results") currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_5__["default"])(result, "results")
         else if (id === "standing") (0,_func_displayStanding__WEBPACK_IMPORTED_MODULE_4__["default"])(standing, idTeam)
         else if (id === "stats") (0,_displayStatsPlayer__WEBPACK_IMPORTED_MODULE_7__["default"])(players)
         else (0,_displayPlayers__WEBPACK_IMPORTED_MODULE_6__["default"])(players, coach)
     })
-    ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_12__.stopLoading)()
+    ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_11__.stopLoading)()
 
     // asorina ny league active raha misy
     let activeLeague = document.querySelector('.list-league li.active');
@@ -759,17 +645,15 @@ let currentDisplay = undefined,
             // affiche-na aloha sao taraiky le resultat teo aloha
             currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_5__["default"])(calendar, "calendar");
             // maka vaovao
-            calendar = await (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])(new Date(), (0,_func_date__WEBPACK_IMPORTED_MODULE_11__.endSeason)(), 0, idTeam)
-            calendar = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_10__["default"])(calendar, "ASC");
+            calendar = await (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])(new Date(), (0,_func_date__WEBPACK_IMPORTED_MODULE_10__.endSeason)(), 0, idTeam)
             // sao novainy tampoka nefa taraiky vao azo
             if (currentDisplay === "calendar")
-                currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_5__["default"])(calendar, "calendar");
+                currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_5__["default"])(calendar, "calendar", "ASC");
         } else if (currentDisplay === "results") {
             // affiche-na aloha sao taraiky le resultat teo aloha
             currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_5__["default"])(result, "results");
             // maka vaovao
-            result = await (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_func_date__WEBPACK_IMPORTED_MODULE_11__.startSeason)(), new Date(), 0, idTeam);
-            result = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_10__["default"])(result);
+            result = await (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_func_date__WEBPACK_IMPORTED_MODULE_10__.startSeason)(), new Date(), 0, idTeam);
             // sao novainy tampoka nefa taraiky vao azo
             if (currentDisplay === "result")
                 currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_5__["default"])(result, "result");

@@ -1,4 +1,5 @@
-(self["webpackChunkFootball_score"] = self["webpackChunkFootball_score"] || []).push([["src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_filterByDate_js--a2a51b"],{
+"use strict";
+(self["webpackChunkFootball_score"] = self["webpackChunkFootball_score"] || []).push([["src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_getStanding_js-_-7ce89f1"],{
 
 /***/ "./src/js/func/displayMatchByDate.js":
 /*!*******************************************!*\
@@ -6,15 +7,13 @@
   \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js");
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((game, idHTML) => {
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (game, idHTML, type) => {
+    let filterByDate = await __webpack_require__.e(/*! import() */ "src_js_func_filterByDate_js").then(__webpack_require__.bind(__webpack_require__, /*! ./filterByDate */ "./src/js/func/filterByDate.js"))
+    game = filterByDate.default(game, idHTML, type)
     // console.log(idHTML);
     // console.log(game);
     let listGameHTML =
@@ -62,11 +61,12 @@ __webpack_require__.r(__webpack_exports__);
     document.querySelector('.nav-info .active').classList.remove('active')
     document.querySelector('#'+idHTML).classList.add('active')
     /* onclick match */
-    document.querySelector('.listMatch').addEventListener('click', (e) => {
+    document.querySelector('.listMatch').addEventListener('click', async (e) => {
+        let infoMatch = await __webpack_require__.e(/*! import() */ "src_js_infoMatch_infoMatch_js").then(__webpack_require__.bind(__webpack_require__, /*! ../infoMatch/infoMatch */ "./src/js/infoMatch/infoMatch.js")) 
         let id = e.target.id
         if(isNaN(id) || id === '') 
             return; // au cas ou tsy nombre
-        (0,_infoMatch_infoMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(false, id)
+        infoMatch.default(false, id)
     })
     return idHTML;
 });
@@ -80,7 +80,6 @@ __webpack_require__.r(__webpack_exports__);
   \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -148,53 +147,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/js/func/filterByDate.js":
-/*!*************************************!*\
-  !*** ./src/js/func/filterByDate.js ***!
-  \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((game, type) => {
-    let filterByDate = [],
-        listDate = [];
-    for (let element of game) {
-        // raha mbola tsy ao le date
-        if (!listDate.includes(element.match_date)) {
-            filterByDate.push({
-                date: element.match_date,
-                game: game.filter((g) => g.match_date === element.match_date), // ireo match amnio date io
-            });
-            listDate.push(element.match_date);
-        }
-    }
-    if (type === "ASC")
-        filterByDate.sort((a, b) => new Date(a.date) - new Date(b.date));
-    else {
-        filterByDate.sort((a, b) => new Date(b.date) - new Date(a.date));
-        let d = new Date();
-        // tsy raisina ny date androany 
-        if(filterByDate[0].date === `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`) {
-            filterByDate.shift()
-        }
-    }
-    return filterByDate;
-});
-
-
-/***/ }),
-
 /***/ "./src/js/func/getStanding.js":
 /*!************************************!*\
   !*** ./src/js/func/getStanding.js ***!
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -213,17 +171,7 @@ let apiKey = "92268e4434769b7515b45be3b45cd3d9bdc9d3e4cf62885a85ada0a22c9acf8b";
     })
 }); 
 
-/***/ }),
-
-/***/ "./src/js/infoMatch/infoMatch.js":
-/*!***************************************!*\
-  !*** ./src/js/infoMatch/infoMatch.js ***!
-  \***************************************/
-/***/ (() => {
-
-throw new Error("Module parse failed: Unexpected token (67:9)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n|             currentDisplay = displayStanding(standing, game.match_hometeam_id, game.match_awayteam_id)\n|             stopLoading()\n>         }else if(e.target.id === 'stats') {\n|             loading()\n|             // display");
-
 /***/ })
 
 }]);
-//# sourceMappingURL=src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_filterByDate_js--a2a51b.bundle.js.map
+//# sourceMappingURL=src_js_func_displayMatchByDate_js-src_js_func_displayStanding_js-src_js_func_getStanding_js-_-7ce89f1.bundle.js.map

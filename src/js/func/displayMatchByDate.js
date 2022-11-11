@@ -1,6 +1,6 @@
-import infoMatch from '../infoMatch/infoMatch'
-
-export default (game, idHTML) => {
+export default async (game, idHTML, type) => {
+    let filterByDate = await import('./filterByDate')
+    game = filterByDate.default(game, idHTML, type)
     // console.log(idHTML);
     // console.log(game);
     let listGameHTML =
@@ -48,11 +48,12 @@ export default (game, idHTML) => {
     document.querySelector('.nav-info .active').classList.remove('active')
     document.querySelector('#'+idHTML).classList.add('active')
     /* onclick match */
-    document.querySelector('.listMatch').addEventListener('click', (e) => {
+    document.querySelector('.listMatch').addEventListener('click', async (e) => {
+        let infoMatch = await import('../infoMatch/infoMatch') 
         let id = e.target.id
         if(isNaN(id) || id === '') 
             return; // au cas ou tsy nombre
-        infoMatch(false, id)
+        infoMatch.default(false, id)
     })
     return idHTML;
 };

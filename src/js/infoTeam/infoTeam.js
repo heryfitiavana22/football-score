@@ -8,7 +8,6 @@ import displayPlayers from "./displayPlayers";
 import displayStatsPlayer from "./displayStatsPlayer";
 import addHistory from "../history/addHistory";
 import filterByPlace from "./filterByPlace";
-import filterByDate from "../func/filterByDate";
 import { endSeason, startSeason } from "../func/date";
 import {loading, stopLoading} from '../others/animation'
 
@@ -28,10 +27,10 @@ export default async (isPopState = false, idLeague, idTeam) => {
     if(!isPopState) addHistory(`team/${idLeague}&${idTeam}`) 
 
     getMatch(startSeason(), new Date(), 0, idTeam).then((value) => {
-        result = filterByDate(value);
+        result = value;
     });
     getMatch(new Date(), endSeason(), 0, idTeam).then(
-        (value) => (calendar = filterByDate(value, "ASC"))
+        (value) => (calendar = value)
     );
     getStanding(idLeague).then((value) => (standing = value));
     // get player
@@ -44,7 +43,7 @@ export default async (isPopState = false, idLeague, idTeam) => {
     /* onclick nav */
     document.querySelector('.nav-team').addEventListener('click', (e) => {
         let id = e.target.id;
-        if(id === "calendar") currentDisplay = displayMatch(calendar, "calendar")
+        if(id === "calendar") currentDisplay = displayMatch(calendar, "calendar", "ASC")
         else if (id === "results") currentDisplay = displayMatch(result, "results")
         else if (id === "standing") displayStanding(standing, idTeam)
         else if (id === "stats") displayStatsPlayer(players)
@@ -62,16 +61,14 @@ export default async (isPopState = false, idLeague, idTeam) => {
             currentDisplay = displayMatch(calendar, "calendar");
             // maka vaovao
             calendar = await getMatch(new Date(), endSeason(), 0, idTeam)
-            calendar = filterByDate(calendar, "ASC");
             // sao novainy tampoka nefa taraiky vao azo
             if (currentDisplay === "calendar")
-                currentDisplay = displayMatch(calendar, "calendar");
+                currentDisplay = displayMatch(calendar, "calendar", "ASC");
         } else if (currentDisplay === "results") {
             // affiche-na aloha sao taraiky le resultat teo aloha
             currentDisplay = displayMatch(result, "results");
             // maka vaovao
             result = await getMatch(startSeason(), new Date(), 0, idTeam);
-            result = filterByDate(result);
             // sao novainy tampoka nefa taraiky vao azo
             if (currentDisplay === "result")
                 currentDisplay = displayMatch(result, "result");

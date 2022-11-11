@@ -47,11 +47,11 @@ export default (isPopState) => {
         indexSlash = hash.indexOf("/"); // slash manaraka
         let id = hash.slice(0); // idMatch
         // raha tsy nombre le id
-        if (isNaN(id)) return pageNotFound(); // 404
-        if (type === "pregame") importInfoMatch(isPopState, id);
-        else if (type === "standing") importInfoMatch(isPopState, id, "standing");
-        else if (type === "stats") importInfoMatch(isPopState, id, "stats");
-        else return pageNotFound(); // 404
+        if (isNaN(id)) return pageNotFound("team not found"); // 404
+        if((type === "pregame") || (type === "standing") || (type === "stats") || (type === "h2h"))
+            return importInfoMatch(isPopState, id, type);
+        
+        return pageNotFound(); // 404
 
     } else if (item === "league") {
 

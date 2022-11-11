@@ -1,4 +1,5 @@
 import getInfoMatch from './getInfoMatch' 
+import getH2H from './getH2H' 
 import getStanding from '../func/getStanding'
 import addHistory from "../history/addHistory"
 import {loading, stopLoading} from '../others/animation'
@@ -8,6 +9,7 @@ import {initMoment} from './displayMoment'
 import displayPreGame from './displayPregame'
 import displayStanding from '../func/displayStanding'
 import displayStats from './displayStats'
+import displayMatch from "../func/displayMatchByDate";
 
 let interval = undefined,
     currentDisplay = undefined,
@@ -21,7 +23,8 @@ export default async function infoMatch(isPopState=false, idMatch, toDisplay) {
     }
 
     let game = [],
-        standing = [];
+        standing = [],
+        h2h = [];
     
     game = await getInfoMatch(idMatch)
     // console.log('game');
@@ -34,39 +37,53 @@ export default async function infoMatch(isPopState=false, idMatch, toDisplay) {
     if((toDisplay === "standing") || (currentDisplay === "standing")) { // raha tiana specifie-na ho classement
         standing = await getStanding(game.league_id)
         // add history (ajouteko mitokana ito)
-        if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
-            addHistory(`game/standing/${game.match_id}`);
+        // rehefa popstate de tsy mila mi-ajouter
+        if(!isPopState) addHistory(`game/standing/${game.match_id}`);
         currentDisplay = displayStanding(standing, game.match_hometeam_id, game.match_awayteam_id)
     } else if((toDisplay === "stats") || (currentDisplay === "stats")) {
+        // alaina any ambadika le standing
         getStanding(game.league_id).then((value) => standing = value)
         currentDisplay = displayStats(isPopState, game)
-    } else {
+    } else if((toDisplay === "h2h") || (currentDisplay === "h2h")) {
+        // rehefa popstate de tsy mila mi-ajouter
+        if(!isPopState) addHistory(`game/h2h/${game.match_id}`);
+        // alaina any ambadika le standing
         getStanding(game.league_id).then((value) => standing = value)
+        h2h = await getH2H(game.match_hometeam_id, game.match_awayteam_id)
+        currentDisplay = displayMatch(h2h.firstTeam_VS_secondTeam, "h2h")
+    } else {
+        getH2H(game.match_hometeam_id, game.match_awayteam_id).then((value) => h2h = value)
         currentDisplay = displayPreGame(isPopState, game)
+        h2h = await getH2H(game.match_hometeam_id, game.match_awayteam_id)
     }
     stopLoading()
 
     /* nav match (standing, pregame, stats) */
     document.querySelector('.nav-match').addEventListener('click', (e) => {
         loading()
+        let id = e.target.id;
         // console.log(e.target);
-        if(e.target.id === 'standing') {
+        if(id === 'standing') {
             loading()
-            // add history (ajouteko mitokana ito)
-            if(!isPopState) // rehefa popstate de tsy mila mi-ajouter
-                addHistory(`game/standing/${game.match_id}`);
+            addHistory(`game/standing/${game.match_id}`);
             // display
             currentDisplay = displayStanding(standing, game.match_hometeam_id, game.match_awayteam_id)
             stopLoading()
-        }else if(e.target.id === 'stats') {
+        } else if(id === 'stats') {
             loading()
             // display
-            currentDisplay = displayStats(isPopState, game)
+            currentDisplay = displayStats(false, game)
+            stopLoading()
+        } else if(id === 'h2h') {
+            loading()
+            addHistory(`game/h2h/${game.match_id}`);
+            // display
+            currentDisplay = displayMatch(h2h.firstTeam_VS_secondTeam, "h2h")
             stopLoading()
         } else {
             loading()
             // display
-            currentDisplay = displayPreGame(isPopState, game)
+            currentDisplay = displayPreGame(false, game)
             stopLoading()
         }
     })

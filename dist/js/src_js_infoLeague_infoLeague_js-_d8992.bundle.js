@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkFootball_score"] = self["webpackChunkFootball_score"] || []).push([["src_js_infoLeague_infoLeague_js"],{
+(self["webpackChunkFootball_score"] = self["webpackChunkFootball_score"] || []).push([["src_js_infoLeague_infoLeague_js-_d8992"],{
 
 /***/ "./src/js/func/displayMatchByDate.js":
 /*!*******************************************!*\
@@ -13,7 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (game, idHTML, type) => {
     let filterByDate = await __webpack_require__.e(/*! import() */ "src_js_func_filterByDate_js").then(__webpack_require__.bind(__webpack_require__, /*! ./filterByDate */ "./src/js/func/filterByDate.js"))
-    game = filterByDate.default(game, type)
+    game = filterByDate.default(game, idHTML, type)
     // console.log(idHTML);
     // console.log(game);
     let listGameHTML =
@@ -485,4 +485,4 @@ function getLeagues() {
 /***/ })
 
 }]);
-//# sourceMappingURL=src_js_infoLeague_infoLeague_js.bundle.js.map
+//# sourceMappingURL=src_js_infoLeague_infoLeague_js-_d8992.bundle.js.map
