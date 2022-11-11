@@ -32,7 +32,7 @@ export default function (listGame) {
             countryGameHTML += 
                 `<div class="match-item" id="${game.match_id}">
                     <div class="home" id="${game.match_id}">
-                        <span id="${game.match_id}">${game.match_hometeam_name}</span>
+                        <span class="${(game.match_hometeam_score > game.match_awayteam_score) ? 'winner' : '  '}" id="${game.match_id}">${game.match_hometeam_name}</span>
                         <img src="${game.team_home_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}" onerror="this.src = 'assets/img/logo2.png'">
                         <span class="score-home score" id="${game.match_id}">${(game.match_hometeam_score.length > 0) ? game.match_hometeam_score : '  '}</span> 
                     </div>
@@ -40,7 +40,7 @@ export default function (listGame) {
                     <div class="away" id="${game.match_id}">
                         <span class="away-home score" id="${game.match_id}">${(game.match_awayteam_score.length > 0) ? game.match_awayteam_score : '  '}</span>
                         <img src="${game.team_away_badge || 'assets/img/logo2.png'}" alt="icon-team" id="${game.match_id}" onerror="this.src = 'assets/img/logo2.png'">
-                        <span id="${game.match_id}">${game.match_awayteam_name}</span>
+                        <span class="${(game.match_awayteam_score > game.match_hometeam_score) ? 'winner' : '  '}" id="${game.match_id}">${game.match_awayteam_name}</span>
                     </div>
                 </div>
             </li>`;

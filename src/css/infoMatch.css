@@ -242,6 +242,9 @@
 }
 /* end pre-game */
 
+.info-match .listMatch h3 {font-size: 16px;}
+.info-match .listMatch {font-size: 14px;}
+
 /* statistics */
 .statistics {
     padding: 10px;
@@ -370,6 +373,9 @@
     .coach .team {font-size: 16px;}
     .coach .manager-name {font-size: 13px;}
     .coach .caption {font-size: 12px;}
+
+    .info-match .listMatch h3 {font-size: 12px;}
+    .info-match .listMatch {font-size: 12px;}
 
     .standing-container {font-size: 12px;}
     .head-table {height: 30px;}
