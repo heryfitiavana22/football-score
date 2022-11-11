@@ -97,6 +97,7 @@ export async function listMatch(isPopState=false, date, idLeague, toDisplay) {
 export function clearIntervalListMatch() {
     clearInterval(interval)
     isUpdate = false
+    currentItem = listMatchToday
 }
 
 
@@ -173,8 +174,4 @@ export function listMatchFinished() {
     deleteCurrentMonth()
     createCalendar(currentMonth, currentYear, currentDate);
     stopLoading()
-}
-
-export async function updateScore() {
-    currentItem()
 }

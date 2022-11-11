@@ -273,8 +273,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "listMatch": () => (/* binding */ listMatch),
 /* harmony export */   "listMatchFinished": () => (/* binding */ listMatchFinished),
 /* harmony export */   "listMatchLive": () => (/* binding */ listMatchLive),
-/* harmony export */   "listMatchToday": () => (/* binding */ listMatchToday),
-/* harmony export */   "updateScore": () => (/* binding */ updateScore)
+/* harmony export */   "listMatchToday": () => (/* binding */ listMatchToday)
 /* harmony export */ });
 /* harmony import */ var _func_getMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../func/getMatch */ "./src/js/func/getMatch.js");
 /* harmony import */ var _func_date__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../func/date */ "./src/js/func/date.js");
@@ -382,6 +381,7 @@ async function listMatch(isPopState=false, date, idLeague, toDisplay) {
 function clearIntervalListMatch() {
     clearInterval(interval)
     isUpdate = false
+    currentItem = listMatchToday
 }
 
 
@@ -460,9 +460,6 @@ function listMatchFinished() {
     (0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
 }
 
-async function updateScore() {
-    currentItem()
-}
 
 /***/ }),
 

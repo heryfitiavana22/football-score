@@ -214,7 +214,7 @@ let apiKey = "92268e4434769b7515b45be3b45cd3d9bdc9d3e4cf62885a85ada0a22c9acf8b";
   \***************************************/
 /***/ (() => {
 
-throw new Error("Module parse failed: Invalid number (86:7)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n|         }, 55000) // tous les une minutes  (alatsako kely amle mbola alaina)\n|         console.log(\"interval\");\n>     }, 00)\n| }\n| ");
+throw new Error("Module parse failed: Identifier 'displayMoment' has already been declared (7:7)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n| import displayGame from './displayGame'\n| import displayMoment from './displayMoment'\n> import displayMoment from './displayMoment'\n| import displayPreGame from './displayPregame'\n| import displayStanding from '../func/displayStanding'");
 
 /***/ })
 

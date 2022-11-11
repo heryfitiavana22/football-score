@@ -87,7 +87,7 @@ let listLeague = (0,_others_contryAndLeague__WEBPACK_IMPORTED_MODULE_0__.getList
         if(idLeague > 0) url += `&league_id=${idLeague}`
         // au cas ou idLeague est donne
         if(idTeam > 0) url += `&team_id=${idTeam}`
-        console.log(url);
+        // console.log(url);
         fetch(url, { method: "get" })
             .then((response) => response.json())
             .then((value) => {

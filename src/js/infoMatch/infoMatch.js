@@ -4,6 +4,7 @@ import addHistory from "../history/addHistory"
 import {loading, stopLoading} from '../others/animation'
 import displayGame from './displayGame'
 import displayMoment from './displayMoment'
+import {initMoment} from './displayMoment'
 import displayPreGame from './displayPregame'
 import displayStanding from '../func/displayStanding'
 import displayStats from './displayStats'
@@ -77,21 +78,26 @@ export default async function infoMatch(isPopState=false, idMatch, toDisplay) {
     // rehefa mandeha ny a jour de tsy atao intsony
     if(isUpdate) return
 
-    // ataoko miandry kely fa misy erreur
-    setTimeout(() => {
-        // mettre a jour le resultat chaque 60 seconde 
-        interval = setInterval(async () => {
-            isUpdate = true
-            // console.log(currentDisplay);
-            // console.log('maj info');
-            infoMatch(true, idMatch)
-        }, 55000) // tous les une minutes  (alatsako kely amle mbola alaina)
-        // console.log("interval");
-    }, 250)
+    // rehefa live iany vao manao update    
+    if(game.match_status=== "1") {
+        // ataoko miandry kely fa misy erreur
+        setTimeout(() => {
+            // mettre a jour le resultat chaque 60 seconde 
+            interval = setInterval(async () => {
+                isUpdate = true
+                // console.log(currentDisplay);
+                console.log('maj info');
+                infoMatch(true, idMatch)
+            }, 55000) // tous les une minutes  (alatsako kely amle mbola alaina)
+            console.log("interval");
+        }, 250)
+    }
 }
 
 export function clearIntervalInfoMatch() {
     clearInterval(interval)
     isUpdate = false
+    currentDisplay = undefined
+    initMoment()
     // console.log('clearr');
 }

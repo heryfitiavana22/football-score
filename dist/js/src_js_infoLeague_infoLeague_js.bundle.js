@@ -85,12 +85,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((game, type) => {
-    let result = [],
+    let filterByDate = [],
         listDate = [];
     for (let element of game) {
         // raha mbola tsy ao le date
         if (!listDate.includes(element.match_date)) {
-            result.push({
+            filterByDate.push({
                 date: element.match_date,
                 game: game.filter((g) => g.match_date === element.match_date), // ireo match amnio date io
             });
@@ -98,9 +98,16 @@ __webpack_require__.r(__webpack_exports__);
         }
     }
     if (type === "ASC")
-        result.sort((a, b) => new Date(a.date) - new Date(b.date));
-    else result.sort((a, b) => new Date(b.date) - new Date(a.date));
-    return result;
+        filterByDate.sort((a, b) => new Date(a.date) - new Date(b.date));
+    else {
+        filterByDate.sort((a, b) => new Date(b.date) - new Date(a.date));
+        let d = new Date();
+        // tsy raisina ny date androany 
+        if(filterByDate[0].date === `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`) {
+            filterByDate.shift()
+        }
+    }
+    return filterByDate;
 });
 
 
@@ -274,7 +281,6 @@ let intervalUpdate = undefined,
     (0,_func_getScorer__WEBPACK_IMPORTED_MODULE_1__["default"])(idLeague).then((value) => (scorer = value));
     (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_func_date__WEBPACK_IMPORTED_MODULE_6__.startSeason)(), new Date(), idLeague).then((value) => {
         result = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_9__["default"])(value);
-        result.shift(); // shift satria lasa voaray ao le date androany
     });
     (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])(new Date(), (0,_func_date__WEBPACK_IMPORTED_MODULE_6__.endSeason)(), idLeague).then(
         (value) => (calendar = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_9__["default"])(value, "ASC"))
@@ -320,7 +326,6 @@ let intervalUpdate = undefined,
             // maka vaovao
             result = await (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_func_date__WEBPACK_IMPORTED_MODULE_6__.startSeason)(), new Date(), idLeague);
             result = (0,_func_filterByDate__WEBPACK_IMPORTED_MODULE_9__["default"])(result);
-            result.shift(); // shift satria lasa voaray ao le date androany;
             // sao novainy tampoka nefa taraiky vao azo
             if (currentDisplay === "result")
                 currentDisplay = (0,_func_displayMatchByDate__WEBPACK_IMPORTED_MODULE_4__["default"])(result, "result");
@@ -330,6 +335,7 @@ let intervalUpdate = undefined,
 
 function clearIntervalInfoLeague() {
     clearInterval(intervalUpdate)
+    currentDisplay = undefined
 }
 
 /***/ }),

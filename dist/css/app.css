@@ -314,6 +314,7 @@ td:hover .caption-td {display: block;}
     .search-container input {left: -171px; width: 200px;}
 
     .nav-info {margin-top: 10px; font-size: 12px;}
+    .info .listMatch {font-size: 12px;}
 }
 /*!****************************************************************************************************************************!*\
   !*** css ./node_modules/.pnpm/css-loader@6.7.1_webpack@5.74.0/node_modules/css-loader/dist/cjs.js!./src/css/listMatch.css ***!

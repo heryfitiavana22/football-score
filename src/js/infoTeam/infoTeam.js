@@ -29,7 +29,6 @@ export default async (isPopState = false, idLeague, idTeam) => {
 
     getMatch(startSeason(), new Date(), 0, idTeam).then((value) => {
         result = filterByDate(value);
-        result.shift(); // shift satria lasa voaray ao le date androany
     });
     getMatch(new Date(), endSeason(), 0, idTeam).then(
         (value) => (calendar = filterByDate(value, "ASC"))
@@ -73,7 +72,6 @@ export default async (isPopState = false, idLeague, idTeam) => {
             // maka vaovao
             result = await getMatch(startSeason(), new Date(), 0, idTeam);
             result = filterByDate(result);
-            result.shift(); // shift satria lasa voaray ao le date androany;
             // sao novainy tampoka nefa taraiky vao azo
             if (currentDisplay === "result")
                 currentDisplay = displayMatch(result, "result");
@@ -84,4 +82,5 @@ export default async (isPopState = false, idLeague, idTeam) => {
 
 export function clearIntervalInfoTeam() {
     clearInterval(intervalUpdate)
+    currentDisplay = undefined
 }

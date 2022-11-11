@@ -188,8 +188,11 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "initMoment": () => (/* binding */ initMoment)
 /* harmony export */ });
+let isClicked = false; // raha efa clicke le "show more"
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((game) => {
     let moment = [],
         goal = game.goalscorer,
@@ -267,13 +270,20 @@ __webpack_require__.r(__webpack_exports__);
         `<!-- voir plus  -->
         <div class="show-more"><span>show more</span></div>`;
     momentContainer.innerHTML = momentHTML;
+
+    if(isClicked) momentContainer.style.height = "auto"
     let showMore = document.querySelector('.show-more')
     if(showMore) // raha misy
         showMore.addEventListener('click', () => {
             momentContainer.style.height = "auto"
             showMore.style.display = 'none'
+            isClicked = true
         })
 });
+
+function initMoment() {
+    isClicked = false
+}
 
 /***/ }),
 
@@ -508,6 +518,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 let interval = undefined,
     currentDisplay = undefined,
     isUpdate = false;
@@ -577,22 +588,27 @@ async function infoMatch(isPopState=false, idMatch, toDisplay) {
     // rehefa mandeha ny a jour de tsy atao intsony
     if(isUpdate) return
 
-    // ataoko miandry kely fa misy erreur
-    setTimeout(() => {
-        // mettre a jour le resultat chaque 60 seconde 
-        interval = setInterval(async () => {
-            isUpdate = true
-            // console.log(currentDisplay);
-            // console.log('maj info');
-            infoMatch(true, idMatch)
-        }, 55000) // tous les une minutes  (alatsako kely amle mbola alaina)
-        // console.log("interval");
-    }, 250)
+    // rehefa live iany vao manao update    
+    if(game.match_status=== "1") {
+        // ataoko miandry kely fa misy erreur
+        setTimeout(() => {
+            // mettre a jour le resultat chaque 60 seconde 
+            interval = setInterval(async () => {
+                isUpdate = true
+                // console.log(currentDisplay);
+                console.log('maj info');
+                infoMatch(true, idMatch)
+            }, 55000) // tous les une minutes  (alatsako kely amle mbola alaina)
+            console.log("interval");
+        }, 250)
+    }
 }
 
 function clearIntervalInfoMatch() {
     clearInterval(interval)
     isUpdate = false
+    currentDisplay = undefined
+    ;(0,_displayMoment__WEBPACK_IMPORTED_MODULE_5__.initMoment)()
     // console.log('clearr');
 }
 
