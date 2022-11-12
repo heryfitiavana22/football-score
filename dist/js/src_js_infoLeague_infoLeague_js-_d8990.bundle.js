@@ -567,7 +567,7 @@ let list = [];
                 }
             }
             // trier-na selon ny id ana pays anle league 
-            console.log(othersLeague.sort((a,b) => a.country_id - b.country_id));
+            othersLeague.sort((a,b) => a.country_id - b.country_id);
             // atambatra
             list = [...leaguesPopular, ...othersLeague]
             // display list league `<li class="list-item" onclick="getLeagueMatch(${e.league_id})">
