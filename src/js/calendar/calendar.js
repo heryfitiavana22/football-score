@@ -181,6 +181,7 @@ export function getCurrentDate() {
 let currentIdLeague = undefined; // tazomina le idLeague jerena raha misy
 /* manova date */
 export async function setDate(isPopState=false, m, d, idLeague, toDisplay) {
+    window.scroll(0,0)
     // hideCalendar (valable ito rehefa le ecran <= 768)
     let actualContainer = document.querySelector('.actual')
     if(actualContainer) actualContainer.style.top = '-100%' // raha misy
