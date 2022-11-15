@@ -183,7 +183,6 @@ ul li .hour-match {
     padding-right: 2px;
     font-size: 12px;
     color: rgb(105, 105, 105);
-    background-color: white;
 }
 .day-item {text-align: center; cursor: pointer;}
 .day-out {color: rgb(194, 194, 194);}
@@ -222,7 +221,6 @@ td .day-item {
 
 @media screen and (max-width : 768px) {
     #icon-toggle-calendar {
-        margin-left: 10px;
         display: block !important;
         position: relative;
         cursor: pointer;
