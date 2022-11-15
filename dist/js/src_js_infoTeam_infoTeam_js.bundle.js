@@ -425,8 +425,8 @@ function displayDuels(players, headTr, tr) {
     `<td class="player-table">Player</td>
     <td>P <span class="caption-td">played<span></td>
     <td>age</td>
-    <td>DT <span>duels total<span></td>
-    <td>DW <span>duels won<span></td>
+    <td>DT <span class="caption-td">duels total<span></td>
+    <td>DW <span class="caption-td">duels won<span></td>
     <td>
         <img src="assets/img/yellow-card.png" alt="yellow-card" onerror="this.src='assets/img/yellow-card.png'"> 
         <span class="caption-td">yellow card<span>

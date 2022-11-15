@@ -306,13 +306,6 @@ async function listMatch(isPopState=false, date, idLeague, toDisplay) {
     let list = await (0,_func_getMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(date, date, idLeague),
         leagueId = [],
         countryId = [];
-    // au cas ou idLeague est donne
-    if(idLeague > 0) {
-        // active league (raha sendra ery amin url no novaina ny id no tena mahatonga azy ovaina eto)
-        let activeLeague = document.querySelector('.list-league li.active');
-        if(activeLeague) activeLeague.classList.remove('active')
-        document.querySelector('.kk'+idLeague).classList.add('active') // nasiako "kk" de mora azo
-    }
     // console.log('list match');
     // console.log(list);
     // filter by country and league
@@ -368,6 +361,15 @@ async function listMatch(isPopState=false, date, idLeague, toDisplay) {
     } 
     currentItem()
     ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_3__.stopLoading)()
+
+    // au cas ou idLeague est donne
+    if(idLeague > 0) {
+        // active league (raha sendra ery amin url no novaina ny id no tena mahatonga azy ovaina eto)
+        let activeLeague = document.querySelector('.list-league li.active');
+        if(activeLeague) activeLeague.classList.remove('active')
+        document.querySelector('.kk'+idLeague).classList.add('active') // nasiako "kk" de mora azo
+    }
+    
     // rehefa mandeha ny a jour de tsy atao intsony
     if(isUpdate) return
 

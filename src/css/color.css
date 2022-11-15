@@ -3,6 +3,12 @@
     --darkblue1 : rgba(29, 59, 107,0.7);
     --blue1 : #6297d6;
     --blue2 : #5fa0ff;
-    --background : rgb(227, 227, 227);
     --gray1 : rgb(236, 236, 236);
+    --fs-bg-light : rgb(227, 227, 227);
+    --fs-bg-dark : #121212;
+    --fs-bg-dark-secondary : #111113;
+    --fs-bg-dark-tertiary : #141415;
+    --fs-bg-dark-hover : #12161b;
+    --bg-dark-active-league : #3c3c3c;
+    --color-dark-active-league : #aeaeae;
 }

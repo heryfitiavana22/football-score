@@ -6,13 +6,22 @@
     --darkblue1 : rgba(29, 59, 107,0.7);
     --blue1 : #6297d6;
     --blue2 : #5fa0ff;
-    --background : rgb(227, 227, 227);
     --gray1 : rgb(236, 236, 236);
+    --fs-bg-light : rgb(227, 227, 227);
+    --fs-bg-dark : #121212;
+    --fs-bg-dark-secondary : #111113;
+    --fs-bg-dark-tertiary : #141415;
+    --fs-bg-dark-hover : #12161b;
+    --bg-dark-active-league : #3c3c3c;
+    --color-dark-active-league : #aeaeae;
 }
 /*!************************************************************************************************************************!*\
   !*** css ./node_modules/.pnpm/css-loader@6.7.1_webpack@5.74.0/node_modules/css-loader/dist/cjs.js!./src/css/style.css ***!
   \************************************************************************************************************************/
-body {background-color: var(--background) !important; overflow-x: hidden;}
+body {
+    background-color: var(--fs-bg-light) !important; 
+    overflow-x: hidden;
+}
 input:focus-visible {outline: none;}
 ul {padding: 0 !important; list-style-type: none;}
 
@@ -70,7 +79,7 @@ h1 span {
 .icon-nav {
     position: absolute;
     right: 5px;
-    top: 9px;
+    top: 5px;
     color: var(--blue2);
     font-weight: bold !important;
     transition: all 0.3s ease;
@@ -275,12 +284,122 @@ td:hover .caption-td {display: block;}
     color: black;
 }
 
+/* */
+.mode {
+    margin-left: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+body.dark {
+    background-color: var(--fs-bg-dark) !important;
+    color: rgba(255, 255, 255, 0.87);
+}
+.dark .list-league .active {
+    background-color: var(--bg-dark-active-league);
+    color: var(--color-dark-active-league);
+}
+.dark .match-container, 
+.dark .calendar-month {background-color: var(--fs-bg-dark-secondary);}
+
+.dark .nav-list,
+.dark .day td {color: inherit;}
+
+.dark .matchs h3,
+.dark .info {background-color: var(--fs-bg-dark-tertiary);}
+
+.dark .matchs h3 .country,
+.dark .date-match {color: rgba(255, 255, 255, 0.6);}
+
+.dark ul li .hour-match,
+.dark .stadium-match,
+.dark .coach .caption {color: rgba(255, 255, 255, 0.5);}
+
+.dark .list-match li:hover,
+.dark .nav-list li:hover {background-color: var(--fs-bg-dark-hover );}
+
+.dark .day-item:hover {
+    background-color: var(--fs-bg-dark-hover );
+    color: inherit;
+}
+.dark .jump {background-color: transparent;}
+.dark .current-date,
+.dark .info-match h3 .country {color: inherit;}
+
+.dark .week td {
+    background: #1c1c1f;
+    border-right: 1px solid rgb(126 126 126);
+    border-bottom: 1px solid rgb(126 126 126);
+    color: inherit;
+}
+.dark .info-match {
+    background-color: var(--fs-bg-dark-secondary);
+    color: rgba(255, 255, 255, 0.87);
+}
+.dark .info-match h3 {border-bottom: 1px solid rgb(126 126 126);}
+.dark .nav-info {
+    background-color: var(--fs-bg-dark-tertiary);
+    color: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgb(126 126 126);
+}
+.dark .nav-info .active {
+    background-color: #222225;
+    color: rgba(255, 255, 255, 0.87);
+}
+.dark .nav-info li:hover {
+    background-color: #222225;
+    border-left: 1px solid rgb(126 126 126);
+    border-right: 1px solid rgb(126 126 126);
+}
+.dark .coach .away {
+    border-left: 1px solid rgb(126 126 126);
+}
+.dark .coach .team,
+.dark .match .hour-match {color: rgba(255, 255, 255, 0.87);}
+.dark .info-team .player {background-color: #313131;}
+.dark .info-team .player footer {
+    background-color: rgb(100 99 99);
+    color: rgba(255, 255, 255, 0.7);
+}
+.dark .info-team .caption.Defenders {color: #c36c6c;}
+.dark .info-team .caption.Forwards {color: #7474ac;}
+.dark .head-table {
+    background-color: #435267 !important;
+    color: rgba(255, 255, 255, 0.87);
+}
+.dark .standing-container tr:nth-child(odd) {
+    background-color: #262626;
+}
+.dark .standing-container .item-container:hover {
+    background-color: var(--fs-bg-dark-hover );
+    color: inherit;
+}
+.dark .top-scorer tr .team-player {color: rgba(255, 255, 255, 0.6);}
+.dark .standing-container .current-team {
+    background-color: #1b2027 !important;
+    color: inherit;
+}
+.dark .stats-player .head-table td {
+    background-color: #435267 !important;
+    color: rgba(255, 255, 255, 0.87) !important;
+}
+.dark .player-table,
+.dark .stats-player .tr-player td{color: rgba(255, 255, 255, 0.8) !important;}
+.dark .moment .time {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #121212;
+}
+.dark .statistics .row-item {color: rgba(255, 255, 255, 0.75)}
+.dark .statistics {
+    box-shadow: 1px 1px 10px rgb(126 126 126);
+}
+
 @media screen and (max-width : 992px) {
     .nav-content, .container-element > .content {width: 98%;}
     .nav-option {margin-right: 10px;}
     #icon-toggle-league {
         display: block !important;
         position: relative;
+        margin-left: 5px;
         right: -3px;
         cursor: pointer;
     }
@@ -506,7 +625,6 @@ ul li .hour-match {
     padding-right: 2px;
     font-size: 12px;
     color: rgb(105, 105, 105);
-    background-color: white;
 }
 .day-item {text-align: center; cursor: pointer;}
 .day-out {color: rgb(194, 194, 194);}
@@ -545,7 +663,6 @@ td .day-item {
 
 @media screen and (max-width : 768px) {
     #icon-toggle-calendar {
-        margin-left: 10px;
         display: block !important;
         position: relative;
         cursor: pointer;
