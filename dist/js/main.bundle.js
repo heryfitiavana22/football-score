@@ -999,20 +999,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_others_animation__WEBPACK_IMPORTED_MODULE_0__.loading)()
-// stopLoading()
-;(0,_others_someEventlistener__WEBPACK_IMPORTED_MODULE_5__["default"])() // onclick sy ny namany
-;(0,_history_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(false) // false satria pushstate 
-
 // check mode (light or dark)
 let mode = localStorage.getItem('football-score');
 if(mode === 'dark') {
     document.querySelector('body').classList.replace('light', 'dark')
     document.querySelector('.mode').innerHTML = '<path fill="none" d="M0 0h24v24H0z"></path><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" style="fill: rgb(95, 160, 255);"></path>'
 }
+(0,_others_animation__WEBPACK_IMPORTED_MODULE_0__.loading)()
+// stopLoading()
+;(0,_others_someEventlistener__WEBPACK_IMPORTED_MODULE_5__["default"])() // onclick sy ny namany
+;(0,_history_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(false) // false satria pushstate 
+
 
 window.onpopstate = (e) => {
-    (0,_others_animation__WEBPACK_IMPORTED_MODULE_0__.loading)()
+    ;(0,_others_animation__WEBPACK_IMPORTED_MODULE_0__.loading)()
     // console.log('onpopstate');
     // console.log(e);
     ;(0,_history_checkHistory__WEBPACK_IMPORTED_MODULE_3__["default"])(true)
