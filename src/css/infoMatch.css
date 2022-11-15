@@ -105,8 +105,8 @@
     color: white;
 }
 .moment .yellow-card {
-    border: 1px solid #e4dd13;
-    background-color: #e4dd13;
+    border: 1px solid #e4dd13 !important;
+    background-color: #e4dd13 !important;
     color: rgb(120, 120, 120);
 }
 .moment .red-card {
