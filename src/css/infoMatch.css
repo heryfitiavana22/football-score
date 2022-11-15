@@ -110,8 +110,8 @@
     color: rgb(120, 120, 120);
 }
 .moment .red-card {
-    border: 1px solid #e32d18;
-    background-color: #e32d18;
+    border: 1px solid #e32d18 !important;
+    background-color: #e32d18 !important;
     color: white
 }
 .moment .item {  
