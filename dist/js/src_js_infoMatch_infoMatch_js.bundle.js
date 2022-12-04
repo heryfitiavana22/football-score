@@ -377,7 +377,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-let apiKey = "aeb8cfee1fe2069ff47ef42ad13a32ab605910fd7267a6cd39538190d1b705be";
+let apiKey = "69d0f812ba6bef5b0c3a07882a32a546d04daae0fbaccad688d0df1c21f33a31";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (first, second) => {
     return await new Promise((reslove, reject) => {
         let url = `https://apiv3.apifootball.com/?action=get_H2H&firstTeamId=${first}&secondTeamId=${second}&APIkey=${apiKey}&timezone=Africa/Nairobi`;
@@ -403,7 +403,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-let apiKey = "aeb8cfee1fe2069ff47ef42ad13a32ab605910fd7267a6cd39538190d1b705be";
+let apiKey = "69d0f812ba6bef5b0c3a07882a32a546d04daae0fbaccad688d0df1c21f33a31";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (idMatch) => {
     return await new Promise((reslove, reject) => {
         let url = `https://apiv3.apifootball.com/?action=get_events&APIkey=${apiKey}&match_id=${idMatch}&timezone=Africa/Nairobi`;
